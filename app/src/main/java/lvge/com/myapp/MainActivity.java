@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import lvge.com.myapp.service.HttpService;
+
 public class MainActivity extends Activity {
 
     @Override
