@@ -1,18 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="lvge.com.myapp.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/login_imageView"
+        android:layout_width="368dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@mipmap/lg_user"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="100dp"
+        android:layout_marginTop="62dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/login_submit"
+        android:layout_alignStart="@+id/login_submit"
+        tools:ignore="ContentDescription" />
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="311dp"
+        android:layout_height="36dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/login_username"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="241dp"
+        android:layout_above="@+id/password"
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignStart="@+id/password"
+        android:layout_marginBottom="22dp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="311dp"
+        android:hint="@string/login_password"
+        android:layout_height="34dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteY="312dp"
+        tools:layout_editor_absoluteX="37dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/login_submit"
+        android:layout_width="311dp"
+        android:layout_height="43dp"
+        style="@style/my_buttonActiveStyle"
+        android:text="@string/login_submit"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="367dp"
+        android:gravity="center"
+        android:layout_below="@+id/password"
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignStart="@+id/password"
+        android:layout_marginTop="26dp" />
+
+</RelativeLayout>

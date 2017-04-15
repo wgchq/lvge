@@ -5,4 +5,11 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="my_buttonActiveStyle">
+        <item name="android:background">@color/buttonPrimary</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/buttonTextColor</item>
+    </style>
+
+
 </resources>
