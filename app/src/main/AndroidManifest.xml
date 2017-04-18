@@ -16,11 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainPageActivity">
 
-        <service
-            android:name=".service.HttpService"
-            android:enabled="true"
-            android:exported="true"></service>
+        </activity>
     </application>
 
 </manifest>
