@@ -1,61 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/my_layoutStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="lvge.com.myapp.MainActivity">
 
-    <ImageView
-        android:id="@+id/login_imageView"
-        android:layout_width="368dp"
+    <LinearLayout
+        android:id="@+id/lly_login_main"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/lg_user"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="100dp"
-        android:layout_marginTop="62dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/login_submit"
-        android:layout_alignStart="@+id/login_submit"
-        tools:ignore="ContentDescription" />
-
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="311dp"
-        android:layout_height="36dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/login_username"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="241dp"
-        android:layout_above="@+id/password"
-        android:layout_alignLeft="@+id/password"
-        android:layout_alignStart="@+id/password"
-        android:layout_marginBottom="22dp" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="311dp"
-        android:hint="@string/login_password"
-        android:layout_height="34dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteY="312dp"
-        tools:layout_editor_absoluteX="37dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:id="@+id/login_submit"
-        android:layout_width="311dp"
-        android:layout_height="43dp"
-        style="@style/my_buttonActiveStyle"
-        android:text="@string/login_submit"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="367dp"
         android:gravity="center"
-        android:layout_below="@+id/password"
-        android:layout_alignLeft="@+id/password"
-        android:layout_alignStart="@+id/password"
-        android:layout_marginTop="26dp" />
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/login_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/lg_user"
+            tools:ignore="ContentDescription" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="22dp"
+            android:ems="10"
+            android:hint="@string/login_username"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableEnd="@mipmap/lg_eye"
+            android:drawableRight="@mipmap/lg_eye"
+            android:ems="10"
+            android:hint="@string/login_password"
+            android:inputType="textPassword" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            tools:ignore="RtlHardcoded">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/forget_password" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/login_submit"
+            style="@style/my_buttonActiveStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:text="@string/login_submit" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:drawableTop="@mipmap/lg_company_logo"
+            android:gravity="center"
+            android:text="@string/company_name" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

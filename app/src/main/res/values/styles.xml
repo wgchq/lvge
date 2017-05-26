@@ -1,14 +1,21 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.NoActionBar">
+ <!--       <item name="android:background">@color/colorPrimaryDark</item>-->
     </style>
 
     <style name="my_buttonActiveStyle">
-        <item name="android:background">@color/buttonPrimary</item>
+
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/buttonTextColor</item>
+        <item name="android:background">@drawable/buttonshape</item>
+
+    </style>
+    <!--登陆页面-->
+    <style name="my_layoutStyle">
+        <item name="android:padding">12dp</item>
+
     </style>
 
 

@@ -1,8 +1,11 @@
 <resources>
+    <!--登陆页面设置-->
     <string name="app_name">商户端</string>
-    <string name="login_username">用户名</string>
-    <string name="login_password">密码</string>
+    <string name="login_username">请输入账号</string>
+    <string name="login_password">请输入密码</string>
     <string name="login_submit">登录</string>
+    <string name="company_name">南宁市广贵展贸易中心</string>
+    <string name="forget_password">忘记密码?</string>
     <string name="QR_description">二维码</string>
     <string name="scanner">扫一扫</string>
 
