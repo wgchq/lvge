@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/list_menu_selector"
-    android:paddingStart="@dimen/activity_horizontal_margin"
+    android:gravity="center_vertical"
     android:paddingEnd="@dimen/activity_horizontal_margin"
-    android:gravity="center_vertical">
+    android:paddingStart="@dimen/activity_horizontal_margin">
 
     <ImageView
         android:id="@+id/menu_icon"
@@ -27,10 +27,10 @@
         android:layout_weight="1">
 
         <ImageView
-            android:layout_alignParentEnd="true"
             android:id="@+id/menu_go"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:contentDescription="@string/menu_print_setting"
             android:src="@mipmap/menu_go" />
     </RelativeLayout>

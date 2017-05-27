@@ -3,11 +3,15 @@ package lvge.com.myapp;
 
 import android.app.Activity;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
+import android.support.design.widget.BottomNavigationView;
 import android.view.View;
 
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -19,6 +23,7 @@ import java.util.Objects;
 
 import lvge.com.myapp.ui.MenuAdapter;
 import lvge.com.myapp.ui.SlideMenu;
+import lvge.com.myapp.util.BottomNavigationViewHelper;
 
 
 public class MainPageActivity extends Activity {
@@ -41,7 +46,13 @@ public class MainPageActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // 隐藏标题栏
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        /*// 隐藏状态栏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
+
         setContentView(R.layout.activity_main_page);
         String menu_personal = this.getString(R.string.menu_personal);
         String menu_staff_info = this.getString(R.string.menu_staff_info);
@@ -62,6 +73,19 @@ public class MainPageActivity extends Activity {
 
             }
         });
+
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+        }
     }
 
     private List<Map<String, Object>> getMenuListItems() {
