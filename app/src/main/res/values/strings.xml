@@ -8,6 +8,12 @@
     <string name="forget_password">忘记密码?</string>
     <string name="QR_description">二维码</string>
     <string name="scanner">扫一扫</string>
+<!--主页菜单设置-->
+    <string name="menu_personal">个人资料</string>
+    <string name="menu_staff_info">员工资料</string>
+    <string name="menu_authority">权限设置</string>
+    <string name="menu_push_notice">推送设置</string>
+    <string name="menu_print_setting">打印机设置</string>
 
-
+    <string name="menu_exit">退出</string>
 </resources>

@@ -9,6 +9,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -74,7 +75,6 @@ public class SlideMenu extends HorizontalScrollView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         /**
-         * 鏄剧ず鐨勮缃竴涓搴�
          */
         if (!once) {
             LinearLayout wrapper = (LinearLayout) getChildAt(0);
@@ -95,7 +95,6 @@ public class SlideMenu extends HorizontalScrollView {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
         if (changed) {
-            // 灏嗚彍鍗曢殣钘�
             this.scrollTo(mMenuWidth, 0);
             once = true;
         }
@@ -105,7 +104,6 @@ public class SlideMenu extends HorizontalScrollView {
     public boolean onTouchEvent(MotionEvent ev) {
         int action = ev.getAction();
         switch (action) {
-            // Up鏃讹紝杩涜鍒ゆ柇锛屽鏋滄樉绀哄尯鍩熷ぇ浜庤彍鍗曞搴︿竴鍗婂垯瀹屽叏鏄剧ず锛屽惁鍒欓殣钘�
             case MotionEvent.ACTION_UP:
                 int scrollX = getScrollX();
                 if (scrollX > mHalfMenuWidth) {
@@ -141,7 +139,6 @@ public class SlideMenu extends HorizontalScrollView {
     }
 
     /**
-     * 鍒囨崲鑿滃崟鐘舵��
      */
     public void toggle() {
         if (isOpen) {
