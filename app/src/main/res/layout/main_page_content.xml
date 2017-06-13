@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,12 +28,14 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         android:gravity="bottom">
+
         <ImageView
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:src="@mipmap/menu_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="toggleMenu"/>
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:onClick="toggleMenu"
+            android:src="@mipmap/menu_logo"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
@@ -46,13 +49,189 @@
         android:background="@color/colorPrimaryDark"
         app:menu="@menu/navigation" />
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/fragment_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/navigation"
-        android:layout_below="@+id/toolbar_main_page">
+        android:layout_below="@+id/toolbar_main_page"
+        android:orientation="vertical">
 
-    </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            tools:ignore="UselessParent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_shape"
+                android:hint="@string/please_enter_validation"
+                android:inputType="text" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/activity_horizontal_margin">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/validation_type_scan_QR"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <View
+                    android:layout_width="1dip"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/colorPrimaryDark" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/validation_history"
+                    android:textColor="@color/colorPrimaryDark" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#EFEFF4" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/refund_after_sale" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/pending_send_goods" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#EFEFF4" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:gravity="center"
+
+                android:padding="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/shop_management" />
+
+                <TextView
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:text="@string/commodity_management" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/financial_management" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/car_data_management" />
+
+            </TableRow>
+
+            <TableRow
+                android:gravity="center"
+                android:padding="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:text="@string/royalty_management" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:text="@string/evaluation_management" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:text="@string/fence_management" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:text="@string/my_4s_management" />
+
+            </TableRow>
+
+            <TableRow
+                android:gravity="center"
+                android:padding="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:text="@string/performance_analysis_management" />
+
+                <TextView
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:text="@string/coupon" />
+
+                <TextView
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="" />
+
+
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

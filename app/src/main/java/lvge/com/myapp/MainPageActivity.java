@@ -39,7 +39,6 @@ public class MainPageActivity extends Activity {
             R.mipmap.menu_exit
     };
 
-
     private ListView listView;
     private MenuAdapter menuAdapter;
 
@@ -54,12 +53,6 @@ public class MainPageActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
 
         setContentView(R.layout.activity_main_page);
-        String menu_personal = this.getString(R.string.menu_personal);
-        String menu_staff_info = this.getString(R.string.menu_staff_info);
-        String menu_authority = this.getString(R.string.menu_authority);
-        String menu_push_notice = this.getString(R.string.menu_push_notice);
-        String menu_print_setting = this.getString(R.string.menu_print_setting);
-        String menu_exit = this.getString(R.string.menu_exit);
 
         mMenu = (SlideMenu) findViewById(R.id.id_menu);
 
@@ -77,7 +70,6 @@ public class MainPageActivity extends Activity {
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
-
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();

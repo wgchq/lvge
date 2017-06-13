@@ -16,8 +16,24 @@
     <string name="menu_print_setting">打印机设置</string>
     <string name="menu_exit">退出</string>
 
-    <!--发生的发生的-->
+    <!--底部菜单-->
     <string name="title_home1">主页</string>
     <string name="title_notifications">主页</string>
     <string name="title_dashboard1">主页</string>
+    <!--首页内容-->
+    <string name="please_enter_validation">请输入验证码</string>
+    <string name="validation_type_scan_QR">扫码校验</string>
+    <string name="validation_history">验证历史</string>
+    <string name="refund_after_sale">退款售后</string>
+    <string name="pending_send_goods">代发货</string>
+    <string name="shop_management">店铺管理</string>
+    <string name="commodity_management">商品管理</string>
+    <string name="financial_management">财务管理</string>
+    <string name="car_data_management">车数据</string>
+    <string name="royalty_management">提成管理</string>
+    <string name="evaluation_management">评价管理</string>
+    <string name="fence_management">围栏管理</string>
+    <string name="my_4s_management">我的4S店</string>
+    <string name="performance_analysis_management">业绩分析</string>
+    <string name="coupon">优惠券</string>
 </resources>
