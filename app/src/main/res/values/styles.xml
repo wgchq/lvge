@@ -25,7 +25,6 @@
     <!--登陆页面-->
     <style name="my_layoutStyle">
         <item name="android:padding">12dp</item>
-
     </style>
 
 

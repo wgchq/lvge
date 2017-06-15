@@ -26,16 +26,55 @@
         android:id="@+id/toolbar_main_page"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:gravity="bottom">
 
-        <ImageView
-            android:layout_width="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:onClick="toggleMenu"
-            android:src="@mipmap/menu_logo"
-            tools:ignore="ContentDescription" />
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:onClick="toggleMenu"
+                android:src="@mipmap/menu_logo"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/company_name"
+                android:textColor="@color/colorPrimaryDark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:onClick="toggleMenu"
+                android:src="@mipmap/main_page_message"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
 
     </LinearLayout>
 
@@ -79,14 +118,22 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/activity_horizontal_margin">
 
-
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/validation_type_scan_QR"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/text_left_to_img_padding"
+                        android:drawableStart="@mipmap/main_page_validation_type_scan_qr"
+                        android:gravity="center"
+                        android:text="@string/validation_type_scan_QR"
+                        android:textColor="@color/colorPrimaryDark" />
+                </LinearLayout>
+
 
                 <View
                     android:layout_width="1dip"
@@ -94,13 +141,22 @@
                     android:layout_gravity="center_horizontal"
                     android:background="@color/colorPrimaryDark" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/validation_history"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/text_left_to_img_padding"
+                        android:drawableStart="@mipmap/main_page_validation_history"
+                        android:gravity="center"
+                        android:text="@string/validation_history"
+                        android:textColor="@color/colorPrimaryDark" />
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -118,19 +174,38 @@
             android:gravity="center_vertical"
             android:padding="@dimen/activity_horizontal_margin">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/refund_after_sale" />
+                android:gravity="center">
 
-            <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/text_left_to_img_padding"
+                    android:drawableStart="@mipmap/main_page_refund_after_sale"
+                    android:gravity="center"
+
+                    android:text="@string/refund_after_sale" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/pending_send_goods" />
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/text_left_to_img_padding"
+                    android:drawableStart="@mipmap/main_page_pending_send_goods"
+                    android:gravity="center"
+
+                    android:text="@string/pending_send_goods" />
+            </LinearLayout>
+
 
         </LinearLayout>
 
@@ -148,26 +223,26 @@
 
                 android:padding="@dimen/activity_horizontal_margin">
 
-                <TextView
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/shop_management" />
-
-                <TextView
+                <ImageView
                     android:layout_weight="1"
 
-                    android:gravity="center"
-                    android:text="@string/commodity_management" />
+                    android:contentDescription="@string/shop_management"
+                    android:src="@mipmap/main_page_shop_management" />
 
-                <TextView
+                <ImageView
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/financial_management" />
+                    android:contentDescription="@string/commodity_management"
+                    android:src="@mipmap/main_page_commodity_management" />
 
-                <TextView
+                <ImageView
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/car_data_management" />
+                    android:contentDescription="@string/financial_management"
+                    android:src="@mipmap/main_page_financial_management" />
+
+                <ImageView
+                    android:layout_weight="1"
+                    android:contentDescription="@string/car_data_management"
+                    android:src="@mipmap/main_page_car_data_management" />
 
             </TableRow>
 
@@ -175,29 +250,26 @@
                 android:gravity="center"
                 android:padding="@dimen/activity_horizontal_margin">
 
-                <TextView
+                <ImageView
                     android:layout_weight="1"
+                    android:contentDescription="@string/royalty_management"
+                    android:src="@mipmap/main_page_royalty_management" />
 
-                    android:gravity="center"
-                    android:text="@string/royalty_management" />
-
-                <TextView
+                <ImageView
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:contentDescription="@string/evaluation_management"
+                    android:src="@mipmap/main_page_evaluation_management" />
 
-                    android:text="@string/evaluation_management" />
-
-                <TextView
+                <ImageView
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:contentDescription="@string/fence_management"
+                    android:src="@mipmap/main_page_fence_management" />
 
-                    android:text="@string/fence_management" />
-
-                <TextView
+                <ImageView
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:contentDescription="@string/my_4s_management"
+                    android:src="@mipmap/main_page_my_4s_management" />
 
-                    android:text="@string/my_4s_management" />
 
             </TableRow>
 
@@ -205,17 +277,15 @@
                 android:gravity="center"
                 android:padding="@dimen/activity_horizontal_margin">
 
-                <TextView
+                <ImageView
                     android:layout_weight="1"
+                    android:contentDescription="@string/performance_analysis_management"
+                    android:src="@mipmap/main_page_performance_analysis_management" />
 
-                    android:gravity="center"
-                    android:text="@string/performance_analysis_management" />
-
-                <TextView
+                <ImageView
                     android:layout_weight="1"
-
-                    android:gravity="center"
-                    android:text="@string/coupon" />
+                    android:contentDescription="@string/coupon"
+                    android:src="@mipmap/main_page_coupon" />
 
                 <TextView
                     android:layout_weight="1"
