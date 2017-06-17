@@ -14,9 +14,11 @@
         <item name="windowNoTitle">false</item>
         <item name="android:windowTranslucentStatus">false</item>
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="my_buttonActiveStyle">
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/buttonTextColor</item>

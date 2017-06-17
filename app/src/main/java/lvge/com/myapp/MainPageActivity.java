@@ -3,6 +3,7 @@ package lvge.com.myapp;
 
 import android.app.Activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -21,6 +23,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import lvge.com.myapp.modules.car_data_management.CarDataManagementActivity;
+import lvge.com.myapp.modules.commodity_management.CommodityHomepageApplication;
+import lvge.com.myapp.modules.commodity_management.CommodityManageHomepage;
+import lvge.com.myapp.modules.coupon.CouponActivity;
+import lvge.com.myapp.modules.evaluation_management.EvaluationManagementActivity;
+import lvge.com.myapp.modules.fence_management.FenceManagementActivity;
+import lvge.com.myapp.modules.financial_management.FinancialManagementActivity;
+import lvge.com.myapp.modules.my_4s_management.My4sManagementActivity;
+import lvge.com.myapp.modules.performance_analysis_management.PerformanceAnalysisManagementActivity;
+import lvge.com.myapp.modules.royalty_management.RoyaltyManagementActivity;
+import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
 import lvge.com.myapp.ui.MenuAdapter;
 import lvge.com.myapp.ui.SlideMenu;
 import lvge.com.myapp.util.BottomNavigationViewHelper;
@@ -78,6 +91,99 @@ public class MainPageActivity extends Activity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
         }
+
+
+        //主页面跳转各个子模块
+
+        ImageView img_main_page_shop_management = (ImageView)findViewById(R.id.img_main_page_shop_management);
+
+        img_main_page_shop_management.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainPageActivity.this, ShopManagementActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        ImageView img_main_page_car_data_management = (ImageView)findViewById(R.id.img_main_page_car_data_management);
+        img_main_page_car_data_management.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainPageActivity.this,CarDataManagementActivity.class);
+                startActivity(intent);
+            }
+        });
+        ImageView img_main_page_commodity_management = (ImageView)findViewById(R.id.img_main_page_commodity_management);
+        img_main_page_commodity_management.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainPageActivity.this,CommodityManageHomepage.class);
+                startActivity(intent);
+            }
+        });
+
+
+        ImageView img_main_page_coupon = (ImageView)findViewById(R.id.img_main_page_coupon);
+        img_main_page_coupon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainPageActivity.this,CouponActivity.class);
+                startActivity(intent);
+            }
+        });
+        ImageView img_main_page_evaluation_management = (ImageView)findViewById(R.id.img_main_page_evaluation_management);
+        img_main_page_evaluation_management.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainPageActivity.this,EvaluationManagementActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageView img_main_page_fence_management = (ImageView)findViewById(R.id.img_main_page_fence_management);
+        img_main_page_fence_management.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainPageActivity.this,FenceManagementActivity.class);
+                startActivity(intent);
+            }
+        });
+        ImageView img_main_page_my_4s_management = (ImageView)findViewById(R.id.img_main_page_my_4s_management);
+        img_main_page_my_4s_management.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainPageActivity.this,My4sManagementActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageView img_main_page_performance_analysis_management = (ImageView)findViewById(R.id.img_main_page_performance_analysis_management);
+        img_main_page_performance_analysis_management.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainPageActivity.this,PerformanceAnalysisManagementActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageView img_main_page_financial_management = (ImageView)findViewById(R.id.img_main_page_financial_management);
+        img_main_page_financial_management.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainPageActivity.this,FinancialManagementActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageView img_main_page_royalty_management = (ImageView)findViewById(R.id.img_main_page_royalty_management);
+        img_main_page_royalty_management.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainPageActivity.this,RoyaltyManagementActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private List<Map<String, Object>> getMenuListItems() {

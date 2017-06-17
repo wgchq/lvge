@@ -12,13 +12,22 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".MainPageActivity" />
         <activity android:name=".modules.shop_management.ShopManagementActivity" />
-        <activity android:name=".moduels.commodity_management.CommodityManageHomepage" />
+        <activity android:name=".modules.commodity_management.CommodityManageHomepage" />
+        <activity android:name=".modules.car_data_management.CarDataManagementActivity" />
+        <activity android:name=".modules.coupon.CouponActivity" />
+        <activity android:name=".modules.evaluation_management.EvaluationManagementActivity" />
+        <activity android:name=".modules.fence_management.FenceManagementActivity" />
+        <activity android:name=".modules.financial_management.FinancialManagementActivity" />
+        <activity android:name=".modules.my_4s_management.My4sManagementActivity" />
+        <activity android:name=".modules.performance_analysis_management.PerformanceAnalysisManagementActivity" />
+        <activity android:name=".modules.royalty_management.RoyaltyManagementActivity">
+
+        </activity>
     </application>
 
 </manifest>

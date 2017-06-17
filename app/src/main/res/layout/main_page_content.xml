@@ -224,22 +224,26 @@
                 android:padding="@dimen/activity_horizontal_margin">
 
                 <ImageView
+                    android:id="@+id/img_main_page_shop_management"
                     android:layout_weight="1"
 
                     android:contentDescription="@string/shop_management"
                     android:src="@mipmap/main_page_shop_management" />
 
                 <ImageView
+                    android:id="@+id/img_main_page_commodity_management"
                     android:layout_weight="1"
                     android:contentDescription="@string/commodity_management"
                     android:src="@mipmap/main_page_commodity_management" />
 
                 <ImageView
+                    android:id="@+id/img_main_page_financial_management"
                     android:layout_weight="1"
                     android:contentDescription="@string/financial_management"
                     android:src="@mipmap/main_page_financial_management" />
 
                 <ImageView
+                    android:id="@+id/img_main_page_car_data_management"
                     android:layout_weight="1"
                     android:contentDescription="@string/car_data_management"
                     android:src="@mipmap/main_page_car_data_management" />
@@ -251,21 +255,25 @@
                 android:padding="@dimen/activity_horizontal_margin">
 
                 <ImageView
+                    android:id="@+id/img_main_page_royalty_management"
                     android:layout_weight="1"
                     android:contentDescription="@string/royalty_management"
                     android:src="@mipmap/main_page_royalty_management" />
 
                 <ImageView
+                    android:id="@+id/img_main_page_evaluation_management"
                     android:layout_weight="1"
                     android:contentDescription="@string/evaluation_management"
                     android:src="@mipmap/main_page_evaluation_management" />
 
                 <ImageView
+                    android:id="@+id/img_main_page_fence_management"
                     android:layout_weight="1"
                     android:contentDescription="@string/fence_management"
                     android:src="@mipmap/main_page_fence_management" />
 
                 <ImageView
+                    android:id="@+id/img_main_page_my_4s_management"
                     android:layout_weight="1"
                     android:contentDescription="@string/my_4s_management"
                     android:src="@mipmap/main_page_my_4s_management" />
@@ -278,11 +286,13 @@
                 android:padding="@dimen/activity_horizontal_margin">
 
                 <ImageView
+                    android:id="@+id/img_main_page_performance_analysis_management"
                     android:layout_weight="1"
                     android:contentDescription="@string/performance_analysis_management"
                     android:src="@mipmap/main_page_performance_analysis_management" />
 
                 <ImageView
+                    android:id="@+id/img_main_page_coupon"
                     android:layout_weight="1"
                     android:contentDescription="@string/coupon"
                     android:src="@mipmap/main_page_coupon" />

@@ -1,4 +1,4 @@
-package lvge.com.myapp.moduels.commodity_management.dummy;
+package lvge.com.myapp.modules.commodity_management.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,15 +1,11 @@
-package lvge.com.myapp.moduels.commodity_management;
+package lvge.com.myapp.modules.commodity_management;
 
-import android.content.Context;
-import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
-//import android.support.v4.content.ContextCompatApi23;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lvge.com.myapp.R;
+
+//import android.support.v4.content.ContextCompatApi23;
 
 public class CommodityManageHomepage extends FragmentActivity {
 
@@ -83,23 +81,23 @@ public class CommodityManageHomepage extends FragmentActivity {
 
                 if(currentIndex == 0 && position == 0)  //0->1
                 {
-                    LinearLayout.LayoutParams lp = (android.widget.LinearLayout.LayoutParams)mTabLine.getLayoutParams();
+                    LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mTabLine.getLayoutParams();
                     lp.leftMargin = (int)(positionOffset*(screenWidth*1.0/4) + currentIndex * (screenWidth/4));
                     mTabLine.setLayoutParams(lp);
                 }else if(currentIndex == 1 && position == 0) //1->0
                 {
-                    LinearLayout.LayoutParams lp = (android.widget.LinearLayout.LayoutParams)mTabLine.getLayoutParams();
+                    LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mTabLine.getLayoutParams();
                     lp.leftMargin = (int)(-(1 - positionOffset)*(screenWidth*1.0/4) + currentIndex * (screenWidth/4));
                     mTabLine.setLayoutParams(lp);
                 }else if (currentIndex == 1 && position == 1) // 1->2
                 {
-                    LinearLayout.LayoutParams lp = (android.widget.LinearLayout.LayoutParams) mTabLine
+                    LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mTabLine
                             .getLayoutParams();
                     lp.leftMargin = (int) (positionOffset * (screenWidth * 1.0 / 3) + currentIndex * (screenWidth / 3));
                     mTabLine.setLayoutParams(lp);
                 } else if (currentIndex == 2 && position == 1) // 2->1
                 {
-                    LinearLayout.LayoutParams lp = (android.widget.LinearLayout.LayoutParams) mTabLine
+                    LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mTabLine
                             .getLayoutParams();
                     lp.leftMargin = (int) (-(1-positionOffset) * (screenWidth * 1.0 / 3) + currentIndex * (screenWidth / 3));
                     mTabLine.setLayoutParams(lp);
@@ -172,7 +170,7 @@ public class CommodityManageHomepage extends FragmentActivity {
         DisplayMetrics outMetrics = new DisplayMetrics();
         getWindow().getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
         screenWidth = outMetrics.widthPixels;
-        LinearLayout.LayoutParams lp = (android.widget.LinearLayout.LayoutParams)mTabLine.getLayoutParams();
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mTabLine.getLayoutParams();
 
         lp.width = screenWidth /4;
         mTabLine.setLayoutParams(lp);

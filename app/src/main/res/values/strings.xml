@@ -38,5 +38,6 @@
     <string name="performance_analysis_management">业绩分析</string>
     <string name="coupon">优惠券</string>
     <string name="commodity_onsale">出售中</string>
+    <string name="title_activity_my4s_management">My4sManagementActivity</string>
 
 </resources>
