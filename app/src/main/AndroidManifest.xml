@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainPageActivity"></activity>
-        <activity android:name=".modules.shop_management.ShopManagementActivity"></activity>
+        <activity android:name=".MainPageActivity" />
+        <activity android:name=".modules.shop_management.ShopManagementActivity" />
+        <activity android:name=".moduels.commodity_management.CommodityManageHomepage" />
     </application>
 
 </manifest>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/commodity_lineralayouttop2_1"
+        android:orientation="horizontal"
+        android:baselineAligned="false"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_tab_onsale_ly_"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dip"
+            tools:ignore="InefficientWeight">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/id_onsale"
+                android:gravity="center"
+                android:text="@string/commodity_onsale"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="15dip"
+                tools:ignore="SpUsage" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_tab_Soldout_ly"
+            tools:ignore="UselessLeaf"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dip"
+            android:saveEnabled="false">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" 
+                android:id="@+id/id_soldout"
+                android:gravity="center"
+                android:text="已售完"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="15dip"
+                tools:ignore="HardcodedText,SpUsage" />
+
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_tab_Shelffailure_ly"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:focusable="false"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/id_shelffailure"
+                android:gravity="center"
+                android:text="未上架"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="15dip"
+                tools:ignore="HardcodedText,SpUsage" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_tab_application_ly"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:focusable="false"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/id_application"
+                android:gravity="center"
+                android:text="申请中"
+                android:textColor="@color/buttonTextColor"
+                android:textSize="15dip"
+                tools:ignore="HardcodedText,SpUsage" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/id_tab_line"
+        android:background="@mipmap/vpi__tab_selected_pressed_holo"
+        tools:ignore="ContentDescription" />
+</LinearLayout>
