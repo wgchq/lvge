@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -55,7 +56,7 @@ public class CommodityManageHomepage extends FragmentActivity {
 
         initView();
 
-       initTabLine();
+        initTabLine();
 
 
         //初始化Adapter
@@ -151,6 +152,7 @@ public class CommodityManageHomepage extends FragmentActivity {
         mShelffailure = (TextView)findViewById(R.id.id_shelffailure);
         mSoldout = (TextView)findViewById(R.id.id_soldout);
 
+
         CommodityHomepageOnsale chOnsale = new CommodityHomepageOnsale();
         CommodityHomepagemSoldout chSoldout = new CommodityHomepagemSoldout();
         CommodityHomepageShelffailure chShelffailure = new CommodityHomepageShelffailure();
@@ -185,5 +187,12 @@ public class CommodityManageHomepage extends FragmentActivity {
         mApplication.setTextColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
     }
 
+    public void Commodity_return(View view) {    //返回上一界面
+
+    }
+
+    public  void Commodity_nowgoods(View view){   //跳转新增界面
+
+    }
 
 }

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="lvge.com.myapp.modules.commodity_management.CommodityNewgoods"
+    tools:ignore="GradleDependency">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:id="@+id/commodity_newgoods_toolsbar"
+        android:background="@color/colorPrimary"
+        tools:ignore="MissingConstraints,ObsoleteLayoutParam,RtlHardcoded,UselessParent"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:onClick="Commodity_return"
+            android:src="@mipmap/menu_return"
+            tools:ignore="ContentDescription" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:gravity="center_horizontal"
+            android:text="新增商品"
+            android:textSize="@dimen/main_title"
+            tools:ignore="HardcodedText,SpUsage"
+            tools:igone="ContentDescription" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/navigation"
+        android:layout_below="@+id/commodity_newgoods_toolsbar"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="@dimen/activity_horizontal_margin"
+            tools:ignore="UselessParent">
+
+            <EditText
+                android:id="@+id/commodity_newgoods_commodityname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_shape"
+                android:hint="请输入商品名称"
+                android:inputType="text"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="#EFEFF4"
+            android:horizontalSpacing="5dp"
+            android:verticalSpacing="5dp"
+            android:numColumns="4"
+            android:columnWidth="90dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            ></GridView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EFEFF4"
+            android:text="精美商品封面让商品脱颖而出，长按图片可拖曳调整顺序。"
+            tools:ignore="HardcodedText" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="商品类型"
+                android:layout_centerVertical="true"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="实物商品"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/commodity_newgoods_imagebutton"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
+
+            <ImageButton
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="10dp"
+                android:background="@mipmap/menu_right"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/commodity_newgoods_imagebutton"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
