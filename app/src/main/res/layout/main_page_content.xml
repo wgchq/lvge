@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/company_name"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/mainFontColor" />
         </LinearLayout>
 
         <LinearLayout
@@ -85,7 +85,7 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:layout_marginBottom="0dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/mainBackgroundColor"
         app:menu="@menu/navigation" />
 
     <LinearLayout
@@ -131,7 +131,7 @@
                         android:drawableStart="@mipmap/main_page_validation_type_scan_qr"
                         android:gravity="center"
                         android:text="@string/validation_type_scan_QR"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:textColor="@color/mainFontColor" />
                 </LinearLayout>
 
 
@@ -139,7 +139,7 @@
                     android:layout_width="1dip"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
-                    android:background="@color/colorPrimaryDark" />
+                    android:background="@color/mainBackgroundColor" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -154,7 +154,7 @@
                         android:drawableStart="@mipmap/main_page_validation_history"
                         android:gravity="center"
                         android:text="@string/validation_history"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:textColor="@color/mainFontColor" />
                 </LinearLayout>
 
 

@@ -40,4 +40,32 @@
     <string name="commodity_onsale">出售中</string>
     <string name="title_activity_my4s_management">My4sManagementActivity</string>
 
+    <!--shop management-->
+    <string name="please_enter_shop_name">请输入店铺名称</string>
+    <string name="shop_authentication">店铺认证</string>
+    <string name="non_shop_authentication">未申请店铺认证</string>
+
+    <string name="shop_address">店铺地址</string>
+    <string name="shop_address_default">地址未设置</string>
+
+    <string name="shop_image">店铺图片</string>
+    <string name="shop_image_default">未设置</string>
+
+    <string name="shop_deposit">店铺保证金</string>
+    <string name="shop_deposit_default">未设置</string>
+
+    <string name="shop_contact">联系人</string>
+    <string name="shop_contact_default">未设置</string>
+
+    <string name="shop_return_goods">退货管理</string>
+    <string name="shop_return_goods_default">未设置</string>
+
+
+    <string name="shop_image_main_page">店铺首页</string>
+    <string name="shop_image_shop_environment">店铺环境</string>
+    <string name="shop_image_shop_other">店铺其他</string>
+    <string name="select_shop_image">选取图片</string>
+    <string name="from_phone_photo">从相册选择</string>
+    <string name="cancel">取消</string>
+
 </resources>
