@@ -37,7 +37,6 @@ public class ShopManageShopImgActivity extends AppCompatActivity implements View
 
     }
 
-
     public void show(View view) {
         dialog = new Dialog(this, R.style.ActionSheetDialogStyle);
         //填充对话框的布局

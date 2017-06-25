@@ -7,6 +7,9 @@
     <color name="buttonTextColor">#FFFFFF</color>
     <color name="mainFontColor">#FFFFFF</color>
     <color name="mainBackgroundColor">#FFFFFF</color>
+    <color name="PageBackgroundColor">#F0F4F7</color>
     <color name="background_gray">#EFEFF4</color>
     <color name="line_background_gray">#EFEFF4</color>
+
+
 </resources>

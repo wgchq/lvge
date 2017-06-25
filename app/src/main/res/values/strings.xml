@@ -60,12 +60,30 @@
     <string name="shop_return_goods">退货管理</string>
     <string name="shop_return_goods_default">未设置</string>
 
-
+    <!--shop management (shop image)-->
     <string name="shop_image_main_page">店铺首页</string>
     <string name="shop_image_shop_environment">店铺环境</string>
     <string name="shop_image_shop_other">店铺其他</string>
     <string name="select_shop_image">选取图片</string>
     <string name="from_phone_photo">从相册选择</string>
     <string name="cancel">取消</string>
+
+    <!--shop management (shop authentication)-->
+    <string name="company_name_text">公司名称</string>
+    <string name="please_enter_company_name_text">请输入公司名称</string>
+    <string name="shop_authentication_business_licence">营业执照</string>
+    <string name="shop_authentication_identity_card">法人身份证</string>
+    <string name="confirm_and_submit">确认并提交</string>
+    <string name="confirm_and_submit_hint">预计在3个工作日完成人工审核</string>
+    <string name="authentication_submit_success">认证信息已提交</string>
+    <string name="authentication_submit_success_description">我们会在3个工作日内审核完成，您也可以访问商家社区寻求帮助！</string>
+    <string name="authentication_complete">完成</string>
+    <string name="authentication_fail">很抱歉，你的店铺认证失败！</string>
+    <string name="authentication_fail_description">很抱歉，你的店铺因营业执照/身份证信息无效而认证失败。请重新提供有效原件照，或加盖公章后的有效复印件，再次提交认证申请。</string>
+    <string name="authentication_fail_go_modify">更改认证资料</string>
+
+    <!--shop management (shop deposit)-->
+    <string name="shop_deposit_not_get">您尚未开通保证金保障服务</string>
+    <string name="shop_deposit_get">缴纳开通</string>
 
 </resources>
