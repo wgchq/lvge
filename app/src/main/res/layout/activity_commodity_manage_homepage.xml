@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="lvge.com.myapp.moduels.commodity_management.CommodityManageHomepage"
     android:orientation="vertical">
 
     <include layout="@layout/commodity_top1" />
