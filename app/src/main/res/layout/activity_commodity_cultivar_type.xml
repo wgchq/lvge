@@ -6,63 +6,66 @@
     android:background="@color/line_background_gray"
     android:layout_height="wrap_content">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/toolbar_main_page"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+
         android:background="@color/colorPrimary"
-        android:gravity="bottom"
-        tools:ignore="UselessParent">
+        android:gravity="center_vertical"
+        android:baselineAligned="false">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_alignParentLeft="true"
-            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="horizontal"
-            android:id="@+id/commodity_top1_linear"
-            tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
+            android:weightSum="1">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:onClick="Commodity_return"
-                android:src="@mipmap/menu_return"
-                tools:ignore="ContentDescription" />
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/appCompatTextView"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/activity_horizontal_margin"
-                android:gravity="center_horizontal"
-                android:text="品种类型"
-                android:textSize="@dimen/main_title"
-                tools:ignore="HardcodedText,SpUsage"
-                tools:igone="ContentDescription" />
+                android:onClick="toggleMenu"
+                android:src="@mipmap/menu_return"
+                tools:ignore="ContentDescription,NestedWeights"
+                android:layout_weight="1" />
         </LinearLayout>
 
-
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
             android:gravity="center"
-            android:orientation="horizontal"
-            tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:text="提成说明"
-                android:layout_gravity="center_vertical"
-                tools:ignore="ContentDescription,HardcodedText" />
-
+                android:layout_height="wrap_content"
+                android:text="品种类型"
+                android:textColor="@color/mainBackgroundColor"
+                android:textSize="@dimen/main_title"
+                tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="提成说明"
+                android:textColor="@color/mainBackgroundColor"
+                android:textSize="@dimen/text_margin"
+                tools:ignore="HardcodedText,SpUsage" />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
