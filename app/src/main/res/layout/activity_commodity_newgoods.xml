@@ -10,35 +10,64 @@
     tools:ignore="GradleDependency">
 
     <LinearLayout
-        android:id="@+id/commodity_newgoods_toolsbar"
+        android:id="@+id/toolbar_main_page"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+
         android:background="@color/colorPrimary"
-        android:gravity="center"
-        android:orientation="horizontal"
-        tools:ignore="MissingConstraints,ObsoleteLayoutParam,RtlHardcoded,UselessParent"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:gravity="center_vertical"
+        android:baselineAligned="false"
+        tools:ignore="UselessParent">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:onClick="Commodity_return"
-            android:src="@mipmap/menu_return"
-            tools:ignore="ContentDescription" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:gravity="center_horizontal"
-            android:text="新增商品"
-            android:textSize="@dimen/main_title"
-            tools:ignore="HardcodedText,SpUsage"
-            tools:igone="ContentDescription" />
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:onClick="toggleMenu"
+                android:src="@mipmap/menu_return"
+                tools:ignore="ContentDescription,NestedWeights"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="新增商品"
+                android:textColor="@color/mainBackgroundColor"
+                android:textSize="@dimen/main_title"
+                tools:ignore="HardcodedText,SpUsage" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/mainBackgroundColor"
+                android:textSize="@dimen/text_margin"
+                tools:ignore="HardcodedText,SpUsage" />
+        </LinearLayout>
     </LinearLayout>
+
 
     <ScrollView
         android:layout_width="wrap_content"
