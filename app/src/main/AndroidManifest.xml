@@ -37,7 +37,8 @@
         <activity android:name=".modules.commodity_management.CommodityCommonProblem" />
         <activity android:name=".modules.commodity_management.CommodityCultivarTypeChoice" />
         <activity android:name=".modules.commodity_management.CommodityDescriptionOfGoods" />
-        <activity android:name=".modules.commodity_management.CommodityFreightSetting"></activity>
+        <activity android:name=".modules.commodity_management.CommodityFreightSetting" />
+        <activity android:name=".modules.my_4s_management.SalesConsultant"></activity>
     </application>
 
 </manifest>
