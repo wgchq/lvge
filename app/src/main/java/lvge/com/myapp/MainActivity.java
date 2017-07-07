@@ -89,7 +89,7 @@ public class MainActivity extends Activity {
                                 }
                             });
                 } catch (Exception e) {
-                    Toast.makeText(MainActivity.this, "ss", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
                 }
 
             }
