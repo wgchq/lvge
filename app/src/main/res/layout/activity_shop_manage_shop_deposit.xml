@@ -42,31 +42,86 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/mainBackgroundColor"
-        android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginStart="@dimen/text_left_padding"
-            android:drawablePadding="@dimen/text_left_to_img_padding"
-            android:gravity="center"
-            android:text="@string/shop_deposit_not_get"
-            android:textStyle="bold" />
-
-
-        <Button
-            android:id="@+id/btn_shop_deposit_get"
-            style="@style/my_buttonActiveStyle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:text="@string/shop_deposit_get" />
+            android:background="@color/mainBackgroundColor"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginStart="@dimen/text_left_padding"
+                android:drawablePadding="@dimen/text_left_to_img_padding"
+                android:gravity="center"
+                android:text="@string/shop_deposit_not_get"
+                android:textStyle="bold" />
+
+
+            <Button
+                android:id="@+id/btn_shop_deposit_get"
+                style="@style/my_buttonActiveStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:text="@string/shop_deposit_get" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:text="@string/what_is_deposit" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/mainBackgroundColor"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:text="@string/what_is_deposit_description" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:text="@string/how_get_deposit" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/mainBackgroundColor"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:text="@string/how_get_deposit_description" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:text="@string/deposit_advantage" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/mainBackgroundColor"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:text="@string/deposit_advantage_description" />
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
-
-
 
 </LinearLayout>

@@ -1,6 +1,6 @@
 <resources>
     <!--登陆页面设置-->
-    <string name="app_name">商户端</string>
+    <string name="app_name">旅鸽商户端</string>
     <string name="login_username">请输入账号</string>
     <string name="login_password">请输入密码</string>
     <string name="login_submit">登录</string>
@@ -85,5 +85,10 @@
     <!--shop management (shop deposit)-->
     <string name="shop_deposit_not_get">您尚未开通保证金保障服务</string>
     <string name="shop_deposit_get">缴纳开通</string>
-
+    <string name="what_is_deposit">什么是保证金？</string>
+    <string name="what_is_deposit_description">保证金是指买方或卖方按照交易市场规定标准交纳的资金，专门用于订单交易的结算和履行约定的保证。在法律对于保证金缺乏明确规定的背景下，探讨保证金的类型，对于备用金类型的保证金、预付款类型的保证金、租赁保证金、装修保证金、定金类型的保证金、保有返</string>
+    <string name="how_get_deposit">如何缴纳保证金？</string>
+    <string name="how_get_deposit_description">保证金是指买方或卖方按照交易市场规定标准交纳的资金，专门用于订单交易的结算和履行约定的保证。</string>
+    <string name="deposit_advantage">如何缴纳保证金？</string>
+    <string name="deposit_advantage_description">保证金是指买方或卖方按照交易市场规定标准交纳的资金，专门用于订单交易的结算和履行约定的保证。</string>
 </resources>
