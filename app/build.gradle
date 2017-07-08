@@ -31,6 +31,11 @@ dependencies {
     })
     compile files('libs/nineoldandroids-2.4.0.jar')
     compile files('libs/okhttputils-2_6_2.jar')
+    compile files('libs/okhttp-3.7.0.jar')
+    compile files('libs/okhttputils-2_6_2.jar')
+    compile files('libs/antlr-2.7.6.jar')
+    compile files('libs/gson-2.3.1.jar')
+    compile files('libs/okio-1.12.0.jar')
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
@@ -38,9 +43,4 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile files('libs/okhttp-3.7.0.jar')
-    compile files('libs/okhttputils-2_6_2.jar')
-    compile files('libs/antlr-2.7.6.jar')
-    compile files('libs/gson-2.3.1.jar')
-    compile files('libs/okio-1.12.0.jar')
 }

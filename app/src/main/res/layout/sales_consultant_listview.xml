@@ -24,6 +24,7 @@
             android:layout_weight="0.14">
 
             <ImageView
+                android:id="@+id/sale_consultant_iamage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/activity_horizontal_margin"

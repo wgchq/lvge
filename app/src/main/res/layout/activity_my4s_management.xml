@@ -28,7 +28,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/activity_horizontal_margin"
-                android:onClick="toggleMenu"
+                android:id="@+id/my4s_management_back"
                 android:src="@mipmap/menu_return"
                 tools:ignore="ContentDescription,NestedWeights"
                 android:layout_weight="1" />
@@ -58,10 +58,11 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/my4s_finish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/mainBackgroundColor"
                 android:text="完成"
+                android:textColor="@color/mainBackgroundColor"
                 android:textSize="@dimen/text_margin"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>

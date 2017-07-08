@@ -2,9 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="lvge.com.myapp">
 
-    <uses-permission android:name="android.permission.INTERNET">
+    <uses-permission android:name="android.permission.INTERNET" />
 
-    </uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,7 +40,9 @@
         <activity android:name=".modules.commodity_management.CommodityCultivarTypeChoice" />
         <activity android:name=".modules.commodity_management.CommodityDescriptionOfGoods" />
         <activity android:name=".modules.commodity_management.CommodityFreightSetting" />
-        <activity android:name=".modules.my_4s_management.SalesConsultant"></activity>
+        <activity android:name=".modules.my_4s_management.SalesConsultant" />
+        <activity android:name=".modules.Order_management.Order_management_Homepage" />
+        <activity android:name=".modules.Order_management.OrderDetails"></activity>
     </application>
 
 </manifest>
