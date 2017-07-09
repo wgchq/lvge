@@ -42,7 +42,9 @@
         <activity android:name=".modules.commodity_management.CommodityFreightSetting" />
         <activity android:name=".modules.my_4s_management.SalesConsultant" />
         <activity android:name=".modules.Order_management.Order_management_Homepage" />
-        <activity android:name=".modules.Order_management.OrderDetails"></activity>
+        <activity android:name=".modules.Order_management.OrderDetails" />
+        <activity android:name=".modules.Order_management.OrderDetailsTwo" />
+        <activity android:name=".modules.my_4s_management.SaleConsultantTwo"></activity>
     </application>
 
 </manifest>

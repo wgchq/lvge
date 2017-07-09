@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="lvge.com.myapp.modules.my_4s_management.SalesConsultant"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/toolbar_main_page"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:baselineAligned="false"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:onClick="toggleMenu"
+                android:src="@mipmap/menu_return"
+                tools:ignore="ContentDescription,NestedWeights"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="销售顾问"
+                android:textColor="@color/mainBackgroundColor"
+                android:textSize="@dimen/main_title"
+                tools:ignore="HardcodedText,SpUsage" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/mainBackgroundColor"
+                android:text="保存"
+                android:textSize="@dimen/text_margin"
+                tools:ignore="HardcodedText,SpUsage" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_main_page"
+        android:background="@color/line_background_gray"
+        android:orientation="vertical"
+        tools:ignore="ObsoleteLayoutParam">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#EFEFF4"
+            tools:ignore="InefficientWeight" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="头像"
+                android:textSize="15sp"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/commodity_my4s_sales_consultant"
+                android:background="@mipmap/lg_user"
+                tools:ignore="ContentDescription,HardcodedText,RtlHardcoded,SmallSp" />
+
+            <ImageButton
+                android:id="@+id/commodity_my4s_sales_consultant"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@mipmap/gray_right"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#EFEFF4"
+            tools:ignore="InefficientWeight" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/sale_consultant_Textview1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="姓名"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <EditText
+                android:id="@+id/sale_consultant_inputname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@+id/sale_consultant_Textview1"
+                android:background="@drawable/edit_text_shape"
+                android:hint="请输入姓名"
+                android:inputType="text"
+                tools:ignore="HardcodedText,RtlHardcoded,UnknownIdInLayout" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#EFEFF4"
+            tools:ignore="InefficientWeight" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/sale_consultant_Textview2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="电话"
+                android:textSize="16sp"
+                android:layout_marginLeft="10dp"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <EditText
+                android:id="@+id/sale_consultant_inputphone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@+id/sale_consultant_Textview2"
+                android:background="@drawable/edit_text_shape"
+                android:hint="请输入电话"
+                android:inputType=""
+                tools:ignore="HardcodedText,RtlHardcoded,TextFields,UnknownIdInLayout" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#EFEFF4"
+            tools:ignore="InefficientWeight" />
+
+
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/edit_text_shape"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="个性签名"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            tools:ignore="HardcodedText,RtlHardcoded" />
+
+    </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <EditText
+                android:id="@+id/sale_consultant_inputmemo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/edit_text_shape"
+                android:hint="编辑个性签名"
+                android:inputType=""
+                tools:ignore="HardcodedText,RtlHardcoded,TextFields,UnknownIdInLayout" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
