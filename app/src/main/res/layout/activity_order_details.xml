@@ -121,7 +121,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -129,6 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="联系方式："
+                android:layout_centerVertical="true"
                 android:id="@+id/order_details_Textview1"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText" />
@@ -137,31 +138,244 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12345678901"
+                android:layout_centerVertical="true"
                 android:textSize="16sp"
                 android:layout_toRightOf="@+id/order_details_Textview1"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
         </RelativeLayout>
+
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/edit_text_shape"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收获地址："
+            android:layout_centerVertical="true"
+            android:id="@+id/order_details_Textview2"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="重庆市北碚去阿达"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"
+            android:layout_toRightOf="@+id/order_details_Textview2"
+            tools:ignore="HardcodedText,RtlHardcoded" />
+
+        </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="收获地址："
-                android:id="@+id/order_details_Textview2"
+                android:text="备        注："
+                android:layout_centerVertical="true"
+                android:id="@+id/order_details_Textview3"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="重庆市北碚去阿达"
+                android:text="无"
+                android:layout_centerVertical="true"
                 android:textSize="16sp"
-                android:layout_toRightOf="@+id/order_details_Textview2"
+                android:layout_toRightOf="@+id/order_details_Textview3"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="订  单  号："
+                android:layout_centerVertical="true"
+                android:id="@+id/order_details_Textview4"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15678986"
+                android:layout_centerVertical="true"
+                android:textSize="16sp"
+                android:layout_toRightOf="@+id/order_details_Textview4"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下单时间："
+                android:layout_centerVertical="true"
+                android:id="@+id/order_details_Textview5"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2016-09-12   18:12"
+                android:layout_centerVertical="true"
+                android:textSize="16sp"
+                android:layout_toRightOf="@+id/order_details_Textview5"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#EFEFF4"
+            tools:ignore="InefficientWeight" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="快递公司"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/commodity_my4s_sales_consultant"
+                android:text="天天快递"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
+
+            <ImageButton
+                android:id="@+id/commodity_my4s_sales_consultant"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@mipmap/gray_right"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#EFEFF4"
+            tools:ignore="InefficientWeight" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="快递单号"
+                android:layout_centerVertical="true"
+                android:id="@+id/order_details_Textview6"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1232131231414"
+                android:layout_marginLeft="20dp"
+                android:layout_centerVertical="true"
+                android:textSize="16sp"
+                android:layout_toRightOf="@+id/order_details_Textview6"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="安装车型"
+                android:layout_centerVertical="true"
+                android:id="@+id/order_details_Textview7"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1232131231414"
+                android:layout_marginLeft="20dp"
+                android:layout_centerVertical="true"
+                android:textSize="16sp"
+                android:layout_toRightOf="@+id/order_details_Textview7"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="提供发票"
+                android:layout_centerVertical="true"
+                android:id="@+id/order_details_Textview8"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="提供"
+                android:layout_marginLeft="20dp"
+                android:layout_centerVertical="true"
+                android:textSize="16sp"
+                android:layout_toRightOf="@+id/order_details_Textview8"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
         </RelativeLayout>
