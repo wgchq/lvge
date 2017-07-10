@@ -1,11 +1,14 @@
 package lvge.com.myapp.modules.my_4s_management;
 
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.File;
 
 import lvge.com.myapp.R;
 import lvge.com.myapp.modules.shop_management.ShopManageShopImgActivity;
@@ -13,6 +16,7 @@ import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
 
 public class My4sManagementActivity extends AppCompatActivity {
 
+    private File cache;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +45,7 @@ public class My4sManagementActivity extends AppCompatActivity {
         my4s_manage_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(My4sManagementActivity.this, SalesConsultant.class);
+                Intent intent = new Intent(My4sManagementActivity.this, My4sAddressActivity.class);
                 startActivity(intent);
             }
         });
@@ -52,6 +56,10 @@ public class My4sManagementActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+
+
 
     }
 
