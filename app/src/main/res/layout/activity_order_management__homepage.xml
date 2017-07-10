@@ -46,7 +46,6 @@
                 android:layout_height="wrap_content"
                 android:text="我的订单"
                 android:textColor="@color/mainBackgroundColor"
-                android:textSize="@dimen/main_title"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
 
@@ -58,12 +57,12 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/activity_horizontal_margin"
                 android:id="@+id/order_management_search"
                 android:src="@mipmap/searcg"
-                tools:ignore="ContentDescription,NestedWeights"
+                tools:ignore="ContentDescription,InefficientWeight,NestedWeights"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -95,7 +94,6 @@
                 android:gravity="center"
                 android:text="全部"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="15dip"
                 tools:ignore="HardcodedText,SpUsage" />
 
         </LinearLayout>
@@ -120,7 +118,6 @@
                 android:gravity="center"
                 android:text="待发货"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="15dip"
                 tools:ignore="HardcodedText,SpUsage" />
 
         </LinearLayout>
@@ -143,7 +140,6 @@
                 android:gravity="center"
                 android:text="派送中"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="15dip"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
 

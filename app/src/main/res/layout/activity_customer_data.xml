@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="lvge.com.myapp.modules.my_4s_management.My4sManagementActivity">
+    tools:context="lvge.com.myapp.modules.customer_management.CustomerData"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/toolbar_main_page"
@@ -43,7 +43,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="我的4S店"
+                android:text="客户资料"
                 android:textColor="@color/mainBackgroundColor"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
@@ -59,7 +59,6 @@
                 android:id="@+id/my4s_finish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="完成"
                 android:textColor="@color/mainBackgroundColor"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
@@ -68,46 +67,18 @@
     <LinearLayout
         android:id="@+id/fragment_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_main_page"
         android:background="@color/line_background_gray"
         android:orientation="vertical"
         tools:ignore="ObsoleteLayoutParam">
 
-
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#EFEFF4"
-            tools:ignore="InefficientWeight" />
+            android:layout_height="50dp"
+            tools:ignore="UselessLeaf">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/to_my4s_sales_consultant"
-            android:background="@drawable/edit_text_shape"
-            tools:ignore="UselessParent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:text="销售顾问"
-                tools:ignore="HardcodedText,RtlHardcoded" />
-
-            <TextView
-                android:id="@+id/commodity_my4s_sales_consultant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:drawableEnd="@mipmap/gray_right"
-                android:drawablePadding="@dimen/text_left_to_img_padding"
-                android:hint="@string/shop_image_default"
-                tools:ignore="RelativeOverlap" />
-
-        </RelativeLayout>
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -116,161 +87,267 @@
             tools:ignore="UselessParent">
 
             <TextView
+                android:id="@+id/customer_data_che"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:text="@string/my_4s_address"
+                android:text="车牌号："
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <TextView
-                android:id="@+id/tv_shop_add_text_content"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:drawableEnd="@mipmap/gray_right"
-                android:drawablePadding="@dimen/text_left_to_img_padding"
-                android:hint="@string/shop_image_default"
-                tools:ignore="RelativeOverlap" />
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/customer_data_che"
+                android:hint="豫B   A56892"
+                tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
 
         </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="10dp"
+            android:layout_height="5dp"
+            android:layout_weight="0.05"
             android:background="#EFEFF4"
             tools:ignore="InefficientWeight" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
             <TextView
-                android:id="@+id/commodity_my4s_setting_textview1"
+                android:id="@+id/customer_data_listview1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:text="服务电话："
+                android:text="车主姓名："
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="嘻嘻嘻"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/customer_data_listview1"
+                tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_weight="0.05"
+            android:background="#EFEFF4"
+            tools:ignore="InefficientWeight" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/customer_data_listview2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="车主电话："
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
 
 
-            <EditText
+            <TextView
                 android:id="@+id/commodity_my4s_setting_inputnumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:layout_toLeftOf="@+id/commodity_freight_setting_textview2"
-                android:layout_toRightOf="@+id/commodity_my4s_setting_textview1"
-                android:background="#EFEFF4"
-                android:inputType="text"
+                android:layout_toLeftOf="@+id/customer_data_Imageview1"
+                android:layout_toRightOf="@+id/customer_data_listview2"
+                android:hint="1234125235234"
                 tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
 
 
-            <TextView
-                android:id="@+id/commodity_freight_setting_textview2"
+            <ImageView
+                android:id="@+id/customer_data_Imageview1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="*"
-                android:textColor="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/phone"
                 tools:ignore="ContentDescription,HardcodedText,RtlHardcoded" />
 
         </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_weight="0.05"
+            android:background="#EFEFF4"
+            tools:ignore="InefficientWeight" />
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
             <TextView
-                android:id="@+id/commodity_my4s_setting_textview2"
+                android:id="@+id/customer_data_listview3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:text="救援电话："
+                android:text="车型："
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <EditText
-                android:id="@+id/commodity_my4s_setting_inputsosnumber"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="上海大众帕萨特123"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:layout_toLeftOf="@+id/commodity_freight_setting_textview3"
-                android:layout_toRightOf="@+id/commodity_my4s_setting_textview2"
-                android:background="#EFEFF4"
-                android:inputType="text"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/customer_data_listview3"
                 tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
 
 
-            <TextView
-                android:id="@+id/commodity_freight_setting_textview3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="*"
-                android:textColor="@color/colorPrimary"
-                tools:ignore="ContentDescription,HardcodedText,RtlHardcoded" />
-
         </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_weight="0.05"
+            android:background="#EFEFF4"
+            tools:ignore="InefficientWeight" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
             <TextView
-                android:id="@+id/commodity_my4s_setting_textview3"
+                android:id="@+id/customer_data_listview4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:text="保险电话："
+                android:text="车架号："
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <EditText
-                android:id="@+id/commodity_my4s_setting_inputInsurancenumber"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="12312dsadadasda"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:layout_toLeftOf="@+id/commodity_freight_setting_textview4"
-                android:layout_toRightOf="@+id/commodity_my4s_setting_textview3"
-                android:background="#EFEFF4"
-                android:inputType="text"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/customer_data_listview4"
                 tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
 
 
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_weight="0.05"
+            android:background="#EFEFF4"
+            tools:ignore="InefficientWeight" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
             <TextView
-                android:id="@+id/commodity_freight_setting_textview4"
+                android:id="@+id/customer_data_listview5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="*"
-                android:textColor="@color/colorPrimary"
-                tools:ignore="ContentDescription,HardcodedText,RtlHardcoded" />
+                android:layout_marginLeft="10dp"
+                android:text="设备号："
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DFASF32RWFSDFSDFSD"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/customer_data_listview5"
+                tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
+
 
         </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_weight="0.05"
+            android:background="#EFEFF4"
+            tools:ignore="InefficientWeight" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/customer_data_listview6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="保险到期时间："
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2018-10-10"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/customer_data_listview6"
+                tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_weight="0.05"
+            android:background="#EFEFF4"
+            tools:ignore="InefficientWeight" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="消息发送"
+            android:background="@color/buttonPrimary"
+            tools:ignore="HardcodedText" />
+
 
     </LinearLayout>
-
 
 </LinearLayout>
