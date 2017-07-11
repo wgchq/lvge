@@ -34,8 +34,9 @@ public class My4sManagementActivity extends AppCompatActivity {
 
         try{
 
-            OkHttpUtils.get()//get 方法
-                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/shop4s/detail") //地址
+            OkHttpUtils.get()
+                    //get 方法
+                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/shop4S/detail") //地址
                     .build()
                     .execute(new Callback() {//通用的callBack
 

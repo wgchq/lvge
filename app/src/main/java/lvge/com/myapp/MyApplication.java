@@ -4,8 +4,11 @@ import android.app.Application;
 
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
+import com.zhy.http.okhttp.cookie.store.MemoryCookieStore;
 import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
 import com.zhy.http.okhttp.log.LoggerInterceptor;
+
+import java.net.CookiePolicy;
 
 import okhttp3.OkHttpClient;
 
@@ -17,10 +20,10 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
+
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .cookieJar(cookieJar)
-                .addInterceptor(new LoggerInterceptor("TAG"))
+                .cookieJar(new CookieJarImpl(new PersistentCookieStore(getApplicationContext())) )
+                .cookieJar(new CookieJarImpl(new MemoryCookieStore()))
                 .build();
         OkHttpUtils.initClient(okHttpClient);
     }

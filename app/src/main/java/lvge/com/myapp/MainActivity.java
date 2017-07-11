@@ -3,10 +3,7 @@ package lvge.com.myapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.telecom.Call;
-import android.text.LoginFilter;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,23 +11,11 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
+
 import com.zhy.http.okhttp.callback.Callback;
-import com.zhy.http.okhttp.request.PostFileRequest;
-
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.HashMap;
 
 import lvge.com.myapp.model.LoginResultModel;
-import okhttp3.MediaType;
-import okhttp3.Request;
 import okhttp3.Response;
-
-import static android.R.attr.id;
-import static android.R.attr.maxItemsPerRow;
-
 
 public class MainActivity extends Activity {
 
@@ -91,6 +76,8 @@ public class MainActivity extends Activity {
                 } catch (Exception e) {
                     Toast.makeText(MainActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
                 }
+
+
 
             }
         });
