@@ -22,6 +22,11 @@ public class My4sManagementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my4s_management);
 
+
+
+
+
+
         ImageView my4s_manage_back = (ImageView)findViewById(R.id.my4s_management_back);   //返回图片
         ImageView my4s_manage_sales_consultant = (ImageView)findViewById(R.id.commodity_my4s_sales_consultant);   //销售顾问
         ImageView my4s_manage_address = (ImageView)findViewById(R.id.commodity_my4s_address);    //地址
