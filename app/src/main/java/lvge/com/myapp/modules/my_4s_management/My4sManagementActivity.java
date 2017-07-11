@@ -5,7 +5,9 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,8 @@ import com.zhy.http.okhttp.callback.Callback;
 
 import java.io.File;
 
+import lvge.com.myapp.MainActivity;
+import lvge.com.myapp.MainPageActivity;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.modules.shop_management.ShopManageShopImgActivity;
@@ -23,7 +27,7 @@ import okhttp3.Response;
 
 public class My4sManagementActivity extends AppCompatActivity {
 
-    private File cache;
+    My4sManagementActivityGson result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,13 @@ public class My4sManagementActivity extends AppCompatActivity {
 
         ImageView my4s_manage_back = (ImageView)findViewById(R.id.my4s_management_back);   //返回图片
         TextView my4s_manage_finish = (TextView)findViewById(R.id.my4s_finish);
+        final TextView commodity_my4s_sales_consultant = (TextView)findViewById(R.id.commodity_my4s_sales_consultant);
+        final TextView commodity_my4s_address = (TextView)findViewById(R.id.commodity_my4s_address);
+        final EditText commodity_my4s_setting_inputnumber = (EditText)findViewById(R.id.commodity_my4s_setting_inputnumber);
+        final EditText commodity_my4s_setting_inputsosnumber = (EditText)findViewById(R.id.commodity_my4s_setting_inputsosnumber);
+        final EditText commodity_my4s_setting_inputInsurancenumber = (EditText)findViewById(R.id.commodity_my4s_setting_inputInsurancenumber);
+        RelativeLayout my4s_management_to_salesconsultant = (RelativeLayout)findViewById(R.id.my4s_management_to_salesconsultant);
+        RelativeLayout my4s_management_to_address = (RelativeLayout)findViewById(R.id.my4s_management_to_address);
 
         try{
 
@@ -47,7 +58,7 @@ public class My4sManagementActivity extends AppCompatActivity {
                             String string = response.body().string();//获取相应中的内容Json格式
                             //把json转化成对应对象
                             //LoginResultModel是和后台返回值类型结构一样的对象
-                            My4sManagementActivityGson result = new Gson().fromJson(string, My4sManagementActivityGson.class);
+                             result = new Gson().fromJson(string, My4sManagementActivityGson.class);
                             return result;
                         }
 
@@ -61,9 +72,14 @@ public class My4sManagementActivity extends AppCompatActivity {
 
                             //object 是 parseNetworkResponse的返回值
                             if (null != object) {
-                                LoginResultModel result = (LoginResultModel) object;//把通用的Object转化成指定的对象
-                                if (result.getOperationResult().getResultCode() == 2) {//当返回值为2时不可登录
-                                    //Toast.makeText(MainActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                 result = (My4sManagementActivityGson) object;//把通用的Object转化成指定的对象
+                                if (result.getOperationResult().getResultCode()== 0) {//当返回值为2时不可登录
+
+                                    commodity_my4s_sales_consultant.setText(String.valueOf(result.getMarketEntity().getSellerID()));
+                                    commodity_my4s_address.setText(String.valueOf(result.getMarketEntity().getAddress()));
+                                    commodity_my4s_setting_inputnumber.setText(String.valueOf(result.getMarketEntity().getServerPhone()));
+                                    commodity_my4s_setting_inputsosnumber.setText(String.valueOf(result.getMarketEntity().getAssistPhone()));
+                                    commodity_my4s_setting_inputInsurancenumber.setText(String.valueOf(result.getMarketEntity().getNotifyDangerPhone()));
                                 } else {
                                     // Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
                                     // startActivity(intent);
@@ -88,6 +104,28 @@ public class My4sManagementActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        my4s_management_to_salesconsultant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(My4sManagementActivity.this, SalesConsultant.class);
+                startActivity(intent);
+            }
+        });
+
+        my4s_management_to_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(My4sManagementActivity.this, My4sAddressActivity.class);
+
+                Bundle bundle=new Bundle();
+                //传递name参数为tinyphp
+                bundle.putString("lng",result.getMarketEntity().getLng());
+                bundle.putString("lat",result.getMarketEntity().getLat());
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }

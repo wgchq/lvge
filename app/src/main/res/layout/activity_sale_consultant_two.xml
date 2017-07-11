@@ -59,6 +59,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/sale_consultant_Preservation"
                 android:textColor="@color/mainBackgroundColor"
                 android:text="保存"
                 tools:ignore="HardcodedText,SpUsage" />
@@ -83,6 +84,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:id="@+id/sale_consultant_two_iamge"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -99,6 +101,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_centerVertical="true"
+                android:id="@+id/sale_consultant_two_iamgeview"
                 android:layout_toLeftOf="@+id/commodity_my4s_sales_consultant"
                 android:background="@mipmap/lg_user"
                 tools:ignore="ContentDescription,HardcodedText,RtlHardcoded,SmallSp" />

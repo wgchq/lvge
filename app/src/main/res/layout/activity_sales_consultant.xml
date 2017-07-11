@@ -28,7 +28,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/activity_horizontal_margin"
-                android:onClick="toggleMenu"
+                android:id="@+id/sale_consultant_back"
                 android:src="@mipmap/menu_return"
                 tools:ignore="ContentDescription,NestedWeights"
                 android:layout_weight="1" />
@@ -61,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/mainBackgroundColor"
                 android:text="添加"
+                android:id="@+id/sale_consultant_toadd"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
     </LinearLayout>

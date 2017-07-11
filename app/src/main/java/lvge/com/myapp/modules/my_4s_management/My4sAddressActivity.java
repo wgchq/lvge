@@ -45,6 +45,12 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my4s_address);
 
+        Bundle bundle = this.getIntent().getExtras();
+        //接收name值
+        String lng = bundle.getString("lng");
+        String lat = bundle.getString("lat");
+
+
         /**
          * 地图定位
          */
