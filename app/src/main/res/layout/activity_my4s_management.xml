@@ -129,6 +129,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:drawableEnd="@mipmap/gray_right"
+
                 android:layout_toLeftOf="@+id/commodity_my4s_sales_consultant"
                 android:text="未设置"
                 tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />

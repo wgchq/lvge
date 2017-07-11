@@ -28,8 +28,9 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="22dp"
             android:ems="10"
+            android:text="河南佳和裕达汽车"
             android:hint="@string/login_username"
-            android:inputType="textPersonName" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/password"
