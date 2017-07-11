@@ -83,26 +83,11 @@
             android:background="#EFEFF4"
             tools:ignore="InefficientWeight" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/mainBackgroundColor"
-            android:padding="@dimen/text_left_padding"
-            android:text="@string/my_4s_shop_picture" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#EFEFF4"
             tools:ignore="InefficientWeight" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/mainBackgroundColor"
-            android:drawableStart="@mipmap/my4s_shop_picture_border"
-            android:padding="@dimen/text_left_padding"
-            android:text="" />
 
 
         <View
@@ -165,7 +150,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/commodity_my4s_address"
                 android:hint="未设置"
-                tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
+                tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp" />
 
             <ImageButton
                 android:id="@+id/commodity_my4s_address"
