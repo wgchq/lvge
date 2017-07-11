@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -20,6 +22,7 @@ import lvge.com.myapp.MainActivity;
 import lvge.com.myapp.MainPageActivity;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.LoginResultModel;
+import lvge.com.myapp.model.SalesConsultantGson;
 import okhttp3.Response;
 
 public class SalesConsultant extends AppCompatActivity {
@@ -36,12 +39,29 @@ public class SalesConsultant extends AppCompatActivity {
         setContentView(R.layout.activity_sales_consultant);
 
 
+        ImageView sale_consultant_back = (ImageView)findViewById(R.id.sale_consultant_back);
+        TextView sale_consultant_toadd = (TextView)findViewById(R.id.sale_consultant_toadd);
         customListView = (SalesConsultantListview)findViewById(R.id.sales_consultant_listview);
         customListView.setOnDeleteListener(new SalesConsultantListview.OnDeleteListener() {
             @Override
             public void onDelete(int index) {
                 contentList.remove(index);
                 mAdapter.notifyDataSetChanged();
+            }
+        });
+
+        sale_consultant_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        sale_consultant_toadd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SalesConsultant.this, SaleConsultantTwo.class);
+                startActivity(intent);
             }
         });
 
@@ -53,8 +73,11 @@ public class SalesConsultant extends AppCompatActivity {
         });
 
         contentList = getListItem();
-        mAdapter = new SalesConsutantListViewAdapter(this,contentList);
-        customListView.setAdapter(mAdapter);
+        if(contentList != null){
+            mAdapter = new SalesConsutantListViewAdapter(this,contentList);
+            customListView.setAdapter(mAdapter);
+        }
+
     }
 
     private List<SalesConsutantListViewData> getListItem(){
@@ -62,7 +85,7 @@ public class SalesConsultant extends AppCompatActivity {
         try{
 
             OkHttpUtils.get()//get 方法
-                .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save") //地址
+                .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/detail") //地址
                 .build()
                 .execute(new Callback() {//通用的callBack
 
@@ -73,7 +96,7 @@ public class SalesConsultant extends AppCompatActivity {
                        String string = response.body().string();//获取相应中的内容Json格式
                         //把json转化成对应对象
                         //LoginResultModel是和后台返回值类型结构一样的对象
-                        LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                        SalesConsultantGson result = new Gson().fromJson(string, SalesConsultantGson.class);
                         return null;
                     }
 
@@ -87,8 +110,8 @@ public class SalesConsultant extends AppCompatActivity {
 
                         //object 是 parseNetworkResponse的返回值
                         if (null != object) {
-                            LoginResultModel result = (LoginResultModel) object;//把通用的Object转化成指定的对象
-                            if (result.getOperationResult().getResultCode() == 2) {//当返回值为2时不可登录
+                            SalesConsultantGson result = (SalesConsultantGson) object;//把通用的Object转化成指定的对象
+                            if (result.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
                                //Toast.makeText(MainActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
                             } else {
                                // Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
