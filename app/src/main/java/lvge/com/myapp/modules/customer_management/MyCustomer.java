@@ -16,7 +16,7 @@ import lvge.com.myapp.R;
 public class MyCustomer extends AppCompatActivity {
 
     private ViewPager mVpage;
-    private MyCustomerAllFragement allFragement;
+    private MyCustomerAllFragement allFragement = new MyCustomerAllFragement();
     private List<Fragment> fragmentslist = new ArrayList<Fragment>();
     private FragmentAdapter  mFragementAdapter;
 
@@ -24,6 +24,30 @@ public class MyCustomer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_customer);
+
+        mVpage = (ViewPager)findViewById(R.id.order_management_viewpager);
+        fragmentslist.add(allFragement);
+
+        mFragementAdapter = new FragmentAdapter(this.getSupportFragmentManager(),fragmentslist);
+        mVpage.setOffscreenPageLimit(1);   //ViewPager的缓存为4帧
+        mVpage.setCurrentItem(0);    //初始设置选中第一针
+
+        mVpage.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
 
