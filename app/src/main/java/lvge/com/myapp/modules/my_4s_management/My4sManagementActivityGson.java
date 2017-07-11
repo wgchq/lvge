@@ -1,6 +1,10 @@
 package lvge.com.myapp.modules.my_4s_management;
 
+import android.app.Application;
+
 import java.util.List;
+
+import lvge.com.myapp.model.OperationResult;
 
 /**
  * Created by mac on 2017/7/11.
@@ -8,38 +12,15 @@ import java.util.List;
 
 public class My4sManagementActivityGson {
 
-    private String pageResult;
-    private String resultMsg;
-    private String resultCode;
-    private List<marketEntity> marketEntities;
-
-    public List<marketEntity> getMarketEntities() {
-        return marketEntities;
+    public OperationResult getOperationResult() {
+        return operationResult;
     }
 
-    public void setMarketEntities(List<marketEntity> marketEntities) {
-        this.marketEntities = marketEntities;
+    public void setOperationResult(OperationResult operationResult) {
+        this.operationResult = operationResult;
     }
 
-
-
-    public String getResultMsg() {
-        return resultMsg;
-    }
-
-    public void setResultMsg(String resultMsg) {
-        this.resultMsg = resultMsg;
-    }
-
-
-    public String getResultCode() {
-        return resultCode;
-    }
-
-    public void setResultCode(String resultCode) {
-        this.resultCode = resultCode;
-    }
-
+    private OperationResult operationResult;
 
     public String getPageResult() {
         return pageResult;
@@ -49,6 +30,17 @@ public class My4sManagementActivityGson {
         this.pageResult = pageResult;
     }
 
+    private String pageResult;
+
+    public My4sManagementActivityGson.marketEntity getMarketEntity() {
+        return marketEntity;
+    }
+
+    public void setMarketEntity(My4sManagementActivityGson.marketEntity marketEntity) {
+        this.marketEntity = marketEntity;
+    }
+
+    private marketEntity marketEntity;
 
     public class marketEntity{
         private String id;
