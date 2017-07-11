@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="lvge.com.myapp.mainFragement.ClientFragment">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:tabIndicatorColor="#ff0000"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="#ff0000"
+        app:tabTextColor="#cccccc">
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/main_page_all_clients" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/main_page_has_binding_clients" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/main_page_has_no_binding_clients" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/main_page_has_no_cash_clients" />
+
+    </android.support.design.widget.TabLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_content_by_clients"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <lvge.com.myapp.ui.LoadListView
+            android:id="@+id/clients_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </lvge.com.myapp.ui.LoadListView>
+
+    </LinearLayout>
+
+</LinearLayout>

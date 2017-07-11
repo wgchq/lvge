@@ -3,12 +3,16 @@ package lvge.com.myapp;
 
 import android.app.Activity;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.view.MenuItem;
 import android.view.View;
 
 import android.view.Window;
@@ -23,6 +27,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import lvge.com.myapp.mainFragement.ClientFragment;
+import lvge.com.myapp.mainFragement.HomeFragment;
+import lvge.com.myapp.mainFragement.OrderFragment;
 import lvge.com.myapp.modules.car_data_management.CarDataManagementActivity;
 import lvge.com.myapp.modules.commodity_management.CommodityHomepageApplication;
 import lvge.com.myapp.modules.commodity_management.CommodityManageHomepage;
@@ -40,6 +47,12 @@ import lvge.com.myapp.util.BottomNavigationViewHelper;
 
 
 public class MainPageActivity extends Activity {
+
+    private HomeFragment homeFragment = null;
+    private ClientFragment clientFragment = null;
+    private OrderFragment orderFragment = null;
+    private FragmentManager fragmentManager = getFragmentManager();
+
 
     private SlideMenu mMenu;
 
@@ -92,98 +105,61 @@ public class MainPageActivity extends Activity {
             window.setStatusBarColor(Color.TRANSPARENT);
         }
 
+        DefaultFragment();
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        switch (item.getItemId()) {
+                            case R.id.navigation_home:
+                                if (homeFragment == null) {
+                                    homeFragment = new HomeFragment();
+                                }
+                                transaction.replace(R.id.fragment_content, homeFragment);
 
-        //主页面跳转各个子模块
+                                break;
+                            case R.id.navigation_client:
+                                if (clientFragment == null) {
+                                    clientFragment = new ClientFragment();
+                                }
+                                transaction.replace(R.id.fragment_content, clientFragment);
 
-        ImageView img_main_page_shop_management = (ImageView)findViewById(R.id.img_main_page_shop_management);
+                                transaction.show(clientFragment);
+                                break;
+                            case R.id.navigation_order:
+                                if (orderFragment == null) {
+                                    orderFragment = new OrderFragment();
+                                }
+                                transaction.replace(R.id.fragment_content, orderFragment);
 
-        img_main_page_shop_management.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(MainPageActivity.this, ShopManagementActivity.class);
-                startActivity(intent);
-            }
-        });
+                                transaction.show(orderFragment);
+                                break;
 
+                            case R.id.navigation_my:
+                                if (orderFragment == null) {
+                                    orderFragment = new OrderFragment();
+                                }
+                                transaction.replace(R.id.fragment_content, orderFragment);
 
-        ImageView img_main_page_car_data_management = (ImageView)findViewById(R.id.img_main_page_car_data_management);
-        img_main_page_car_data_management.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(MainPageActivity.this,CarDataManagementActivity.class);
-                startActivity(intent);
-            }
-        });
-        ImageView img_main_page_commodity_management = (ImageView)findViewById(R.id.img_main_page_commodity_management);
-        img_main_page_commodity_management.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(MainPageActivity.this,CommodityManageHomepage.class);
-                startActivity(intent);
-            }
-        });
+                                transaction.show(orderFragment);
+                                break;
+                        }
+                        transaction.commit();
+                        return true;
+                    }
+                });
+    }
 
 
-        ImageView img_main_page_coupon = (ImageView)findViewById(R.id.img_main_page_coupon);
-        img_main_page_coupon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(MainPageActivity.this,CouponActivity.class);
-                startActivity(intent);
-            }
-        });
-        ImageView img_main_page_evaluation_management = (ImageView)findViewById(R.id.img_main_page_evaluation_management);
-        img_main_page_evaluation_management.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(MainPageActivity.this,EvaluationManagementActivity.class);
-                startActivity(intent);
-            }
-        });
+    private void DefaultFragment() {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        if (homeFragment == null) {
 
-        ImageView img_main_page_fence_management = (ImageView)findViewById(R.id.img_main_page_fence_management);
-        img_main_page_fence_management.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(MainPageActivity.this,FenceManagementActivity.class);
-                startActivity(intent);
-            }
-        });
-        ImageView img_main_page_my_4s_management = (ImageView)findViewById(R.id.img_main_page_my_4s_management);
-        img_main_page_my_4s_management.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(MainPageActivity.this,My4sManagementActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageView img_main_page_performance_analysis_management = (ImageView)findViewById(R.id.img_main_page_performance_analysis_management);
-        img_main_page_performance_analysis_management.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(MainPageActivity.this,PerformanceAnalysisManagementActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageView img_main_page_financial_management = (ImageView)findViewById(R.id.img_main_page_financial_management);
-        img_main_page_financial_management.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(MainPageActivity.this,FinancialManagementActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageView img_main_page_royalty_management = (ImageView)findViewById(R.id.img_main_page_royalty_management);
-        img_main_page_royalty_management.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(MainPageActivity.this,RoyaltyManagementActivity.class);
-                startActivity(intent);
-            }
-        });
+            homeFragment = new HomeFragment();
+        }
+        transaction.add(R.id.fragment_content, homeFragment);
+        transaction.commit();
     }
 
     private List<Map<String, Object>> getMenuListItems() {

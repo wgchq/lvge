@@ -4,19 +4,19 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_main_page"
-        android:title="@string/title_home1" />
+        android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_client"
 
-        android:icon="@drawable/ic_client_24"
-        android:title="@string/title_notifications" />
+        android:icon="@drawable/ic_client"
+        android:title="@string/title_client" />
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard1" />
+        android:id="@+id/navigation_order"
+        android:icon="@drawable/ic_main_page_order"
+        android:title="@string/title_order" />
     <item
-        android:id="@+id/navigation_more"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard1" />
+        android:id="@+id/navigation_my"
+        android:icon="@drawable/ic_main_page_my"
+        android:title="@string/title_My" />
 </menu>

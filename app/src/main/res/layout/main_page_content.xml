@@ -8,20 +8,6 @@
     android:layout_margin="0dp"
     android:orientation="vertical">
 
-    <!--    <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme"
-            android:id="@+id/appBarLayout">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar_class_schedule"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-        </android.support.design.widget.AppBarLayout>-->
     <LinearLayout
         android:id="@+id/toolbar_main_page"
         android:layout_width="match_parent"
@@ -78,16 +64,6 @@
 
 
     </LinearLayout>
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="0dp"
-        android:background="@color/mainBackgroundColor"
-        app:menu="@menu/navigation" />
 
     <LinearLayout
         android:id="@+id/fragment_content"
