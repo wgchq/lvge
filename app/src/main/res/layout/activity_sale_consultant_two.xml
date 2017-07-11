@@ -46,7 +46,6 @@
                 android:layout_height="wrap_content"
                 android:text="销售顾问"
                 android:textColor="@color/mainBackgroundColor"
-                android:textSize="@dimen/main_title"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
 
@@ -62,7 +61,6 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/mainBackgroundColor"
                 android:text="保存"
-                android:textSize="@dimen/text_margin"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
     </LinearLayout>

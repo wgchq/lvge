@@ -37,7 +37,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="Android:icon, android:theme">
-
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="4b16b5d396673d026bb8dfaabfe1e226" />
@@ -78,9 +77,9 @@
         <activity android:name=".modules.Order_management.OrderDetailsTwo" />
         <activity android:name=".modules.my_4s_management.SaleConsultantTwo" />
         <activity android:name=".modules.customer_management.MyCustomer" />
-        <activity android:name=".modules.my_4s_management.My4sAddressActivity">
-
-        </activity>
+        <activity android:name=".modules.my_4s_management.My4sAddressActivity" />
+        <activity android:name=".modules.customer_management.CustomerData" />
+        <activity android:name=".modules.customer_management.MessagePush"></activity>
     </application>
 
 </manifest>

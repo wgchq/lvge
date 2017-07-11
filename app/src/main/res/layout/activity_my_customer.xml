@@ -45,7 +45,6 @@
                 android:layout_height="wrap_content"
                 android:text="我的客户"
                 android:textColor="@color/mainBackgroundColor"
-                android:textSize="@dimen/main_title"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
 
@@ -92,7 +91,6 @@
                 android:gravity="center"
                 android:text="全部客户"
                 android:textColor="@color/buttonTextColor"
-                android:textSize="15dip"
                 tools:ignore="HardcodedText,SpUsage" />
 
         </LinearLayout>
