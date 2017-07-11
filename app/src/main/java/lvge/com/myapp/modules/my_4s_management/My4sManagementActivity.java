@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,8 @@ import com.zhy.http.okhttp.callback.Callback;
 
 import java.io.File;
 
+import lvge.com.myapp.MainActivity;
+import lvge.com.myapp.MainPageActivity;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.modules.shop_management.ShopManageShopImgActivity;
@@ -23,7 +26,6 @@ import okhttp3.Response;
 
 public class My4sManagementActivity extends AppCompatActivity {
 
-    private File cache;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,16 @@ public class My4sManagementActivity extends AppCompatActivity {
 
         ImageView my4s_manage_back = (ImageView)findViewById(R.id.my4s_management_back);   //返回图片
         TextView my4s_manage_finish = (TextView)findViewById(R.id.my4s_finish);
+
+        RelativeLayout to_my4s_sales_consultant = (RelativeLayout)findViewById(R.id.to_my4s_sales_consultant); //销售顾问
+        to_my4s_sales_consultant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(My4sManagementActivity.this, SalesConsultant.class);
+                startActivityForResult(intent,0);
+            }
+        });
+
 
         try{
 
@@ -76,6 +88,7 @@ public class My4sManagementActivity extends AppCompatActivity {
             Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
         }
 
+
         my4s_manage_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +102,11 @@ public class My4sManagementActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode,Intent data){
+
+
     }
 
 }
