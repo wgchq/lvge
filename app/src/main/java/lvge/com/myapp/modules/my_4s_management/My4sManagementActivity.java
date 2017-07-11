@@ -48,7 +48,7 @@ public class My4sManagementActivity extends AppCompatActivity {
                             //把json转化成对应对象
                             //LoginResultModel是和后台返回值类型结构一样的对象
                             LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
-                            return null;
+                            return result;
                         }
 
                         @Override
