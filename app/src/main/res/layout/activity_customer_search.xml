@@ -12,13 +12,16 @@
         android:id="@+id/customer_management_customsearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
     </lvge.com.myapp.modules.customer_management.CustomerSearchView>
 
     <ListView
+        android:id="@+id/customer_management_customersearch_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:id="@+id/customer_management_customersearch_listview"></ListView>
+        android:visibility="gone">
+
+    </ListView>
 
 
 </LinearLayout>

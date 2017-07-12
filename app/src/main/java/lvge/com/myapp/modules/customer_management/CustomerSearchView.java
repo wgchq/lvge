@@ -35,35 +35,36 @@ public class CustomerSearchView extends LinearLayout implements View.OnClickList
 
     private ListView lvTips;
 
-    private ArrayAdapter<String>  mHintAdapter;
+    private ArrayAdapter<String> mHintAdapter;
 
     private ArrayAdapter<String> mAutoCompleteAdapter;
 
     private SearchViewListener mListener;
 
-    public interface SearchViewListener{
+    public interface SearchViewListener {
         void onRefreshAutoComplete(String text);
+
         void onSearch(String text);
     }
 
-    public void setSearchViewListener(SearchViewListener listener){
+    public void setSearchViewListener(SearchViewListener listener) {
         mListener = listener;
     }
 
-    public CustomerSearchView(Context context, AttributeSet attrs){
-        super(context,attrs);
+    public CustomerSearchView(Context context, AttributeSet attrs) {
+        super(context, attrs);
         mContext = context;
-        LayoutInflater.from(context).inflate(R.layout.activity_customer_search_view,this);
+        LayoutInflater.from(context).inflate(R.layout.activity_customer_search_view, this);
 
         initViews();
     }
 
-    private void initViews(){
+    private void initViews() {
 
-        etInput = (EditText)findViewById(R.id.customer_search_input);
-        ivDelete = (ImageView)findViewById(R.id.search_custmer);
-        btnBack = (Button)findViewById(R.id.search_customer_button);
-        lvTips = (ListView)findViewById(R.id.search_custmer_listview);
+        etInput = (EditText) findViewById(R.id.customer_search_input);
+        ivDelete = (ImageView) findViewById(R.id.search_custmer);
+        btnBack = (Button) findViewById(R.id.search_customer_button);
+        lvTips = (ListView) findViewById(R.id.search_custmer_listview);
 
         lvTips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -86,7 +87,7 @@ public class CustomerSearchView extends LinearLayout implements View.OnClickList
         etInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     lvTips.setVisibility(GONE);
                     notifyStartSearching(etInput.getText().toString());
                 }
@@ -96,28 +97,28 @@ public class CustomerSearchView extends LinearLayout implements View.OnClickList
     }
 
     //通知监听者，进行搜索操作
-    private void notifyStartSearching(String text){
-        if(mListener != null){
+    private void notifyStartSearching(String text) {
+        if (mListener != null) {
             mListener.onSearch(etInput.getText().toString());
         }
 
-        InputMethodManager imm = (InputMethodManager)mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(0,InputMethodManager.HIDE_NOT_ALWAYS);
+        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
-    public void setTipsHintAdapter(ArrayAdapter<String> adapter){
+    public void setTipsHintAdapter(ArrayAdapter<String> adapter) {
         this.mHintAdapter = adapter;
 
-        if(lvTips.getAdapter() == null){
+        if (lvTips.getAdapter() == null) {
             lvTips.setAdapter(mHintAdapter);
         }
     }
 
-    public void setAutoCompleteAdapter(ArrayAdapter<String> adapter){
+    public void setAutoCompleteAdapter(ArrayAdapter<String> adapter) {
         this.mAutoCompleteAdapter = adapter;
     }
 
-    private class EditChangedListener implements TextWatcher{
+    private class EditChangedListener implements TextWatcher {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -126,19 +127,19 @@ public class CustomerSearchView extends LinearLayout implements View.OnClickList
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            if(!"".equals(s.toString())){
+            if (!"".equals(s.toString())) {
                 ivDelete.setVisibility(VISIBLE);
                 lvTips.setVisibility(VISIBLE);
 
-                if(mAutoCompleteAdapter != null && lvTips.getAdapter()!= mAutoCompleteAdapter){
+                if (mAutoCompleteAdapter != null && lvTips.getAdapter() != mAutoCompleteAdapter) {
                     lvTips.setAdapter(mAutoCompleteAdapter);
                 }
 
-                if(mListener!=null){
+                if (mListener != null) {
                     mListener.onRefreshAutoComplete(s + "");
-                }else {
+                } else {
                     ivDelete.setVisibility(GONE);
-                    if(mHintAdapter != null){
+                    if (mHintAdapter != null) {
                         lvTips.setAdapter(mHintAdapter);
                     }
                     lvTips.setVisibility(GONE);
@@ -153,8 +154,8 @@ public class CustomerSearchView extends LinearLayout implements View.OnClickList
 
     }
 
-    public void onClick(View view){
-        switch (view.getId()){
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.customer_search_input:
                 lvTips.setVisibility(VISIBLE);
                 break;
@@ -162,7 +163,7 @@ public class CustomerSearchView extends LinearLayout implements View.OnClickList
                 ivDelete.setVisibility(GONE);
                 break;
             case R.id.search_customer_button:
-                ((Activity)mContext).finish();
+                ((Activity) mContext).finish();
                 break;
         }
     }

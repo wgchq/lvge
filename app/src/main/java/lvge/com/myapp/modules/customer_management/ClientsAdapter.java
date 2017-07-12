@@ -2,18 +2,12 @@ package lvge.com.myapp.modules.customer_management;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -47,17 +41,17 @@ public class ClientsAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return this.clients.getPageResult().getPageSize();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return clients.getPageResult().getEntityList().get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return clients.getPageResult().getEntityList().get(position).getId();
     }
 
     @Override
@@ -73,33 +67,45 @@ public class ClientsAdapter extends BaseAdapter {
             final TextView car_no = (TextView) convertView.findViewById(R.id.customer_car_no);
             String str_car_no = "车架号：" + clients.getPageResult().getEntityList().get(position).getVin();
             car_no.setText(str_car_no);
-            OkHttpUtils.get()
-                    .url(clients.getPageResult().getEntityList().get(position).getHeadImg())
-                    .build()
-                    .connTimeOut(20000).readTimeOut(20000).writeTimeOut(20000)
-                    .execute(new BitmapCallback() {
-                        @Override
-                        public void onError(Call call, Exception e, int i) {
 
-                        }
+            final ImageView headimge = (ImageView) convertView.findViewById(R.id.sale_consultant_iamage);
 
-                        @Override
-                        public void onResponse(Bitmap bitmap, int i) {
-                            Drawable drawable = new BitmapDrawable(bitmap);
-                            car_no.setCompoundDrawables(drawable, null, null, null);
-                        }
-                    });
+            if (!clients.getPageResult().getEntityList().get(position).getHeadImg().equals("")) {
 
+                final int int_position = position;
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        OkHttpUtils.get()
+                                .url(clients.getPageResult().getEntityList().get(int_position).getHeadImg())
+                                .build()
+                                .connTimeOut(20000).readTimeOut(20000).writeTimeOut(20000)
+                                .execute(new BitmapCallback() {
+                                    @Override
+                                    public void onError(Call call, Exception e, int i) {
+
+                                    }
+
+                                    @Override
+                                    public void onResponse(Bitmap bitmap, int i) {
+                                        headimge.setImageBitmap(bitmap);
+                                    }
+                                });
+                    }
+                }).start();
+
+
+            }
 
             TextView type = (TextView) convertView.findViewById(R.id.customer_listview_type);
             if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("1")) {
-                car_no.setText("已绑定硬件");
+                type.setText("已绑定硬件");
             } else {
-                car_no.setText("未绑定硬件");
+                type.setText("未绑定硬件");
             }
 
             TextView length = (TextView) convertView.findViewById(R.id.customer_listview_length);
-            String str_length = +clients.getPageResult().getEntityList().get(position).getMileAge() + "公里";
+            String str_length = clients.getPageResult().getEntityList().get(position).getMileAge() + "公里";
             length.setText(str_length);
         }
 
