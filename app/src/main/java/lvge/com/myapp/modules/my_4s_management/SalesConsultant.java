@@ -46,9 +46,9 @@ public class SalesConsultant extends AppCompatActivity {
         setContentView(R.layout.activity_sales_consultant);
 
 
-        ImageView sale_consultant_back = (ImageView)findViewById(R.id.sale_consultant_back);
-        TextView sale_consultant_toadd = (TextView)findViewById(R.id.sale_consultant_toadd);
-        customListView = (SalesConsultantListview)findViewById(R.id.sales_consultant_listview);
+        ImageView sale_consultant_back = (ImageView) findViewById(R.id.sale_consultant_back);
+        TextView sale_consultant_toadd = (TextView) findViewById(R.id.sale_consultant_toadd);
+        customListView = (SalesConsultantListview) findViewById(R.id.sales_consultant_listview);
         customListView.setOnDeleteListener(new SalesConsultantListview.OnDeleteListener() {
             @Override
             public void onDelete(int index) {
@@ -80,62 +80,62 @@ public class SalesConsultant extends AppCompatActivity {
         });
 
         contentList = getListItem();
-        if(contentList != null){
-            mAdapter = new SalesConsutantListViewAdapter(this,contentList);
+        if (contentList != null) {
+            mAdapter = new SalesConsutantListViewAdapter(this, contentList);
             customListView.setAdapter(mAdapter);
         }
 
     }
 
-    private List<SalesConsutantListViewData> getListItem(){
+    private List<SalesConsutantListViewData> getListItem() {
 
-        final List<SalesConsutantListViewData>  list = null;
-        try{
+        final List<SalesConsutantListViewData> list = null;
+        try {
 
             OkHttpUtils.get()//get 方法
-                .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/list") //地址
-                .build()
-                .execute(new Callback() {//通用的callBack
+                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/list") //地址
+                    .build()
+                    .execute(new Callback() {//通用的callBack
 
-                    //从后台获取成功后，对相应进行类型转化
-                    @Override
-                    public Object parseNetworkResponse(Response response, int i) throws Exception {
-                        string = response.body().string();//获取相应中的内容Json格式
-                        //把json转化成对应对象
-                        SalesConsultantGson result = new Gson().fromJson(string, SalesConsultantGson.class);
+                        //从后台获取成功后，对相应进行类型转化
+                        @Override
+                        public Object parseNetworkResponse(Response response, int i) throws Exception {
+                            string = response.body().string();//获取相应中的内容Json格式
+                            //把json转化成对应对象
+                            SalesConsultantGson result = new Gson().fromJson(string, SalesConsultantGson.class);
 
-                        return result;
-                    }
-
-                    @Override
-                    public void onError(okhttp3.Call call, Exception e, int i) {
-
-                    }
-
-                    @Override
-                    public void onResponse(Object object, int i) {
-
-                        //object 是 parseNetworkResponse的返回值
-                        if (null != object) {
-                            SalesConsultantGson result = (SalesConsultantGson) object;//把通用的Object转化成指定的对象
-                            //当返回值为2时不可登录
-                            if (result.getOperationResult().getResultCode() == 0) {
-                                SalesConsutantListViewData item = null;
-                                for(int j=0;j<result.getMarketEntity().size();j++){
-                                   // item.setName(result.getMarketEntity());
-                                }
-                            }
-                            else {
-                               // Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
-                               // startActivity(intent);
-                            }
-                        } else {//当没有返回对象时，表示网络没有联通
-                           // Toast.makeText(MainActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+                            return result;
                         }
-                    }
-                });
-            } catch (Exception e) {
-                 Toast.makeText(SalesConsultant.this, "网络异常！", Toast.LENGTH_SHORT).show();
+
+                        @Override
+                        public void onError(okhttp3.Call call, Exception e, int i) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Object object, int i) {
+
+                            //object 是 parseNetworkResponse的返回值
+                            if (null != object) {
+                                SalesConsultantGson result = (SalesConsultantGson) object;//把通用的Object转化成指定的对象
+                                //当返回值为2时不可登录
+                                if (result.getOperationResult().getResultCode() == 0) {
+                                    SalesConsutantListViewData item = new SalesConsutantListViewData();
+                                    for (int j = 0; j < result.getMarketEntity().size(); j++) {
+
+                                        item.setName(result.getMarketEntity().get(j).getName());
+                                    }
+                                } else {
+                                    // Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
+                                    // startActivity(intent);
+                                }
+                            } else {//当没有返回对象时，表示网络没有联通
+                                // Toast.makeText(MainActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+            Toast.makeText(SalesConsultant.this, "网络异常！", Toast.LENGTH_SHORT).show();
         }
         return list;
     }
