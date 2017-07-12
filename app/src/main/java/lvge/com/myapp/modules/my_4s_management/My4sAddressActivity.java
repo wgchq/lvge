@@ -10,11 +10,13 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps2d.AMap;
+import com.amap.api.maps2d.CameraUpdate;
 import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.UiSettings;
 import com.amap.api.maps2d.model.BitmapDescriptorFactory;
+import com.amap.api.maps2d.model.CameraPosition;
 import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
@@ -39,6 +41,10 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
     private AMapLocationClientOption mLocationOption = null;//定位参数
     private LocationSource.OnLocationChangedListener mListener = null;//定位监听器
 
+    private CameraUpdate cameraUpdate;
+    private double lng;
+    private double lat;
+    private String address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +53,9 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
 
         Bundle bundle = this.getIntent().getExtras();
         //接收name值
-        String lng = bundle.getString("lng");
-        String lat = bundle.getString("lat");
+         lng = Double.parseDouble(bundle.getString("lng")) ;
+         lat = Double.parseDouble(bundle.getString("lat"));
+        address = bundle.getString("address");
 
 
         /**
@@ -79,8 +86,25 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
 
         initLoc();
 
+        cameraUpdate = CameraUpdateFactory.newCameraPosition(
+                new CameraPosition(new LatLng(lat,lng),15,0,30)
+        );
+        aMap.moveCamera(cameraUpdate);
+
+
     }
 
+    public void drawMarker(){
+        Marker marker = aMap.addMarker(new MarkerOptions()
+                .position(new LatLng(lat,lng))
+                .title(address)
+                .icon(BitmapDescriptorFactory
+                .defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                .draggable(true)
+
+        );
+        marker.showInfoWindow();
+    }
 
     //定位
     private void initLoc() {

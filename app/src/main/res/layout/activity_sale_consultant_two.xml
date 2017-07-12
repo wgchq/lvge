@@ -28,7 +28,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/activity_horizontal_margin"
-                android:onClick="toggleMenu"
                 android:src="@mipmap/menu_return"
                 tools:ignore="ContentDescription,NestedWeights"
                 android:layout_weight="1" />
@@ -103,7 +102,6 @@
                 android:layout_centerVertical="true"
                 android:id="@+id/sale_consultant_two_iamgeview"
                 android:layout_toLeftOf="@+id/commodity_my4s_sales_consultant"
-                android:background="@mipmap/lg_user"
                 tools:ignore="ContentDescription,HardcodedText,RtlHardcoded,SmallSp" />
 
             <ImageButton
