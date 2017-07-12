@@ -79,7 +79,7 @@ public class SalesConsultant extends AppCompatActivity {
             }
         });
 
-        contentList = getListItem();
+        getListItem();
         if (contentList != null) {
             mAdapter = new SalesConsutantListViewAdapter(this, contentList);
             customListView.setAdapter(mAdapter);
@@ -87,9 +87,8 @@ public class SalesConsultant extends AppCompatActivity {
 
     }
 
-    private List<SalesConsutantListViewData> getListItem() {
+    private void getListItem() {
 
-        final List<SalesConsutantListViewData> list = null;
         try {
 
             OkHttpUtils.get()//get 方法
@@ -120,11 +119,16 @@ public class SalesConsultant extends AppCompatActivity {
                                 SalesConsultantGson result = (SalesConsultantGson) object;//把通用的Object转化成指定的对象
                                 //当返回值为2时不可登录
                                 if (result.getOperationResult().getResultCode() == 0) {
-                                    SalesConsutantListViewData item = new SalesConsutantListViewData();
+                                    SalesConsutantListViewData item = null;
                                     for (int j = 0; j < result.getMarketEntity().size(); j++) {
-
+                                        item = new SalesConsutantListViewData();
                                         item.setName(result.getMarketEntity().get(j).getName());
-                                    }
+                                        item.setPhone(result.getMarketEntity().get(j).getPhone());
+                                        item.setMemo(result.getMarketEntity().get(j).getMemo());
+                                        item.setHeadlmg(result.getMarketEntity().get(j).getHeadImg());
+                                        contentList.add(item);
+                                }
+
                                 } else {
                                     // Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
                                     // startActivity(intent);
@@ -137,7 +141,6 @@ public class SalesConsultant extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(SalesConsultant.this, "网络异常！", Toast.LENGTH_SHORT).show();
         }
-        return list;
     }
 
 }

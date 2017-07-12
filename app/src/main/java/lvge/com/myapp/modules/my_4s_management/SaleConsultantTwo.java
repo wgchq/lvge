@@ -1,11 +1,16 @@
 package lvge.com.myapp.modules.my_4s_management;
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,7 +46,10 @@ public class SaleConsultantTwo extends AppCompatActivity {
     public static final int CUT_PICTURE = 1;
     public static final int SHOW_PICTURE =2;
     public ImageView sale_consultant_two_iamgeview;
-    private Uri imageUri;
+    private Uri imageUri = null;
+    private String path = null;
+    private  File file;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,18 +66,14 @@ public class SaleConsultantTwo extends AppCompatActivity {
                     EditText et_rname = (EditText) findViewById(R.id.sale_consultant_inputname);
                     EditText et_phone = (EditText) findViewById(R.id.sale_consultant_inputphone);
                     EditText et_memo  = (EditText)findViewById(R.id.sale_consultant_inputmemo);
-
-                    sale_consultant_two_iamgeview.setDrawingCacheEnabled(true);
-                    Bitmap bitmap=sale_consultant_two_iamgeview.getDrawingCache();
-
-
+                    //file = new File(sale_consultant_two_iamgeview.getDrawable().toString());
 
                     OkHttpUtils.post()//get 方法
                             .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save") //地址
                             .addParams("name", et_rname.getText().toString()) //需要传递的参数
                             .addParams("phone", et_phone.getText().toString())
                             .addParams("memo",et_memo.getText().toString())
-                            .addParams("headImg",convertIconToString(bitmap))
+                            .addParams("headImg",sale_consultant_two_iamgeview.getDrawable().toString())
                             .build()
                             .execute(new Callback() {//通用的callBack
 
@@ -115,58 +119,34 @@ public class SaleConsultantTwo extends AppCompatActivity {
         sale_consultant_two_iamge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File outputImage = new File(Environment.getExternalStorageDirectory(),"output_image.jpg");
-
-                try{
-                    if(outputImage.exists()){
-                        outputImage.delete();
-                    }
-                    outputImage.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                imageUri = Uri.fromFile(outputImage);
-                Intent intent = new Intent(Intent.ACTION_PICK,null);
-                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-
-                intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-                startActivityForResult(intent,CUT_PICTURE);
-
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent,1);
             }
         });
     }
+    public String getPath(Uri uri)
+    {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        switch (requestCode){
-            case 1:
-                if(resultCode == RESULT_OK){
-                    Intent intent = new Intent("com.android.camera.action.CROP");
-                    intent.setDataAndType(data.getData(),"image/*");
-                    intent.putExtra("scale",true);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-                    startActivityForResult(intent,CUT_PICTURE);
-                }
-                break;
-            case SHOW_PICTURE:
-                if(resultCode == RESULT_OK) {
-                    try {
-                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
-                        sale_consultant_two_iamgeview.setImageBitmap(bitmap);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                }
+       if(requestCode == 1)
+           imageUri = data.getData();
+        if(imageUri != null){
+            try {
+                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                sale_consultant_two_iamgeview.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public Bitmap convertViewToBitmap(View view){
-        view.measure(View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED),
-                View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED));
-        view.layout(0,0,view.getMeasuredWidth(),view.getMinimumHeight());
-        view.buildDrawingCache();
-        Bitmap bitmap = view.getDrawingCache();
-        return bitmap;
-    }
 
     public static String convertIconToString(Bitmap bitmap)
     {
@@ -175,5 +155,6 @@ public class SaleConsultantTwo extends AppCompatActivity {
         byte[] appicon = baos.toByteArray();// 转为byte数组  
         return Base64.encodeToString(appicon, Base64.DEFAULT);
     }
+
 
 }

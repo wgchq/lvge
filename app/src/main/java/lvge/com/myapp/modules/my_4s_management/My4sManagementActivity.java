@@ -124,6 +124,7 @@ public class My4sManagementActivity extends AppCompatActivity {
                 //传递name参数为tinyphp
                 bundle.putString("lng",result.getMarketEntity().getLng());
                 bundle.putString("lat",result.getMarketEntity().getLat());
+                bundle.putString("address",result.getMarketEntity().getAddress());
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
