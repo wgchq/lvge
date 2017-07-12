@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -26,11 +27,53 @@ import lvge.com.myapp.R;
 public class SalesConsutantListViewAdapter extends BaseAdapter {
 
     private Context context;
-    private List<SalesConsutantListViewData>  listItems;   //商品信息集合
+
+    public List<SalesConsutantListViewData> getListItems() {
+        return listItems;
+    }
+
+    public void setListItems(List<SalesConsutantListViewData> listItems) {
+        this.listItems = listItems;
+    }
+
+    private List<SalesConsutantListViewData>  listItems = new ArrayList<SalesConsutantListViewData>();   //商品信息集合
     private LayoutInflater layoutInflater;  //视图容器
 
     public final class ListItemView{
+        public ImageView getImageView() {
+            return imageView;
+        }
+
+        public void setImageView(ImageView imageView) {
+            this.imageView = imageView;
+        }
+
         public ImageView imageView;
+
+        public TextView getSname() {
+            return sname;
+        }
+
+        public void setSname(TextView sname) {
+            this.sname = sname;
+        }
+
+        public TextView getPhone() {
+            return phone;
+        }
+
+        public void setPhone(TextView phone) {
+            this.phone = phone;
+        }
+
+        public TextView getMemo() {
+            return memo;
+        }
+
+        public void setMemo(TextView memo) {
+            this.memo = memo;
+        }
+
         public TextView sname;
         public TextView phone;
         public TextView memo;

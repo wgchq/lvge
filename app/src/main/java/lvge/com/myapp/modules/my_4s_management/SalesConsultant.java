@@ -36,7 +36,7 @@ public class SalesConsultant extends AppCompatActivity {
 
     private SalesConsutantListViewAdapter mAdapter;
 
-    private List<SalesConsutantListViewData> contentList;
+    private List<SalesConsutantListViewData> contentList = new ArrayList<SalesConsutantListViewData>();
 
     private String string;
 
