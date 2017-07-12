@@ -1,5 +1,7 @@
 package lvge.com.myapp.model;
 
+import java.util.List;
+
 import lvge.com.myapp.modules.my_4s_management.My4sManagementActivityGson;
 
 /**
@@ -28,15 +30,16 @@ public class SalesConsultantGson {
 
     private String pageResult;
 
-    public SalesConsultantGson.marketEntity getMarketEntity() {
+
+    private List<marketEntity>  marketEntity;
+
+    public List<SalesConsultantGson.marketEntity> getMarketEntity() {
         return marketEntity;
     }
 
-    public void setMarketEntity(SalesConsultantGson.marketEntity marketEntity) {
+    public void setMarketEntity(List<SalesConsultantGson.marketEntity> marketEntity) {
         this.marketEntity = marketEntity;
     }
-
-    private marketEntity marketEntity;
 
     public  class marketEntity{
         private String id;

@@ -21,10 +21,12 @@ import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -59,7 +61,8 @@ public class SaleConsultantTwo extends AppCompatActivity {
 
                     sale_consultant_two_iamgeview.setDrawingCacheEnabled(true);
                     Bitmap bitmap=sale_consultant_two_iamgeview.getDrawingCache();
-                    sale_consultant_two_iamgeview.setDrawingCacheEnabled(false);
+
+
 
                     OkHttpUtils.post()//get 方法
                             .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save") //地址
@@ -92,8 +95,9 @@ public class SaleConsultantTwo extends AppCompatActivity {
                                     //object 是 parseNetworkResponse的返回值
                                     if (null != object) {
                                         LoginResultModel result = (LoginResultModel) object;//把通用的Object转化成指定的对象
-                                        if (result.getOperationResult().getResultCode() == 2) {//当返回值为2时不可登录
-                                           // Toast.makeText(MainActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                        if (result.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
+                                            sale_consultant_two_iamgeview.setDrawingCacheEnabled(false);
+                                            Toast.makeText(SaleConsultantTwo.this, "上传成功！", Toast.LENGTH_SHORT).show();
                                         } else {
 
                                         }
@@ -171,4 +175,5 @@ public class SaleConsultantTwo extends AppCompatActivity {
         byte[] appicon = baos.toByteArray();// 转为byte数组  
         return Base64.encodeToString(appicon, Base64.DEFAULT);
     }
+
 }

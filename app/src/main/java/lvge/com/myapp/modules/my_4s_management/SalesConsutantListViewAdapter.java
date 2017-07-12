@@ -72,7 +72,7 @@ public class SalesConsutantListViewAdapter extends BaseAdapter {
         }
 
         SalesConsutantListViewData item =listItems.get(position);
-        listItemView.imageView.setImageBitmap(item.getHeadlmg());
+        //listItemView.imageView.setImageBitmap(item.getHeadlmg());
         listItemView.sname.setText(item.getName());
         listItemView.phone.setText(item.getPhone());
         listItemView.memo.setText(item.getMemo());

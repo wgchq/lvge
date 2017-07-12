@@ -50,7 +50,6 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:background="@drawable/edit_text_shape"
                     tools:ignore="UselessParent">
 
                     <TextView
@@ -64,10 +63,11 @@
                         android:textStyle="bold"
                         tools:ignore="HardcodedText,RtlHardcoded" />
 
-                    <ImageButton
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:src="@mipmap/phone"
                         android:layout_toLeftOf="@+id/sales_consultant_liatview_number"
                         tools:ignore="ContentDescription,HardcodedText,RtlHardcoded,SmallSp"
                         android:contentDescription="" />

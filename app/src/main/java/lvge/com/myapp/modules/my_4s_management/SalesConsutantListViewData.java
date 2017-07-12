@@ -11,7 +11,7 @@ public class SalesConsutantListViewData {
     private String name;
     private String phone;
     private String memo;
-    private Bitmap headlmg;
+    private String headlmg;
 
     public String getName(){
         return  name;
@@ -25,7 +25,24 @@ public class SalesConsutantListViewData {
         return memo;
     }
 
-    public  Bitmap getHeadlmg(){
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public String getHeadlmg() {
         return headlmg;
+    }
+
+    public void setHeadlmg(String headlmg) {
+        this.headlmg = headlmg;
     }
 }

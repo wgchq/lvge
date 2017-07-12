@@ -10,8 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +37,8 @@ public class SalesConsultant extends AppCompatActivity {
     private SalesConsutantListViewAdapter mAdapter;
 
     private List<SalesConsutantListViewData> contentList;
+
+    private String string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,22 +89,22 @@ public class SalesConsultant extends AppCompatActivity {
 
     private List<SalesConsutantListViewData> getListItem(){
 
+        final List<SalesConsutantListViewData>  list = null;
         try{
 
             OkHttpUtils.get()//get 方法
-                .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/detail") //地址
+                .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/list") //地址
                 .build()
                 .execute(new Callback() {//通用的callBack
 
                     //从后台获取成功后，对相应进行类型转化
                     @Override
                     public Object parseNetworkResponse(Response response, int i) throws Exception {
-
-                       String string = response.body().string();//获取相应中的内容Json格式
+                        string = response.body().string();//获取相应中的内容Json格式
                         //把json转化成对应对象
-                        //LoginResultModel是和后台返回值类型结构一样的对象
                         SalesConsultantGson result = new Gson().fromJson(string, SalesConsultantGson.class);
-                        return null;
+
+                        return result;
                     }
 
                     @Override
@@ -111,9 +118,14 @@ public class SalesConsultant extends AppCompatActivity {
                         //object 是 parseNetworkResponse的返回值
                         if (null != object) {
                             SalesConsultantGson result = (SalesConsultantGson) object;//把通用的Object转化成指定的对象
-                            if (result.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
-                               //Toast.makeText(MainActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
-                            } else {
+                            //当返回值为2时不可登录
+                            if (result.getOperationResult().getResultCode() == 0) {
+                                SalesConsutantListViewData item = null;
+                                for(int j=0;j<result.getMarketEntity().size();j++){
+                                   // item.setName(result.getMarketEntity());
+                                }
+                            }
+                            else {
                                // Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
                                // startActivity(intent);
                             }
@@ -125,7 +137,7 @@ public class SalesConsultant extends AppCompatActivity {
             } catch (Exception e) {
                  Toast.makeText(SalesConsultant.this, "网络异常！", Toast.LENGTH_SHORT).show();
         }
-        return null;
+        return list;
     }
 
 }
