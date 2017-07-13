@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:id="@+id/sales_consultant_listview_deletebutton"
     android:background="#FF0000"
     android:padding="5dp"
     android:text="删除"
     android:textColor="#FFFFFF"
     android:textSize="16sp"
     tools:ignore="HardcodedText">
-
 </Button>

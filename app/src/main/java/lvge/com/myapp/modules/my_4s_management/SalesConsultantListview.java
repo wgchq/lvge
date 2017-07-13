@@ -3,11 +3,16 @@ package lvge.com.myapp.modules.my_4s_management;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import lvge.com.myapp.R;
@@ -16,113 +21,125 @@ import lvge.com.myapp.R;
  * Created by mac on 2017/7/4.
  */
 
-public class SalesConsultantListview extends ListView implements View.OnTouchListener,GestureDetector.OnGestureListener {
+public class SalesConsultantListview extends ListView {
 
-    //手势动作探测器
-    private GestureDetector mGestureDetector;
+    private int touchSlop ;    //用户滑动的最小距离
+    private boolean isSliding;   //是都响应滑动
+    private int xDown;          //X坐标
+    private int yDown;          //Y坐标
+    private int xMove;          //移动X坐标
+    private  int yMove;         //移动Y坐标
 
-    //删除时间监听器
-    public  interface OnDeleteListener{
-        void onDelete(int index);
+    private LayoutInflater mLayoutInflater;
+    private PopupWindow mPopupWindow;
+    private int mPopupWindowHeight;
+    private int mPopupWindowWidth;
+
+    private Button mDeleBtn;
+
+    private  DelButtonClickListener mListener;   //为删除按钮提供一个回调接口
+
+    private View mCurrentView;    //当前手指触摸的View;
+    private int mCurrentViewPos;   //手指触摸的位置
+
+
+    public SalesConsultantListview(Context context,AttributeSet attributeSet) {
+        super(context,attributeSet);
+
+        mLayoutInflater = LayoutInflater.from(context);
+        touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+
+        View  view = mLayoutInflater.inflate(R.layout.delete_btn,null);
+        mDeleBtn = (Button)findViewById(R.id.sales_consultant_listview_deletebutton);
+
+        mPopupWindow = new PopupWindow(view, LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        mPopupWindow.getContentView().measure(0,0);
+        mPopupWindowHeight = mPopupWindow.getContentView().getMeasuredHeight();
+        mPopupWindowWidth = mPopupWindow.getContentView().getMeasuredWidth();
+
     }
 
-    private OnDeleteListener mOnDeleteListener;
+    public boolean dispatchTouchEvent(MotionEvent ev){
+        int action = ev.getAction();
+        int x = (int)ev.getX();
+        int y = (int)ev.getY();
 
-    //删除按钮
-    private View mDeleteBtn;
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                xDown = x;
+                yDown = y;
 
-    //列表项布局
-    private ViewGroup mItemLayout;
-
-    //选择的列表项
-    private int mSeletedItem;
-
-    //当前按钮是否显示出来
-    private  boolean isDeleteShown;
-
-    public SalesConsultantListview(Context context, AttributeSet attrs){
-        super(context,attrs);
-
-        //创建手势监听器对象
-        mGestureDetector = new GestureDetector(getContext(),this);
-
-        //监听onTouch事件
-        setOnTouchListener(this);
-    }
-
-    //设置删除监听事件
-    public void  setOnDeleteListener(OnDeleteListener  listener){
-        mOnDeleteListener = listener;
-    }
-
-    //触摸监听事件
-    public boolean onTouch(View v, MotionEvent event){
-        if(isDeleteShown){
-            hideDelete();
-            return false;
-        }else {
-            return mGestureDetector.onTouchEvent(event);
-        }
-    }
-
-    public boolean onDown(MotionEvent e){
-        if(!isDeleteShown){
-            mSeletedItem = pointToPosition((int)e.getX(),(int)e.getY());
-        }
-        return  false;
-    }
-
-    public boolean onFling(MotionEvent e1,MotionEvent e2, float velocityX,float velocityY){
-        //如果当前删除按钮没有显示出来，并且X方向滑动的速度大于Y方向的滑动速度
-        if(!isDeleteShown && Math.abs(velocityX) > Math.abs(velocityY)){
-            mDeleteBtn = LayoutInflater.from(getContext()).inflate(R.layout.delete_btn,null);
-
-            mDeleteBtn.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mItemLayout.removeView(mDeleteBtn);
-                    mDeleteBtn = null;
-                    isDeleteShown = false;
-                    mOnDeleteListener.onDelete(mSeletedItem);
+                if (mPopupWindow.isShowing()) {
+                    dismissPopWindow();
+                    return false;
                 }
-            });
+                //获得当前手指按下时的item位置
+                mCurrentViewPos = pointToPosition(xDown, yDown);
+                //获得当前手指按下的item
+                View view = getChildAt(mCurrentViewPos = getFirstVisiblePosition());
+                mCurrentView = view;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                xMove = x;
+                yMove = y;
+                int dx = xMove - xDown;
+                int dy = yMove - yDown;
 
-            mItemLayout = (ViewGroup)getChildAt(mSeletedItem - getFirstVisiblePosition());
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-            params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-            params.addRule(RelativeLayout.CENTER_VERTICAL);
-
-            mItemLayout.addView(mDeleteBtn,params);
-            isDeleteShown = true;
+                //判断是不是从右向左滑动
+                if (xMove < xDown && Math.abs(dx) > touchSlop && Math.abs(dy) < touchSlop) {
+                    isSliding = true;
+                }
+                break;
         }
-
-        return  false;
+        return super.dispatchTouchEvent(ev);
     }
 
-    //隐藏删除按钮
-    public void hideDelete(){
-        mItemLayout.removeView(mDeleteBtn);
-        mDeleteBtn = null;
-        isDeleteShown = false;
+    public boolean onTouchEvent(MotionEvent ev){
+        int action = ev.getAction();
+
+        if(isSliding){
+            switch (action){
+                case MotionEvent.ACTION_MOVE:
+                    int[] location = new int[2];
+                    //获得当前item位置X,Y
+                    mCurrentView.getLocationOnScreen(location);
+                    mPopupWindow.setAnimationStyle(R.style.popwindow_delete_btn_anim_style);
+                    mPopupWindow.update();
+                    mPopupWindow.showAtLocation(mCurrentView, Gravity.LEFT|Gravity.TOP,
+                            location[0]+mCurrentView.getWidth(),location[1] + mCurrentView.getHeight()/2 - mPopupWindowHeight/2);
+
+                    mDeleBtn.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(mListener != null){
+                                mListener.clickHappend(mCurrentViewPos);
+                                mPopupWindow.dismiss();
+                            }
+                        }
+                    });
+
+                    break;
+                case MotionEvent.ACTION_UP:
+                    isSliding = false;
+            }
+            return true;
+        }
+        return super.onTouchEvent(ev);
     }
 
-    public boolean isDeleteShown(){
-        return  isDeleteShown;
+    private void dismissPopWindow(){
+        if(mPopupWindow != null && mPopupWindow.isShowing()){
+            mPopupWindow.dismiss();
+        }
     }
 
-    public void onShowPress(MotionEvent e){
-
+    public void setDelButtonClickListener(DelButtonClickListener listener){
+        mListener = listener;
     }
 
-    public boolean onSingleTapUp(MotionEvent e){
-        return  false;
+    interface DelButtonClickListener{
+        public void clickHappend(int position);
     }
 
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY ){
-        return  false;
-    }
-
-    public void onLongPress(MotionEvent e){
-
-    }
 }
