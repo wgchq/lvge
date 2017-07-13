@@ -34,7 +34,7 @@ public class SalesConsultant extends AppCompatActivity {
 
     private SalesConsultantListview customListView;
 
-    private SalesConsutantListViewAdapter mAdapter;
+    private SalesConsutantListViewAdapter mAdapter ;
 
     private List<SalesConsutantListViewData> contentList = new ArrayList<SalesConsutantListViewData>();
 
@@ -49,12 +49,14 @@ public class SalesConsultant extends AppCompatActivity {
         ImageView sale_consultant_back = (ImageView) findViewById(R.id.sale_consultant_back);
         TextView sale_consultant_toadd = (TextView) findViewById(R.id.sale_consultant_toadd);
         customListView = (SalesConsultantListview) findViewById(R.id.sales_consultant_listview);
-        customListView.setOnDeleteListener(new SalesConsultantListview.OnDeleteListener() {
+        customListView.setDelButtonClickListener(new SalesConsultantListview.DelButtonClickListener() {
             @Override
-            public void onDelete(int index) {
-                contentList.remove(index);
+            public void clickHappend(int position) {
+                contentList.remove(position);
                 mAdapter.notifyDataSetChanged();
             }
+
+
         });
 
         sale_consultant_back.setOnClickListener(new View.OnClickListener() {
@@ -80,15 +82,11 @@ public class SalesConsultant extends AppCompatActivity {
         });
 
         getListItem();
-        if (contentList != null) {
-            mAdapter = new SalesConsutantListViewAdapter(this, contentList);
-            customListView.setAdapter(mAdapter);
-        }
+
 
     }
 
-    private void getListItem() {
-
+    private void  getListItem() {
         try {
 
             OkHttpUtils.get()//get 方法
@@ -128,6 +126,9 @@ public class SalesConsultant extends AppCompatActivity {
                                         item.setHeadlmg(result.getMarketEntity().get(j).getHeadImg());
                                         contentList.add(item);
                                 }
+                                    if (contentList != null) {
+                                        customListView.setAdapter(new SalesConsutantListViewAdapter(SalesConsultant.this,contentList));
+                                    }
 
                                 } else {
                                     // Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
@@ -141,6 +142,7 @@ public class SalesConsultant extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(SalesConsultant.this, "网络异常！", Toast.LENGTH_SHORT).show();
         }
+
     }
 
 }

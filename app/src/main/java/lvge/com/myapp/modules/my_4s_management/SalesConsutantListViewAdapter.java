@@ -36,7 +36,7 @@ public class SalesConsutantListViewAdapter extends BaseAdapter {
         this.listItems = listItems;
     }
 
-    private List<SalesConsutantListViewData>  listItems = new ArrayList<SalesConsutantListViewData>();   //商品信息集合
+    private List<SalesConsutantListViewData>  listItems;   //商品信息集合
     private LayoutInflater layoutInflater;  //视图容器
 
     public final class ListItemView{
@@ -90,11 +90,11 @@ public class SalesConsutantListViewAdapter extends BaseAdapter {
     }
 
     public Object getItem(int arg0){
-        return null;
+        return listItems.get(arg0);
     }
 
     public long getItemId(int arg1){
-        return 0;
+        return arg1;
     }
 
     public View getView(int position,View convertView, ViewGroup parent){

@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -26,6 +27,9 @@ import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -34,6 +38,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import lvge.com.myapp.MainActivity;
 import lvge.com.myapp.MainPageActivity;
@@ -49,13 +54,14 @@ public class SaleConsultantTwo extends AppCompatActivity {
     private Uri imageUri = null;
     private String path = null;
     private  File file;
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sale_consultant_two);
 
-        RelativeLayout sale_consultant_two_iamge = (RelativeLayout)findViewById(R.id.sale_consultant_two_iamge);
+        final RelativeLayout sale_consultant_two_iamge = (RelativeLayout)findViewById(R.id.sale_consultant_two_iamge);
         sale_consultant_two_iamgeview = (ImageView)findViewById(R.id.sale_consultant_two_iamgeview);
         TextView sale_consultant_Preservation = (TextView)findViewById(R.id.sale_consultant_Preservation);
 
@@ -66,14 +72,20 @@ public class SaleConsultantTwo extends AppCompatActivity {
                     EditText et_rname = (EditText) findViewById(R.id.sale_consultant_inputname);
                     EditText et_phone = (EditText) findViewById(R.id.sale_consultant_inputphone);
                     EditText et_memo  = (EditText)findViewById(R.id.sale_consultant_inputmemo);
-                    //file = new File(sale_consultant_two_iamgeview.getDrawable().toString());
+
+                    //String strBitmap = convertIconToString(sale_consultant_two_iamgeview.getDrawingCache());
+                  //   ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                  //  bitmap.compress(Bitmap.CompressFormat.JPEG,100,bos);
+                  //  byte[] data = bos.toByteArray();
+                  //  String strBitmap = new String(data);
+                    file = new File(saveBitmap(bitmap,Environment.getExternalStorageDirectory() + et_rname.getText().toString() + ".png"));
 
                     OkHttpUtils.post()//get 方法
                             .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save") //地址
                             .addParams("name", et_rname.getText().toString()) //需要传递的参数
                             .addParams("phone", et_phone.getText().toString())
                             .addParams("memo",et_memo.getText().toString())
-                            .addParams("headImg",sale_consultant_two_iamgeview.getDrawable().toString())
+                            .addFile("headImg",et_rname.getText().toString(),file)
                             .build()
                             .execute(new Callback() {//通用的callBack
 
@@ -100,7 +112,6 @@ public class SaleConsultantTwo extends AppCompatActivity {
                                     if (null != object) {
                                         LoginResultModel result = (LoginResultModel) object;//把通用的Object转化成指定的对象
                                         if (result.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
-                                            sale_consultant_two_iamgeview.setDrawingCacheEnabled(false);
                                             Toast.makeText(SaleConsultantTwo.this, "上传成功！", Toast.LENGTH_SHORT).show();
                                         } else {
 
@@ -139,14 +150,21 @@ public class SaleConsultantTwo extends AppCompatActivity {
            imageUri = data.getData();
         if(imageUri != null){
             try {
-                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
-                sale_consultant_two_iamgeview.setImageBitmap(bitmap);
+                String[] prjo = {MediaStore.Images.Media.DATA};
+                Cursor cursor = managedQuery(imageUri,prjo,null,null,null);
+                if(cursor != null){
+                    cursor.moveToFirst();
+                    String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                   // file = new File(path);
+                    bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                    sale_consultant_two_iamgeview.setImageBitmap(bitmap);
+                }
+
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         }
     }
-
 
     public static String convertIconToString(Bitmap bitmap)
     {
@@ -154,6 +172,36 @@ public class SaleConsultantTwo extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.PNG,100,baos);
         byte[] appicon = baos.toByteArray();// 转为byte数组  
         return Base64.encodeToString(appicon, Base64.DEFAULT);
+    }
+
+    private String saveBitmap(Bitmap bitmap,String path) throws IOException
+    {
+        File sd = Environment.getExternalStorageDirectory();
+        boolean can_write=sd.canWrite();
+        File f = new File(path);
+        if(f.exists()){
+            f.delete();
+        }
+        //f.createNewFile();
+        FileOutputStream out;
+        try{
+            out = new FileOutputStream(f);
+            if(bitmap.compress(Bitmap.CompressFormat.PNG, 90, out))
+            {
+                out.flush();
+                out.close();
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return path;
     }
 
 

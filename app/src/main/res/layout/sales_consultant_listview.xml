@@ -63,19 +63,12 @@
                         android:textStyle="bold"
                         tools:ignore="HardcodedText,RtlHardcoded" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:src="@mipmap/phone"
-                        android:layout_toLeftOf="@+id/sales_consultant_liatview_number"
-                        tools:ignore="ContentDescription,HardcodedText,RtlHardcoded,SmallSp"
-                        android:contentDescription="" />
 
                     <TextView
                         android:id="@+id/sales_consultant_liatview_number"
-                        android:layout_width="100dp"
-                        android:layout_height="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@mipmap/phone"
                         android:layout_alignParentRight="true"
                         android:text="12345678901"
                         android:layout_centerVertical="true"
@@ -95,7 +88,7 @@
                 <TextView
                     android:id="@+id/sales_consultant_liatview_text"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="12345678901"
                     android:textSize="16sp"
                     android:layout_centerVertical="true"
@@ -108,15 +101,15 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="10dp"
+            android:layout_width="5dp"
             android:layout_height="match_parent"
             android:layout_weight="0.26"
             android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/activity_horizontal_margin"
                 android:onClick="toggleMenu"
                 android:src="@mipmap/gray_right"
