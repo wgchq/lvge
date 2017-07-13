@@ -106,5 +106,5 @@
     <string name="main_page_has_binding_clients">已绑定硬件</string>
     <string name="main_page_has_no_binding_clients">未绑定硬件</string>
     <string name="main_page_has_no_cash_clients">离线/欠费</string>
-
+    <string name="client_information">客户资料</string>
 </resources>

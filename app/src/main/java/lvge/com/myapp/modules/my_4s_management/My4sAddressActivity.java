@@ -177,7 +177,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
 
 
                     //添加图钉
-                    //    aMap.addMarker(getMarkerOptions(amapLocation));
+                      //  aMap.addMarker(getMarkerOptions(amapLocation));
                     //获取定位信息
 
                     isFirstLoc = false;

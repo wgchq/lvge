@@ -16,13 +16,14 @@ public class CustomerDetail {
         this.operationResult = operationResult;
     }
 
-    public CustomerDetail getMarketEntity() {
+
+    public MarketEntity getMarketEntity() {
         return marketEntity;
     }
 
-    public void setMarketEntity(CustomerDetail marketEntity) {
+    public void setMarketEntity(MarketEntity marketEntity) {
         this.marketEntity = marketEntity;
     }
 
-    CustomerDetail marketEntity;
+    MarketEntity marketEntity;
 }

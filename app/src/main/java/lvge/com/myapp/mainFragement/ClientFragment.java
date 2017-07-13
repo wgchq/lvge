@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -46,60 +45,6 @@ public class ClientFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private void getLoadClientsData(int index) {
-        final int index_x = index;
-
-        try {
-            OkHttpUtils.get()//get 方法
-                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
-                    .addParams("pageIndex", Integer.toString(index_x)) //需要传递的参数
-                    .addParams("pageSize", "10")
-                    .build()
-                    .execute(new Callback() {//通用的callBack
-
-                        //从后台获取成功后，对相应进行类型转化
-                        @Override
-                        public Object parseNetworkResponse(Response response, int i) throws Exception {
-
-                            String string = response.body().string();//获取相应中的内容Json格式
-                            //把json转化成对应对象
-                            //LoginResultModel是和后台返回值类型结构一样的对象
-                            ClientResultModel result = new Gson().fromJson(string, ClientResultModel.class);
-                            return result;
-                        }
-
-                        @Override
-                        public void onError(okhttp3.Call call, Exception e, int i) {
-
-                            int a = 0;
-
-                        }
-
-                        @Override
-                        public void onResponse(Object object, int i) {
-
-
-                            int a = 0;
-                            //object 是 parseNetworkResponse的返回值
-                            if (null != object) {
-                                ClientResultModel resultModel = (ClientResultModel) object;//把通用的Object转化成指定的对象
-                                if (resultModel.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
-                                    clientResultModel.getPageResult().getEntityList().addAll(resultModel.getPageResult().getEntityList());
-                                    clientResultModel.getPageResult().setPageIndex(resultModel.getPageResult().getPageIndex());
-                                } else {
-                                    Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
-                                }
-                            } else {//当没有返回对象时，表示网络没有联通
-                                Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -116,14 +61,19 @@ public class ClientFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 try {
+                    String status = "0";
                     switch (tab.getPosition()) {
                         case 0:
+                             status = "0";
                             break;
                         case 1:
+                             status = "1";
                             break;
                         case 2:
+                            status = "2";
                             break;
                         case 3:
+                            status = "3";
                             break;
                     }
 
@@ -131,6 +81,7 @@ public class ClientFragment extends Fragment {
                             .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                             .addParams("pageIndex", "1") //需要传递的参数
                             .addParams("pageSize", "10")
+                            .addParams("status",status)
                             .build()
                             .execute(new Callback() {//通用的callBack
 
@@ -170,13 +121,59 @@ public class ClientFragment extends Fragment {
                                                         @Override
                                                         public void run() {
 
-                                                            getLoadClientsData(clientResultModel.getPageResult().getPageIndex() + 1);
+                                                            try {
+                                                                OkHttpUtils.get()//get 方法
+                                                                        .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
+                                                                        .addParams("pageIndex", Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1)) //需要传递的参数
+                                                                        .addParams("pageSize", "10")
+                                                                        .build()
+                                                                        .execute(new Callback() {//通用的callBack
 
-                                                            adapter.setClients(clientResultModel);
-                                                            LoadListView client_lsts = (LoadListView) view.findViewById(R.id.clients_list);
-                                                            client_lsts.setAdapter(adapter);
+                                                                            //从后台获取成功后，对相应进行类型转化
+                                                                            @Override
+                                                                            public Object parseNetworkResponse(Response response, int i) throws Exception {
 
-                                                            listview.loadComplete();
+                                                                                String string = response.body().string();//获取相应中的内容Json格式
+                                                                                //把json转化成对应对象
+                                                                                //LoginResultModel是和后台返回值类型结构一样的对象
+                                                                                ClientResultModel result = new Gson().fromJson(string, ClientResultModel.class);
+                                                                                return result;
+                                                                            }
+
+                                                                            @Override
+                                                                            public void onError(okhttp3.Call call, Exception e, int i) {
+
+
+                                                                            }
+
+                                                                            @Override
+                                                                            public void onResponse(Object object, int i) {
+
+                                                                                int a = 0;
+                                                                                //object 是 parseNetworkResponse的返回值
+                                                                                if (null != object) {
+                                                                                    ClientResultModel resultModel = (ClientResultModel) object;//把通用的Object转化成指定的对象
+                                                                                    if (resultModel.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
+                                                                                        clientResultModel.getPageResult().getEntityList().addAll(resultModel.getPageResult().getEntityList());
+                                                                                        clientResultModel.getPageResult().setPageIndex(resultModel.getPageResult().getPageIndex());
+
+                                                                                        adapter.setClients(clientResultModel);
+                                                                                        LoadListView client = (LoadListView) view.findViewById(R.id.clients_list);
+
+                                                                                        client.setAdapter(adapter);
+                                                                                        client.loadComplete();
+
+                                                                                    } else {
+                                                                                        Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                                                                    }
+                                                                                } else {//当没有返回对象时，表示网络没有联通
+                                                                                    Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
+                                                                                }
+                                                                            }
+                                                                        });
+                                                            } catch (Exception e) {
+                                                                e.printStackTrace();
+                                                            }
                                                         }
                                                     }, 2000);
                                                 }
@@ -214,7 +211,8 @@ public class ClientFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(getActivity(), CustomerData.class);
-                intent.putExtra("custumerId",clientResultModel.getPageResult().getEntityList().get(position).getId());
+                String clientId = Integer.toString(clientResultModel.getPageResult().getEntityList().get(position).getId());
+                intent.putExtra("id", clientId);
                 startActivity(intent);
             }
         });
@@ -237,6 +235,7 @@ public class ClientFragment extends Fragment {
                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                     .addParams("pageIndex", "1") //需要传递的参数
                     .addParams("pageSize", "10")
+                    .addParams("status","0")
                     .build()
                     .execute(new Callback() {//通用的callBack
 
@@ -263,7 +262,6 @@ public class ClientFragment extends Fragment {
                                 clientResultModel = (ClientResultModel) object;//把通用的Object转化成指定的对象
                                 if (clientResultModel.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
                                     adapter.setClients(clientResultModel);
-
                                     LoadListView client_lst = (LoadListView) view.findViewById(R.id.clients_list);
                                     client_lst.setInterface(new LoadListView.IloadListener() {
                                         @Override
@@ -276,13 +274,61 @@ public class ClientFragment extends Fragment {
                                                 @Override
                                                 public void run() {
 
-                                                    getLoadClientsData(clientResultModel.getPageResult().getPageIndex() + 1);
+                                                    try {
+                                                        OkHttpUtils.get()//get 方法
+                                                                .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
+                                                                .addParams("pageIndex", Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1)) //需要传递的参数
+                                                                .addParams("pageSize", "10")
+                                                                .build()
+                                                                .execute(new Callback() {//通用的callBack
 
-                                                    adapter.setClients(clientResultModel);
-                                                    LoadListView client_lst = (LoadListView) view.findViewById(R.id.clients_list);
+                                                                    //从后台获取成功后，对相应进行类型转化
+                                                                    @Override
+                                                                    public Object parseNetworkResponse(Response response, int i) throws Exception {
 
-                                                    client_lst.setAdapter(adapter);
-                                                    client_lst.loadComplete();
+                                                                        String string = response.body().string();//获取相应中的内容Json格式
+                                                                        //把json转化成对应对象
+                                                                        //LoginResultModel是和后台返回值类型结构一样的对象
+                                                                        ClientResultModel result = new Gson().fromJson(string, ClientResultModel.class);
+                                                                        return result;
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onError(okhttp3.Call call, Exception e, int i) {
+
+                                                                        int a = 0;
+
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onResponse(Object object, int i) {
+
+                                                                        int a = 0;
+                                                                        //object 是 parseNetworkResponse的返回值
+                                                                        if (null != object) {
+                                                                            ClientResultModel resultModel = (ClientResultModel) object;//把通用的Object转化成指定的对象
+                                                                            if (resultModel.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
+                                                                                clientResultModel.getPageResult().getEntityList().addAll(resultModel.getPageResult().getEntityList());
+                                                                                clientResultModel.getPageResult().setPageIndex(resultModel.getPageResult().getPageIndex());
+
+                                                                                adapter.setClients(clientResultModel);
+                                                                                LoadListView client = (LoadListView) view.findViewById(R.id.clients_list);
+
+                                                                                client.setAdapter(adapter);
+                                                                                client.loadComplete();
+
+                                                                            } else {
+                                                                                Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                                                            }
+                                                                        } else {//当没有返回对象时，表示网络没有联通
+                                                                            Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    }
+                                                                });
+                                                    } catch (Exception e) {
+                                                        e.printStackTrace();
+                                                    }
+
                                                 }
                                             }, 2000);
                                         }
