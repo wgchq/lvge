@@ -25,7 +25,10 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.Callback;
+import com.zhy.http.okhttp.callback.StringCallback;
+import com.zhy.http.okhttp.request.RequestCall;
 
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -39,11 +42,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import lvge.com.myapp.MainActivity;
 import lvge.com.myapp.MainPageActivity;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.LoginResultModel;
+import okhttp3.Call;
 import okhttp3.Response;
 
 public class SaleConsultantTwo extends AppCompatActivity {
@@ -78,14 +84,42 @@ public class SaleConsultantTwo extends AppCompatActivity {
                   //  bitmap.compress(Bitmap.CompressFormat.JPEG,100,bos);
                   //  byte[] data = bos.toByteArray();
                   //  String strBitmap = new String(data);
-                    file = new File(saveBitmap(bitmap,Environment.getExternalStorageDirectory() + et_rname.getText().toString() + ".png"));
+                    file = new File(saveBitmap(et_rname.getText().toString()));
+                   // FileOutputStream fo = new FileOutputStream(file);
+                   // Map<String,File> fileMap = new HashMap<String, File>();
+                    //fileMap.put("headImg",file);
 
+                    PostFormBuilder post = OkHttpUtils.post();
+                    post.url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save");
+                    Map<String,String> para = new HashMap<String, String>();
+                    para.put("name",et_rname.getText().toString());
+                    para.put("phone",et_phone.getText().toString());
+                    para.put("memo",et_memo.getText().toString());
+                    post.params(para);
+                    post.addFile("headImg",et_rname.getText().toString() + ".png",file);
+                    RequestCall builde = post.build();
+                    builde.execute(new StringCallback() {
+                        @Override
+                        public void onError(Call call, Exception e, int i) {
+
+                        }
+
+                        @Override
+                        public void onResponse(String s, int i) {
+                           // String string = response.body().string();//获取相应中的内容Json格式
+                            //把json转化成对应对象
+                            //LoginResultModel是和后台返回值类型结构一样的对象
+                            LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
+                        }
+                    });
+
+                    /***
                     OkHttpUtils.post()//get 方法
                             .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save") //地址
                             .addParams("name", et_rname.getText().toString()) //需要传递的参数
                             .addParams("phone", et_phone.getText().toString())
                             .addParams("memo",et_memo.getText().toString())
-                            .addFile("headImg",et_rname.getText().toString(),file)
+                            .addFile("headImg",et_rname.getText().toString() + ".png",file)
                             .build()
                             .execute(new Callback() {//通用的callBack
 
@@ -114,18 +148,20 @@ public class SaleConsultantTwo extends AppCompatActivity {
                                         if (result.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
                                             Toast.makeText(SaleConsultantTwo.this, "上传成功！", Toast.LENGTH_SHORT).show();
                                         } else {
-
+                                            Toast.makeText(SaleConsultantTwo.this, "保存失败！", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {//当没有返回对象时，表示网络没有联通
                                         Toast.makeText(SaleConsultantTwo.this, "网络异常！", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
+                     ***/
                 } catch (Exception e) {
                     Toast.makeText(SaleConsultantTwo.this, "网络异常！", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
 
         sale_consultant_two_iamge.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,35 +210,32 @@ public class SaleConsultantTwo extends AppCompatActivity {
         return Base64.encodeToString(appicon, Base64.DEFAULT);
     }
 
-    private String saveBitmap(Bitmap bitmap,String path) throws IOException
+    private String saveBitmap(String strfilename) throws IOException
     {
         File sd = Environment.getExternalStorageDirectory();
         boolean can_write=sd.canWrite();
-        File f = new File(path);
-        if(f.exists()){
-            f.delete();
-        }
-        //f.createNewFile();
-        FileOutputStream out;
-        try{
-            out = new FileOutputStream(f);
-            if(bitmap.compress(Bitmap.CompressFormat.PNG, 90, out))
-            {
-                out.flush();
-                out.close();
+
+       // Bitmap bitm = convertViewToBitMap(sale_consultant_two_iamgeview);
+        String strPath = Environment.getExternalStorageDirectory().toString() + "/save";
+
+        try {
+            File desDir = new File(strPath);
+            if(!desDir.exists()){
+                desDir.mkdir();
             }
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
 
-        return path;
+            File imageFile = new File(strPath + "/" + strfilename  + ".png");
+           // imageFile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.PNG,50,fos);
+            fos.flush();
+            fos.close();
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return strPath + "/" + strfilename + ".png";
     }
-
 
 }
