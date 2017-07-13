@@ -41,7 +41,7 @@ public class ClientsAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return this.clients.getPageResult().getPageSize();
+        return this.clients.getPageResult().getEntityList().size();
     }
 
     @Override
