@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="lvge.com.myapp">
 
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 申请必要的权限 -->
     <!-- 用于进行网络定位 -->
