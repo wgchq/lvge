@@ -19,11 +19,17 @@ import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.UiSettings;
 
+import com.amap.api.maps2d.model.BitmapDescriptorFactory;
 import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
 import com.amap.api.maps2d.model.Text;
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
@@ -32,7 +38,7 @@ import lvge.com.myapp.R;
 import lvge.com.myapp.model.CustomerDetail;
 import okhttp3.Response;
 
-public class CustomerData extends AppCompatActivity implements LocationSource {
+public class CustomerData extends AppCompatActivity implements LocationSource, GeocodeSearch.OnGeocodeSearchListener {
     private Marker attentionMark = null;
     //标识，用于判断是否只显示一次定位信息和用户重新定位
     private boolean isFirstLoc = true;
@@ -47,6 +53,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource {
     private double lng;
     private double lat;
     private String address;
+    private CustomerDetail customer_detail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +76,8 @@ public class CustomerData extends AppCompatActivity implements LocationSource {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CustomerData.this, MessagePush.class);
+                String str_client_car_plate_number = customer_detail.getMarketEntity().getPlatenumber();
+                intent.putExtra("plate_number",str_client_car_plate_number);
                 startActivity(intent);
             }
         });
@@ -125,7 +134,6 @@ public class CustomerData extends AppCompatActivity implements LocationSource {
         //开始定位
         //设置定位监听
 
-
         OkHttpUtils.get()//get 方法
                 .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/detail") //地址
                 .addParams("id", id) //需要传递的参数
@@ -154,7 +162,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource {
                         //object 是 parseNetworkResponse的返回值
                         if (null != object) {
                             CustomerDetail customerDetail = (CustomerDetail) object;//把通用的Object转化成指定的对象
-
+                            customer_detail = customerDetail;
                             //车牌号
                             TextView client_car_plate_number = (TextView) findViewById(R.id.client_car_plate_number);
                             String str_client_car_plate_number = customerDetail.getMarketEntity().getPlatenumber();
@@ -180,12 +188,9 @@ public class CustomerData extends AppCompatActivity implements LocationSource {
                             txt_customer_data_car_imei_no.setText(customerDetail.getMarketEntity().getImei());
                             lng = customerDetail.getMarketEntity().getLng();
                             lat = customerDetail.getMarketEntity().getLat();
-
+                            lng = 114;
+                            lat = 34;
                             initLoc();
-
-
-
-
 
 
                         }
@@ -196,13 +201,52 @@ public class CustomerData extends AppCompatActivity implements LocationSource {
 
     //定位
     private void initLoc() {
+
+        if (mLocationClient != null) {
+            mLocationClient.startLocation();
+            return;
+        }
+        //初始化定位
+        mLocationClient = new AMapLocationClient(this);
+        //初始化定位参数
+        mLocationOption = new AMapLocationClientOption();
+        //设置定位回调监听
+        //    mLocationClient.setLocationListener(this);
+        //设置定位模式为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        //设置定位间隔,单位毫秒,默认为2000ms
+        mLocationOption.setInterval(2000);
+        //设置是否只定位一次,默认为false
+        mLocationOption.setOnceLocation(false);
+    /*    //设置是否返回地址信息（默认返回地址信息）
+        mLocationOption.setNeedAddress(true);
+        //设置是否只定位一次,默认为false
+        mLocationOption.setOnceLocation(false);
+        //设置是否强制刷新WIFI，默认为强制刷新
+        mLocationOption.setWifiActiveScan(true);
+        //设置是否允许模拟位置,默认为false，不允许模拟位置
+        mLocationOption.setMockEnable(false);*/
+
+        //给定位客户端对象设置定位参数
+        mLocationClient.setLocationOption(mLocationOption);
+        //启动定位
+        mLocationClient.startLocation();
+
         //设置缩放级别
-        aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+        aMap.moveCamera(CameraUpdateFactory.zoomTo(15));
         //将地图移动到定位点
         aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(lat, lng)));
 
         //添加图钉
         aMap.addMarker(getMarkerOptions());
+
+        GeocodeSearch geocodeSearch = new GeocodeSearch(this);
+        geocodeSearch.setOnGeocodeSearchListener(this);
+
+        LatLonPoint latLonPoint = new LatLonPoint(lat, lng);
+        RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200, GeocodeSearch.AMAP);
+
+        geocodeSearch.getFromLocationAsyn(query);
     }
 
     //自定义一个图钉，并且设置图标，当我们点击图钉时，显示设置的信息
@@ -212,7 +256,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource {
         MarkerOptions options = new MarkerOptions();
         //图标
         options.icon(options.getIcon());
-        // options.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_pin));
+        options.icon(BitmapDescriptorFactory.fromResource(R.mipmap.shop_manage_shop_address));
 
         options.position(new LatLng(lat, lng));
         //设置多少帧刷新一次图片资源
@@ -228,6 +272,27 @@ public class CustomerData extends AppCompatActivity implements LocationSource {
 
     @Override
     public void deactivate() {
+
+    }
+
+    @Override
+    public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
+        if (null != regeocodeResult) {
+            String Province = regeocodeResult.getRegeocodeAddress().getProvince();
+            String City = regeocodeResult.getRegeocodeAddress().getCity();
+            String Crossroads = regeocodeResult.getRegeocodeAddress().getTowncode();
+            String Building = regeocodeResult.getRegeocodeAddress().getBuilding();
+            String FormatAddress = regeocodeResult.getRegeocodeAddress().getFormatAddress();
+            String address = Province + City + Crossroads + Building;
+            TextView client_address = (TextView) findViewById(R.id.client_address);
+            client_address.setText(FormatAddress);
+        }
+
+    }
+
+    @Override
+    public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+        geocodeResult.getGeocodeAddressList().get(i);
 
     }
 }
