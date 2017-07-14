@@ -98,20 +98,22 @@ public class SalesConsutantListViewAdapter extends BaseAdapter {
     }
 
     public View getView(int position,View convertView, ViewGroup parent){
-        ListItemView listItemView = null;
+        ListItemView listItemView ;
+        View view;
         if(convertView == null){
             listItemView = new ListItemView();
-            convertView = layoutInflater.inflate(R.layout.sales_consultant_listview,null);
+            view = layoutInflater.inflate(R.layout.sales_consultant_listview,null);
 
             //获取控件对象
-            listItemView.imageView = (ImageView)convertView.findViewById(R.id.sale_consultant_iamage);
-            listItemView.sname = (TextView)convertView.findViewById(R.id.sales_consultant_liatview_name);
-            listItemView.phone = (TextView)convertView.findViewById(R.id.sales_consultant_liatview_number);
-            listItemView.memo = (TextView)convertView.findViewById(R.id.sales_consultant_liatview_text);
+            listItemView.imageView = (ImageView)view.findViewById(R.id.sale_consultant_iamage);
+            listItemView.sname = (TextView)view.findViewById(R.id.sales_consultant_liatview_name);
+            listItemView.phone = (TextView)view.findViewById(R.id.sales_consultant_liatview_number);
+            listItemView.memo = (TextView)view.findViewById(R.id.sales_consultant_liatview_text);
 
-            convertView.setTag(listItemView);
+            view.setTag(listItemView);
         }else {
-            listItemView = (ListItemView)convertView.getTag();
+            view = convertView;
+            listItemView = (ListItemView)view.getTag();
         }
 
         SalesConsutantListViewData item =listItems.get(position);
@@ -120,7 +122,7 @@ public class SalesConsutantListViewAdapter extends BaseAdapter {
         listItemView.phone.setText(item.getPhone());
         listItemView.memo.setText(item.getMemo());
 
-        return convertView;
+        return view;
     }
 
 }
