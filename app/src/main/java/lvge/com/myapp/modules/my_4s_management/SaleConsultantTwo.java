@@ -88,32 +88,10 @@ public class SaleConsultantTwo extends AppCompatActivity {
                    // FileOutputStream fo = new FileOutputStream(file);
                    // Map<String,File> fileMap = new HashMap<String, File>();
                     //fileMap.put("headImg",file);
+                    if(!file.exists()){
+                        Toast.makeText(SaleConsultantTwo.this, "图片错误！", Toast.LENGTH_SHORT).show();
+                    }
 
-                    PostFormBuilder post = OkHttpUtils.post();
-                    post.url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save");
-                    Map<String,String> para = new HashMap<String, String>();
-                    para.put("name",et_rname.getText().toString());
-                    para.put("phone",et_phone.getText().toString());
-                    para.put("memo",et_memo.getText().toString());
-                    post.params(para);
-                    post.addFile("headImg",et_rname.getText().toString() + ".png",file);
-                    RequestCall builde = post.build();
-                    builde.execute(new StringCallback() {
-                        @Override
-                        public void onError(Call call, Exception e, int i) {
-
-                        }
-
-                        @Override
-                        public void onResponse(String s, int i) {
-                           // String string = response.body().string();//获取相应中的内容Json格式
-                            //把json转化成对应对象
-                            //LoginResultModel是和后台返回值类型结构一样的对象
-                            LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
-                        }
-                    });
-
-                    /***
                     OkHttpUtils.post()//get 方法
                             .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save") //地址
                             .addParams("name", et_rname.getText().toString()) //需要传递的参数
@@ -155,7 +133,6 @@ public class SaleConsultantTwo extends AppCompatActivity {
                                     }
                                 }
                             });
-                     ***/
                 } catch (Exception e) {
                     Toast.makeText(SaleConsultantTwo.this, "网络异常！", Toast.LENGTH_SHORT).show();
                 }
@@ -224,10 +201,10 @@ public class SaleConsultantTwo extends AppCompatActivity {
                 desDir.mkdir();
             }
 
-            File imageFile = new File(strPath + "/" + strfilename  + ".png");
-           // imageFile.createNewFile();
+            File imageFile = new File(strPath + "/" );
+            imageFile.createNewFile();
             FileOutputStream fos = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.PNG,50,fos);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,50,fos);
             fos.flush();
             fos.close();
         }catch (FileNotFoundException e){
@@ -235,7 +212,7 @@ public class SaleConsultantTwo extends AppCompatActivity {
         }catch (IOException e){
             e.printStackTrace();
         }
-        return strPath + "/" + strfilename + ".png";
+        return strPath + "/";
     }
 
 }

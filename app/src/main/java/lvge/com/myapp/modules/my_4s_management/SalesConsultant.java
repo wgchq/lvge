@@ -1,14 +1,21 @@
 package lvge.com.myapp.modules.my_4s_management;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -30,6 +37,8 @@ import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.model.SalesConsultantGson;
 import okhttp3.Response;
 
+import static com.zhy.http.okhttp.OkHttpUtils.delete;
+
 public class SalesConsultant extends AppCompatActivity {
 
     private SalesConsultantListview customListView;
@@ -40,6 +49,7 @@ public class SalesConsultant extends AppCompatActivity {
 
     private String string;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,15 +59,8 @@ public class SalesConsultant extends AppCompatActivity {
         ImageView sale_consultant_back = (ImageView) findViewById(R.id.sale_consultant_back);
         TextView sale_consultant_toadd = (TextView) findViewById(R.id.sale_consultant_toadd);
         customListView = (SalesConsultantListview) findViewById(R.id.sales_consultant_listview);
-        customListView.setDelButtonClickListener(new SalesConsultantListview.DelButtonClickListener() {
-            @Override
-            public void clickHappend(int position) {
-                contentList.remove(position);
-                mAdapter.notifyDataSetChanged();
-            }
 
 
-        });
 
         sale_consultant_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,16 +77,13 @@ public class SalesConsultant extends AppCompatActivity {
             }
         });
 
-        customListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {    //点击listView事件
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
 
         getListItem();
 
+    }
 
+    private int dp2px(int dp){
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,dp,getResources().getDisplayMetrics());
     }
 
     private void  getListItem() {
