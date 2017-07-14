@@ -1,10 +1,13 @@
 package lvge.com.myapp.modules.customer_management;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amap.api.location.AMapLocationClient;
@@ -20,6 +23,7 @@ import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
+import com.amap.api.maps2d.model.Text;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
@@ -39,7 +43,6 @@ public class CustomerData extends AppCompatActivity implements LocationSource {
     private AMapLocationClient mLocationClient = null;//定位发起端
     private AMapLocationClientOption mLocationOption = null;//定位参数
     private LocationSource.OnLocationChangedListener mListener = null;//定位监听器
-
     private CameraUpdate cameraUpdate;
     private double lng;
     private double lat;
@@ -49,7 +52,6 @@ public class CustomerData extends AppCompatActivity implements LocationSource {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_data);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_client_information);
         toolbar.setTitle("");
@@ -61,6 +63,38 @@ public class CustomerData extends AppCompatActivity implements LocationSource {
             }
         });
 
+        Button btn_client_send_message = (Button) findViewById(R.id.btn_client_send_message);
+
+        btn_client_send_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustomerData.this, MessagePush.class);
+                startActivity(intent);
+            }
+        });
+
+
+        ImageView call_phone = (ImageView) findViewById(R.id.customer_data_call_phone);
+        call_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+
+                    TextView txt_customer_data_car_holder_phone = (TextView) findViewById(R.id.txt_customer_data_car_holder_phone);
+
+                    String strPhone = "tel:" + txt_customer_data_car_holder_phone.getText().toString();
+
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_CALL);
+
+                    intent.setData(Uri.parse(strPhone));
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
@@ -148,6 +182,11 @@ public class CustomerData extends AppCompatActivity implements LocationSource {
                             lat = customerDetail.getMarketEntity().getLat();
 
                             initLoc();
+
+
+
+
+
 
                         }
                     }
