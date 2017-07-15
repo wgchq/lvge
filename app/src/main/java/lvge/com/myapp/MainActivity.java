@@ -15,6 +15,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
 import lvge.com.myapp.model.LoginResultModel;
+import okhttp3.CookieJar;
 import okhttp3.Response;
 
 public class MainActivity extends Activity {
@@ -66,6 +67,7 @@ public class MainActivity extends Activity {
                                             Toast.makeText(MainActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
                                         } else {
                                             Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
+                                          //  CookieJar cookieJar = OkHttpUtils.getInstance().getOkHttpClient().cookieJar();
                                             startActivity(intent);
                                         }
                                     } else {//当没有返回对象时，表示网络没有联通

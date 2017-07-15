@@ -21,6 +21,11 @@ import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,7 +33,7 @@ import java.util.Locale;
 
 import lvge.com.myapp.R;
 
-public class My4sAddressActivity extends AppCompatActivity implements LocationSource, AMapLocationListener {
+public class My4sAddressActivity extends AppCompatActivity implements LocationSource, AMapLocationListener,GeocodeSearch.OnGeocodeSearchListener{
 
     private Marker attentionMark = null;
     //标识，用于判断是否只显示一次定位信息和用户重新定位
@@ -85,12 +90,12 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         //设置定位监听
 
         initLoc();
-
+/**
         cameraUpdate = CameraUpdateFactory.newCameraPosition(
                 new CameraPosition(new LatLng(lat,lng),15,0,30)
         );
         aMap.moveCamera(cameraUpdate);
-
+***/
 
     }
 
@@ -137,6 +142,18 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         mLocationClient.setLocationOption(mLocationOption);
         //启动定位
         mLocationClient.startLocation();
+
+        aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(lat, lng)));
+        //添加图钉
+        aMap.addMarker(getMarkerOptions());
+
+        GeocodeSearch geocodeSearch = new GeocodeSearch(this);
+        geocodeSearch.setOnGeocodeSearchListener(this);
+
+        LatLonPoint latLonPoint = new LatLonPoint(lat, lng);
+        RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200, GeocodeSearch.AMAP);
+
+        geocodeSearch.getFromLocationAsyn(query);
     }
 
 
@@ -233,5 +250,15 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
             this.mLocationClient.onDestroy();
         }
         this.mLocationClient = null;
+    }
+
+    @Override
+    public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
+
+    }
+
+    @Override
+    public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+
     }
 }

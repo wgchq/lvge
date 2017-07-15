@@ -27,6 +27,7 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:id="@+id/sale_consultant_back"
                 android:layout_margin="@dimen/activity_horizontal_margin"
                 android:src="@mipmap/menu_return"
                 tools:ignore="ContentDescription,NestedWeights"
