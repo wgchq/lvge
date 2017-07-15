@@ -1,4 +1,4 @@
-package lvge.com.myapp.modules.my_4s_management;
+package lvge.com.myapp.model;
 
 import android.graphics.Bitmap;
 
@@ -12,6 +12,16 @@ public class SalesConsutantListViewData {
     private String phone;
     private String memo;
     private String headlmg;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private String id;
 
     public String getName(){
         return  name;
