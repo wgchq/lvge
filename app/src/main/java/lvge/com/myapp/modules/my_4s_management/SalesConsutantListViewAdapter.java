@@ -1,24 +1,18 @@
 package lvge.com.myapp.modules.my_4s_management;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
-import antlr.debug.MessageAdapter;
 import lvge.com.myapp.R;
+import lvge.com.myapp.model.SalesConsultantResultModel;
+import lvge.com.myapp.model.SalesConsutantListViewData;
 
 /**
  * Created by mac on 2017/7/4.
@@ -27,6 +21,16 @@ import lvge.com.myapp.R;
 public class SalesConsutantListViewAdapter extends BaseAdapter {
 
     private Context context;
+
+    public SalesConsultantResultModel getSalesConsultantResultModel() {
+        return salesConsultantResultModel;
+    }
+
+    public void setSalesConsultantResultModel(SalesConsultantResultModel salesConsultantResultModel) {
+        this.salesConsultantResultModel = salesConsultantResultModel;
+    }
+
+    private SalesConsultantResultModel salesConsultantResultModel;
 
     public List<SalesConsutantListViewData> getListItems() {
         return listItems;

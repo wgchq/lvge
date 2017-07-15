@@ -75,7 +75,7 @@
         android:orientation="vertical"
         tools:ignore="ObsoleteLayoutParam">
 
-        <lvge.com.myapp.modules.my_4s_management.SalesConsultantListview
+        <com.baoyz.swipemenulistview.SwipeMenuListView
             android:id="@+id/sales_consultant_listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

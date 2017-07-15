@@ -92,12 +92,13 @@ public class SaleConsultantTwo extends AppCompatActivity {
                         Toast.makeText(SaleConsultantTwo.this, "图片错误！", Toast.LENGTH_SHORT).show();
                     }
 
+
                     OkHttpUtils.post()//get 方法
                             .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save") //地址
                             .addParams("name", et_rname.getText().toString()) //需要传递的参数
                             .addParams("phone", et_phone.getText().toString())
                             .addParams("memo",et_memo.getText().toString())
-                            .addFile("headImg",et_rname.getText().toString() + ".png",file)
+                            .addFile("headImg", "111.png",file)
                             .build()
                             .execute(new Callback() {//通用的callBack
 
@@ -201,10 +202,10 @@ public class SaleConsultantTwo extends AppCompatActivity {
                 desDir.mkdir();
             }
 
-            File imageFile = new File(strPath + "/" );
+            File imageFile = new File(strPath + "/"  + strfilename + ".png");
             imageFile.createNewFile();
             FileOutputStream fos = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG,50,fos);
+            bitmap.compress(Bitmap.CompressFormat.PNG,50,fos);
             fos.flush();
             fos.close();
         }catch (FileNotFoundException e){
@@ -212,7 +213,7 @@ public class SaleConsultantTwo extends AppCompatActivity {
         }catch (IOException e){
             e.printStackTrace();
         }
-        return strPath + "/";
+        return strPath + "/" + strfilename + ".png";
     }
 
 }
