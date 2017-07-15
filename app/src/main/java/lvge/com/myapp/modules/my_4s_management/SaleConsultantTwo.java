@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.Callback;
@@ -32,17 +34,27 @@ import com.zhy.http.okhttp.request.RequestCall;
 
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.json.JSONObject;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import lvge.com.myapp.MainActivity;
@@ -62,6 +74,7 @@ public class SaleConsultantTwo extends AppCompatActivity {
     private  File file;
     private Bitmap bitmap;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,13 +84,21 @@ public class SaleConsultantTwo extends AppCompatActivity {
         sale_consultant_two_iamgeview = (ImageView)findViewById(R.id.sale_consultant_two_iamgeview);
         TextView sale_consultant_Preservation = (TextView)findViewById(R.id.sale_consultant_Preservation);
 
+        ImageView sale_consultant_back = (ImageView)findViewById(R.id.sale_consultant_back);
+        sale_consultant_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         sale_consultant_Preservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    EditText et_rname = (EditText) findViewById(R.id.sale_consultant_inputname);
-                    EditText et_phone = (EditText) findViewById(R.id.sale_consultant_inputphone);
-                    EditText et_memo  = (EditText)findViewById(R.id.sale_consultant_inputmemo);
+                    final EditText et_rname = (EditText) findViewById(R.id.sale_consultant_inputname);
+                    final EditText et_phone = (EditText) findViewById(R.id.sale_consultant_inputphone);
+                    final EditText et_memo  = (EditText)findViewById(R.id.sale_consultant_inputmemo);
 
                     //String strBitmap = convertIconToString(sale_consultant_two_iamgeview.getDrawingCache());
                   //   ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -90,7 +111,41 @@ public class SaleConsultantTwo extends AppCompatActivity {
                     //fileMap.put("headImg",file);
                     if(!file.exists()){
                         Toast.makeText(SaleConsultantTwo.this, "图片错误！", Toast.LENGTH_SHORT).show();
+                        return;
                     }
+
+                    new Thread(){
+                        public void run(){
+                            try {
+                                post_str(et_rname.getText().toString(),et_phone.getText().toString(),et_memo.getText().toString(),saveBitmap(et_rname.getText().toString()));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }.start();
+
+
+/**
+                    PostFormBuilder post = OkHttpUtils.post();
+                    Map<String,String> params = new HashMap<String, String>();
+                    params.put("name",et_rname.getText().toString());
+                    params.put("phone",et_phone.getText().toString());
+                    params.put("memo",et_memo.getText().toString());
+                    post.url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save"); //地址
+                    post.params(params);
+                    post.addFile("headImg",et_rname.getText().toString()+".png",file);
+                    RequestCall build = post.build();
+                    build.execute(new StringCallback() {
+                        @Override
+                        public void onError(Call call, Exception e, int i) {
+
+                        }
+
+                        @Override
+                        public void onResponse(String s, int i) {
+                            LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
+                        }
+                    });
 
 
                     OkHttpUtils.post()//get 方法
@@ -98,7 +153,7 @@ public class SaleConsultantTwo extends AppCompatActivity {
                             .addParams("name", et_rname.getText().toString()) //需要传递的参数
                             .addParams("phone", et_phone.getText().toString())
                             .addParams("memo",et_memo.getText().toString())
-                            .addFile("headImg", "111.png",file)
+                            .addFile("headImg", "111.PNG",file)
                             .build()
                             .execute(new Callback() {//通用的callBack
 
@@ -134,6 +189,8 @@ public class SaleConsultantTwo extends AppCompatActivity {
                                     }
                                 }
                             });
+
+ ***/
                 } catch (Exception e) {
                     Toast.makeText(SaleConsultantTwo.this, "网络异常！", Toast.LENGTH_SHORT).show();
                 }
@@ -180,13 +237,6 @@ public class SaleConsultantTwo extends AppCompatActivity {
         }
     }
 
-    public static String convertIconToString(Bitmap bitmap)
-    {
-        ByteArrayOutputStream baos =new ByteArrayOutputStream();// outputstream  
-        bitmap.compress(Bitmap.CompressFormat.PNG,100,baos);
-        byte[] appicon = baos.toByteArray();// 转为byte数组  
-        return Base64.encodeToString(appicon, Base64.DEFAULT);
-    }
 
     private String saveBitmap(String strfilename) throws IOException
     {
@@ -202,7 +252,7 @@ public class SaleConsultantTwo extends AppCompatActivity {
                 desDir.mkdir();
             }
 
-            File imageFile = new File(strPath + "/"  + strfilename + ".png");
+            File imageFile = new File(strPath + "/"  + strfilename + ".PNG");
             imageFile.createNewFile();
             FileOutputStream fos = new FileOutputStream(imageFile);
             bitmap.compress(Bitmap.CompressFormat.PNG,50,fos);
@@ -213,7 +263,68 @@ public class SaleConsultantTwo extends AppCompatActivity {
         }catch (IOException e){
             e.printStackTrace();
         }
-        return strPath + "/" + strfilename + ".png";
+        return strPath + "/" + strfilename + ".PNG";
     }
+
+    private void post_str(String name,String phone,String memo,String strpath){
+
+        try {
+            /*
+            HttpURLConnection connection = null;
+            URL url = new URL("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save");
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Charset", "UTF-8");
+            connection.setRequestProperty("name", name);
+            connection.setRequestProperty("phone",phone);
+            connection.setRequestProperty("memo", memo);
+            FileInputStream fileInputStream = new FileInputStream(strpath);
+
+            OutputStream os = connection.getOutputStream();
+            int count = 0;
+            while ((count = fileInputStream.read()) != -1) {
+                os.write(count);
+            }
+            os.flush();
+            os.close();
+
+            int resultcode = connection.getResponseCode();
+            if (resultcode!= HttpURLConnection.HTTP_OK) {
+                Toast.makeText(SaleConsultantTwo.this, "上传失败！", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(SaleConsultantTwo.this, "上传成功！", Toast.LENGTH_SHORT).show();
+            }
+            */
+
+            String path =  "http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save";
+
+            List<String> filePaths = new ArrayList<>();
+            filePaths.add(saveBitmap(name));
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("name",name);
+            map.put("phone", phone);
+            map.put("memo", memo);
+
+            BaseTest bs = new BaseTest();
+            String str =  bs.imgPut(path, filePaths, map);
+            returnMessage(str);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private  String  returnMessage(String string){
+        return string;
+    }
+
 
 }

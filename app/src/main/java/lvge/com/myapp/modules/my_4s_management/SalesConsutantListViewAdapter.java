@@ -1,6 +1,7 @@
 package lvge.com.myapp.modules.my_4s_management;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,11 +9,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.BitmapCallback;
+
 import java.util.List;
 
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.SalesConsultantResultModel;
 import lvge.com.myapp.model.SalesConsutantListViewData;
+import okhttp3.Call;
 
 /**
  * Created by mac on 2017/7/4.
@@ -102,7 +107,7 @@ public class SalesConsutantListViewAdapter extends BaseAdapter {
     }
 
     public View getView(int position,View convertView, ViewGroup parent){
-        ListItemView listItemView ;
+        final ListItemView listItemView ;
         View view;
         if(convertView == null){
             listItemView = new ListItemView();
@@ -120,8 +125,32 @@ public class SalesConsutantListViewAdapter extends BaseAdapter {
             listItemView = (ListItemView)view.getTag();
         }
 
-        SalesConsutantListViewData item =listItems.get(position);
+        final SalesConsutantListViewData item =listItems.get(position);
         //listItemView.imageView.setImageBitmap(item.getHeadlmg());
+
+        if(item.getHeadlmg() != null && !item.getHeadlmg().equals("")){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    OkHttpUtils.get()
+                            .url(item.getHeadlmg())
+                            .build()
+                            .connTimeOut(20000).readTimeOut(20000).writeTimeOut(20000)
+                            .execute(new BitmapCallback() {
+                                @Override
+                                public void onError(Call call, Exception e, int i) {
+
+                                }
+
+                                @Override
+                                public void onResponse(Bitmap bitmap, int i) {
+                                   // headimge.setImageBitmap(bitmap);
+                                    listItemView.imageView.setImageBitmap(bitmap);
+                                }
+                            });
+                }
+            }).start();
+        }
         listItemView.sname.setText(item.getName());
         listItemView.phone.setText(item.getPhone());
         listItemView.memo.setText(item.getMemo());

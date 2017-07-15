@@ -11,6 +11,16 @@ public class SalesConsutantListViewData {
     private String name;
     private String phone;
     private String memo;
+
+
+    public String getHeadlmg() {
+        return headlmg;
+    }
+
+    public void setHeadlmg(String headlmg) {
+        this.headlmg = headlmg;
+    }
+
     private String headlmg;
 
     public String getId() {
@@ -48,11 +58,4 @@ public class SalesConsutantListViewData {
         this.memo = memo;
     }
 
-    public String getHeadlmg() {
-        return headlmg;
-    }
-
-    public void setHeadlmg(String headlmg) {
-        this.headlmg = headlmg;
-    }
 }

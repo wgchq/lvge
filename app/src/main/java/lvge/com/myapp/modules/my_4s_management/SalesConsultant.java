@@ -90,7 +90,6 @@ public class SalesConsultant extends AppCompatActivity {
                 switch (i1) {
                     case 0:
                         removeConsultant(item.getId());
-
                         getListItem();
                 }
             }
