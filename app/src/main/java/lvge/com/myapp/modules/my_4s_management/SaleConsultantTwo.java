@@ -308,7 +308,7 @@ public class SaleConsultantTwo extends AppCompatActivity {
 
             BaseTest bs = new BaseTest();
             String str =  bs.imgPut(path, filePaths, map);
-            String s = str;
+            returnMessage(str);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (ProtocolException e) {
@@ -320,6 +320,10 @@ public class SaleConsultantTwo extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private  String  returnMessage(String string){
+        return string;
     }
 
 

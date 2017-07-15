@@ -39,10 +39,15 @@ public class BaseTest {
         //String sa = String.valueOf(new CookieJarImpl(new MemoryCookieStore()));
       //  CookieStore store = OkHttpUtils.getInstance().getOkHttpClient().
       ///  List<Cookie> URIS = cookieJar.;
+        CookieJarImpl cookieJarImpl = (CookieJarImpl)OkHttpUtils.getInstance().getOkHttpClient().cookieJar();
+        CookieStore store =cookieJarImpl.getCookieStore();        // 得到所有的 URI
+        List<Cookie> uris = store.getCookies();
+        String responsea = uris.toString();
+
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Connection", "Keep-Alive");
-        conn.setRequestProperty("Cookie", String.valueOf(new CookieJarImpl(new MemoryCookieStore())));
+        conn.setRequestProperty("Cookie", responsea);
         conn.setUseCaches(false);
         conn.setDoOutput(true);
         conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + BOUNDARY);
@@ -123,5 +128,27 @@ public class BaseTest {
         }
         return null;
     }
+
+    public static HttpCookie getcookies(){
+
+        HttpCookie res = null;
+        // 使用 Cookie 的时候：
+        // 取出 CookieStore
+        CookieJarImpl cookieJarImpl = (CookieJarImpl)OkHttpUtils.getInstance().getOkHttpClient().cookieJar();
+        CookieStore store =cookieJarImpl.getCookieStore();        // 得到所有的 URI
+        List<Cookie> uris = store.getCookies();
+        /**
+        for (URI ur : uris) {
+            // 筛选需要的 URI
+            // 得到属于这个 URI 的所有 Cookie
+            List<HttpCookie> cookies = store.get(ur);
+            for (HttpCookie coo : cookies) {
+                res = coo;
+            }
+        }
+         **/
+        return res;
+    }
+
 
 }
