@@ -35,7 +35,7 @@ public class SalesConsultant extends AppCompatActivity {
 
     private SwipeMenuListView customListView;
 
-    private SalesConsutantListViewAdapter mAdapter ;
+    private SalesConsutantListViewAdapter mAdapter;
 
     private List<SalesConsutantListViewData> contentList = new ArrayList<SalesConsutantListViewData>();
 
@@ -48,7 +48,6 @@ public class SalesConsultant extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sales_consultant);
-
 
         ImageView sale_consultant_back = (ImageView) findViewById(R.id.sale_consultant_back);
         TextView sale_consultant_toadd = (TextView) findViewById(R.id.sale_consultant_toadd);
@@ -69,14 +68,13 @@ public class SalesConsultant extends AppCompatActivity {
             }
         });
 
-
         getListItem();
 
         SwipeMenuCreator creator = new SwipeMenuCreator() {
             @Override
             public void create(SwipeMenu swipeMenu) {
                 SwipeMenuItem deleteItem = new SwipeMenuItem(getApplicationContext());
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,0x3F,0x25)));
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9, 0x3F, 0x25)));
                 deleteItem.setWidth(dp2px(90));
                 deleteItem.setIcon(R.mipmap.delete);
                 swipeMenu.addMenuItem(deleteItem);
@@ -89,13 +87,10 @@ public class SalesConsultant extends AppCompatActivity {
             @Override
             public void onMenuItemClick(int i, SwipeMenu swipeMenu, int i1) {
                 SalesConsutantListViewData item = contentList.get(i);
-                switch (i1){
+                switch (i1) {
                     case 0:
                         removeConsultant(item.getId());
-                       //contentList.remove(i);
-                      //  mAdapter.notifyDataSetChanged();
-                        SalesConsutantListViewAdapter adapter = (SalesConsutantListViewAdapter)customListView.getAdapter();
-                        customListView.setAdapter(new SalesConsutantListViewAdapter(SalesConsultant.this,null));
+
                         getListItem();
                 }
             }
@@ -122,12 +117,12 @@ public class SalesConsultant extends AppCompatActivity {
 
     }
 
-    private int dp2px(int dp){
-        return (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,dp,getResources().getDisplayMetrics());
+    private int dp2px(int dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
     }
 
 
-    private void  getListItem() {
+    private void getListItem() {
 
         try {
 
@@ -153,15 +148,15 @@ public class SalesConsultant extends AppCompatActivity {
 
                         @Override
                         public void onResponse(Object object, int i) {
-
+                            contentList.clear();
                             //object 是 parseNetworkResponse的返回值
                             if (null != object) {
                                 SalesConsultantGson result = (SalesConsultantGson) object;//把通用的Object转化成指定的对象
                                 //当返回值为2时不可登录
                                 if (result.getOperationResult().getResultCode() == 0) {
-                                  //  salesConsultantResultModel.getMarketEntity().addAll(result.getMarketEntity());
-                                   SalesConsutantListViewData item = null;
-                                   for (int j = 0; j < result.getMarketEntity().size(); j++) {
+                                    //  salesConsultantResultModel.getMarketEntity().addAll(result.getMarketEntity());
+                                    SalesConsutantListViewData item = null;
+                                    for (int j = 0; j < result.getMarketEntity().size(); j++) {
                                         item = new SalesConsutantListViewData();
                                         item.setName(result.getMarketEntity().get(j).getName());
                                         item.setPhone(result.getMarketEntity().get(j).getPhone());
@@ -169,13 +164,13 @@ public class SalesConsultant extends AppCompatActivity {
                                         item.setHeadlmg(result.getMarketEntity().get(j).getHeadImg());
                                         item.setId(result.getMarketEntity().get(j).getId());
                                         contentList.add(item);
-                               }
-                                   if (contentList != null) {
-                                      customListView.setAdapter(new SalesConsutantListViewAdapter(SalesConsultant.this,contentList));
+                                    }
+                                    if (contentList != null) {
+                                        customListView.setAdapter(new SalesConsutantListViewAdapter(SalesConsultant.this, contentList));
 
-                                   }
-                                  //  mAdapter.setSalesConsultantResultModel(salesConsultantResultModel);
-                                  //  customListView.setAdapter(mAdapter);
+                                    }
+                                    //  mAdapter.setSalesConsultantResultModel(salesConsultantResultModel);
+                                    //  customListView.setAdapter(mAdapter);
 
                                 } else {
                                     // Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
@@ -192,12 +187,12 @@ public class SalesConsultant extends AppCompatActivity {
 
     }
 
-    private void removeConsultant(String id){
+    private void removeConsultant(String id) {
         try {
 
             OkHttpUtils.post()//get 方法
                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/delete") //地址
-                    .addParams("id",id)
+                    .addParams("id", id)
                     .build()
                     .execute(new Callback() {//通用的callBack
 
