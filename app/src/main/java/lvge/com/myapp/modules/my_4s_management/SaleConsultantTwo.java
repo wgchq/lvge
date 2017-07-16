@@ -67,11 +67,11 @@ import okhttp3.Response;
 public class SaleConsultantTwo extends AppCompatActivity {
 
     public static final int CUT_PICTURE = 1;
-    public static final int SHOW_PICTURE =2;
-    public ImageView sale_consultant_two_iamgeview;
+    public static final int SHOW_PICTURE = 2;
+    public ImageView sale_consultant_two_iamgeview=null;
     private Uri imageUri = null;
     private String path = null;
-    private  File file;
+    private File file;
     private Bitmap bitmap;
 
 
@@ -80,11 +80,11 @@ public class SaleConsultantTwo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sale_consultant_two);
 
-        final RelativeLayout sale_consultant_two_iamge = (RelativeLayout)findViewById(R.id.sale_consultant_two_iamge);
-        sale_consultant_two_iamgeview = (ImageView)findViewById(R.id.sale_consultant_two_iamgeview);
-        TextView sale_consultant_Preservation = (TextView)findViewById(R.id.sale_consultant_Preservation);
+        final RelativeLayout sale_consultant_two_iamge = (RelativeLayout) findViewById(R.id.sale_consultant_two_iamge);
+        sale_consultant_two_iamgeview = (ImageView) findViewById(R.id.sale_consultant_two_iamgeview);
+        TextView sale_consultant_Preservation = (TextView) findViewById(R.id.sale_consultant_Preservation);
 
-        ImageView sale_consultant_back = (ImageView)findViewById(R.id.sale_consultant_back);
+        ImageView sale_consultant_back = (ImageView) findViewById(R.id.sale_consultant_back);
         sale_consultant_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,26 +98,26 @@ public class SaleConsultantTwo extends AppCompatActivity {
                 try {
                     final EditText et_rname = (EditText) findViewById(R.id.sale_consultant_inputname);
                     final EditText et_phone = (EditText) findViewById(R.id.sale_consultant_inputphone);
-                    final EditText et_memo  = (EditText)findViewById(R.id.sale_consultant_inputmemo);
+                    final EditText et_memo = (EditText) findViewById(R.id.sale_consultant_inputmemo);
 
                     //String strBitmap = convertIconToString(sale_consultant_two_iamgeview.getDrawingCache());
-                  //   ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                  //  bitmap.compress(Bitmap.CompressFormat.JPEG,100,bos);
-                  //  byte[] data = bos.toByteArray();
-                  //  String strBitmap = new String(data);
+                    //   ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    //  bitmap.compress(Bitmap.CompressFormat.JPEG,100,bos);
+                    //  byte[] data = bos.toByteArray();
+                    //  String strBitmap = new String(data);
                     file = new File(saveBitmap(et_rname.getText().toString()));
-                   // FileOutputStream fo = new FileOutputStream(file);
-                   // Map<String,File> fileMap = new HashMap<String, File>();
+                    // FileOutputStream fo = new FileOutputStream(file);
+                    // Map<String,File> fileMap = new HashMap<String, File>();
                     //fileMap.put("headImg",file);
-                    if(!file.exists()){
+                    if (!file.exists()) {
                         Toast.makeText(SaleConsultantTwo.this, "图片错误！", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-                    new Thread(){
-                        public void run(){
+                    new Thread() {
+                        public void run() {
                             try {
-                                post_str(et_rname.getText().toString(),et_phone.getText().toString(),et_memo.getText().toString(),saveBitmap(et_rname.getText().toString()));
+                                post_str(et_rname.getText().toString(), et_phone.getText().toString(), et_memo.getText().toString(), saveBitmap(et_rname.getText().toString()));
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -126,69 +126,64 @@ public class SaleConsultantTwo extends AppCompatActivity {
 
 
 /**
-                    PostFormBuilder post = OkHttpUtils.post();
-                    Map<String,String> params = new HashMap<String, String>();
-                    params.put("name",et_rname.getText().toString());
-                    params.put("phone",et_phone.getText().toString());
-                    params.put("memo",et_memo.getText().toString());
-                    post.url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save"); //地址
-                    post.params(params);
-                    post.addFile("headImg",et_rname.getText().toString()+".png",file);
-                    RequestCall build = post.build();
-                    build.execute(new StringCallback() {
-                        @Override
-                        public void onError(Call call, Exception e, int i) {
+ PostFormBuilder post = OkHttpUtils.post();
+ Map<String,String> params = new HashMap<String, String>();
+ params.put("name",et_rname.getText().toString());
+ params.put("phone",et_phone.getText().toString());
+ params.put("memo",et_memo.getText().toString());
+ post.url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save"); //地址
+ post.params(params);
+ post.addFile("headImg",et_rname.getText().toString()+".png",file);
+ RequestCall build = post.build();
+ build.execute(new StringCallback() {
+@Override public void onError(Call call, Exception e, int i) {
 
-                        }
+}
 
-                        @Override
-                        public void onResponse(String s, int i) {
-                            LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
-                        }
-                    });
+@Override public void onResponse(String s, int i) {
+LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
+}
+});
 
 
-                    OkHttpUtils.post()//get 方法
-                            .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save") //地址
-                            .addParams("name", et_rname.getText().toString()) //需要传递的参数
-                            .addParams("phone", et_phone.getText().toString())
-                            .addParams("memo",et_memo.getText().toString())
-                            .addFile("headImg", "111.PNG",file)
-                            .build()
-                            .execute(new Callback() {//通用的callBack
+ OkHttpUtils.post()//get 方法
+ .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save") //地址
+ .addParams("name", et_rname.getText().toString()) //需要传递的参数
+ .addParams("phone", et_phone.getText().toString())
+ .addParams("memo",et_memo.getText().toString())
+ .addFile("headImg", "111.PNG",file)
+ .build()
+ .execute(new Callback() {//通用的callBack
 
-                                //从后台获取成功后，对相应进行类型转化
-                                @Override
-                                public Object parseNetworkResponse(Response response, int i) throws Exception {
+ //从后台获取成功后，对相应进行类型转化
+ @Override public Object parseNetworkResponse(Response response, int i) throws Exception {
 
-                                    String string = response.body().string();//获取相应中的内容Json格式
-                                    //把json转化成对应对象
-                                    //LoginResultModel是和后台返回值类型结构一样的对象
-                                    LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
-                                    return result;
-                                }
+ String string = response.body().string();//获取相应中的内容Json格式
+ //把json转化成对应对象
+ //LoginResultModel是和后台返回值类型结构一样的对象
+ LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+ return result;
+ }
 
-                                @Override
-                                public void onError(okhttp3.Call call, Exception e, int i) {
+ @Override public void onError(okhttp3.Call call, Exception e, int i) {
 
-                                }
+ }
 
-                                @Override
-                                public void onResponse(Object object, int i) {
+ @Override public void onResponse(Object object, int i) {
 
-                                    //object 是 parseNetworkResponse的返回值
-                                    if (null != object) {
-                                        LoginResultModel result = (LoginResultModel) object;//把通用的Object转化成指定的对象
-                                        if (result.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
-                                            Toast.makeText(SaleConsultantTwo.this, "上传成功！", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toast.makeText(SaleConsultantTwo.this, "保存失败！", Toast.LENGTH_SHORT).show();
-                                        }
-                                    } else {//当没有返回对象时，表示网络没有联通
-                                        Toast.makeText(SaleConsultantTwo.this, "网络异常！", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
+ //object 是 parseNetworkResponse的返回值
+ if (null != object) {
+ LoginResultModel result = (LoginResultModel) object;//把通用的Object转化成指定的对象
+ if (result.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
+ Toast.makeText(SaleConsultantTwo.this, "上传成功！", Toast.LENGTH_SHORT).show();
+ } else {
+ Toast.makeText(SaleConsultantTwo.this, "保存失败！", Toast.LENGTH_SHORT).show();
+ }
+ } else {//当没有返回对象时，表示网络没有联通
+ Toast.makeText(SaleConsultantTwo.this, "网络异常！", Toast.LENGTH_SHORT).show();
+ }
+ }
+ });
 
  ***/
                 } catch (Exception e) {
@@ -203,12 +198,12 @@ public class SaleConsultantTwo extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
-                startActivityForResult(intent,1);
+                startActivityForResult(intent, 1);
             }
         });
     }
-    public String getPath(Uri uri)
-    {
+
+    public String getPath(Uri uri) {
         String[] projection = {MediaStore.Images.Media.DATA};
         Cursor cursor = managedQuery(uri, projection, null, null, null);
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
@@ -216,19 +211,25 @@ public class SaleConsultantTwo extends AppCompatActivity {
         return cursor.getString(column_index);
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-       if(requestCode == 1)
-           imageUri = data.getData();
-        if(imageUri != null){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1)
+        {
+            imageUri = data.getData();
+        }
+        if (imageUri != null) {
             try {
                 String[] prjo = {MediaStore.Images.Media.DATA};
-                Cursor cursor = managedQuery(imageUri,prjo,null,null,null);
-                if(cursor != null){
+                Cursor cursor = managedQuery(imageUri, prjo, null, null, null);
+                if (cursor != null) {
                     cursor.moveToFirst();
                     String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                   // file = new File(path);
+                    // file = new File(path);
                     bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
-                    sale_consultant_two_iamgeview.setImageBitmap(bitmap);
+
+                    if (bitmap != null) {
+                        sale_consultant_two_iamgeview.setImageBitmap(bitmap);
+
+                    }
                 }
 
             } catch (FileNotFoundException e) {
@@ -238,35 +239,34 @@ public class SaleConsultantTwo extends AppCompatActivity {
     }
 
 
-    private String saveBitmap(String strfilename) throws IOException
-    {
+    private String saveBitmap(String strfilename) throws IOException {
         File sd = Environment.getExternalStorageDirectory();
-        boolean can_write=sd.canWrite();
+        boolean can_write = sd.canWrite();
 
-       // Bitmap bitm = convertViewToBitMap(sale_consultant_two_iamgeview);
+        // Bitmap bitm = convertViewToBitMap(sale_consultant_two_iamgeview);
         String strPath = Environment.getExternalStorageDirectory().toString() + "/save";
 
         try {
             File desDir = new File(strPath);
-            if(!desDir.exists()){
+            if (!desDir.exists()) {
                 desDir.mkdir();
             }
 
-            File imageFile = new File(strPath + "/"  + strfilename + ".PNG");
+            File imageFile = new File(strPath + "/" + strfilename + ".PNG");
             imageFile.createNewFile();
             FileOutputStream fos = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.PNG,50,fos);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 50, fos);
             fos.flush();
             fos.close();
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return strPath + "/" + strfilename + ".PNG";
     }
 
-    private void post_str(String name,String phone,String memo,String strpath){
+    private void post_str(String name, String phone, String memo, String strpath) {
 
         try {
             /*
@@ -296,18 +296,18 @@ public class SaleConsultantTwo extends AppCompatActivity {
             }
             */
 
-            String path =  "http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save";
+            String path = "http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save";
 
             List<String> filePaths = new ArrayList<>();
             filePaths.add(saveBitmap(name));
 
             Map<String, Object> map = new HashMap<String, Object>();
-            map.put("name",name);
+            map.put("name", name);
             map.put("phone", phone);
             map.put("memo", memo);
 
             BaseTest bs = new BaseTest();
-            String str =  bs.imgPut(path, filePaths, map);
+            String str = bs.imgPut(path, filePaths, map);
             returnMessage(str);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -322,8 +322,8 @@ public class SaleConsultantTwo extends AppCompatActivity {
         }
     }
 
-    private  String  returnMessage(String string){
-        return string;
+    private void returnMessage(String string) {
+        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
     }
 
 

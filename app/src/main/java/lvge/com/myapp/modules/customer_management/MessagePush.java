@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import lvge.com.myapp.R;
 
@@ -19,7 +20,9 @@ public class MessagePush extends AppCompatActivity {
         Intent intent = getIntent();
         String plate_no = intent.getStringExtra("plate_number");
 
-        toolbar.setTitle(plate_no);
+        toolbar.setTitle("");
+        TextView client_id = (TextView)findViewById(R.id.client_id);
+        client_id.setText(plate_no);
 
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

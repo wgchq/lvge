@@ -63,12 +63,12 @@ public class MainActivity extends Activity {
                                     //object 是 parseNetworkResponse的返回值
                                     if (null != object) {
                                         LoginResultModel result = (LoginResultModel) object;//把通用的Object转化成指定的对象
-                                        if (result.getOperationResult().getResultCode() == 2) {//当返回值为2时不可登录
-                                            Toast.makeText(MainActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
-                                        } else {
+                                        if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
                                             Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
-                                          //  CookieJar cookieJar = OkHttpUtils.getInstance().getOkHttpClient().cookieJar();
                                             startActivity(intent);
+
+                                        } else {
+                                            Toast.makeText(MainActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
                                         }
                                     } else {//当没有返回对象时，表示网络没有联通
                                         Toast.makeText(MainActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();

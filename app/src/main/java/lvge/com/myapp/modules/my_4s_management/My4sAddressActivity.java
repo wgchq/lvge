@@ -1,38 +1,59 @@
 package lvge.com.myapp.modules.my_4s_management;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.icu.text.SimpleDateFormat;
+import android.location.Location;
 import android.os.Bundle;
+
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.widget.Toast;
+
+import android.view.View;
+import android.widget.TextView;
+
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps2d.AMap;
-import com.amap.api.maps2d.CameraUpdate;
+
 import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.UiSettings;
+
 import com.amap.api.maps2d.model.BitmapDescriptorFactory;
-import com.amap.api.maps2d.model.CameraPosition;
 import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.Marker;
+
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
+import com.amap.api.maps2d.model.Text;
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 import lvge.com.myapp.R;
+import lvge.com.myapp.model.AddressModel;
 
 public class My4sAddressActivity extends AppCompatActivity implements LocationSource, AMapLocationListener {
 
+    private Double lat;
+    private Double lng;
+    private String address;
+    private TextView currentPosition;
+
     private Marker attentionMark = null;
-    //标识，用于判断是否只显示一次定位信息和用户重新定位
-    private boolean isFirstLoc = true;
+
     //显示地图需要的变量
     private MapView mapView;//地图控件
     private AMap aMap;//地图对象
@@ -41,22 +62,36 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
     private AMapLocationClientOption mLocationOption = null;//定位参数
     private LocationSource.OnLocationChangedListener mListener = null;//定位监听器
 
-    private CameraUpdate cameraUpdate;
-    private double lng;
-    private double lat;
-    private String address;
+    //标识，用于判断是否只显示一次定位信息和用户重新定位
+    private boolean isFirstLoc = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my4s_address);
 
-        Bundle bundle = this.getIntent().getExtras();
-        //接收name值
-         lng = Double.parseDouble(bundle.getString("lng")) ;
-         lat = Double.parseDouble(bundle.getString("lat"));
-        address = bundle.getString("address");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_4s_address_management);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        Intent intent = getIntent();
+        TextView confirm = (TextView)findViewById(R.id.my_4s_address_confirm);
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
+
+        lng = Double.parseDouble(intent.getStringExtra("lng"));
+        lat = Double.parseDouble(intent.getStringExtra("lat"));
+        address = intent.getStringExtra("address");
 
         /**
          * 地图定位
@@ -77,7 +112,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         aMap.setMyLocationEnabled(true);
         //定位的小图标 默认是蓝点 这里自定义一团火，其实就是一张图片
         MyLocationStyle myLocationStyle = new MyLocationStyle();
-        // myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromResource(R.mipmap.firetwo));
+        myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromResource(R.mipmap.shop_manage_shop_address));
         myLocationStyle.radiusFillColor(android.R.color.holo_orange_dark);
         myLocationStyle.strokeColor(android.R.color.holo_orange_dark);
         aMap.setMyLocationStyle(myLocationStyle);
@@ -85,28 +120,8 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         //设置定位监听
 
         initLoc();
-
-        cameraUpdate = CameraUpdateFactory.newCameraPosition(
-                new CameraPosition(new LatLng(lat,lng),15,0,30)
-        );
-        aMap.moveCamera(cameraUpdate);
-
-
     }
 
-    public void drawMarker(){
-        Marker marker = aMap.addMarker(new MarkerOptions()
-                .position(new LatLng(lat,lng))
-                .title(address)
-                .icon(BitmapDescriptorFactory
-                .defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-                .draggable(true)
-
-        );
-        marker.showInfoWindow();
-    }
-
-    //定位
     private void initLoc() {
         if (mLocationClient != null) {
             mLocationClient.startLocation();
@@ -117,7 +132,20 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         //初始化定位参数
         mLocationOption = new AMapLocationClientOption();
         //设置定位回调监听
+/*
         mLocationClient.setLocationListener(this);
+*/
+        if (address.equals("")) {
+            mLocationClient.setLocationListener(this);
+        } else {
+            //添加图钉
+            aMap.addMarker(getMarkerOptions());
+            aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+            //将地图移动到定位点
+            aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(this.lat, this.lng)));
+            currentPosition = (TextView) findViewById(R.id.current_position);
+            currentPosition.setText(address);
+        }
         //设置定位模式为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
         //设置定位间隔,单位毫秒,默认为2000ms
@@ -139,6 +167,20 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         mLocationClient.startLocation();
     }
 
+    private MarkerOptions getMarkerOptions() {
+        //   AttentionModel attentionModel
+        //设置图钉选项
+        MarkerOptions options = new MarkerOptions();
+        //图标
+        //  options.icon(options.getIcon());
+        options.icon(BitmapDescriptorFactory.fromResource(R.mipmap.shop_manage_shop_address));
+
+        options.position(new LatLng(lat, lng));
+        //设置多少帧刷新一次图片资源
+        options.period(60);
+        return options;
+
+    }
 
     //定位回调函数
     @Override
@@ -146,26 +188,36 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         if (amapLocation != null) {
             if (amapLocation.getErrorCode() == 0) {
                 //定位成功回调信息，设置相关消息
-                amapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见官方定位类型表
-                amapLocation.getLatitude();//获取纬度
-                amapLocation.getLongitude();//获取经度
-                amapLocation.getAccuracy();//获取精度信息
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
-                Date date = new Date(amapLocation.getTime());
-                df.format(date);//定位时间*/
-                amapLocation.getAddress();//地址，如果option中设置isNeedAddress为false，则没有此结果，网络定位结果中会有地址信息，GPS定位不返回地址信息。
-                amapLocation.getCountry();//国家信息
-                amapLocation.getProvince();//省信息
-                amapLocation.getCity();//城市信息
-                amapLocation.getDistrict();//城区信息
-                amapLocation.getStreet();//街道信息
-                amapLocation.getStreetNum();//街道门牌号信息
-                amapLocation.getCityCode();//城市编码
-                amapLocation.getAdCode();//地区编码
-                amapLocation.getAoiName();//获取当前定位点的AOI信息
-                amapLocation.getBuildingId();//获取当前室内定位的建筑物Id
-                amapLocation.getFloor();//获取当前室内定位的楼层
-                amapLocation.getGpsAccuracyStatus();//获取GPS的当前状态
+                lat = amapLocation.getLatitude();//获取纬度
+                lng = amapLocation.getLongitude();//获取经度
+
+                GeocodeSearch geocodeSearch = new GeocodeSearch(this);
+                geocodeSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
+                    @Override
+                    public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
+                        String Province = regeocodeResult.getRegeocodeAddress().getProvince();
+                        String City = regeocodeResult.getRegeocodeAddress().getCity();
+
+                        String Crossroads = regeocodeResult.getRegeocodeAddress().getTowncode();
+                        String Building = regeocodeResult.getRegeocodeAddress().getBuilding();
+                        String FormatAddress = regeocodeResult.getRegeocodeAddress().getFormatAddress();
+                        address = FormatAddress;
+
+                        currentPosition = (TextView) findViewById(R.id.current_position);
+                        currentPosition.setText(address);
+
+                    }
+
+                    @Override
+                    public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+
+                    }
+                });
+
+                LatLonPoint latLonPoint = new LatLonPoint(lat, lng);
+                RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200, GeocodeSearch.AMAP);
+
+                geocodeSearch.getFromLocationAsyn(query);
 
 
                 // 如果不设置标志位，此时再拖动地图时，它会不断将地图移动到当前的位置
@@ -175,14 +227,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                     //将地图移动到定位点
                     aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude())));
 
-
-                    //添加图钉
-                      //  aMap.addMarker(getMarkerOptions(amapLocation));
                     //获取定位信息
-
-                    isFirstLoc = false;
-                    Toast.makeText(My4sAddressActivity.this, "定位失败!", Toast.LENGTH_SHORT).show();
-
                 }
 
                 //点击定位按钮 能够将地图的中心移动到定位点
@@ -193,37 +238,19 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                 Log.e("地图错误", "location Error, ErrCode:"
                         + amapLocation.getErrorCode() + ", errInfo:"
                         + amapLocation.getErrorInfo());
-                if (isFirstLoc) {
-                    isFirstLoc = false;
-                    Toast.makeText(My4sAddressActivity.this, "未开启定位功能!", Toast.LENGTH_SHORT).show();
-                }
-
             }
         }
     }
 
-    //自定义一个图钉，并且设置图标，当我们点击图钉时，显示设置的信息
-    private MarkerOptions getMarkerOptions() {
-     //   AttentionModel attentionModel
-        //设置图钉选项
-        MarkerOptions options = new MarkerOptions();
-        //图标
-         options.icon(options.getIcon());
-       // options.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_pin));
 
-     //   options.position(new LatLng(attentionModel.Latitude, attentionModel.Longitude));
-        //设置多少帧刷新一次图片资源
-        options.period(60);
-        return options;
-
-    }
-
+    //激活定位
     @Override
-    public void activate(OnLocationChangedListener onLocationChangedListener ) {
-        mListener = onLocationChangedListener;
+    public void activate(LocationSource.OnLocationChangedListener listener) {
+        mListener = listener;
         initLoc();
     }
 
+    //停止定位
     @Override
     public void deactivate() {
         mListener = null;
@@ -234,4 +261,37 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         }
         this.mLocationClient = null;
     }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+        deactivate();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
 }

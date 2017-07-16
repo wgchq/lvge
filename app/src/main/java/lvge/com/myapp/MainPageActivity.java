@@ -29,6 +29,7 @@ import java.util.Objects;
 
 import lvge.com.myapp.mainFragement.ClientFragment;
 import lvge.com.myapp.mainFragement.HomeFragment;
+import lvge.com.myapp.mainFragement.MyFragment;
 import lvge.com.myapp.mainFragement.OrderFragment;
 import lvge.com.myapp.modules.car_data_management.CarDataManagementActivity;
 import lvge.com.myapp.modules.commodity_management.CommodityHomepageApplication;
@@ -51,6 +52,7 @@ public class MainPageActivity extends Activity {
     private HomeFragment homeFragment = null;
     private ClientFragment clientFragment = null;
     private OrderFragment orderFragment = null;
+    private MyFragment myFragment = null;
     private FragmentManager fragmentManager = getFragmentManager();
 
 
@@ -137,12 +139,12 @@ public class MainPageActivity extends Activity {
                                 break;
 
                             case R.id.navigation_my:
-                                if (orderFragment == null) {
-                                    orderFragment = new OrderFragment();
+                                if (myFragment == null) {
+                                    myFragment = new MyFragment();
                                 }
-                                transaction.replace(R.id.fragment_content, orderFragment);
+                                transaction.replace(R.id.fragment_content, myFragment);
 
-                                transaction.show(orderFragment);
+                                transaction.show(myFragment);
                                 break;
                         }
                         transaction.commit();

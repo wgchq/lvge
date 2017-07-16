@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="lvge.com.myapp.modules.customer_management.MessagePush"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="lvge.com.myapp.modules.customer_management.MessagePush">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -25,11 +25,17 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextColor="@color/mainFontColor">
 
-
-
+            <TextView
+                android:id="@+id/client_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:textColor="@color/mainFontColor" />
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
+
     <LinearLayout
         android:id="@+id/fragment_content"
         android:layout_width="match_parent"
@@ -49,8 +55,8 @@
                 android:id="@+id/customer_push_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:text="6月24日"
                 tools:ignore="HardcodedText,RtlHardcoded" />
@@ -60,8 +66,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -74,11 +80,12 @@
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -96,8 +103,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -105,8 +112,8 @@
                 android:id="@+id/customer_data_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:text="18:23"
                 tools:ignore="HardcodedText,RtlHardcoded" />
@@ -130,8 +137,8 @@
                 android:id="@+id/customer_push_data2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:text="6月24日"
                 tools:ignore="HardcodedText,RtlHardcoded" />
@@ -141,8 +148,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -159,10 +166,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:orientation="horizontal"
+            android:layout_marginRight="10dp"
             android:background="@drawable/edit_text_shape"
+            android:orientation="horizontal"
             tools:ignore="DisableBaselineAlignment,UselessParent">
 
             <LinearLayout
@@ -174,13 +181,13 @@
                 tools:ignore="InefficientWeight">
 
                 <ImageView
+                    android:id="@+id/message_push_imageview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/message_push_imageview"
                     android:src="@mipmap/freesale"
                     tools:ignore="ContentDescription" />
 
-                </LinearLayout>
+            </LinearLayout>
 
 
             <LinearLayout
@@ -195,31 +202,31 @@
                     android:id="@+id/message_push_textview1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_marginLeft="10dp"
                     android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/message_push_imageview"
                     android:drawablePadding="@dimen/text_left_to_img_padding"
+                    android:gravity="center"
                     android:text="1张"
                     tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded" />
-                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:text="18:23"
                 tools:ignore="HardcodedText,RtlHardcoded" />
@@ -242,13 +249,13 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:text="消息发送"
+                android:layout_marginTop="10dp"
                 android:background="@color/buttonPrimary"
+                android:text="消息发送"
                 tools:ignore="HardcodedText" />
-            </RelativeLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

@@ -188,8 +188,6 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
                             txt_customer_data_car_imei_no.setText(customerDetail.getMarketEntity().getImei());
                             lng = customerDetail.getMarketEntity().getLng();
                             lat = customerDetail.getMarketEntity().getLat();
-                            lng = 114;
-                            lat = 34;
                             initLoc();
 
 

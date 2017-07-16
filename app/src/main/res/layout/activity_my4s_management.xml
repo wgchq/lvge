@@ -25,10 +25,10 @@
 
             <ImageView
                 android:id="@+id/my4s_management_back"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="@dimen/activity_horizontal_margin"
-                android:layout_weight="1"
                 android:src="@mipmap/menu_return"
                 tools:ignore="ContentDescription,NestedWeights" />
         </LinearLayout>
@@ -45,7 +45,6 @@
                 android:layout_height="wrap_content"
                 android:text="我的4S店"
                 android:textColor="@color/mainBackgroundColor"
-                android:textSize="@dimen/main_title"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
 
@@ -61,8 +60,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="完成"
+                android:layout_gravity="center"
                 android:textColor="@color/mainBackgroundColor"
-                android:textSize="@dimen/text_margin"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
     </LinearLayout>
@@ -97,9 +96,9 @@
             tools:ignore="InefficientWeight" />
 
         <RelativeLayout
+            android:id="@+id/my4s_management_to_salesconsultant"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:id="@+id/my4s_management_to_salesconsultant"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -112,22 +111,23 @@
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <TextView
+                android:id="@+id/commodity_my4s_sales_consultant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:drawableEnd="@mipmap/gray_right"
-                android:id="@+id/commodity_my4s_sales_consultant"
-                android:layout_marginLeft="10dp"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:drawableEnd="@mipmap/gray_right"
                 android:text="未设置"
+                android:drawablePadding="@dimen/text_left_to_img_padding"
                 tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
 
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/my4s_management_to_address"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:id="@+id/my4s_management_to_address"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -140,13 +140,14 @@
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <TextView
+                android:id="@+id/commodity_my4s_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:id="@+id/commodity_my4s_address"
-                android:drawableEnd="@mipmap/gray_right"
-                android:layout_marginLeft="10dp"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:drawableEnd="@mipmap/gray_right"
+                android:drawablePadding="@dimen/text_left_to_img_padding"
                 android:hint="未设置"
                 tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp" />
 
