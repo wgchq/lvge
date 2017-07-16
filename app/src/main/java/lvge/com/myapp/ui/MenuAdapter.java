@@ -62,6 +62,7 @@ public class MenuAdapter extends BaseAdapter {
 
             listItemView.menuLogo = (ImageView) convertView.findViewById(R.id.menu_icon);
             listItemView.title = (TextView) convertView.findViewById(R.id.menu_text);
+
             convertView.setTag(listItemView);
 
         }
@@ -71,7 +72,12 @@ public class MenuAdapter extends BaseAdapter {
         }
         listItemView.menuLogo.setBackgroundResource((Integer) listItems.get(position).get("menuLogo"));
         listItemView.title.setText((String)listItems.get(position).get("title"));
-
+        int exit = getCount();
+        ImageView menu_go =  (ImageView)convertView.findViewById(R.id.menu_go);
+        if (exit!=position+1)
+        {
+            menu_go.setImageResource(R.mipmap.menu_go);
+        }
         return convertView;
     }
 }

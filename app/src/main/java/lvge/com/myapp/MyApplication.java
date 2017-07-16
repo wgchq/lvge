@@ -20,7 +20,6 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .cookieJar(new CookieJarImpl(new PersistentCookieStore(getApplicationContext())) )
                 .cookieJar(new CookieJarImpl(new MemoryCookieStore()))

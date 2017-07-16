@@ -64,16 +64,16 @@ public class ClientFragment extends Fragment {
                     String status = "0";
                     switch (tab.getPosition()) {
                         case 0:
-                             status = "0";
+                             status = "0";//所有
                             break;
                         case 1:
-                             status = "1";
+                             status = "1";//有硬件
                             break;
                         case 2:
-                            status = "2";
+                            status = "2";//无硬件
                             break;
                         case 3:
-                            status = "3";
+                            status = "3";//离线
                             break;
                     }
 
@@ -161,6 +161,7 @@ public class ClientFragment extends Fragment {
                                                                                         LoadListView client = (LoadListView) view.findViewById(R.id.clients_list);
 
                                                                                         client.setAdapter(adapter);
+                                                                                        client.setSelection(client.getBottom());
                                                                                         client.loadComplete();
 
                                                                                     } else {
@@ -315,6 +316,7 @@ public class ClientFragment extends Fragment {
                                                                                 LoadListView client = (LoadListView) view.findViewById(R.id.clients_list);
 
                                                                                 client.setAdapter(adapter);
+                                                                                client.setSelection(client.getBottom());
                                                                                 client.loadComplete();
 
                                                                             } else {

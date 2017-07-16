@@ -56,10 +56,21 @@
     <style name="floatingSearchViewStyle">
 
     </style>
-    
+
     <style name="popwindow_delete_btn_anim_style">
         <item name="android:windowEnterAnimation">@anim/delete_btn_show</item>
         <item name="android:windowExitAnimation">@anim/delete_btn_hide</item>
     </style>
 
+
+    <style name="system_title_style">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/mainFontColor</item>
+        <item name="android:textSize">@dimen/system_title_size</item>
+    </style>
+
+    <style name="system_hint_style">
+        <item name="android:padding">@dimen/system_edit_view_padding</item>
+        <item name="android:textSize">@dimen/system_hint_size</item>
+    </style>
 </resources>

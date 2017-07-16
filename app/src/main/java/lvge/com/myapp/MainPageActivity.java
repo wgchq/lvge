@@ -59,11 +59,11 @@ public class MainPageActivity extends Activity {
     private SlideMenu mMenu;
 
     private int[] menus_logo = {
-            R.mipmap.menu_personal,
+       /*     R.mipmap.menu_personal,
             R.mipmap.menu_staff_info,
             R.mipmap.menu_authority,
             R.mipmap.menu_push_notice,
-            R.mipmap.menu_print_setting,
+            R.mipmap.menu_print_setting,*/
             R.mipmap.menu_exit
     };
 
@@ -167,11 +167,11 @@ public class MainPageActivity extends Activity {
     private List<Map<String, Object>> getMenuListItems() {
 
         String[] menu_text = {
-                this.getString(R.string.menu_personal),
+              /*  this.getString(R.string.menu_personal),
                 this.getString(R.string.menu_staff_info),
                 this.getString(R.string.menu_authority),
                 this.getString(R.string.menu_push_notice),
-                this.getString(R.string.menu_print_setting),
+                this.getString(R.string.menu_print_setting),*/
                 this.getString(R.string.menu_exit)
         };
 

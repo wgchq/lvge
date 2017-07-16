@@ -14,8 +14,8 @@
         android:layout_height="?attr/actionBarSize"
 
         android:background="@color/colorPrimary"
-        android:gravity="center_vertical"
-        android:baselineAligned="false">
+        android:baselineAligned="false"
+        android:gravity="center_vertical">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -40,10 +40,10 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/company_name"
-                android:textColor="@color/mainFontColor" />
+                android:text="@string/company_name" />
         </LinearLayout>
 
         <LinearLayout
@@ -83,6 +83,7 @@
             tools:ignore="UselessParent">
 
             <EditText
+                style="@style/system_hint_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_shape"
@@ -148,9 +149,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:baselineAligned="false"
             android:gravity="center_vertical"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:baselineAligned="false">
+            android:padding="@dimen/activity_horizontal_margin">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -220,17 +221,18 @@
                     android:contentDescription="@string/financial_management"
                     android:src="@mipmap/main_page_financial_management" />
 
-                <ImageView
-                    android:id="@+id/img_main_page_car_data_management"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/car_data_management"
-                    android:src="@mipmap/main_page_car_data_management" />
 
             </TableRow>
 
             <TableRow
                 android:gravity="center"
                 android:padding="@dimen/activity_horizontal_margin">
+
+                <ImageView
+                    android:id="@+id/img_main_page_car_data_management"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/car_data_management"
+                    android:src="@mipmap/main_page_car_data_management" />
 
                 <ImageView
                     android:id="@+id/img_main_page_royalty_management"
@@ -243,20 +245,6 @@
                     android:layout_weight="1"
                     android:contentDescription="@string/evaluation_management"
                     android:src="@mipmap/main_page_evaluation_management" />
-
-                <ImageView
-                    android:id="@+id/img_main_page_fence_management"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/fence_management"
-                    android:src="@mipmap/main_page_fence_management" />
-
-                <ImageView
-                    android:id="@+id/img_main_page_my_4s_management"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/my_4s_management"
-                    android:src="@mipmap/main_page_my_4s_management" />
-
-
             </TableRow>
 
             <TableRow
@@ -264,10 +252,10 @@
                 android:padding="@dimen/activity_horizontal_margin">
 
                 <ImageView
-                    android:id="@+id/img_main_page_performance_analysis_management"
+                    android:id="@+id/img_main_page_my_4s_management"
                     android:layout_weight="1"
-                    android:contentDescription="@string/performance_analysis_management"
-                    android:src="@mipmap/main_page_performance_analysis_management" />
+                    android:contentDescription="@string/my_4s_management"
+                    android:src="@mipmap/main_page_my_4s_management" />
 
                 <ImageView
                     android:id="@+id/img_main_page_coupon"
@@ -275,17 +263,10 @@
                     android:contentDescription="@string/coupon"
                     android:src="@mipmap/main_page_coupon" />
 
-                <TextView
+                <ImageView
+                    android:id="@+id/main_page_other1"
                     android:layout_weight="1"
-
-                    android:gravity="center"
-                    android:text="" />
-
-                <TextView
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="" />
-
+                    tools:ignore="ContentDescription" />
 
             </TableRow>
         </TableLayout>

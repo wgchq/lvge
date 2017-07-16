@@ -88,14 +88,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ImageView img_main_page_fence_management = (ImageView) view.findViewById(R.id.img_main_page_fence_management);
-        img_main_page_fence_management.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FenceManagementActivity.class);
-                startActivity(intent);
-            }
-        });
+
         ImageView img_main_page_my_4s_management = (ImageView) view.findViewById(R.id.img_main_page_my_4s_management);
         img_main_page_my_4s_management.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,14 +98,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ImageView img_main_page_performance_analysis_management = (ImageView) view.findViewById(R.id.img_main_page_performance_analysis_management);
-        img_main_page_performance_analysis_management.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PerformanceAnalysisManagementActivity.class);
-                startActivity(intent);
-            }
-        });
 
         ImageView img_main_page_financial_management = (ImageView) view.findViewById(R.id.img_main_page_financial_management);
         img_main_page_financial_management.setOnClickListener(new View.OnClickListener() {
