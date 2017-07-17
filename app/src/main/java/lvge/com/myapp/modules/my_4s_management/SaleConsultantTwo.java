@@ -1,5 +1,6 @@
 package lvge.com.myapp.modules.my_4s_management;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Looper;
 import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
@@ -23,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.Handler;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -56,6 +59,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.LogRecord;
 
 import lvge.com.myapp.MainActivity;
 import lvge.com.myapp.MainPageActivity;
@@ -73,6 +77,10 @@ public class SaleConsultantTwo extends AppCompatActivity {
     private String path = null;
     private File file;
     private Bitmap bitmap;
+
+    private ProgressDialog progDialog = null;
+
+    private static SaleConsultantTwo parent;
 
 
     @Override
@@ -113,10 +121,12 @@ public class SaleConsultantTwo extends AppCompatActivity {
                         Toast.makeText(SaleConsultantTwo.this, "图片错误！", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    showProgressDialog();
 
-                    new Thread() {
+                     new Thread() {
                         public void run() {
                             try {
+                               // showProgressDialog();
                                 post_str(et_rname.getText().toString(), et_phone.getText().toString(), et_memo.getText().toString(), saveBitmap(et_rname.getText().toString()));
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -309,6 +319,7 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
             BaseTest bs = new BaseTest();
             String str = bs.imgPut(path, filePaths, map);
             returnMessage(str);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (ProtocolException e) {
@@ -323,8 +334,51 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
     }
 
     private void returnMessage(String string) {
-        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
+
+        LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+        Message msg = new Message();
+        if(result.getOperationResult().getResultCode() == 0){
+
+            msg.what = 0;
+            mHander.sendMessage(msg);
+        }else {
+            msg.what = 1;
+            mHander.sendMessage(msg);
+        }
+       // dissmissProgressDialog();
     }
 
+
+    private void showProgressDialog(){
+        if(progDialog == null){
+            progDialog = new ProgressDialog(this);
+        }
+        progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progDialog.setIndeterminate(false);
+        progDialog.setCancelable(false);
+        progDialog.setMessage("正在上传：。。。");
+        progDialog.show();
+    }
+
+    private void dissmissProgressDialog(){
+        if(progDialog != null){
+            progDialog.dismiss();
+        }
+    }
+
+    Handler mHander = new Handler() {
+        public void handleMessage(Message msg){
+            dissmissProgressDialog();
+            switch (msg.what){
+                case 0:
+                    Toast.makeText(SaleConsultantTwo.this,"上传成功！",Toast.LENGTH_LONG).show();
+                    break;
+                case 1:
+                    Toast.makeText(SaleConsultantTwo.this,"上传失败！",Toast.LENGTH_LONG).show();
+                    break;
+            }
+        }
+
+    };
 
 }

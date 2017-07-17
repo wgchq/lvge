@@ -23,11 +23,17 @@ import lvge.com.myapp.R;
 import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.modules.shop_management.ShopManageShopImgActivity;
 import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
+import okhttp3.Call;
 import okhttp3.Response;
 
 public class My4sManagementActivity extends AppCompatActivity {
 
     My4sManagementActivityGson result;
+
+    private String id;
+    private String lat;
+    private String lng;
+    private String address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +80,10 @@ public class My4sManagementActivity extends AppCompatActivity {
                             if (null != object) {
                                  result = (My4sManagementActivityGson) object;//把通用的Object转化成指定的对象
                                 if (result.getOperationResult().getResultCode()== 0) {//当返回值为2时不可登录
-
+                                    id = String.valueOf(result.getMarketEntity().getId());
+                                    lat = String.valueOf(result.getMarketEntity().getLat());
+                                    lng = String.valueOf(result.getMarketEntity().getLng());
+                                    address = String.valueOf(result.getMarketEntity().getAddress());
                                     commodity_my4s_sales_consultant.setText(String.valueOf(result.getMarketEntity().getSellerID()));
                                     commodity_my4s_address.setText(String.valueOf(result.getMarketEntity().getAddress()));
                                     commodity_my4s_setting_inputnumber.setText(String.valueOf(result.getMarketEntity().getServerPhone()));
@@ -103,7 +112,49 @@ public class My4sManagementActivity extends AppCompatActivity {
         my4s_manage_finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                try {
+                    OkHttpUtils.post()//get 方法
+                            .url("http://www.lvgew.com/obdcarmarket/sellerapp/shop4S/update") //地址
+                            .addParams("id", id)
+                            .addParams("lat",lat)
+                            .addParams("lng",lng)
+                            .addParams("address",address)
+                            .addParams("serverPhone",commodity_my4s_setting_inputnumber.getText().toString())
+                            .addParams("assistPhone",commodity_my4s_setting_inputsosnumber.getText().toString())
+                            .addParams("notifyDangerPhone",commodity_my4s_setting_inputInsurancenumber.getText().toString())
+                            .build()
+                            .execute(new Callback() {
+                                @Override
+                                public Object parseNetworkResponse(Response response, int i) throws Exception {
+                                    String string = response.body().string();//获取相应中的内容Json格式
+                                    //把json转化成对应对象
+                                    //LoginResultModel是和后台返回值类型结构一样的对象
+                                    LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                                    return result;
+                                }
+
+                                @Override
+                                public void onError(Call call, Exception e, int i) {
+
+                                }
+
+                                @Override
+                                public void onResponse(Object o, int i) {
+                                    if (null != o) {
+                                        LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
+                                        if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                            Toast.makeText(My4sManagementActivity.this, "更新成功！", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else {//当没有返回对象时，表示网络没有联通
+                                        Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                } catch (Exception e) {
+                    Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
