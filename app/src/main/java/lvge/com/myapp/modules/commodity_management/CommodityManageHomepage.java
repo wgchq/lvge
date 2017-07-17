@@ -54,9 +54,17 @@ public class CommodityManageHomepage extends FragmentActivity {
 
         mViewPager = (ViewPager)findViewById(R.id.id_commodity_viewpager);
 
-        initView();
+        ImageView  commodity_manage_homepage_callback = (ImageView)findViewById(R.id.commodity_manage_homepage_callback);
+        commodity_manage_homepage_callback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
-        initTabLine();
+       // initView();
+
+       // initTabLine();
 
 
         //初始化Adapter
@@ -111,7 +119,7 @@ public class CommodityManageHomepage extends FragmentActivity {
             public void onPageSelected(int position) {
 
                 //重置所有TextView的字体颜色
-                resetTextView();
+              //  resetTextView();
                 switch (position){
                     case 0:
                     mOnSale.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -136,23 +144,12 @@ public class CommodityManageHomepage extends FragmentActivity {
             }
         });
 
-        mViewPager.setCurrentItem(1);
+       // mViewPager.setCurrentItem(1);
     }
 
     //初始化控件
 
     private void initView(){
-        mTabOnSale = (LinearLayout)findViewById(R.id.id_tab_onsale_ly_);
-        mTabSoldout = (LinearLayout)findViewById(R.id.id_tab_Soldout_ly);
-        mTabShelffailure = (LinearLayout)findViewById((R.id.id_tab_Shelffailure_ly));
-        mTabApplication = (LinearLayout)findViewById(R.id.id_tab_application_ly);
-
-        mOnSale = (TextView)findViewById(R.id.id_onsale);
-        mApplication = (TextView)findViewById(R.id.id_application);
-        mShelffailure = (TextView)findViewById(R.id.id_shelffailure);
-        mSoldout = (TextView)findViewById(R.id.id_soldout);
-
-
         CommodityHomepageOnsale chOnsale = new CommodityHomepageOnsale();
         CommodityHomepagemSoldout chSoldout = new CommodityHomepagemSoldout();
         CommodityHomepageShelffailure chShelffailure = new CommodityHomepageShelffailure();
@@ -172,10 +169,10 @@ public class CommodityManageHomepage extends FragmentActivity {
         DisplayMetrics outMetrics = new DisplayMetrics();
         getWindow().getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
         screenWidth = outMetrics.widthPixels;
-        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mTabLine.getLayoutParams();
+        //LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mTabLine.getLayoutParams();
 
-        lp.width = screenWidth /4;
-        mTabLine.setLayoutParams(lp);
+       // lp.width = screenWidth /4;
+       // mTabLine.setLayoutParams(lp);
     }
 
     //重置颜色

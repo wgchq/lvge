@@ -37,8 +37,8 @@ public class MainActivity extends Activity {
     void Login()
     {
         try {
-            EditText et_username = (EditText) findViewById(R.id.username);
-            EditText et_password = (EditText) findViewById(R.id.password);
+          final  EditText et_username = (EditText) findViewById(R.id.username);
+          final  EditText et_password = (EditText) findViewById(R.id.password);
 
             OkHttpUtils.get()//get 方法
                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/login.do") //地址
@@ -71,6 +71,9 @@ public class MainActivity extends Activity {
                                 LoginResultModel result = (LoginResultModel) object;//把通用的Object转化成指定的对象
                                 if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
                                     Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
+                                    Bundle bundle = new  Bundle();
+                                    bundle.putString("name",et_username.getText().toString());
+                                    intent.putExtras(bundle);
                                     startActivity(intent);
 
                                 } else {

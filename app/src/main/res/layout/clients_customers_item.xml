@@ -103,7 +103,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    tools:ignore="ContentDescription,HardcodedText,RtlHardcoded" />
+                    tools:ignore="ContentDescription,HardcodedText,RelativeOverlap,RtlHardcoded" />
             </RelativeLayout>
 
         </LinearLayout>

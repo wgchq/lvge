@@ -3,8 +3,10 @@ package lvge.com.myapp;
 
 import android.app.Activity;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -18,30 +20,18 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import lvge.com.myapp.mainFragement.ClientFragment;
 import lvge.com.myapp.mainFragement.HomeFragment;
 import lvge.com.myapp.mainFragement.MyFragment;
 import lvge.com.myapp.mainFragement.OrderFragment;
-import lvge.com.myapp.modules.car_data_management.CarDataManagementActivity;
-import lvge.com.myapp.modules.commodity_management.CommodityHomepageApplication;
-import lvge.com.myapp.modules.commodity_management.CommodityManageHomepage;
-import lvge.com.myapp.modules.coupon.CouponActivity;
-import lvge.com.myapp.modules.evaluation_management.EvaluationManagementActivity;
-import lvge.com.myapp.modules.fence_management.FenceManagementActivity;
-import lvge.com.myapp.modules.financial_management.FinancialManagementActivity;
-import lvge.com.myapp.modules.my_4s_management.My4sManagementActivity;
-import lvge.com.myapp.modules.performance_analysis_management.PerformanceAnalysisManagementActivity;
-import lvge.com.myapp.modules.royalty_management.RoyaltyManagementActivity;
-import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
 import lvge.com.myapp.ui.MenuAdapter;
 import lvge.com.myapp.ui.SlideMenu;
 import lvge.com.myapp.util.BottomNavigationViewHelper;
@@ -84,13 +74,39 @@ public class MainPageActivity extends Activity {
 
         mMenu = (SlideMenu) findViewById(R.id.id_menu);
 
+        TextView nav_header_main_shop_name = (TextView)findViewById(R.id.nav_header_main_shop_name);
+        final Bundle bundle = getIntent().getExtras();
+        nav_header_main_shop_name.setText(bundle.getString("name"));
+
         listView = (ListView) findViewById(R.id.lv_menus);
         menuAdapter = new MenuAdapter(this, getMenuListItems());
         listView.setAdapter(menuAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            switch (position){
+                case 0:
+                    AlertDialog.Builder  builder = new AlertDialog.Builder(MainPageActivity.this);
+                    builder.setIcon(R.mipmap.warming);
+                    builder.setTitle("注销");
+                    builder.setMessage("是否确定注销？");
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(MainPageActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            return;
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    break;
+            }
 
             }
         });
@@ -160,6 +176,13 @@ public class MainPageActivity extends Activity {
 
             homeFragment = new HomeFragment();
         }
+        Bundle bundle = getIntent().getExtras();
+
+        Bundle bud = new Bundle();
+        bud.putString("name",bundle.getString("name"));
+        homeFragment.setArguments(bud);
+
+
         transaction.add(R.id.fragment_content, homeFragment);
         transaction.commit();
     }
@@ -190,5 +213,6 @@ public class MainPageActivity extends Activity {
     public void toggleMenu(View view) {
         mMenu.toggle();
     }
+
 
 }

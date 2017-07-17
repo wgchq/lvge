@@ -199,6 +199,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:text="@string/client_information"
+                style="@style/system_title_style"
                 android:textColor="@color/mainFontColor" />
 
         </android.support.v7.widget.Toolbar>
@@ -223,7 +224,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                tools:ignore="UselessParent">
 
                 <com.amap.api.maps2d.MapView xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/map"
@@ -248,7 +250,8 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:ignore="UselessParent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -525,7 +528,8 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:background="@color/buttonPrimary"
-                        android:text="消息发送" />
+                        android:text="消息发送"
+                        tools:ignore="HardcodedText" />
 
                     <View
                         android:layout_width="match_parent"

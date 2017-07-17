@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我的客户"
-                android:textColor="@color/mainBackgroundColor"
+                style="@style/system_title_style"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
 

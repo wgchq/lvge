@@ -29,7 +29,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:text="@string/title_client"
-                android:textColor="@color/mainFontColor" />
+                style="@style/system_title_style"/>
 
             <ImageView
                 android:id="@+id/search_client"
@@ -38,7 +38,8 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
                 android:layout_marginEnd="@dimen/activity_vertical_margin"
-                android:src="@mipmap/ic_search" />
+                android:src="@mipmap/ic_search"
+                tools:ignore="ContentDescription" />
 
         </android.support.v7.widget.Toolbar>
 

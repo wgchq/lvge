@@ -45,8 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="常见问题"
-            android:textColor="@color/mainBackgroundColor"
-            android:textSize="@dimen/main_title"
+            style="@style/system_title_style"
             tools:ignore="HardcodedText,SpUsage" />
     </LinearLayout>
 
@@ -61,8 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="添加"
-            android:textColor="@color/mainBackgroundColor"
-            android:textSize="@dimen/text_margin"
+            style="@style/system_title_style"
             tools:ignore="HardcodedText,SpUsage" />
     </LinearLayout>
 

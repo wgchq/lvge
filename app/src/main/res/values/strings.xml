@@ -95,7 +95,7 @@
     <string name="deposit_advantage_description">保证金是指买方或卖方按照交易市场规定标准交纳的资金，专门用于订单交易的结算和履行约定的保证。</string>
     <!--my 4s shop management-->
 
-    <string name="my_4s_address">4s店地址</string>
+    <string name="my_4s_address">4S店地址</string>
     <string name="my_4s_address_confirm">确认</string>
     <string name="my_4s_shop_picture">4s店照片</string>
 

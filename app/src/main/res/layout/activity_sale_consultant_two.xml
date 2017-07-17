@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:text="销售顾问"
                 android:layout_gravity="center"
-                android:textColor="@color/mainBackgroundColor"
+                style="@style/system_title_style"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
 
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/sale_consultant_Preservation"
-                android:textColor="@color/mainBackgroundColor"
+                style="@style/system_title_style"
                 android:text="保存"
                 android:layout_gravity="center"
                 tools:ignore="HardcodedText,SpUsage" />

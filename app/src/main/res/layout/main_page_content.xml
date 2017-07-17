@@ -43,6 +43,7 @@
                 style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/main_page_content_shop_order"
                 android:text="@string/company_name" />
         </LinearLayout>
 
@@ -80,6 +81,8 @@
             android:orientation="vertical"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             tools:ignore="UselessParent">
 
             <EditText
@@ -106,10 +109,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawablePadding="@dimen/text_left_to_img_padding"
-                        android:drawableStart="@mipmap/main_page_validation_type_scan_qr"
+                        android:drawableLeft="@mipmap/main_page_validation_type_scan_qr"
                         android:gravity="center"
                         android:text="@string/validation_type_scan_QR"
-                        android:textColor="@color/mainFontColor" />
+                        android:textColor="@color/mainFontColor"
+                        tools:ignore="RtlHardcoded" />
                 </LinearLayout>
 
 
@@ -129,10 +133,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawablePadding="@dimen/text_left_to_img_padding"
-                        android:drawableStart="@mipmap/main_page_validation_history"
+                        android:drawableLeft="@mipmap/main_page_validation_history"
                         android:gravity="center"
                         android:text="@string/validation_history"
-                        android:textColor="@color/mainFontColor" />
+                        android:textColor="@color/mainFontColor"
+                        tools:ignore="RtlHardcoded" />
                 </LinearLayout>
 
 
@@ -163,10 +168,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/text_left_to_img_padding"
-                    android:drawableStart="@mipmap/main_page_refund_after_sale"
+                    android:drawableLeft="@mipmap/main_page_refund_after_sale"
                     android:gravity="center"
 
-                    android:text="@string/refund_after_sale" />
+                    android:text="@string/refund_after_sale"
+                    tools:ignore="RtlHardcoded" />
             </LinearLayout>
 
             <LinearLayout
@@ -179,10 +185,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/text_left_to_img_padding"
-                    android:drawableStart="@mipmap/main_page_pending_send_goods"
+                    android:drawableLeft="@mipmap/main_page_pending_send_goods"
                     android:gravity="center"
 
-                    android:text="@string/pending_send_goods" />
+                    android:text="@string/pending_send_goods"
+                    tools:ignore="RtlHardcoded" />
             </LinearLayout>
 
 

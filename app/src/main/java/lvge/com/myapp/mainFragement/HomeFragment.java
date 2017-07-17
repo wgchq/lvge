@@ -8,17 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import lvge.com.myapp.MainPageActivity;
 import lvge.com.myapp.R;
 import lvge.com.myapp.modules.car_data_management.CarDataManagementActivity;
 import lvge.com.myapp.modules.commodity_management.CommodityManageHomepage;
 import lvge.com.myapp.modules.coupon.CouponActivity;
 import lvge.com.myapp.modules.evaluation_management.EvaluationManagementActivity;
-import lvge.com.myapp.modules.fence_management.FenceManagementActivity;
 import lvge.com.myapp.modules.financial_management.FinancialManagementActivity;
 import lvge.com.myapp.modules.my_4s_management.My4sManagementActivity;
-import lvge.com.myapp.modules.performance_analysis_management.PerformanceAnalysisManagementActivity;
 import lvge.com.myapp.modules.royalty_management.RoyaltyManagementActivity;
 import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
 
@@ -26,7 +24,6 @@ import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
-
 
     public HomeFragment() {
         // Required empty public constructor
@@ -39,6 +36,10 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        TextView main_page_content_shop_order = (TextView)view.findViewById(R.id.main_page_content_shop_order);
+        main_page_content_shop_order.setText(getArguments().getString("name"));
+      //  main_page_content_shop_order.setText(fragmentTitle.getShop_title());
 
         //主页面跳转各个子模块
 

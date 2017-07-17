@@ -30,7 +30,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/activity_horizontal_margin"
-                android:onClick="toggleMenu"
                 android:src="@mipmap/menu_return"
                 tools:ignore="ContentDescription,NestedWeights"
                 android:layout_weight="1" />
@@ -47,8 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="新增商品"
-                android:textColor="@color/mainBackgroundColor"
-                android:textSize="@dimen/main_title"
+                style="@style/system_title_style"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
 

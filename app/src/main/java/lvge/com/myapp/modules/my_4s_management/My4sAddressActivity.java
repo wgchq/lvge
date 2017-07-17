@@ -107,7 +107,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         UiSettings settings = aMap.getUiSettings();
         aMap.setLocationSource(this);
         // 是否显示定位按钮
-        settings.setMyLocationButtonEnabled(true);
+        //settings.setMyLocationButtonEnabled(true);
         // 是否可触发定位并显示定位层
         aMap.setMyLocationEnabled(true);
         //定位的小图标 默认是蓝点 这里自定义一团火，其实就是一张图片
