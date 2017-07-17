@@ -2,6 +2,7 @@ package lvge.com.myapp.modules.customer_management;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -15,29 +16,42 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
 
 import lvge.com.myapp.R;
+import lvge.com.myapp.model.ClientResultModel;
+import lvge.com.myapp.ui.LoadListView;
+import okhttp3.Call;
+import okhttp3.Response;
 
-public class CustomerSearchView extends LinearLayout implements View.OnClickListener {
+public class CustomerSearchView extends LinearLayout{
+
+    private Context context;
 
     private EditText etInput;   //输入框
     private ImageView ivDelete;  //删除键
+    private TextView tv_clear;
+    private TextView tv_tip;
 
     private Button btnBack;   //返回建
 
-    private Context mContext;
+    private ClientResultModel clientResultModel;
 
-    private ListView lvTips;
 
-    private ArrayAdapter<String> mHintAdapter;
+    private CustomerSearchListview listview;
 
-    private ArrayAdapter<String> mAutoCompleteAdapter;
+    ClientsAdapter adapter;
 
     private SearchViewListener mListener;
 
@@ -53,119 +67,176 @@ public class CustomerSearchView extends LinearLayout implements View.OnClickList
 
     public CustomerSearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mContext = context;
-        LayoutInflater.from(context).inflate(R.layout.activity_customer_search_view, this);
+        context = context;
+        //LayoutInflater.from(context).inflate(R.layout.activity_customer_search_view, this);
+        LayoutInflater.from(context).inflate(R.layout.activity_customer_search_view,this);
+        initViews();
+    }
 
+    public CustomerSearchView(Context context){
+        super(context);
+        this.context = context;
+        LayoutInflater.from(context).inflate(R.layout.activity_customer_search_view,this);
+        initViews();
+    }
+
+    public CustomerSearchView(Context context,AttributeSet attributeSet,int defStyleAtr){
+        super(context,attributeSet,defStyleAtr);
+        this.context = context;
+        LayoutInflater.from(context).inflate(R.layout.activity_customer_search_view,this);
         initViews();
     }
 
     private void initViews() {
 
-        etInput = (EditText) findViewById(R.id.customer_search_input);
-        ivDelete = (ImageView) findViewById(R.id.search_custmer);
+
+        etInput = (EditText) findViewById(R.id.customer_search_input);   //输入框
+       // ivDelete = (ImageView) findViewById(R.id.search_custmer);
         btnBack = (Button) findViewById(R.id.search_customer_button);
-        lvTips = (ListView) findViewById(R.id.search_custmer_listview);
+        tv_clear = (TextView)findViewById(R.id.tv_clear);
+        tv_tip = (TextView)findViewById(R.id.tv_tip);
+        listview = (CustomerSearchListview)findViewById(R.id.customer_search_listview);
+        // lvTips = (ListView) findViewById(R.id.search_custmer_listview);
 
-        lvTips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        etInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                String text = lvTips.getAdapter().getItem(position).toString();
-                etInput.setText(text);
-                etInput.setSelection(text.length());
+            }
 
-                lvTips.setVisibility(View.GONE);
-                notifyStartSearching(text);
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String tempName = etInput.getText().toString();
             }
         });
 
-        ivDelete.setOnClickListener(this);
-        btnBack.setOnClickListener(this);
-
-        etInput.addTextChangedListener(new EditChangedListener());
-        etInput.setOnClickListener(this);
+        etInput.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
         etInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    lvTips.setVisibility(GONE);
-                    notifyStartSearching(etInput.getText().toString());
+                try {
+                    OkHttpUtils.post()//get 方法
+                            .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list")
+                            .addParams("keyword",etInput.getText().toString().trim())
+                            .addParams("pageIndex", "1") //需要传递的参数
+                            .addParams("pageSize", "10")
+                            .addParams("totalPage","1")
+                            .build()
+                            .execute(new Callback() {
+                                @Override
+                                public Object parseNetworkResponse(Response response, int i) throws Exception {
+                                    String string = response.body().string();//获取相应中的内容Json格式
+                                    //把json转化成对应对象
+                                    //LoginResultModel是和后台返回值类型结构一样的对象
+                                    ClientResultModel result = new Gson().fromJson(string, ClientResultModel.class);
+                                    return result;
+                                }
+
+                                @Override
+                                public void onError(Call call, Exception e, int i) {
+
+                                }
+
+                                @Override
+                                public void onResponse(Object object, final int i) {
+                                    //object 是 parseNetworkResponse的返回值
+                                    if (null != object) {
+                                        clientResultModel = (ClientResultModel) object;//把通用的Object转化成指定的对象
+                                        if (clientResultModel.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
+                                            adapter.setClients(clientResultModel);
+                                            LoadListView client_lst = (LoadListView) findViewById(R.id.clients_list);
+                                            client_lst.setInterface(new LoadListView.IloadListener() {
+                                                @Override
+                                                public void onLoad() {
+
+                                                    // 刷新太快 所以新启一个线程延迟两秒
+                                                    Handler handler = new Handler();
+                                                    handler.postDelayed(new Runnable() {
+
+                                                        @Override
+                                                        public void run() {
+
+                                                            try {
+                                                                OkHttpUtils.get()//get 方法
+                                                                        .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
+                                                                        .addParams("pageIndex", Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1)) //需要传递的参数
+                                                                        .addParams("pageSize", "10")
+                                                                        .build()
+                                                                        .execute(new Callback() {//通用的callBack
+
+                                                                            //从后台获取成功后，对相应进行类型转化
+                                                                            @Override
+                                                                            public Object parseNetworkResponse(Response response, int i) throws Exception {
+
+                                                                                String string = response.body().string();//获取相应中的内容Json格式
+                                                                                //把json转化成对应对象
+                                                                                //LoginResultModel是和后台返回值类型结构一样的对象
+                                                                                ClientResultModel result = new Gson().fromJson(string, ClientResultModel.class);
+                                                                                return result;
+                                                                            }
+
+                                                                            @Override
+                                                                            public void onError(okhttp3.Call call, Exception e, int i) {
+
+                                                                                int a = 0;
+
+                                                                            }
+
+                                                                            @Override
+                                                                            public void onResponse(Object object, int i) {
+
+                                                                                int a = 0;
+                                                                                //object 是 parseNetworkResponse的返回值
+                                                                                if (null != object) {
+                                                                                    ClientResultModel resultModel = (ClientResultModel) object;//把通用的Object转化成指定的对象
+                                                                                    if (resultModel.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
+                                                                                        clientResultModel.getPageResult().getEntityList().addAll(resultModel.getPageResult().getEntityList());
+                                                                                        clientResultModel.getPageResult().setPageIndex(resultModel.getPageResult().getPageIndex());
+
+                                                                                        adapter.setClients(clientResultModel);
+                                                                                        LoadListView client = (LoadListView)findViewById(R.id.clients_list);
+
+                                                                                        client.setAdapter(adapter);
+                                                                                        client.setSelection(client.getBottom());
+                                                                                        client.loadComplete();
+
+                                                                                    } else {
+                                                                                        Toast.makeText(getContext(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                                                                    }
+                                                                                } else {//当没有返回对象时，表示网络没有联通
+                                                                                    Toast.makeText(getContext(), "网络异常！", Toast.LENGTH_SHORT).show();
+                                                                                }
+                                                                            }
+                                                                        });
+                                                            } catch (Exception e) {
+                                                                e.printStackTrace();
+                                                            }
+
+                                                        }
+                                                    }, 2000);
+                                                }
+                                            });
+                                            client_lst.setAdapter(adapter);
+                                        } else {
+                                            Toast.makeText(getContext(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else {//当没有返回对象时，表示网络没有联通
+                                        Toast.makeText(getContext(), "网络异常！", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }catch (Exception e){
+
                 }
-                return true;
+                return false;
             }
         });
-    }
 
-    //通知监听者，进行搜索操作
-    private void notifyStartSearching(String text) {
-        if (mListener != null) {
-            mListener.onSearch(etInput.getText().toString());
-        }
-
-        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-    }
-
-    public void setTipsHintAdapter(ArrayAdapter<String> adapter) {
-        this.mHintAdapter = adapter;
-
-        if (lvTips.getAdapter() == null) {
-            lvTips.setAdapter(mHintAdapter);
-        }
-    }
-
-    public void setAutoCompleteAdapter(ArrayAdapter<String> adapter) {
-        this.mAutoCompleteAdapter = adapter;
-    }
-
-    private class EditChangedListener implements TextWatcher {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            if (!"".equals(s.toString())) {
-                ivDelete.setVisibility(VISIBLE);
-                lvTips.setVisibility(VISIBLE);
-
-                if (mAutoCompleteAdapter != null && lvTips.getAdapter() != mAutoCompleteAdapter) {
-                    lvTips.setAdapter(mAutoCompleteAdapter);
-                }
-
-                if (mListener != null) {
-                    mListener.onRefreshAutoComplete(s + "");
-                } else {
-                    ivDelete.setVisibility(GONE);
-                    if (mHintAdapter != null) {
-                        lvTips.setAdapter(mHintAdapter);
-                    }
-                    lvTips.setVisibility(GONE);
-                }
-            }
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-
-    }
-
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.customer_search_input:
-                lvTips.setVisibility(VISIBLE);
-                break;
-            case R.id.search_custmer:
-                ivDelete.setVisibility(GONE);
-                break;
-            case R.id.search_customer_button:
-                ((Activity) mContext).finish();
-                break;
-        }
     }
 
 
