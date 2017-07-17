@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
+                android:text="@string/financial_management"
                 style="@style/system_title_style" />
 
         </android.support.v7.widget.Toolbar>
