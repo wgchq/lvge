@@ -6,8 +6,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,7 +41,8 @@ import lvge.com.myapp.util.BottomNavigationViewHelper;
 
 
 public class MainPageActivity extends Activity {
-
+    private SharedPreferences preferences;
+    private final static String FILE_NAME = "login_file";
     private HomeFragment homeFragment = null;
     private ClientFragment clientFragment = null;
     private OrderFragment orderFragment = null;
@@ -74,7 +78,7 @@ public class MainPageActivity extends Activity {
 
         mMenu = (SlideMenu) findViewById(R.id.id_menu);
 
-        TextView nav_header_main_shop_name = (TextView)findViewById(R.id.nav_header_main_shop_name);
+        TextView nav_header_main_shop_name = (TextView) findViewById(R.id.nav_header_main_shop_name);
         final Bundle bundle = getIntent().getExtras();
         nav_header_main_shop_name.setText(bundle.getString("name"));
 
@@ -84,29 +88,36 @@ public class MainPageActivity extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            switch (position){
-                case 0:
-                    AlertDialog.Builder  builder = new AlertDialog.Builder(MainPageActivity.this);
-                    builder.setIcon(R.mipmap.warming);
-                    builder.setTitle("注销");
-                    builder.setMessage("是否确定注销？");
-                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(MainPageActivity.this, MainActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            return;
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    break;
-            }
+                switch (position) {
+                    case 0:
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainPageActivity.this);
+                        builder.setIcon(R.mipmap.warming);
+                        builder.setTitle("注销");
+                        builder.setMessage("是否确定注销？");
+                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.remove("username");
+                                editor.remove("password");
+                                editor.apply();
+
+
+                                Intent intent = new Intent(MainPageActivity.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+                        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                return;
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                        break;
+                }
 
             }
         });
@@ -179,7 +190,7 @@ public class MainPageActivity extends Activity {
         Bundle bundle = getIntent().getExtras();
 
         Bundle bud = new Bundle();
-        bud.putString("name",bundle.getString("name"));
+        bud.putString("name", bundle.getString("name"));
         homeFragment.setArguments(bud);
 
 

@@ -100,10 +100,10 @@ public class ClientsAdapter extends BaseAdapter {
             TextView type = (TextView) convertView.findViewById(R.id.customer_listview_type);
             if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("1")) {
                 type.setText("已绑定硬件");
-            } else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("2")){
+            } else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("0")){
                 type.setText("未绑定硬件");
             }
-            else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("3")){
+            else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("2")){
                 type.setText("离线/欠费");
             }
 
