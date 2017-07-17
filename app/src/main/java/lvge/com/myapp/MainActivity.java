@@ -1,7 +1,9 @@
 package lvge.com.myapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.view.View;
@@ -20,25 +22,47 @@ import okhttp3.Response;
 
 public class MainActivity extends Activity {
 
+    private SharedPreferences preferences;
+    private String action;
+    private final static String FILE_NAME = "login_file";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button login_submit = (Button) findViewById(R.id.login_submit);
+
+        action = "auto_submit";
+        Login(action);
         login_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Login();
+                action = "submit";
+                Login(action);
             }
         });
-        Login();
+
+
     }
 
-    void Login()
-    {
+    void Login(String action) {
+
+        final String submit_action = action;
         try {
-          final  EditText et_username = (EditText) findViewById(R.id.username);
-          final  EditText et_password = (EditText) findViewById(R.id.password);
+            preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+
+            final EditText et_username = (EditText) findViewById(R.id.username);
+            final EditText et_password = (EditText) findViewById(R.id.password);
+            if (action.equals("auto_submit")) {
+                String username = preferences.getString("username", "");
+                String password = preferences.getString("password", "");
+
+                if (username.equals("")&&password.equals(""))
+                {
+                    return ;
+                }
+                et_username.setText(username);
+                et_password.setText(password);
+            }
 
             OkHttpUtils.get()//get 方法
                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/login.do") //地址
@@ -71,8 +95,18 @@ public class MainActivity extends Activity {
                                 LoginResultModel result = (LoginResultModel) object;//把通用的Object转化成指定的对象
                                 if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
                                     Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
-                                    Bundle bundle = new  Bundle();
-                                    bundle.putString("name",et_username.getText().toString());
+                                    Bundle bundle = new Bundle();
+
+                                    if (submit_action.equals("submit")) {
+                                        SharedPreferences.Editor editor = preferences.edit();
+                                        // 设置数据 第一 个参数是key 第二个是相应数据
+                                        editor.putString("username", et_username.getText().toString());
+                                        editor.putString("password", et_password.getText().toString());
+                                        // 提交 不提交设置的数据将无效
+                                        editor.apply();
+                                    }
+
+                                    bundle.putString("name", et_username.getText().toString());
                                     intent.putExtras(bundle);
                                     startActivity(intent);
 
