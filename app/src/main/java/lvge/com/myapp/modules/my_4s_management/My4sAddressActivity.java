@@ -1,5 +1,6 @@
 package lvge.com.myapp.modules.my_4s_management;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -12,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -34,10 +37,13 @@ import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
 import com.amap.api.maps2d.model.Text;
 import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.geocoder.GeocodeResult;
 import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
+import com.amap.api.services.poisearch.PoiResult;
+import com.amap.api.services.poisearch.PoiSearch;
 
 import java.util.Date;
 import java.util.Locale;
@@ -45,7 +51,7 @@ import java.util.Locale;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.AddressModel;
 
-public class My4sAddressActivity extends AppCompatActivity implements LocationSource, AMapLocationListener {
+public class My4sAddressActivity extends AppCompatActivity implements LocationSource, AMapLocationListener,PoiSearch.OnPoiSearchListener{
 
     private Double lat;
     private Double lng;
@@ -64,6 +70,12 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
 
     //标识，用于判断是否只显示一次定位信息和用户重新定位
     private boolean isFirstLoc = true;
+
+    private ProgressDialog progDialog = null;
+    private PoiSearch.Query query;
+    private String city = "";
+    private int currentPage;
+    private PoiSearch poiSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +104,16 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         lng = Double.parseDouble(intent.getStringExtra("lng"));
         lat = Double.parseDouble(intent.getStringExtra("lat"));
         address = intent.getStringExtra("address");
+
+       final EditText current_position = (EditText)findViewById(R.id.current_position);
+
+        ImageView my4s_address_search_ImageView = (ImageView)findViewById(R.id.my4s_address_search_ImageView);
+        my4s_address_search_ImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doSearchQuery(current_position.getText().toString().trim());
+            }
+        });
 
         /**
          * 地图定位
@@ -139,7 +161,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
             mLocationClient.setLocationListener(this);
         } else {
             //添加图钉
-            aMap.addMarker(getMarkerOptions());
+            aMap.addMarker(getMarkerOptions(address));
             aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
             //将地图移动到定位点
             aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(this.lat, this.lng)));
@@ -167,14 +189,14 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         mLocationClient.startLocation();
     }
 
-    private MarkerOptions getMarkerOptions() {
+    private MarkerOptions getMarkerOptions(String str) {
         //   AttentionModel attentionModel
         //设置图钉选项
         MarkerOptions options = new MarkerOptions();
         //图标
         //  options.icon(options.getIcon());
         options.icon(BitmapDescriptorFactory.fromResource(R.mipmap.shop_manage_shop_address));
-
+        options.title(str);
         options.position(new LatLng(lat, lng));
         //设置多少帧刷新一次图片资源
         options.period(60);
@@ -294,4 +316,47 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         mapView.onDestroy();
     }
 
+    private void doSearchQuery(String str){
+        showProgressDialog();
+        currentPage = 0;
+
+        query = new PoiSearch.Query(str,"",city);
+        query.setPageSize(10);
+        query.setPageNum(currentPage);
+        poiSearch = new PoiSearch(this,query);
+        poiSearch.setOnPoiSearchListener(this);
+        poiSearch.searchPOIAsyn();
+    }
+
+    private void showProgressDialog(){
+        if(progDialog == null){
+            progDialog = new ProgressDialog(this);
+        }
+        progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progDialog.setIndeterminate(false);
+        progDialog.setCancelable(false);
+        progDialog.setMessage("正在搜索：。。。");
+        progDialog.show();
+    }
+
+    private void dissmissProgressDialog(){
+        if(progDialog != null){
+            progDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onPoiSearched(PoiResult poiResult, int i) {
+
+        dissmissProgressDialog();
+
+        if(i == 1000){
+
+        }
+    }
+
+    @Override
+    public void onPoiItemSearched(PoiItem poiItem, int i) {
+
+    }
 }

@@ -167,17 +167,17 @@
         android:layout_gravity="center"
         android:background="@color/line_background_gray"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginStart="@dimen/text_left_padding"
+        android:layout_marginLeft="@dimen/text_left_padding"
         android:drawablePadding="@dimen/text_left_to_img_padding"
         android:text="类型说明"
         android:textStyle="bold"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText,RtlHardcoded" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/text_left_padding"
+        android:layout_marginLeft="@dimen/text_left_padding"
         android:text="不支持门店安装：买家下单后，卖家需要选择物流公司并安排发货，邮寄给用户。"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText,RtlHardcoded" />
 
     <View
         android:layout_width="match_parent"
@@ -186,7 +186,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/text_left_padding"
+        android:layout_marginLeft="@dimen/text_left_padding"
         android:text="支持门店安装：买家下单后，卖家需要选择物流公司并安排发货到安装门店，客户直接去安装门店安装即可，产品需要支付给安装门店安装费用。"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText,RtlHardcoded" />
 </LinearLayout>
