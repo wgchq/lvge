@@ -109,4 +109,7 @@
     <string name="client_information">客户资料</string>
     <string name="txt_current_position">当前位置：</string>
 
+
+    <string name="loading">加载中</string>
+
 </resources>

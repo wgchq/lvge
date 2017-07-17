@@ -8,12 +8,10 @@ import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 
 import java.util.ArrayList;
+import java.util.function.Function;
 
 import lvge.com.myapp.model.AddressModel;
 
-/**
- * Created by JGG on 2017/7/15.
- */
 
 public class InputTask {
 
@@ -21,7 +19,7 @@ public class InputTask {
     private My4sAddressSearchAdapter mAdapter;
     private PoiSearch mSearch;
     private Context mContext;
-    private InputTask(Context context, My4sAddressSearchAdapter adapter){
+    InputTask(Context context, My4sAddressSearchAdapter adapter){
         this.mContext = context;
         this.mAdapter = adapter;
 
@@ -32,7 +30,7 @@ public class InputTask {
      * @param adapter 数据适配器
      * @return
      */
-    public static InputTask getInstance(Context context, My4sAddressSearchAdapter adapter){
+    public InputTask getInstance(Context context, My4sAddressSearchAdapter adapter){
         if(mInstance == null){
             synchronized (InputTask.class) {
                 if(mInstance == null){

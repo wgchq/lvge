@@ -32,8 +32,13 @@ public class My4sAddressSearchAdapter extends BaseAdapter {
     public void setData(List<AddressModel> data) {
         this.data = data;
     }
-    public void clearData(){
+
+    public void clearData() {
         this.data.clear();
+    }
+
+    public List<AddressModel> getData() {
+        return data;
     }
 
     @Override

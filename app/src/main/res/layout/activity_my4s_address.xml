@@ -26,33 +26,31 @@
             app:titleTextColor="@color/mainFontColor">
 
             <TextView
+                style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="@string/my_4s_address"
-                style="@style/system_title_style" />
+                android:text="@string/my_4s_address" />
 
             <TextView
                 android:id="@+id/my_4s_address_confirm"
+                style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
                 android:layout_margin="@dimen/activity_horizontal_margin"
                 android:text="@string/my_4s_address_confirm"
-                style="@style/system_title_style"
                 android:textColor="@color/mainFontColor" />
-
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
-    <FrameLayout
-        xmlns:android = "http://schemas.android.com/apk/res/android"
-        android:layout_below="@id/appBarLayout"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/appBarLayout">
 
         <com.amap.api.maps2d.MapView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/map"
@@ -61,41 +59,60 @@
 
         </com.amap.api.maps2d.MapView>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/my4s_address_textview"
-                android:layout_centerVertical="true"
-                android:text="@string/txt_current_position"
-                android:textSize="16sp"/>
-
-            <EditText
-                android:id="@+id/current_position"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/my4s_address_textview"
-                android:layout_toLeftOf="@+id/my4s_address_search_ImageView"
-                android:textSize="16sp"
-                tools:ignore="TextFields" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/layout_border_shap"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:paddingEnd="@dimen/text_left_padding"
+                android:paddingLeft="@dimen/text_left_padding"
+                android:paddingRight="@dimen/text_left_padding"
+                android:paddingStart="@dimen/text_left_padding"
+                tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
 
-            <ImageView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/my4s_address_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/txt_current_position"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/current_position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/my4s_address_search_ImageView"
+                    android:layout_toRightOf="@+id/my4s_address_textview"
+                    android:textSize="16sp"
+                    tools:ignore="TextFields" />
+
+                <ImageView
+                    android:id="@+id/my4s_address_search_ImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/searcg"
+                    tools:ignore="ContentDescription,RtlSymmetry" />
+            </RelativeLayout>
+
+            <ListView
+                android:id="@+id/search_list_view"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/my4s_address_search_ImageView"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/searcg"
-                tools:ignore="ContentDescription,RtlSymmetry" />
-        </RelativeLayout>
+                android:background="@color/mainBackgroundColor"></ListView>
+        </LinearLayout>
 
     </FrameLayout>
 

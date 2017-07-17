@@ -10,11 +10,15 @@ import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -45,19 +49,20 @@ import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.AddressModel;
 
-public class My4sAddressActivity extends AppCompatActivity implements LocationSource, AMapLocationListener,PoiSearch.OnPoiSearchListener{
+public class My4sAddressActivity extends AppCompatActivity implements LocationSource, TextWatcher, AMapLocationListener {
 
     private Double lat;
     private Double lng;
     private String address;
+    private TextView getCurentPoistion;
     private TextView currentPosition;
-
     private Marker attentionMark = null;
 
     //显示地图需要的变量
@@ -77,6 +82,10 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
     private int currentPage;
     private PoiSearch poiSearch;
 
+    private ListView search_list_view;
+    private My4sAddressSearchAdapter adapter;
+    private ArrayList<AddressModel> data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +101,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
             }
         });
         Intent intent = getIntent();
-        TextView confirm = (TextView)findViewById(R.id.my_4s_address_confirm);
+        TextView confirm = (TextView) findViewById(R.id.my_4s_address_confirm);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,14 +110,41 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         });
 
 
+        getCurentPoistion = (TextView) findViewById(R.id.my4s_address_textview);
+        getCurentPoistion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+                //将地图移动到定位点
+                aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(lat, lng)));
+                currentPosition = (TextView) findViewById(R.id.current_position);
+                currentPosition.setText(address);
+
+
+            }
+        });
+
         lng = Double.parseDouble(intent.getStringExtra("lng"));
         lat = Double.parseDouble(intent.getStringExtra("lat"));
         address = intent.getStringExtra("address");
+        final EditText current_position = (EditText) findViewById(R.id.current_position);
 
-       final EditText current_position = (EditText)findViewById(R.id.current_position);
+/*
+        final EditText current_position = (EditText) findViewById(R.id.current_position);
+        current_position.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(My4sAddressActivity.this, My4sAddressSearchActivity.class);
+                intent.putExtra("address", address);
+                startActivity(intent);
+            }
+        });*/
 
-        ImageView my4s_address_search_ImageView = (ImageView)findViewById(R.id.my4s_address_search_ImageView);
-        my4s_address_search_ImageView.setOnClickListener(new View.OnClickListener() {
+        ImageView my4s_address_search_ImageView = (ImageView) findViewById(R.id.my4s_address_search_ImageView);
+        my4s_address_search_ImageView.setOnClickListener(new View.OnClickListener()
+
+        {
             @Override
             public void onClick(View v) {
                 doSearchQuery(current_position.getText().toString().trim());
@@ -119,7 +155,9 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
          * 地图定位
          */
         //显示地图
-        mapView = (MapView) findViewById(R.id.map);
+        mapView = (MapView)
+
+                findViewById(R.id.map);
         //必须要写
         mapView.onCreate(savedInstanceState);
         //获取地图对象
@@ -142,6 +180,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         //设置定位监听
 
         initLoc();
+
     }
 
     private void initLoc() {
@@ -161,8 +200,9 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
             mLocationClient.setLocationListener(this);
         } else {
             //添加图钉
-            aMap.addMarker(getMarkerOptions(address));
+            attentionMark = aMap.addMarker(getMarkerOptions(address));
             aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+
             //将地图移动到定位点
             aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(this.lat, this.lng)));
             currentPosition = (TextView) findViewById(R.id.current_position);
@@ -316,20 +356,51 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         mapView.onDestroy();
     }
 
-    private void doSearchQuery(String str){
-        showProgressDialog();
-        currentPage = 0;
+    private void doSearchQuery(String str) {
 
-        query = new PoiSearch.Query(str,"",city);
-        query.setPageSize(10);
-        query.setPageNum(currentPage);
-        poiSearch = new PoiSearch(this,query);
-        poiSearch.setOnPoiSearchListener(this);
-        poiSearch.searchPOIAsyn();
+        try {
+            search_list_view = (ListView) findViewById(R.id.search_list_view);
+            search_list_view.setVisibility(View.VISIBLE);
+            adapter = new My4sAddressSearchAdapter(this);
+            data = new ArrayList<AddressModel>();
+            adapter.setData(data);
+            search_list_view.setAdapter(adapter);
+            InputTask inputTask = new InputTask(this, adapter);
+            inputTask.onSearch(str, city);
+            search_list_view.bringToFront();
+
+            search_list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    search_list_view.setVisibility(View.INVISIBLE);
+                    EditText current_position = (EditText) findViewById(R.id.current_position);
+                    lat = adapter.getData().get(position).getLatitude();
+                    lng = adapter.getData().get(position).getLongitude();
+                    address = adapter.getData().get(position).getText();
+                    if (attentionMark != null) {
+                        attentionMark.remove();
+                    }
+
+                    attentionMark = aMap.addMarker(getMarkerOptions(address));
+                    aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+
+                    //将地图移动到定位点
+                    aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(lat, lng)));
+                    currentPosition = (TextView) findViewById(R.id.current_position);
+                    currentPosition.setText(address);
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
-    private void showProgressDialog(){
-        if(progDialog == null){
+    private void showProgressDialog() {
+        if (progDialog == null) {
             progDialog = new ProgressDialog(this);
         }
         progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -339,24 +410,25 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         progDialog.show();
     }
 
-    private void dissmissProgressDialog(){
-        if(progDialog != null){
+    private void dissmissProgressDialog() {
+        if (progDialog != null) {
             progDialog.dismiss();
         }
     }
 
+
     @Override
-    public void onPoiSearched(PoiResult poiResult, int i) {
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        dissmissProgressDialog();
-
-        if(i == 1000){
-
-        }
     }
 
     @Override
-    public void onPoiItemSearched(PoiItem poiItem, int i) {
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
 
     }
 }
