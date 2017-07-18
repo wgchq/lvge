@@ -25,6 +25,12 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
+import com.zhy.http.okhttp.cookie.CookieJarImpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,9 +41,12 @@ import lvge.com.myapp.mainFragement.ClientFragment;
 import lvge.com.myapp.mainFragement.HomeFragment;
 import lvge.com.myapp.mainFragement.MyFragment;
 import lvge.com.myapp.mainFragement.OrderFragment;
+import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.ui.MenuAdapter;
 import lvge.com.myapp.ui.SlideMenu;
 import lvge.com.myapp.util.BottomNavigationViewHelper;
+import okhttp3.Call;
+import okhttp3.Response;
 
 
 public class MainPageActivity extends Activity {
@@ -97,15 +106,8 @@ public class MainPageActivity extends Activity {
                         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = preferences.edit();
-                                editor.remove("username");
-                                editor.remove("password");
-                                editor.apply();
+                                logout();
 
-
-                                Intent intent = new Intent(MainPageActivity.this, MainActivity.class);
-                                startActivity(intent);
                             }
                         });
                         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -225,5 +227,51 @@ public class MainPageActivity extends Activity {
         mMenu.toggle();
     }
 
+    public void logout(){
+        try {
+
+            OkHttpUtils.get()//get 方法
+                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/logout") //地址
+                    .build()
+                    .execute(new Callback() {
+                        @Override
+                        public Object parseNetworkResponse(Response response, int i) throws Exception {
+                            String string = response.body().string();//获取相应中的内容Json格式
+                            //把json转化成对应对象
+                            //LoginResultModel是和后台返回值类型结构一样的对象
+                            LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                            return result;
+                        }
+
+                        @Override
+                        public void onError(Call call, Exception e, int i) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Object o, int i) {
+                            if (null != o) {
+                                LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
+                                if (result.getOperationResult().getResultCode() == 0 ) {//当返回值为0时可登录
+                                    Toast.makeText(MainPageActivity.this, "注销成功！", Toast.LENGTH_SHORT).show();
+                                    preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.remove("username");
+                                    editor.remove("password");
+                                    editor.apply();
+
+                                    CookieJarImpl cookieJarImpl = (CookieJarImpl)OkHttpUtils.getInstance().getOkHttpClient().cookieJar();
+                                    cookieJarImpl.getCookieStore().removeAll();
+
+                                    Intent intent = new Intent(MainPageActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            }
+                        }
+                    });
+        }catch (Exception e){
+            Toast.makeText(MainPageActivity.this, "注销失败！", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }
