@@ -135,6 +135,7 @@
             tools:ignore="UselessParent">
 
             <TextView
+                android:id="@+id/txt_my_4s_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -148,6 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_alignRight="@+id/txt_my_4s_address"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:drawablePadding="@dimen/text_left_to_img_padding"
