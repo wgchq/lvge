@@ -111,5 +111,6 @@
 
 
     <string name="loading">加载中</string>
+    <string name="title_activity_validation_history">ValidationHistoryActivity</string>
 
 </resources>

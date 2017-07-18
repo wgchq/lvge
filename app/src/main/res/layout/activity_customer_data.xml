@@ -521,7 +521,7 @@
                         android:background="#EFEFF4"
                         tools:ignore="InefficientWeight" />
 
-                    <Button
+                <!--    <Button
                         android:id="@+id/btn_client_send_message"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -529,7 +529,7 @@
                         android:layout_marginRight="10dp"
                         android:background="@color/buttonPrimary"
                         android:text="消息发送"
-                        tools:ignore="HardcodedText" />
+                        tools:ignore="HardcodedText" />-->
 
                     <View
                         android:layout_width="match_parent"

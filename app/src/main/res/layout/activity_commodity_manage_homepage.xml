@@ -12,8 +12,8 @@
         android:layout_height="?attr/actionBarSize"
 
         android:background="@color/colorPrimary"
-        android:gravity="center_vertical"
         android:baselineAligned="false"
+        android:gravity="center_vertical"
         tools:ignore="UselessParent">
 
         <LinearLayout
@@ -24,13 +24,13 @@
             android:weightSum="1">
 
             <ImageView
-                android:layout_width="0dp"
                 android:id="@+id/commodity_manage_homepage_callback"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/activity_horizontal_margin"
+                android:layout_weight="1"
                 android:src="@mipmap/menu_return"
-                tools:ignore="ContentDescription,NestedWeights"
-                android:layout_weight="1" />
+                tools:ignore="ContentDescription,NestedWeights" />
         </LinearLayout>
 
         <LinearLayout
@@ -41,10 +41,10 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="店铺管理"
-                style="@style/system_title_style"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
 
@@ -60,11 +60,25 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/activity_horizontal_margin"
+                android:layout_weight="1"
                 android:src="@mipmap/commodity_nowsgood"
-                tools:ignore="ContentDescription,NestedWeights"
-                android:layout_weight="1" />
+                tools:ignore="ContentDescription,NestedWeights" />
 
         </LinearLayout>
+    </LinearLayout>
+    <!--暂时添加建设中-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:text="@string/hello_blank_fragment" />
     </LinearLayout>
 
     <android.support.design.widget.TabLayout
@@ -107,10 +121,10 @@
 
 
     <android.support.v4.view.ViewPager
+        android:id="@+id/id_commodity_viewpager"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:id="@+id/id_commodity_viewpager"
         tools:ignore="InefficientWeight">
 
     </android.support.v4.view.ViewPager>
