@@ -31,7 +31,6 @@
                 android:hint="请输入关键字"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-
         </LinearLayout>
 
         <Button

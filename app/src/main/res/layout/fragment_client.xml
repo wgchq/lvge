@@ -16,7 +16,7 @@
         tools:layout_editor_absoluteY="0dp">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_shop_management"
+            android:id="@+id/toolbar_fragement_client"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -38,14 +38,82 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
-                android:layout_marginEnd="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:src="@mipmap/ic_search"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/search_edit_frame"
+        android:background="@color/background_gray"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_view"
+            android:iconifiedByDefault="true"
+            android:imeOptions="actionSearch"
+            android:queryHint="请输入车架号">
+
+        </android.support.v7.widget.SearchView>
+    </android.support.design.widget.AppBarLayout>
+
+    <!--
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_client_search_ly"
+            android:orientation="horizontal"
+            tools:ignore="DisableBaselineAlignment,UselessParent">
+
+            <android.support.v7.widget.SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fragment_client_searchview"
+                android:iconifiedByDefault="false"
+                android:queryHint="请输入您要查询的车架号">
+
+            </android.support.v7.widget.SearchView>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:ignore="UselessParent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/customer_search_input"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@mipmap/searcg"
+                    android:drawablePadding="5dp"
+                    android:textSize="16sp"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:hint="请输入关键字"
+                    tools:ignore="HardcodedText,RtlHardcoded" />
+
+            </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索"
+            android:id="@+id/search_customer_button"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            tools:ignore="HardcodedText,RtlHardcoded" />
+    </LinearLayout>
+    -->
     <android.support.design.widget.TabLayout
         android:id="@+id/title"
         android:layout_width="match_parent"
