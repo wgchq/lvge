@@ -45,7 +45,16 @@ public class My4sManagementActivityGson {
     public class marketEntity{
         private String id;
         private String serverPhone;
-        private String sellerID;
+
+        public String getSalerNum() {
+            return salerNum;
+        }
+
+        public void setSalerNum(String salerNum) {
+            this.salerNum = salerNum;
+        }
+
+        private String salerNum;
         private String assistPhone;
         private String address;
         private String notifyDangerPhone;
@@ -120,14 +129,6 @@ public class My4sManagementActivityGson {
 
         public marketEntity(String assistPhone) {
             this.assistPhone = assistPhone;
-        }
-
-        public String getSellerID() {
-            return sellerID;
-        }
-
-        public void setSellerID(String sellerID) {
-            this.sellerID = sellerID;
         }
 
 

@@ -111,7 +111,9 @@
                 android:id="@+id/search_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/mainBackgroundColor"></ListView>
+                android:background="@color/mainBackgroundColor">
+
+            </ListView>
         </LinearLayout>
 
     </FrameLayout>

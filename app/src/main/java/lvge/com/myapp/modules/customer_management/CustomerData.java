@@ -69,7 +69,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
                 finish();
             }
         });
-
+/*
         Button btn_client_send_message = (Button) findViewById(R.id.btn_client_send_message);
 
         btn_client_send_message.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +80,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
                 intent.putExtra("plate_number",str_client_car_plate_number);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
         ImageView call_phone = (ImageView) findViewById(R.id.customer_data_call_phone);

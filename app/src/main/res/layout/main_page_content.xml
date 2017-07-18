@@ -106,10 +106,11 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/tv_validation_type_scan_QR"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawablePadding="@dimen/text_left_to_img_padding"
                         android:drawableLeft="@mipmap/main_page_validation_type_scan_qr"
+                        android:drawablePadding="@dimen/text_left_to_img_padding"
                         android:gravity="center"
                         android:text="@string/validation_type_scan_QR"
                         android:textColor="@color/mainFontColor"
@@ -130,6 +131,7 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/tv_validation_history"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawablePadding="@dimen/text_left_to_img_padding"
@@ -165,6 +167,7 @@
                 android:gravity="center">
 
                 <TextView
+                    android:id="@+id/tv_refund_after_sale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/text_left_to_img_padding"
@@ -182,6 +185,7 @@
                 android:gravity="center">
 
                 <TextView
+                    android:id="@+id/tv_pending_send_goods"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/text_left_to_img_padding"

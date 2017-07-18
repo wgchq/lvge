@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.amap.api.location.AMapLocation;
@@ -48,19 +49,32 @@ import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
+import com.google.gson.Gson;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import lvge.com.myapp.MainActivity;
+import lvge.com.myapp.MainPageActivity;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.AddressModel;
+import lvge.com.myapp.model.LoginResultModel;
+import okhttp3.Response;
 
 public class My4sAddressActivity extends AppCompatActivity implements LocationSource, TextWatcher, AMapLocationListener {
 
     private Double lat;
     private Double lng;
     private String address;
+    private String id;
+    private String serverPhone;
+    private String assistPhone;
+    private String notifyDangerPhone;
+
+
     private TextView getCurentPoistion;
     private TextView currentPosition;
     private Marker attentionMark = null;
@@ -108,8 +122,6 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                 finish();
             }
         });
-
-
         getCurentPoistion = (TextView) findViewById(R.id.my4s_address_textview);
         getCurentPoistion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,16 +132,68 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                 aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(lat, lng)));
                 currentPosition = (TextView) findViewById(R.id.current_position);
                 currentPosition.setText(address);
-
-
             }
         });
 
         lng = Double.parseDouble(intent.getStringExtra("lng"));
         lat = Double.parseDouble(intent.getStringExtra("lat"));
         address = intent.getStringExtra("address");
+        id = intent.getStringExtra("id");
+        serverPhone = intent.getStringExtra("serverPhone");
+        assistPhone = intent.getStringExtra("assistPhone");
+        notifyDangerPhone = intent.getStringExtra("notifyDangerPhone");
+
         final EditText current_position = (EditText) findViewById(R.id.current_position);
 
+        TextView my_4s_address_confirm = (TextView) findViewById(R.id.my_4s_address_confirm);
+        my_4s_address_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OkHttpUtils.get()//get 方法
+                        .url("http://www.lvgew.com/sellerapp/shop4S/update") //地址
+                        .addParams("id", id) //需要传递的参数
+                        .addParams("serverPhone", serverPhone) //需要传递的参数
+                        .addParams("assistPhone", assistPhone) //需要传递的参数
+                        .addParams("notifyDangerPhone", notifyDangerPhone) //需要传递的参数
+                        .addParams("lat", String.valueOf(lat)) //需要传递的参数
+                        .addParams("lng", String.valueOf(lng)) //需要传递的参数
+                        .addParams("address", address) //需要传递的参数
+                        .build()
+                        .execute(new Callback() {//通用的callBack
+                            //从后台获取成功后，对相应进行类型转化
+                            @Override
+                            public Object parseNetworkResponse(Response response, int i) throws Exception {
+
+                                String string = response.body().string();//获取相应中的内容Json格式
+                                //把json转化成对应对象
+                                //LoginResultModel是和后台返回值类型结构一样的对象
+                                LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                                return result;
+                            }
+
+                            @Override
+                            public void onError(okhttp3.Call call, Exception e, int i) {
+
+                            }
+
+                            @Override
+                            public void onResponse(Object object, int i) {
+
+                                //object 是 parseNetworkResponse的返回值
+                                if (null != object) {
+                                    LoginResultModel result = (LoginResultModel) object;//把通用的Object转化成指定的对象
+                                    if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                        Intent intent = new Intent(My4sAddressActivity.this, My4sAddressActivity.class);
+                                        startActivity(intent);
+
+                                    } else {//当没有返回对象时，表示网络没有联通
+                                        Toast.makeText(My4sAddressActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                        });
+            }
+        });
 /*
         final EditText current_position = (EditText) findViewById(R.id.current_position);
         current_position.setOnClickListener(new View.OnClickListener() {
@@ -263,6 +327,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                         String Crossroads = regeocodeResult.getRegeocodeAddress().getTowncode();
                         String Building = regeocodeResult.getRegeocodeAddress().getBuilding();
                         String FormatAddress = regeocodeResult.getRegeocodeAddress().getFormatAddress();
+                        FormatAddress = FormatAddress.replace("。", "");
                         address = FormatAddress;
 
                         currentPosition = (TextView) findViewById(R.id.current_position);
@@ -374,7 +439,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     search_list_view.setVisibility(View.INVISIBLE);
-                    EditText current_position = (EditText) findViewById(R.id.current_position);
+                    //  EditText current_position = (EditText) findViewById(R.id.current_position);
                     lat = adapter.getData().get(position).getLatitude();
                     lng = adapter.getData().get(position).getLongitude();
                     address = adapter.getData().get(position).getText();
