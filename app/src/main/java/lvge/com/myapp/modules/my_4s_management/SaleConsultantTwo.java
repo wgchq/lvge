@@ -382,6 +382,10 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
             map.put("phone", phone);
             map.put("memo", memo);
 
+            if(id != null){
+                map.put("id",id);
+            }
+
             BaseTest bs = new BaseTest();
             String str = bs.imgPut(path, filePaths, map);
             returnMessage(str);
