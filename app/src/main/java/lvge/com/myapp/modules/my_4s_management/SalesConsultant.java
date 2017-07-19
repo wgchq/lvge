@@ -29,6 +29,7 @@ import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.model.SalesConsultantGson;
 import lvge.com.myapp.model.SalesConsultantResultModel;
 import lvge.com.myapp.model.SalesConsutantListViewData;
+import lvge.com.myapp.modules.customer_management.CustomerData;
 import okhttp3.Response;
 
 public class SalesConsultant extends AppCompatActivity {
@@ -104,6 +105,16 @@ public class SalesConsultant extends AppCompatActivity {
             @Override
             public void onSwipeEnd(int i) {
 
+            }
+        });
+
+        customListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(SalesConsultant.this, SaleConsultantTwo.class);
+                String clientId = contentList.get(position).getId();
+                intent.putExtra("id", clientId);
+                startActivity(intent);
             }
         });
 

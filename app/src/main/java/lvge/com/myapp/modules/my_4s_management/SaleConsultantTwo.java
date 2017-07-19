@@ -31,6 +31,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.PostFormBuilder;
+import com.zhy.http.okhttp.callback.BitmapCallback;
 import com.zhy.http.okhttp.callback.Callback;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
@@ -65,6 +66,7 @@ import lvge.com.myapp.MainActivity;
 import lvge.com.myapp.MainPageActivity;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.LoginResultModel;
+import lvge.com.myapp.model.SaleConsultantTwoMode;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -89,6 +91,9 @@ public class SaleConsultantTwo extends AppCompatActivity {
         setContentView(R.layout.activity_sale_consultant_two);
 
         final RelativeLayout sale_consultant_two_iamge = (RelativeLayout) findViewById(R.id.sale_consultant_two_iamge);
+        final EditText et_rname = (EditText) findViewById(R.id.sale_consultant_inputname);
+        final EditText et_phone = (EditText) findViewById(R.id.sale_consultant_inputphone);
+        final EditText et_memo = (EditText) findViewById(R.id.sale_consultant_inputmemo);
         sale_consultant_two_iamgeview = (ImageView) findViewById(R.id.sale_consultant_two_iamgeview);
         TextView sale_consultant_Preservation = (TextView) findViewById(R.id.sale_consultant_Preservation);
 
@@ -104,9 +109,6 @@ public class SaleConsultantTwo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    final EditText et_rname = (EditText) findViewById(R.id.sale_consultant_inputname);
-                    final EditText et_phone = (EditText) findViewById(R.id.sale_consultant_inputphone);
-                    final EditText et_memo = (EditText) findViewById(R.id.sale_consultant_inputmemo);
 
                     //String strBitmap = convertIconToString(sale_consultant_two_iamgeview.getDrawingCache());
                     //   ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -211,6 +213,62 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
                 startActivityForResult(intent, 1);
             }
         });
+
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("id");
+
+        if(id != null ){
+            try {
+                OkHttpUtils.get()//get 方法
+                        .url("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/detail") //地址
+                        .addParams("id", id) //需要传递的参数
+                        .build()
+                        .execute(new Callback() {
+                            @Override
+                            public Object parseNetworkResponse(Response response, int i) throws Exception {
+                                String str = response.body().toString();
+                                SaleConsultantTwoMode result = new Gson().fromJson(str,SaleConsultantTwoMode.class);
+                                return result;
+                            }
+
+                            @Override
+                            public void onError(Call call, Exception e, int i) {
+
+                            }
+
+                            @Override
+                            public void onResponse(Object o, int i) {
+                                if(o !=null){
+                                    SaleConsultantTwoMode result = (SaleConsultantTwoMode)o;
+                                    if(result.getOperationResult().getResultCode() == 0){
+                                        et_rname.setText(result.getSaleConsultantTwomarketEntity().getName());
+                                        et_phone.setText(result.getSaleConsultantTwomarketEntity().getPhone());
+                                        et_memo.setText(result.getSaleConsultantTwomarketEntity().getMemo());
+
+                                        if(result.getSaleConsultantTwomarketEntity().getHeadImg() != null && result.getSaleConsultantTwomarketEntity().getHeadImg() != ""){
+                                            OkHttpUtils.get()
+                                                    .url(result.getSaleConsultantTwomarketEntity().getHeadImg())
+                                                    .build()
+                                                    .execute(new BitmapCallback() {
+                                                        @Override
+                                                        public void onError(Call call, Exception e, int i) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onResponse(Bitmap bitmap, int i) {
+                                                            sale_consultant_two_iamgeview.setImageBitmap(bitmap);
+                                                        }
+                                                    });
+                                        }
+                                    }
+                                }
+                            }
+                        });
+            }catch (Exception e){
+
+            }
+        }
     }
 
     public String getPath(Uri uri) {
