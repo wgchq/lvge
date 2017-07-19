@@ -42,6 +42,10 @@ import lvge.com.myapp.mainFragement.HomeFragment;
 import lvge.com.myapp.mainFragement.MyFragment;
 import lvge.com.myapp.mainFragement.OrderFragment;
 import lvge.com.myapp.model.LoginResultModel;
+import lvge.com.myapp.modules.PendingSendGoods.PendingSendGoodsActivity;
+import lvge.com.myapp.modules.RefundAfterSale.RefundAfterSaleActivity;
+import lvge.com.myapp.modules.ValidationHistory.ValidationHistoryActivity;
+import lvge.com.myapp.modules.ValidationTypeScanQR.ValidationTypeScanQRActivity;
 import lvge.com.myapp.ui.MenuAdapter;
 import lvge.com.myapp.ui.SlideMenu;
 import lvge.com.myapp.util.BottomNavigationViewHelper;
@@ -78,7 +82,7 @@ public class MainPageActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         // 隐藏标题栏
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+      //  requestWindowFeature(Window.FEATURE_NO_TITLE);
         /*// 隐藏状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
@@ -180,6 +184,9 @@ public class MainPageActivity extends Activity {
                         return true;
                     }
                 });
+
+
+
     }
 
 

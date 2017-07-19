@@ -23,16 +23,17 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:navigationIcon="@mipmap/ic_back"
+
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextColor="@color/mainFontColor">
 
             <TextView
+                style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="@string/shop_authentication"
-                style="@style/system_title_style" />
+                android:text="@string/shop_authentication" />
 
         </android.support.v7.widget.Toolbar>
 

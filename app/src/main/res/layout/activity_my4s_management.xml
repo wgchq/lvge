@@ -142,7 +142,6 @@
                 android:layout_marginLeft="10dp"
                 android:text="@string/my_4s_address"
                 tools:ignore="HardcodedText,RtlHardcoded" />
-
             <TextView
                 android:id="@+id/commodity_my4s_address"
                 android:layout_width="wrap_content"
