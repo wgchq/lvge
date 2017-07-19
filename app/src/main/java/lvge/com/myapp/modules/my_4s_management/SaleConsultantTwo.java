@@ -79,6 +79,7 @@ public class SaleConsultantTwo extends AppCompatActivity {
     private String path = null;
     private File file;
     private Bitmap bitmap;
+    private String id;
 
     private ProgressDialog progDialog = null;
 
@@ -215,7 +216,7 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
         });
 
         Intent intent = getIntent();
-        String id = intent.getStringExtra("id");
+        id = intent.getStringExtra("id");
 
         if(id != null ){
             try {
@@ -256,8 +257,9 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
                                                         }
 
                                                         @Override
-                                                        public void onResponse(Bitmap bitmap, int i) {
-                                                            sale_consultant_two_iamgeview.setImageBitmap(bitmap);
+                                                        public void onResponse(Bitmap bitm, int i) {
+                                                            sale_consultant_two_iamgeview.setImageBitmap(bitm);
+                                                            bitmap = bitm;
                                                         }
                                                     });
                                         }
@@ -364,8 +366,13 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
                 Toast.makeText(SaleConsultantTwo.this, "上传成功！", Toast.LENGTH_SHORT).show();
             }
             */
+            if(id == null){
+                String path = "http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save";
+            }else {
+                String path = "http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/update";
+            }
 
-            String path = "http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save";
+
 
             List<String> filePaths = new ArrayList<>();
             filePaths.add(saveBitmap(name));
