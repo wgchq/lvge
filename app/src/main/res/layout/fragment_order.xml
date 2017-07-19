@@ -29,20 +29,96 @@
                 android:text="@string/title_order"
                 style="@style/system_title_style"/>
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/searcg"
+                android:layout_centerInParent="true"
+                android:layout_gravity="end"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/order_management_searcg_frame"
+        android:background="@color/background_gray"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/order_management_search_view"
+            android:iconifiedByDefault="true"
+            android:imeOptions="actionSearch"
+            android:queryHint="请输入车架号">
+
+        </android.support.v7.widget.SearchView>
+    </android.support.design.widget.AppBarLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-
         android:gravity="center"
-        android:layout_height="match_parent">
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        tools:ignore="ExtraText"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/order_manage_homepage_tablayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/hello_blank_fragment" />
+            android:background="@android:color/white"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="#ff0000"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="#ff0000"
+            app:tabTextColor="#cccccc">
+
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="全部"
+                tools:ignore="HardcodedText" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/tabItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="待发货"
+                tools:ignore="HardcodedText" />
+
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="派送中"
+                tools:ignore="HardcodedText" />
+
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已完成"
+                tools:ignore="HardcodedText" />
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="退款退货"
+            tools:ignore="HardcodedText" />
+
+        </android.support.design.widget.TabLayout>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/id_commodity_viewpager"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:ignore="InefficientWeight">
+
+        </android.support.v4.view.ViewPager>
     </LinearLayout>
 
 

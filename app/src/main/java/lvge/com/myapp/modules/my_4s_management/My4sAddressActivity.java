@@ -150,7 +150,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
             @Override
             public void onClick(View v) {
                 OkHttpUtils.get()//get 方法
-                        .url("http://www.lvgew.com/sellerapp/shop4S/update") //地址
+                        .url("http://www.lvgew.com/obdcarmarket/sellerapp/shop4S/update") //地址
                         .addParams("id", id) //需要传递的参数
                         .addParams("serverPhone", serverPhone) //需要传递的参数
                         .addParams("assistPhone", assistPhone) //需要传递的参数

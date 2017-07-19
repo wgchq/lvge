@@ -176,13 +176,13 @@ public class My4sManagementActivity extends AppCompatActivity {
 
                 Bundle bundle = new Bundle();
                 //传递name参数为tinyphp
-                bundle.putString("id", result.getMarketEntity().getId());
-                bundle.putString("lng", result.getMarketEntity().getLng());
-                bundle.putString("lat", result.getMarketEntity().getLat());
-                bundle.putString("address", result.getMarketEntity().getAddress());
-                bundle.putString("serverPhone", result.getMarketEntity().getServerPhone());
-                bundle.putString("assistPhone", result.getMarketEntity().getAssistPhone());
-                bundle.putString("notifyDangerPhone", result.getMarketEntity().getNotifyDangerPhone());
+                bundle.putString("id",id);
+                bundle.putString("lng",lng);
+                bundle.putString("lat", lat);
+                bundle.putString("address",address);
+                bundle.putString("serverPhone", commodity_my4s_setting_inputnumber.getText().toString());
+                bundle.putString("assistPhone",  commodity_my4s_setting_inputsosnumber.getText().toString());
+                bundle.putString("notifyDangerPhone",  commodity_my4s_setting_inputInsurancenumber.getText().toString());
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
