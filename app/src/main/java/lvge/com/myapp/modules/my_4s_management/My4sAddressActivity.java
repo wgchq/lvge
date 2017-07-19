@@ -155,8 +155,8 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                         .addParams("serverPhone", serverPhone) //需要传递的参数
                         .addParams("assistPhone", assistPhone) //需要传递的参数
                         .addParams("notifyDangerPhone", notifyDangerPhone) //需要传递的参数
-                        .addParams("lat", String.valueOf(lat)) //需要传递的参数
-                        .addParams("lng", String.valueOf(lng)) //需要传递的参数
+                        .addParams("lat",Double.toString(lat)) //需要传递的参数
+                        .addParams("lng", Double.toString(lng)) //需要传递的参数
                         .addParams("address", address) //需要传递的参数
                         .build()
                         .execute(new Callback() {//通用的callBack
@@ -183,7 +183,8 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                                 if (null != object) {
                                     LoginResultModel result = (LoginResultModel) object;//把通用的Object转化成指定的对象
                                     if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
-                                        Intent intent = new Intent(My4sAddressActivity.this, My4sAddressActivity.class);
+                                        Intent intent = new Intent(My4sAddressActivity.this, My4sManagementActivity.class);
+                                        Toast.makeText(My4sAddressActivity.this,"更新成功",Toast.LENGTH_SHORT).show();
                                         startActivity(intent);
 
                                     } else {//当没有返回对象时，表示网络没有联通

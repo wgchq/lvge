@@ -10,7 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import lvge.com.myapp.MainPageActivity;
 import lvge.com.myapp.R;
+import lvge.com.myapp.modules.PendingSendGoods.PendingSendGoodsActivity;
+import lvge.com.myapp.modules.RefundAfterSale.RefundAfterSaleActivity;
+import lvge.com.myapp.modules.ValidationHistory.ValidationHistoryActivity;
+import lvge.com.myapp.modules.ValidationTypeScanQR.ValidationTypeScanQRActivity;
 import lvge.com.myapp.modules.car_data_management.CarDataManagementActivity;
 import lvge.com.myapp.modules.commodity_management.CommodityManageHomepage;
 import lvge.com.myapp.modules.coupon.CouponActivity;
@@ -118,6 +123,42 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        TextView tv_validation_type_scan_QR = (TextView)view.findViewById(R.id.tv_validation_type_scan_QR);
+        tv_validation_type_scan_QR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(getActivity(), ValidationTypeScanQRActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView tv_validation_history = (TextView)view.findViewById(R.id.tv_validation_history);
+        tv_validation_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(getActivity(), ValidationHistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        TextView tv_refund_after_sale = (TextView)view.findViewById(R.id.tv_refund_after_sale);
+        tv_refund_after_sale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(getActivity(), RefundAfterSaleActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView tv_pending_send_goods = (TextView)view.findViewById(R.id.tv_pending_send_goods);
+        tv_pending_send_goods.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(getActivity(), PendingSendGoodsActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
