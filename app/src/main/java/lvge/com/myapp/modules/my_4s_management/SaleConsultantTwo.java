@@ -116,7 +116,7 @@ public class SaleConsultantTwo extends AppCompatActivity {
                     //  bitmap.compress(Bitmap.CompressFormat.JPEG,100,bos);
                     //  byte[] data = bos.toByteArray();
                     //  String strBitmap = new String(data);
-                    file = new File(saveBitmap(et_rname.getText().toString()));
+                    file = new File(saveBitmap("1"));
                     // FileOutputStream fo = new FileOutputStream(file);
                     // Map<String,File> fileMap = new HashMap<String, File>();
                     //fileMap.put("headImg",file);
