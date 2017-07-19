@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,7 +49,7 @@ public class My4sManagementActivity extends AppCompatActivity {
         final EditText commodity_my4s_setting_inputsosnumber = (EditText) findViewById(R.id.commodity_my4s_setting_inputsosnumber);
         final EditText commodity_my4s_setting_inputInsurancenumber = (EditText) findViewById(R.id.commodity_my4s_setting_inputInsurancenumber);
         RelativeLayout my4s_management_to_salesconsultant = (RelativeLayout) findViewById(R.id.my4s_management_to_salesconsultant);
-        RelativeLayout my4s_management_to_address = (RelativeLayout) findViewById(R.id.my4s_management_to_address);
+        LinearLayout my4s_management_to_address = (LinearLayout) findViewById(R.id.my4s_management_to_address);
 
         try {
 
