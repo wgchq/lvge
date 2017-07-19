@@ -62,7 +62,8 @@ public class ClientFragment extends Fragment {
 
         final View view = inflater.inflate(R.layout.fragment_client, container, false);
         adapter = new ClientsAdapter(getActivity());
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.title);
+        final  TabLayout tabLayout = (TabLayout) view.findViewById(R.id.title);
+
 
         final AppBarLayout appBarLayout = (AppBarLayout)view.findViewById(R.id.search_edit_frame);
         final SearchView search_view = (SearchView)view.findViewById(R.id.search_view);
@@ -72,6 +73,10 @@ public class ClientFragment extends Fragment {
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                TabLayout.Tab tab = tabLayout.getTabAt(0);
+                if(tab != null){
+                    tab.select();
+                }
                 search(query,view);
                 appBarLayout.setVisibility(view.GONE);
                 search_show = false;

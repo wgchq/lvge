@@ -69,10 +69,10 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@mipmap/phone"
                         android:layout_alignParentRight="true"
-                        android:text="1234569999901"
                         android:layout_centerVertical="true"
+                        android:text="1234569999901"
                         android:layout_centerInParent="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center|center_vertical"
                         android:layout_marginLeft="10dp"
                         tools:ignore="ContentDescription,HardcodedText,RtlHardcoded" />
 
