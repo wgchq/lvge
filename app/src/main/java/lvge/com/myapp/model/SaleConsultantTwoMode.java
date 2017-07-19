@@ -25,13 +25,13 @@ public class SaleConsultantTwoMode {
 
     private String pageResult;
 
-    public SaleConsultantTwomarketEntity getSaleConsultantTwomarketEntity() {
-        return saleConsultantTwomarketEntity;
+    public SaleConsultantTwomarketEntity getMarketEntity() {
+        return marketEntity;
     }
 
-    public void setSaleConsultantTwomarketEntity(SaleConsultantTwomarketEntity saleConsultantTwomarketEntity) {
-        this.saleConsultantTwomarketEntity = saleConsultantTwomarketEntity;
+    public void setMarketEntity(SaleConsultantTwomarketEntity marketEntity) {
+        this.marketEntity = marketEntity;
     }
 
-    private SaleConsultantTwomarketEntity saleConsultantTwomarketEntity;
+    private SaleConsultantTwomarketEntity marketEntity;
 }

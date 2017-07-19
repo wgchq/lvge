@@ -226,7 +226,7 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
                         .execute(new Callback() {
                             @Override
                             public Object parseNetworkResponse(Response response, int i) throws Exception {
-                                String str = response.body().toString();
+                                String str = response.body().string();
                                 SaleConsultantTwoMode result = new Gson().fromJson(str,SaleConsultantTwoMode.class);
                                 return result;
                             }
@@ -241,13 +241,13 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
                                 if(o !=null){
                                     SaleConsultantTwoMode result = (SaleConsultantTwoMode)o;
                                     if(result.getOperationResult().getResultCode() == 0){
-                                        et_rname.setText(result.getSaleConsultantTwomarketEntity().getName());
-                                        et_phone.setText(result.getSaleConsultantTwomarketEntity().getPhone());
-                                        et_memo.setText(result.getSaleConsultantTwomarketEntity().getMemo());
+                                        et_rname.setText(result.getMarketEntity().getName());
+                                        et_phone.setText(result.getMarketEntity().getPhone());
+                                        et_memo.setText(result.getMarketEntity().getMemo());
 
-                                        if(result.getSaleConsultantTwomarketEntity().getHeadImg() != null && result.getSaleConsultantTwomarketEntity().getHeadImg() != ""){
+                                        if(result.getMarketEntity().getHeadImg() != null && result.getMarketEntity().getHeadImg() != ""){
                                             OkHttpUtils.get()
-                                                    .url(result.getSaleConsultantTwomarketEntity().getHeadImg())
+                                                    .url(result.getMarketEntity().getHeadImg())
                                                     .build()
                                                     .execute(new BitmapCallback() {
                                                         @Override
