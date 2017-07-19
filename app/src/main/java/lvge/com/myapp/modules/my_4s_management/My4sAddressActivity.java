@@ -144,7 +144,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         notifyDangerPhone = intent.getStringExtra("notifyDangerPhone");
 
         final EditText current_position = (EditText) findViewById(R.id.current_position);
-
+        current_position.addTextChangedListener(this);
         TextView my_4s_address_confirm = (TextView) findViewById(R.id.my_4s_address_confirm);
         my_4s_address_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +155,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                         .addParams("serverPhone", serverPhone) //需要传递的参数
                         .addParams("assistPhone", assistPhone) //需要传递的参数
                         .addParams("notifyDangerPhone", notifyDangerPhone) //需要传递的参数
-                        .addParams("lat",Double.toString(lat)) //需要传递的参数
+                        .addParams("lat", Double.toString(lat)) //需要传递的参数
                         .addParams("lng", Double.toString(lng)) //需要传递的参数
                         .addParams("address", address) //需要传递的参数
                         .build()
@@ -184,7 +184,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                                     LoginResultModel result = (LoginResultModel) object;//把通用的Object转化成指定的对象
                                     if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
                                         Intent intent = new Intent(My4sAddressActivity.this, My4sManagementActivity.class);
-                                        Toast.makeText(My4sAddressActivity.this,"更新成功",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(My4sAddressActivity.this, "更新成功", Toast.LENGTH_SHORT).show();
                                         startActivity(intent);
 
                                     } else {//当没有返回对象时，表示网络没有联通
@@ -450,11 +450,16 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
 
                     attentionMark = aMap.addMarker(getMarkerOptions(address));
                     aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
-
+                    if (mLocationClient != null) {
+                        mLocationClient.onDestroy();
+                        mLocationClient = null;
+                        mLocationOption = null;
+                    }
                     //将地图移动到定位点
                     aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(lat, lng)));
                     currentPosition = (TextView) findViewById(R.id.current_position);
                     currentPosition.setText(address);
+
                 }
             });
 
@@ -485,7 +490,11 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+        if (mLocationClient != null) {
+            mLocationClient.onDestroy();
+            mLocationClient = null;
+            mLocationOption = null;
+        }
     }
 
     @Override
