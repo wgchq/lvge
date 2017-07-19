@@ -11,7 +11,6 @@
         android:id="@+id/toolbar_main_page"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-
         android:gravity="center_vertical"
         android:baselineAligned="false"
         tools:ignore="UselessParent">
@@ -66,12 +65,14 @@
 
                     <TextView
                         android:id="@+id/sales_consultant_liatview_number"
-                        android:layout_width="wrap_content"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@mipmap/phone"
+                        android:drawableLeft="@mipmap/phone"
                         android:layout_alignParentRight="true"
-                        android:text="12345678901"
+                        android:text="1234569999901"
                         android:layout_centerVertical="true"
+                        android:layout_centerInParent="true"
+                        android:gravity="center_vertical"
                         android:layout_marginLeft="10dp"
                         tools:ignore="ContentDescription,HardcodedText,RtlHardcoded" />
 
@@ -88,9 +89,12 @@
                 <TextView
                     android:id="@+id/sales_consultant_liatview_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="12345678901"
                     android:textSize="16sp"
+                    android:textColor="#D1D1D1"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     tools:ignore="ContentDescription,HardcodedText,ObsoleteLayoutParam,RtlHardcoded" />

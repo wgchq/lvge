@@ -222,9 +222,10 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1)
+        if (requestCode == 1 && data != null)
         {
-            imageUri = data.getData();
+                imageUri = data.getData();
+
         }
         if (imageUri != null) {
             try {
