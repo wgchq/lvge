@@ -97,6 +97,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:background="@mipmap/gray_right"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
