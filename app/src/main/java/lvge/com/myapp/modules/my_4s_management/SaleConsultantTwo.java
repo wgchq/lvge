@@ -113,8 +113,9 @@ public class SaleConsultantTwo extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SaleConsultantTwo.this, SalesConsultant.class);
-                startActivity(intent);
+               // Intent intent = new Intent(SaleConsultantTwo.this, SalesConsultant.class);
+               // startActivity(intent);
+                finish();
             }
         });
 
@@ -479,8 +480,9 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
             switch (msg.what){
                 case 0:
                     Toast.makeText(SaleConsultantTwo.this,"上传成功！",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(SaleConsultantTwo.this, SalesConsultant.class);
-                    startActivity(intent);
+                   // Intent intent = new Intent(SaleConsultantTwo.this, SalesConsultant.class);
+                   // startActivity(intent);
+                    finish();
                     break;
                 case 1:
                     Toast.makeText(SaleConsultantTwo.this,"上传失败！",Toast.LENGTH_LONG).show();

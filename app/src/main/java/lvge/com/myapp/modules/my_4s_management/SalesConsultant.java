@@ -57,8 +57,9 @@ public class SalesConsultant extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SalesConsultant.this, My4sManagementActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(SalesConsultant.this, My4sManagementActivity.class);
+               // startActivity(intent);
+                finish();
             }
         });
 

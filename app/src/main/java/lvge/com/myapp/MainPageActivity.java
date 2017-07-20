@@ -93,10 +93,7 @@ public class MainPageActivity extends Activity {
 
         TextView nav_header_main_shop_name = (TextView) findViewById(R.id.nav_header_main_shop_name);
         final Bundle bundle = getIntent().getExtras();
-
-
         nav_header_main_shop_name.setText(bundle.getString("name"));
-
 
 
         listView = (ListView) findViewById(R.id.lv_menus);
