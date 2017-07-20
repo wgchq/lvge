@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
@@ -50,17 +51,21 @@ public class SalesConsultant extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sales_consultant);
 
-        ImageView sale_consultant_back = (ImageView) findViewById(R.id.sale_consultant_back);
-        TextView sale_consultant_toadd = (TextView) findViewById(R.id.sale_consultant_toadd);
-        customListView = (SwipeMenuListView) findViewById(R.id.sales_consultant_listview);
-
-        sale_consultant_back.setOnClickListener(new View.OnClickListener() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_4s_sales_consultant);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SalesConsultant.this, My4sManagementActivity.class);
                 startActivity(intent);
             }
         });
+
+       // ImageView sale_consultant_back = (ImageView) findViewById(R.id.sale_consultant_back);
+        TextView sale_consultant_toadd = (TextView) findViewById(R.id.sale_consultant_toadd);
+        customListView = (SwipeMenuListView) findViewById(R.id.sales_consultant_listview);
+
 
         sale_consultant_toadd.setOnClickListener(new View.OnClickListener() {
             @Override

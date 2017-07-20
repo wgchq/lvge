@@ -111,7 +111,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(My4sAddressActivity.this, SalesConsultant.class);
+                Intent intent = new Intent(My4sAddressActivity.this, My4sManagementActivity.class);
                 startActivity(intent);
             }
         });

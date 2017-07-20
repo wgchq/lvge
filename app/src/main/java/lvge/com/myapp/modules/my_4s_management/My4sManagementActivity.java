@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -41,7 +42,20 @@ public class My4sManagementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my4s_management);
 
-        ImageView my4s_manage_back = (ImageView) findViewById(R.id.my4s_management_back);   //返回图片
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_4s_management);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent(My4sManagementActivity.this, MainPageActivity.class);
+               startActivity(intent);
+               // finish();
+            }
+        });
+
+       // ImageView my4s_manage_back = (ImageView) findViewById(R.id.my4s_management_back);   //返回图片
         TextView my4s_manage_finish = (TextView) findViewById(R.id.my4s_finish);
         final TextView commodity_my4s_sales_consultant = (TextView) findViewById(R.id.commodity_my4s_sales_consultant);
         final TextView commodity_my4s_address = (TextView) findViewById(R.id.commodity_my4s_address);
@@ -106,13 +120,6 @@ public class My4sManagementActivity extends AppCompatActivity {
             Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
         }
 
-        my4s_manage_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(My4sManagementActivity.this, MainPageActivity.class);
-                startActivity(intent);
-            }
-        });
 
         my4s_manage_finish.setOnClickListener(new View.OnClickListener() {
             @Override

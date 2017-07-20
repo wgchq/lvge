@@ -18,6 +18,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
@@ -95,9 +96,21 @@ public class SaleConsultantTwo extends AppCompatActivity {
         final EditText et_memo = (EditText) findViewById(R.id.sale_consultant_inputmemo);
         sale_consultant_two_iamgeview = (ImageView) findViewById(R.id.sale_consultant_two_iamgeview);
         TextView sale_consultant_Preservation = (TextView) findViewById(R.id.sale_consultant_Preservation);
-
+/**
         ImageView sale_consultant_back = (ImageView) findViewById(R.id.sale_consultant_back);
         sale_consultant_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SaleConsultantTwo.this, SalesConsultant.class);
+                startActivity(intent);
+            }
+        });
+ **/
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_4s_sales_consultant_two);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SaleConsultantTwo.this, SalesConsultant.class);
@@ -466,6 +479,8 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
             switch (msg.what){
                 case 0:
                     Toast.makeText(SaleConsultantTwo.this,"上传成功！",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(SaleConsultantTwo.this, SalesConsultant.class);
+                    startActivity(intent);
                     break;
                 case 1:
                     Toast.makeText(SaleConsultantTwo.this,"上传失败！",Toast.LENGTH_LONG).show();

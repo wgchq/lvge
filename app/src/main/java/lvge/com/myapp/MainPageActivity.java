@@ -93,7 +93,11 @@ public class MainPageActivity extends Activity {
 
         TextView nav_header_main_shop_name = (TextView) findViewById(R.id.nav_header_main_shop_name);
         final Bundle bundle = getIntent().getExtras();
+
+
         nav_header_main_shop_name.setText(bundle.getString("name"));
+
+
 
         listView = (ListView) findViewById(R.id.lv_menus);
         menuAdapter = new MenuAdapter(this, getMenuListItems());
@@ -198,10 +202,10 @@ public class MainPageActivity extends Activity {
         }
         Bundle bundle = getIntent().getExtras();
 
-        Bundle bud = new Bundle();
-        bud.putString("name", bundle.getString("name"));
-        homeFragment.setArguments(bud);
 
+            Bundle bud = new Bundle();
+            bud.putString("name", bundle.getString("name"));
+            homeFragment.setArguments(bud);
 
         transaction.add(R.id.fragment_content, homeFragment);
         transaction.commit();

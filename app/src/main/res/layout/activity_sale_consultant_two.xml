@@ -7,67 +7,48 @@
     tools:context="lvge.com.myapp.modules.my_4s_management.SalesConsultant"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/toolbar_main_page"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
 
-        android:background="@color/colorPrimary"
-        android:gravity="center_vertical"
-        android:baselineAligned="false"
-        tools:ignore="UselessParent">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/sale_consultant_back"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:src="@mipmap/menu_return"
-                tools:ignore="ContentDescription,NestedWeights"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="horizontal">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_4s_sales_consultant_two"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/ic_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="销售顾问"
-                android:layout_gravity="center"
                 style="@style/system_title_style"
-                tools:ignore="HardcodedText,SpUsage" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="销售顾问"
+                tools:ignore="HardcodedText" />
+
+            <TextView
                 android:id="@+id/sale_consultant_Preservation"
                 style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="end"
+                android:layout_margin="@dimen/activity_horizontal_margin"
                 android:text="保存"
-                android:layout_gravity="center"
-                tools:ignore="HardcodedText,SpUsage" />
-        </LinearLayout>
-    </LinearLayout>
+                android:textColor="@color/mainFontColor"
+                tools:ignore="HardcodedText" />
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
 
     <LinearLayout
         android:id="@+id/fragment_content"
