@@ -4,8 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="lvge.com.myapp.modules.Order_management.Order_management_Homepage"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="lvge.com.myapp.modules.Order_management.Order_management_Homepage">
+    <!--在正在建设中的提示-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_blank_fragment" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/toolbar_main_page"
@@ -13,8 +23,8 @@
         android:layout_height="?attr/actionBarSize"
 
         android:background="@color/colorPrimary"
-        android:gravity="center_vertical"
         android:baselineAligned="false"
+        android:gravity="center_vertical"
         tools:ignore="UselessParent">
 
         <LinearLayout
@@ -25,13 +35,13 @@
             android:weightSum="1">
 
             <ImageView
+                android:id="@+id/order_management_back"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/activity_horizontal_margin"
-                android:id="@+id/order_management_back"
+                android:layout_weight="1"
                 android:src="@mipmap/menu_return"
-                tools:ignore="ContentDescription,NestedWeights"
-                android:layout_weight="1" />
+                tools:ignore="ContentDescription,NestedWeights" />
         </LinearLayout>
 
         <LinearLayout
@@ -42,10 +52,10 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我的订单"
-                style="@style/system_title_style"
                 tools:ignore="HardcodedText,SpUsage" />
         </LinearLayout>
 
@@ -57,29 +67,29 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/order_management_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/activity_horizontal_margin"
-                android:id="@+id/order_management_search"
+                android:layout_weight="1"
                 android:src="@mipmap/searcg"
-                tools:ignore="ContentDescription,InefficientWeight,NestedWeights"
-                android:layout_weight="1" />
+                tools:ignore="ContentDescription,InefficientWeight,NestedWeights" />
 
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/commodity_lineralayouttop2_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/commodity_lineralayouttop2_1"
-        android:orientation="horizontal"
         android:baselineAligned="false"
+        android:orientation="horizontal"
         tools:ignore="UselessParent">
 
         <LinearLayout
+            android:id="@+id/order_management_ly1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/order_management_ly1"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:gravity="center"
@@ -88,9 +98,9 @@
             tools:ignore="InefficientWeight">
 
             <TextView
+                android:id="@+id/order_management_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/order_management_all"
                 android:gravity="center"
                 android:text="全部"
                 android:textColor="@color/buttonTextColor"
@@ -99,22 +109,22 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/order_management_ly2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/order_management_ly2"
-            tools:ignore="UselessLeaf"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:clickable="true"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dip"
-            android:saveEnabled="false">
+            android:saveEnabled="false"
+            tools:ignore="UselessLeaf">
 
             <TextView
+                android:id="@+id/order_management_Shipmentpending"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/order_management_Shipmentpending"
                 android:gravity="center"
                 android:text="待发货"
                 android:textColor="@color/buttonTextColor"
@@ -123,9 +133,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/order_management_ly3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/order_management_ly3"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:focusable="false"
@@ -134,9 +144,9 @@
             android:padding="10dip">
 
             <TextView
+                android:id="@+id/order_management_indelivery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/order_management_indelivery"
                 android:gravity="center"
                 android:text="派送中"
                 android:textColor="@color/buttonTextColor"
@@ -144,9 +154,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/order_management_ly4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/order_management_ly4"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:focusable="false"
@@ -155,9 +165,9 @@
             android:padding="10dip">
 
             <TextView
+                android:id="@+id/order_management_finish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/order_management_finish"
                 android:gravity="center"
                 android:text="已完成"
                 android:textColor="@color/buttonTextColor"
@@ -166,9 +176,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/order_management_ly5"
             android:layout_width="98dp"
             android:layout_height="wrap_content"
-            android:id="@+id/order_management_ly5"
             android:background="@color/colorPrimary"
             android:focusable="false"
             android:gravity="center"
@@ -176,9 +186,9 @@
             android:padding="10dip">
 
             <TextView
+                android:id="@+id/order_management_refund"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/order_management_refund"
                 android:gravity="center"
                 android:text="退款退货"
                 android:textColor="@color/buttonTextColor"
@@ -188,18 +198,18 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/id_tab_line"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:id="@+id/id_tab_line"
         android:background="@mipmap/vpi__tab_selected_pressed_holo"
         tools:ignore="ContentDescription" />
 
 
     <android.support.v4.view.ViewPager
+        android:id="@+id/order_management_viewpager"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:id="@+id/order_management_viewpager"
         tools:ignore="InefficientWeight">
 
     </android.support.v4.view.ViewPager>

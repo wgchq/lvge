@@ -256,8 +256,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         }
         //初始化定位
         mLocationClient = new AMapLocationClient(this);
-        //初始化定位参数
-        mLocationOption = new AMapLocationClientOption();
+
         //设置定位回调监听
 /*
         mLocationClient.setLocationListener(this);
@@ -274,6 +273,8 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
             currentPosition = (TextView) findViewById(R.id.current_position);
             currentPosition.setText(address);
         }
+        //初始化定位参数
+        mLocationOption = new AMapLocationClientOption();
         //设置定位模式为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
         //设置定位间隔,单位毫秒,默认为2000ms
@@ -452,9 +453,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                     attentionMark = aMap.addMarker(getMarkerOptions(address));
                     aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
                     if (mLocationClient != null) {
-                        mLocationClient.onDestroy();
-                        mLocationClient = null;
-                        mLocationOption = null;
+                        mLocationClient.stopLocation();
                     }
                     //将地图移动到定位点
                     aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(lat, lng)));
@@ -492,9 +491,8 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         if (mLocationClient != null) {
-            mLocationClient.onDestroy();
-            mLocationClient = null;
-            mLocationOption = null;
+            mLocationClient.stopLocation();
+
         }
     }
 

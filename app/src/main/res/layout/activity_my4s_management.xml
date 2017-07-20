@@ -127,11 +127,13 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/my4s_management_to_address"
             android:layout_width="match_parent"
             android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
             android:background="@drawable/edit_text_shape"
+            android:gravity="center_vertical"
             tools:ignore="UselessParent">
 
             <TextView
@@ -142,21 +144,28 @@
                 android:layout_marginLeft="10dp"
                 android:text="@string/my_4s_address"
                 tools:ignore="HardcodedText,RtlHardcoded" />
-            <TextView
-                android:id="@+id/commodity_my4s_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_alignRight="@+id/txt_my_4s_address"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:drawablePadding="@dimen/text_left_to_img_padding"
-                android:drawableRight="@mipmap/gray_right"
-                android:hint="未设置"
-                tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp" />
 
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/commodity_my4s_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:drawablePadding="@dimen/text_left_to_img_padding"
+                    android:drawableRight="@mipmap/gray_right"
+                    android:hint="未设置"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
