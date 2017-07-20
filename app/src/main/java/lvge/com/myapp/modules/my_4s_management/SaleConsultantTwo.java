@@ -76,11 +76,9 @@ public class SaleConsultantTwo extends AppCompatActivity {
     public static final int SHOW_PICTURE = 2;
     public ImageView sale_consultant_two_iamgeview=null;
     private Uri imageUri = null;
-    private String path = null;
     private File file;
-    private Bitmap bitmap;
     private String id;
-
+    private Bitmap bitmap;
     private ProgressDialog progDialog = null;
 
     private static SaleConsultantTwo parent;
@@ -102,7 +100,8 @@ public class SaleConsultantTwo extends AppCompatActivity {
         sale_consultant_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(SaleConsultantTwo.this, SalesConsultant.class);
+                startActivity(intent);
             }
         });
 
@@ -116,23 +115,28 @@ public class SaleConsultantTwo extends AppCompatActivity {
                     //  bitmap.compress(Bitmap.CompressFormat.JPEG,100,bos);
                     //  byte[] data = bos.toByteArray();
                     //  String strBitmap = new String(data);
-                    file = new File(saveBitmap("1"));
+                   // file = new File(saveBitmap("1"));
                     // FileOutputStream fo = new FileOutputStream(file);
                     // Map<String,File> fileMap = new HashMap<String, File>();
                     //fileMap.put("headImg",file);
-                    if (!file.exists()) {
-                        Toast.makeText(SaleConsultantTwo.this, "图片错误！", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                  //  if (!file.exists()) {
+                   //     Toast.makeText(SaleConsultantTwo.this, "图片错误！", Toast.LENGTH_SHORT).show();
+                  //      return;
+                 //   }
+
+                    sale_consultant_two_iamgeview.setDrawingCacheEnabled(true);
+                    bitmap = sale_consultant_two_iamgeview.getDrawingCache();
+
                     showProgressDialog();
 
                      new Thread() {
                         public void run() {
                             try {
                                // showProgressDialog();
-                                post_str(et_rname.getText().toString(), et_phone.getText().toString(), et_memo.getText().toString(), saveBitmap(et_rname.getText().toString()));
-                            } catch (IOException e) {
+                                post_str(et_rname.getText().toString(), et_phone.getText().toString(), et_memo.getText().toString());
+                                } catch ( Exception e) {
                                 e.printStackTrace();
+                                dissmissProgressDialog();
                             }
                         }
                     }.start();
@@ -259,7 +263,6 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
                                                         @Override
                                                         public void onResponse(Bitmap bitm, int i) {
                                                             sale_consultant_two_iamgeview.setImageBitmap(bitm);
-                                                            bitmap = bitm;
                                                         }
                                                     });
                                         }
@@ -295,11 +298,10 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
                     cursor.moveToFirst();
                     String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
                     // file = new File(path);
-                    bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                   Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
 
                     if (bitmap != null) {
                         sale_consultant_two_iamgeview.setImageBitmap(bitmap);
-
                     }
                 }
 
@@ -310,12 +312,29 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
     }
 
 
-    private String saveBitmap(String strfilename) throws IOException {
+    private String saveBitmap() throws IOException {
         File sd = Environment.getExternalStorageDirectory();
         boolean can_write = sd.canWrite();
 
         // Bitmap bitm = convertViewToBitMap(sale_consultant_two_iamgeview);
         String strPath = Environment.getExternalStorageDirectory().toString() + "/save";
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,baos);
+
+        if(baos.toByteArray().length/1024 >500){
+            int option = 90;
+            while (baos.toByteArray().length/1024 >500){
+                baos.reset();
+                bitmap.compress(Bitmap.CompressFormat.PNG,option,baos);
+                option -= 10;
+            }
+            ByteArrayInputStream isbm = new ByteArrayInputStream(baos.toByteArray());
+            bitmap = BitmapFactory.decodeStream(isbm,null,null);
+
+            isbm.close();
+        }
+        baos.close();
 
         try {
             File desDir = new File(strPath);
@@ -323,10 +342,13 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
                 desDir.mkdir();
             }
 
-            File imageFile = new File(strPath + "/" + strfilename + ".PNG");
+            File imageFile = new File(strPath + "/1.PNG");
+            if(imageFile.exists()){
+                imageFile.delete();
+            }
             imageFile.createNewFile();
             FileOutputStream fos = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 50, fos);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
             fos.flush();
             fos.close();
         } catch (FileNotFoundException e) {
@@ -334,10 +356,10 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return strPath + "/" + strfilename + ".PNG";
+        return strPath + "/1.PNG";
     }
 
-    private void post_str(String name, String phone, String memo, String strpath) {
+    private void post_str(String name, String phone, String memo) {
 
         try {
             /*
@@ -366,16 +388,18 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
                 Toast.makeText(SaleConsultantTwo.this, "上传成功！", Toast.LENGTH_SHORT).show();
             }
             */
+
+            String path;
             if(id == null){
-                String path = "http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save";
+                 path = "http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save";
             }else {
-                String path = "http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/update";
+                 path = "http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/update";
             }
 
 
 
             List<String> filePaths = new ArrayList<>();
-            filePaths.add(saveBitmap(name));
+            filePaths.add(saveBitmap());
 
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("name", name);
@@ -390,23 +414,22 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
             String str = bs.imgPut(path, filePaths, map);
             returnMessage(str);
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+            returnMessage("error");
         }
     }
 
     private void returnMessage(String string) {
+        Message msg = new Message();
+        if(string.equals("error")){
+            msg.what = 1;
+            mHander.sendMessage(msg);
+            return;
+        }
 
         LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
-        Message msg = new Message();
+
         if(result.getOperationResult().getResultCode() == 0){
 
             msg.what = 0;
@@ -439,6 +462,7 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
     Handler mHander = new Handler() {
         public void handleMessage(Message msg){
             dissmissProgressDialog();
+            sale_consultant_two_iamgeview.setDrawingCacheEnabled(false);
             switch (msg.what){
                 case 0:
                     Toast.makeText(SaleConsultantTwo.this,"上传成功！",Toast.LENGTH_LONG).show();

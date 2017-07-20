@@ -49,7 +49,7 @@ public class ClientFragment extends Fragment {
     private LoadListView listview;
     ClientsAdapter adapter;
     private int count = 0;
-
+     String status = "0";
     private boolean search_show = false;
 
     public ClientFragment() {
@@ -96,7 +96,7 @@ public class ClientFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 try {
-                    String status = "0";
+
                     switch (tab.getPosition()) {
                         case 0:
                              status = "0";//所有
@@ -161,6 +161,7 @@ public class ClientFragment extends Fragment {
                                                                         .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                                                                         .addParams("pageIndex", Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1)) //需要传递的参数
                                                                         .addParams("pageSize", "10")
+                                                                        .addParams("status",status)
                                                                         .build()
                                                                         .execute(new Callback() {//通用的callBack
 

@@ -57,7 +57,8 @@ public class SalesConsultant extends AppCompatActivity {
         sale_consultant_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(SalesConsultant.this, My4sManagementActivity.class);
+                startActivity(intent);
             }
         });
 

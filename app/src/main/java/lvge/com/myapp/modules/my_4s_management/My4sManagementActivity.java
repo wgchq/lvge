@@ -108,7 +108,8 @@ public class My4sManagementActivity extends AppCompatActivity {
         my4s_manage_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(My4sManagementActivity.this, MainPageActivity.class);
+                startActivity(intent);
             }
         });
 
