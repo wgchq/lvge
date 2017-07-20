@@ -249,4 +249,9 @@ public class SalesConsultant extends AppCompatActivity {
         }
     }
 
+    protected void onResume(){
+        super.onResume();
+        getListItem();
+    }
+
 }
