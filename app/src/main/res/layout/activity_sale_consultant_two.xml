@@ -85,6 +85,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_centerVertical="true"
+                android:src="@mipmap/lg_user"
                 android:id="@+id/sale_consultant_two_iamgeview"
                 android:layout_toLeftOf="@+id/commodity_my4s_sales_consultant"
                 tools:ignore="ContentDescription,HardcodedText,RtlHardcoded,SmallSp" />
