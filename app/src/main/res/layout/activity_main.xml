@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context="lvge.com.myapp.MainActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="员工登陆"
+        android:textColor="#FF575C"
+        android:textSize="36px"
+        tools:ignore="HardcodedText,PxUsage" />
+
     <LinearLayout
         android:id="@+id/lly_login_main"
         android:layout_width="match_parent"
@@ -44,17 +52,29 @@
             android:hint="@string/login_password"
             android:inputType="textPassword" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:orientation="horizontal"
             tools:ignore="RtlHardcoded">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/forget_password" />
-        </LinearLayout>
+                android:text="@string/forget_password"
+                android:textColor="#707070"
+                android:textSize="30px"
+                tools:ignore="PxUsage,RelativeOverlap" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册"
+                android:textColor="#707070"
+                android:textSize="30px"
+                android:layout_alignParentRight="true"
+                tools:ignore="HardcodedText,PxUsage" />
+        </RelativeLayout>
 
 
         <Button
