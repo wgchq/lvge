@@ -38,7 +38,7 @@
         <EditText
             android:id="@+id/username"
             style="@style/system_hint_style"
-            android:layout_width="316dp"
+            android:layout_width="360dp"
             android:layout_height="match_parent"
             android:layout_marginBottom="22dp"
             android:ems="10"
