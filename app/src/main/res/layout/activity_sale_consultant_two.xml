@@ -66,9 +66,9 @@
             tools:ignore="InefficientWeight" />
 
         <RelativeLayout
+            android:id="@+id/sale_consultant_two_iamge"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/sale_consultant_two_iamge"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -82,12 +82,12 @@
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <ImageView
+                android:id="@+id/sale_consultant_two_iamgeview"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/lg_user"
-                android:id="@+id/sale_consultant_two_iamgeview"
                 android:layout_toLeftOf="@+id/commodity_my4s_sales_consultant"
+                android:src="@mipmap/lg_user"
                 tools:ignore="ContentDescription,HardcodedText,RtlHardcoded,SmallSp" />
 
             <ImageButton
@@ -156,9 +156,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
                 android:text="电话"
                 android:textSize="16sp"
-                android:layout_marginLeft="10dp"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <EditText
@@ -183,26 +183,26 @@
 
 
         <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/edit_text_shape"
-        tools:ignore="UselessParent">
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="个性签名"
-            android:textSize="16sp"
-            android:layout_marginLeft="10dp"
-            tools:ignore="HardcodedText,RtlHardcoded" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="个性签名"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText,RtlHardcoded" />
 
-    </RelativeLayout>
+        </RelativeLayout>
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -215,6 +215,7 @@
                 android:background="@drawable/edit_text_shape"
                 android:hint="编辑个性签名"
                 android:inputType=""
+                android:minLines="1"
                 tools:ignore="HardcodedText,RtlHardcoded,TextFields,UnknownIdInLayout" />
 
         </RelativeLayout>
