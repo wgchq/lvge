@@ -1,17 +1,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="lvge.com.myapp.mainFragement.OrderFragment">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
-        app:elevation="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme"
+        app:elevation="0dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="0dp">
 
@@ -22,20 +22,20 @@
             android:background="?attr/colorPrimary">
 
             <TextView
+                style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="@string/title_order"
-                style="@style/system_title_style"/>
+                android:text="@string/title_order" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/searcg"
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
                 android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:src="@mipmap/searcg"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
         </android.support.v7.widget.Toolbar>
@@ -44,15 +44,15 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/order_management_searcg_frame"
-        android:background="@color/background_gray"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/background_gray"
+        android:visibility="gone">
 
         <android.support.v7.widget.SearchView
+            android:id="@+id/order_management_search_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/order_management_search_view"
             android:iconifiedByDefault="true"
             android:imeOptions="actionSearch"
             android:queryHint="请输入车架号">
@@ -62,10 +62,20 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:gravity="center"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_blank_fragment" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="ExtraText"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="ExtraText">
 
         <android.support.design.widget.TabLayout
             android:id="@+id/order_manage_homepage_tablayout"
@@ -102,11 +112,12 @@
                 android:layout_height="wrap_content"
                 android:text="已完成"
                 tools:ignore="HardcodedText" />
+
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="退款退货"
-            tools:ignore="HardcodedText" />
+                tools:ignore="HardcodedText" />
 
         </android.support.design.widget.TabLayout>
 
