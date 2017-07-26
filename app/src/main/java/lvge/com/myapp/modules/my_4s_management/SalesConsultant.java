@@ -98,7 +98,7 @@ public class SalesConsultant extends AppCompatActivity {
                 switch (i1) {
                     case 0:
                         removeConsultant(item.getId());
-                        getListItem();
+                       // getListItem();
                 }
             }
         });
@@ -240,7 +240,7 @@ public class SalesConsultant extends AppCompatActivity {
                                     //  mAdapter.setSalesConsultantResultModel(salesConsultantResultModel);
                                     //  customListView.setAdapter(mAdapter);
                                     Toast.makeText(SalesConsultant.this, "删除成功！", Toast.LENGTH_SHORT).show();
-
+                                    getListItem();
                                 } else {
                                     // Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
                                     // startActivity(intent);
