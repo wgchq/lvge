@@ -20,7 +20,7 @@ import lvge.com.myapp.model.LoginResultModel;
 import okhttp3.CookieJar;
 import okhttp3.Response;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity{
 
     private SharedPreferences preferences;
     private String action;

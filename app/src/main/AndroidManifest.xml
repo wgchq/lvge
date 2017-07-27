@@ -30,6 +30,7 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -38,6 +39,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:screenOrientation="portrait"
         tools:replace="Android:icon, android:theme">
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -87,7 +89,8 @@
         <activity android:name=".modules.ValidationTypeScanQR.ValidationTypeScanQRActivity" />
         <activity android:name=".modules.ValidationHistory.ValidationHistoryActivity" />
         <activity android:name=".modules.RefundAfterSale.RefundAfterSaleActivity" />
-        <activity android:name=".modules.PendingSendGoods.PendingSendGoodsActivity"></activity>
+        <activity android:name=".modules.PendingSendGoods.PendingSendGoodsActivity" />
+        <activity android:name=".util.MainForgetPasswordActivity"></activity>
     </application>
 
 </manifest>
