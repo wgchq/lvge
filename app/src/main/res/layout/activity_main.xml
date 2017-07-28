@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/my_layoutStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/mainBackgroundColor"
     tools:context="lvge.com.myapp.MainActivity">
 
     <TextView
@@ -12,8 +12,9 @@
         android:layout_height="wrap_content"
         android:text="员工登陆"
         android:textColor="#FF575C"
-        android:textSize="36px"
-        tools:ignore="HardcodedText,PxUsage" />
+        android:textSize="@dimen/x36"
+        android:layout_marginLeft="@dimen/x20"
+        tools:ignore="HardcodedText,PxUsage,RtlHardcoded" />
 
     <LinearLayout
         android:id="@+id/lly_login_main"
@@ -25,37 +26,42 @@
 
         <ImageView
             android:id="@+id/login_imageView"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_width="@dimen/x160"
+            android:layout_height="@dimen/x160"
             android:adjustViewBounds="true"
             android:background="@mipmap/lg_user_background"
             android:cropToPadding="true"
-            android:padding="30dp"
+            android:padding="@dimen/x26"
+            android:layout_marginBottom="@dimen/x32"
+            android:layout_marginTop="@dimen/x32"
             android:scaleType="fitCenter"
             android:src="@mipmap/lg_user"
             tools:ignore="ContentDescription" />
 
         <EditText
             android:id="@+id/username"
-            style="@style/system_hint_style"
-            android:layout_width="360dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="22dp"
+            android:layout_width="@dimen/x666"
+            android:layout_height="@dimen/x110"
+            android:layout_marginBottom="@dimen/x16"
             android:ems="10"
             android:hint="@string/login_username"
+            android:textColorHint="#C3C3C3"
             android:inputType="text"
+            android:textSize="@dimen/x36"
             tools:ignore="HardcodedText" />
         <!--  android:text="河南佳和裕达汽车"-->
         <EditText
             android:id="@+id/password"
-            style="@style/system_hint_style"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:drawableEnd="@mipmap/lg_eye"
+            android:layout_width="@dimen/x666"
+            android:layout_height="@dimen/x110"
             android:drawableRight="@mipmap/lg_eye"
+            android:layout_marginBottom="@dimen/x16"
             android:ems="10"
+            android:textColorHint="#C3C3C3"
+            android:textSize="@dimen/x36"
             android:hint="@string/login_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            tools:ignore="RtlHardcoded" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -68,7 +74,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/forget_password"
                 android:textColor="#707070"
-                android:textSize="30px"
+                android:textSize="@dimen/x30"
+                android:layout_marginTop="@dimen/x28"
+                android:layout_marginLeft="@dimen/x52"
                 tools:ignore="PxUsage,RelativeOverlap" />
 
             <TextView
@@ -76,7 +84,9 @@
                 android:layout_height="wrap_content"
                 android:text="注册"
                 android:textColor="#707070"
-                android:textSize="30px"
+                android:textSize="@dimen/x30"
+                android:layout_marginTop="@dimen/x28"
+                android:layout_marginRight="@dimen/x52"
                 android:layout_alignParentRight="true"
                 tools:ignore="HardcodedText,PxUsage" />
         </RelativeLayout>
@@ -84,29 +94,42 @@
 
         <Button
             android:id="@+id/login_submit"
-            style="@style/my_buttonActiveStyle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="26dp"
+            android:layout_height="@dimen/x88"
+            android:background="@drawable/lg_main_button_background"
             android:gravity="center"
+            android:layout_marginTop="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginLeft="@dimen/x20"
+            android:textColor="#7D7D7D"
+            android:textSize="@dimen/x36"
             android:text="@string/login_submit" />
 
     </LinearLayout>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_horizontal">
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableTop="@mipmap/lg_company_logo"
+        android:textSize="@dimen/x28"
+        android:layout_marginTop="@dimen/x250"
+        android:textColor="#383838"
+        android:gravity="center"
+        android:text="@string/company_name" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:drawableTop="@mipmap/lg_company_logo"
-            android:gravity="center"
-            android:text="@string/company_name" />
-
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/x34"
+        android:layout_marginTop="@dimen/x12"
+        android:text="Henan passenger pigeon technology"
+        android:textColor="#383838"
+        android:textSize="@dimen/x18"
+        tools:ignore="HardcodedText,ObsoleteLayoutParam" />
 </LinearLayout>

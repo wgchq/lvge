@@ -93,4 +93,8 @@
         <activity android:name=".util.MainForgetPasswordActivity"></activity>
     </application>
 
+    <supports-screens
+        android:largeScreens="true"
+        android:anyDensity="true"
+        android:normalScreens="true"/>
 </manifest>
