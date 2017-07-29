@@ -25,7 +25,7 @@
         android:background="@mipmap/lg_user_background"
         android:cropToPadding="true"
         android:padding="@dimen/x26"
-        android:layout_marginTop="@dimen/x100"
+        android:layout_marginTop="@dimen/x80"
         android:scaleType="fitCenter"
         android:src="@mipmap/lg_user"
         tools:ignore="ContentDescription"
@@ -45,6 +45,7 @@
         android:textColorHint="#C3C3C3"
         android:inputType="text"
         android:textSize="@dimen/x36"
+        android:textColor="#333333"
         tools:ignore="HardcodedText" />
 
     <EditText
@@ -59,6 +60,7 @@
         android:textColorHint="#C3C3C3"
         android:textSize="@dimen/x36"
         android:hint="@string/login_password"
+        android:textColor="#333333"
         android:inputType="textPassword"
         tools:ignore="RtlHardcoded" />
 
@@ -101,7 +103,13 @@
                 tools:ignore="HardcodedText,PxUsage" />
         </RelativeLayout>
 
-
+        <TextView
+            android:id="@+id/lg_return_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fd0101"
+            android:textSize="@dimen/x18"
+            tools:ignore="HardcodedText" />
         <Button
             android:id="@+id/login_submit"
             android:layout_width="match_parent"

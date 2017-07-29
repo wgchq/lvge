@@ -10,6 +10,6 @@
     <color name="PageBackgroundColor">#F0F4F7</color>
     <color name="background_gray">#EFEFF4</color>
     <color name="line_background_gray">#EFEFF4</color>
-
+    <color name="lg_button_text_color">#7D7D7D</color>
 
 </resources>

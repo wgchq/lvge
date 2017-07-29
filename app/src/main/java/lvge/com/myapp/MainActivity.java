@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -25,11 +28,16 @@ public class MainActivity extends Activity{
     private SharedPreferences preferences;
     private String action;
     private final static String FILE_NAME = "login_file";
+    private Button login_submit;
+    private EditText et_username;
+    private EditText et_password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button login_submit = (Button) findViewById(R.id.login_submit);
+        login_submit = (Button) findViewById(R.id.login_submit);
+        et_username = (EditText) findViewById(R.id.username);
+        et_password = (EditText) findViewById(R.id.password);
 
         action = "auto_submit";
         Login(action);
@@ -41,7 +49,27 @@ public class MainActivity extends Activity{
             }
         });
 
+        et_username.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                login_submit.setBackgroundResource(R.drawable.lg_main_button_background_input);
+                login_submit.setTextColor(getResources().getColor(R.color.buttonTextColor));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(et_username.getText().toString().equals("")){
+                    login_submit.setBackgroundResource(R.drawable.lg_main_button_background);
+                    login_submit.setTextColor(getResources().getColor(R.color.lg_button_text_color));
+                }
+
+            }
+        });
     }
 
     void Login(String action) {
@@ -50,18 +78,18 @@ public class MainActivity extends Activity{
         try {
             preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
 
-            final EditText et_username = (EditText) findViewById(R.id.username);
-            final EditText et_password = (EditText) findViewById(R.id.password);
             if (action.equals("auto_submit")) {
                 String username = preferences.getString("username", "");
                 String password = preferences.getString("password", "");
 
-                if (username.equals("")&&password.equals(""))
-                {
-                    return ;
+                if (username.equals("") && password.equals("")) {
+                    return;
                 }
                 et_username.setText(username);
                 et_password.setText(password);
+
+                login_submit.setBackgroundResource(R.drawable.lg_main_button_background_input);
+                login_submit.setTextColor(getResources().getColor(R.color.buttonTextColor));
             }
 
             OkHttpUtils.get()//get 方法
@@ -111,7 +139,9 @@ public class MainActivity extends Activity{
                                     startActivity(intent);
 
                                 } else {
-                                    Toast.makeText(MainActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(MainActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                    TextView lg_return_error = (TextView)findViewById(R.id.lg_return_error);
+                                    lg_return_error.setText("密码或账号错误");
                                 }
                             } else {//当没有返回对象时，表示网络没有联通
                                 Toast.makeText(MainActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
