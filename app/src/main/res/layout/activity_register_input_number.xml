@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="lvge.com.myapp.RegisterInputNumber">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/register_input_number_appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_shop_authentication"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/ic_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
+
+            <TextView
+                style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/x32"
+                android:layout_gravity="center"
+                android:text="注册"
+                tools:ignore="HardcodedText" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/login_imageView"
+        android:layout_width="@dimen/x160"
+        android:layout_height="@dimen/x160"
+        android:adjustViewBounds="true"
+        android:background="@mipmap/lg_user_background"
+        android:cropToPadding="true"
+        android:padding="@dimen/x26"
+        android:layout_marginTop="@dimen/x80"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/lg_user"
+        tools:ignore="ContentDescription,UnknownIdInLayout"
+        android:layout_below="@+id/register_input_number_appBarLayout"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/register_input_number"
+        android:layout_width="@dimen/x666"
+        android:layout_height="@dimen/x110"
+        android:layout_marginBottom="@dimen/x16"
+        android:layout_marginTop="@dimen/x32"
+        android:layout_below="@+id/login_imageView"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/resister_inputnumber"
+        android:textColorHint="#C3C3C3"
+        android:inputType=""
+        android:textSize="@dimen/x36"
+        android:textColor="#333333"
+        tools:ignore="HardcodedText,TextFields" />
+
+    <Button
+        android:id="@+id/register_input_number_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x88"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginTop="@dimen/x20"
+        android:background="@drawable/lg_main_button_background"
+        android:layout_below="@+id/register_input_number"
+        android:gravity="center"
+        android:text="@string/resister_inputbutton"
+        android:textColor="#7D7D7D"
+        android:textSize="@dimen/x36" />
+
+</RelativeLayout>

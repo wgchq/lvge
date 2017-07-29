@@ -1,15 +1,13 @@
-package lvge.com.myapp.util;
+package lvge.com.myapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import lvge.com.myapp.R;
-
-public class MainForgetPasswordActivity extends AppCompatActivity {
+public class RegisterInputNumber extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_forget_password);
+        setContentView(R.layout.activity_register_input_number);
     }
 }

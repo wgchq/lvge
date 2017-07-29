@@ -8,6 +8,8 @@
     <string name="forget_password">忘记密码?</string>
     <string name="QR_description">二维码</string>
     <string name="scanner">扫一扫</string>
+    <string name="resister_inputnumber">请输入您的手机号</string>
+    <string name="resister_inputbutton">获取验证码</string>
     <!--主页菜单设置-->
     <string name="menu_personal">个人资料</string>
     <string name="menu_staff_info">员工资料</string>
