@@ -20,17 +20,26 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:paddingTop="@dimen/nav_header_vertical_spacing"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextColor="@color/mainFontColor">
 
             <TextView
+                style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="@string/title_client"
-                style="@style/system_title_style"/>
+                android:text="@string/title_client" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="end"
+                android:layout_marginLeft="@dimen/x26"
+                android:layout_marginRight="@dimen/x20"
+                android:src="@mipmap/ic_search"
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
             <ImageView
                 android:id="@+id/search_client"
@@ -38,8 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
-                android:layout_marginRight="@dimen/activity_vertical_margin"
-                android:src="@mipmap/ic_search"
+                android:src="@mipmap/customer_manage_add"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
         </android.support.v7.widget.Toolbar>
@@ -119,15 +127,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        app:tabIndicatorColor="#ff0000"
+        app:tabIndicatorColor="#ff8386"
+        app:tabIndicatorHeight="@dimen/x1"
         app:tabMode="scrollable"
-        app:tabSelectedTextColor="#ff0000"
-        app:tabTextColor="#cccccc">
+        app:tabSelectedTextColor="#ff8386"
+        app:tabTextAppearance="@style/customer_tablayout"
+        app:tabTextColor="#8c8c8c">
 
         <android.support.design.widget.TabItem
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/main_page_all_clients" />
+            android:text="@string/main_page_all_clients"
+            />
 
         <android.support.design.widget.TabItem
             android:layout_width="match_parent"

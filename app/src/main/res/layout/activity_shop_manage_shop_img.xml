@@ -26,12 +26,12 @@
             app:titleTextColor="@color/mainFontColor">
 
             <TextView
+                style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="@string/shop_image"
-                style="@style/system_title_style"/>
+                android:text="@string/shop_image" />
 
         </android.support.v7.widget.Toolbar>
 
