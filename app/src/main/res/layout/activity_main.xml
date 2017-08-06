@@ -82,6 +82,7 @@
             tools:ignore="RtlHardcoded">
 
             <TextView
+                android:id="@+id/lg_forget_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/forget_password"
@@ -92,6 +93,7 @@
                 tools:ignore="PxUsage,RelativeOverlap" />
 
             <TextView
+                android:id="@+id/lg_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="注册"

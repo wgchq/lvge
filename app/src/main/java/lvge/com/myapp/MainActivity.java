@@ -38,6 +38,7 @@ public class MainActivity extends Activity{
         login_submit = (Button) findViewById(R.id.login_submit);
         et_username = (EditText) findViewById(R.id.username);
         et_password = (EditText) findViewById(R.id.password);
+        TextView  lg_forget_password = (TextView)findViewById(R.id.lg_forget_password);
 
         action = "auto_submit";
         Login(action);
@@ -70,6 +71,16 @@ public class MainActivity extends Activity{
 
             }
         });
+
+        lg_forget_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this,ForgetPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     void Login(String action) {

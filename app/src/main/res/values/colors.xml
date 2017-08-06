@@ -11,5 +11,6 @@
     <color name="background_gray">#EFEFF4</color>
     <color name="line_background_gray">#EFEFF4</color>
     <color name="lg_button_text_color">#7D7D7D</color>
+    <color name="hint_color">#AAAAAA</color>
 
 </resources>

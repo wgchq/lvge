@@ -94,7 +94,8 @@
         <activity android:name=".modules.ValidationHistory.ValidationHistoryActivity" />
         <activity android:name=".modules.RefundAfterSale.RefundAfterSaleActivity" />
         <activity android:name=".modules.PendingSendGoods.PendingSendGoodsActivity" />
-        <activity android:name=".RegisterInputNumber"></activity>
+        <activity android:name=".RegisterInputNumber" />
+        <activity android:name=".ForgetPasswordActivity"></activity>
     </application>
 
 </manifest>
