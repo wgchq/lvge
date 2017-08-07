@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/x22"
+        android:layout_marginBottom="@dimen/x22"
         android:layout_marginRight="@dimen/x22"
         tools:ignore="UselessParent">
 
@@ -82,7 +84,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/x22"
+                android:layout_marginTop="@dimen/x28"
                 android:orientation="horizontal">
 
                 <TextView

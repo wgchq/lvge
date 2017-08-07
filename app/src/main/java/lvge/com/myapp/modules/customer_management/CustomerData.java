@@ -113,16 +113,19 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
          */
         //显示地图
         mapView = (MapView) findViewById(R.id.map);
+
         //必须要写
         mapView.onCreate(savedInstanceState);
         //获取地图对象
+
         aMap = mapView.getMap();
 
         //设置显示定位按钮 并且可以点击
         UiSettings settings = aMap.getUiSettings();
         aMap.setLocationSource(this);
+        settings.setZoomControlsEnabled(false);
         // 是否显示定位按钮
-        settings.setMyLocationButtonEnabled(true);
+        settings.setMyLocationButtonEnabled(false);
         // 是否可触发定位并显示定位层
         aMap.setMyLocationEnabled(true);
         //定位的小图标 默认是蓝点 这里自定义一团火，其实就是一张图片

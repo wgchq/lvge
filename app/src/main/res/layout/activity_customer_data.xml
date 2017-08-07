@@ -7,174 +7,6 @@
     android:orientation="vertical"
     tools:context="lvge.com.myapp.modules.customer_management.CustomerData">
 
-    <!--    <LinearLayout
-            android:id="@+id/toolbar_main_page"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:baselineAligned="false"
-            android:gravity="center_vertical"
-            tools:ignore="UselessParent">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <ImageView
-                    android:id="@+id/my4s_management_back"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/activity_horizontal_margin"
-                    android:layout_weight="1"
-                    android:src="@mipmap/menu_return"
-                    tools:ignore="ContentDescription,NestedWeights" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="客户资料"
-                    android:textColor="@color/mainBackgroundColor"
-                    tools:ignore="HardcodedText,SpUsage" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/my4s_finish"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/mainBackgroundColor"
-                    tools:ignore="HardcodedText,SpUsage" />
-            </LinearLayout>
-        </LinearLayout>--><!--    <LinearLayout
-        android:id="@+id/toolbar_main_page"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:baselineAligned="false"
-        android:gravity="center_vertical"
-        tools:ignore="UselessParent">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/my4s_management_back"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:layout_weight="1"
-                android:src="@mipmap/menu_return"
-                tools:ignore="ContentDescription,NestedWeights" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="客户资料"
-                android:textColor="@color/mainBackgroundColor"
-                tools:ignore="HardcodedText,SpUsage" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/my4s_finish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/mainBackgroundColor"
-                tools:ignore="HardcodedText,SpUsage" />
-        </LinearLayout>
-    </LinearLayout>--><!--    <LinearLayout
-        android:id="@+id/toolbar_main_page"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:baselineAligned="false"
-        android:gravity="center_vertical"
-        tools:ignore="UselessParent">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/my4s_management_back"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:layout_weight="1"
-                android:src="@mipmap/menu_return"
-                tools:ignore="ContentDescription,NestedWeights" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="客户资料"
-                android:textColor="@color/mainBackgroundColor"
-                tools:ignore="HardcodedText,SpUsage" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/my4s_finish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/mainBackgroundColor"
-                tools:ignore="HardcodedText,SpUsage" />
-        </LinearLayout>
-    </LinearLayout>-->
-
-
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -194,12 +26,12 @@
             app:titleTextColor="@color/mainFontColor">
 
             <TextView
+                style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:text="@string/client_information"
-                style="@style/system_title_style"
                 android:textColor="@color/mainFontColor" />
 
         </android.support.v7.widget.Toolbar>
@@ -217,12 +49,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="@dimen/x344"
             android:orientation="vertical"
             tools:ignore="UselessLeaf">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:ignore="UselessParent">
@@ -233,13 +64,21 @@
                     android:layout_height="match_parent">
 
                 </com.amap.api.maps2d.MapView>
-            </LinearLayout>
-        </LinearLayout>
 
-        <TextView
-            android:id="@+id/client_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/client_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x88"
+                    android:layout_marginTop="@dimen/x256"
+                    android:background="#9F6c6b69"
+                    android:drawableLeft="@mipmap/client_loaction_position"
+                    android:drawablePadding="@dimen/x40"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/x56"
+                    android:textColor="@color/mainFontColor"
+                    android:textSize="@dimen/x30" />
+            </FrameLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -261,8 +100,11 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_shape"
-                        android:padding="@dimen/activity_horizontal_margin"
+                        android:background="@color/mainBackgroundColor"
+                        android:paddingBottom="@dimen/x26"
+                        android:paddingLeft="@dimen/x50"
+                        android:paddingTop="@dimen/x26"
+                        android:paddingRight="@dimen/x20"
                         tools:ignore="UselessParent">
 
                         <TextView
@@ -270,8 +112,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
                             android:text="车牌号："
+                            android:textColor="#000"
+                            android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,RtlHardcoded" />
 
                         <TextView
@@ -279,25 +122,27 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="@dimen/x20"
                             android:layout_toRightOf="@+id/customer_data_che"
-                            android:hint="豫B   A56892"
-                            tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
-
+                            android:text="豫B   A56892"
+                            android:textColor="#000"
+                            android:textSize="@dimen/x28" />
                     </RelativeLayout>
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="5dp"
+                        android:layout_height="1dp"
                         android:background="#EFEFF4"
                         tools:ignore="InefficientWeight" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_shape"
-                        android:padding="@dimen/activity_horizontal_margin"
+                        android:background="@color/mainBackgroundColor"
+                        android:paddingBottom="@dimen/x26"
+                        android:paddingLeft="@dimen/x50"
+                        android:paddingTop="@dimen/x26"
+                        android:paddingRight="@dimen/x20"
                         tools:ignore="UselessParent">
 
                         <TextView
@@ -305,8 +150,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
                             android:text="车主姓名："
+                            android:textColor="#000"
+                            android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,RtlHardcoded" />
 
                         <TextView
@@ -314,10 +160,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="@dimen/x20"
                             android:layout_toRightOf="@+id/customer_data_car_holder"
                             android:text="嘻嘻嘻"
+                            android:textColor="#000"
+                            android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
 
 
@@ -325,16 +172,19 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="5dp"
+                        android:layout_height="1dp"
                         android:background="#EFEFF4"
                         tools:ignore="InefficientWeight" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_shape"
+                        android:background="@color/mainBackgroundColor"
+                        android:paddingBottom="@dimen/x26"
+                        android:paddingLeft="@dimen/x50"
+                        android:paddingTop="@dimen/x26"
+                        android:paddingRight="@dimen/x20"
 
-                        android:padding="@dimen/activity_horizontal_margin"
                         tools:ignore="UselessParent">
 
                         <TextView
@@ -342,8 +192,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
                             android:text="车主电话："
+                            android:textColor="#000"
+                            android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,RtlHardcoded" />
 
                         <TextView
@@ -351,10 +202,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="@dimen/x20"
                             android:layout_toLeftOf="@+id/customer_data_call_phone"
                             android:layout_toRightOf="@+id/customer_data_car_holder_phone"
-                            android:hint="1234125235234"
+                            android:text="1234125235234"
+                            android:textColor="#000"
+                            android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
 
 
@@ -373,15 +226,19 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
+                        android:layout_height="@dimen/x10"
                         android:background="#EFEFF4"
                         tools:ignore="InefficientWeight" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_shape"
-                        android:padding="@dimen/activity_horizontal_margin"
+                        android:background="@color/mainBackgroundColor"
+                        android:paddingBottom="@dimen/x26"
+                        android:paddingLeft="@dimen/x50"
+                        android:paddingTop="@dimen/x26"
+                        android:paddingRight="@dimen/x20"
+
                         tools:ignore="UselessParent">
 
                         <TextView
@@ -389,8 +246,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
                             android:text="车型："
+                            android:textColor="#000"
+                            android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,RtlHardcoded" />
 
                         <TextView
@@ -398,10 +256,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="@dimen/x20"
                             android:layout_toRightOf="@+id/customer_data_car_type"
                             android:text="上海大众帕萨特123"
+                            android:textColor="#000"
+                            android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
 
 
@@ -409,7 +268,63 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="5dp"
+                        android:layout_height="1dp"
+                        android:background="#EFEFF4"
+                        tools:ignore="InefficientWeight" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/mainBackgroundColor"
+                        android:paddingBottom="@dimen/x27"
+                        android:paddingLeft="@dimen/x50"
+                        android:paddingTop="@dimen/x27"
+                        android:paddingRight="@dimen/x20"
+                        tools:ignore="UselessParent">
+
+                        <TextView
+                            android:id="@+id/customer_data_car_holder_kilometer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="公里数："
+                            android:textColor="#000"
+                            android:textSize="@dimen/x28"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                        <TextView
+                            android:id="@+id/txt_customer_data_car_holder_kilometer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/x20"
+                            android:layout_toLeftOf="@+id/customer_data_car_holder_kilometer_txt"
+                            android:layout_toRightOf="@+id/customer_data_car_holder_kilometer"
+                            android:text="1234125235234"
+                            android:textColor="#000"
+                            android:textSize="@dimen/x28"
+                            tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
+
+
+                        <TextView
+                            android:id="@+id/customer_data_car_holder_kilometer_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="@dimen/x20"
+                            android:drawablePadding="@dimen/x16"
+                            android:drawableRight="@mipmap/arrow_right_gray"
+                            android:text="校正"
+                            android:textColor="#000"
+                            tools:ignore="ContentDescription,HardcodedText,RtlHardcoded" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
                         android:background="#EFEFF4"
                         tools:ignore="InefficientWeight" />
 
@@ -417,8 +332,12 @@
                         android:layout_width="match_parent"
 
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_shape"
-                        android:padding="@dimen/activity_horizontal_margin"
+                        android:background="@color/mainBackgroundColor"
+                        android:paddingBottom="@dimen/x26"
+                        android:paddingLeft="@dimen/x50"
+                        android:paddingTop="@dimen/x26"
+                        android:paddingRight="@dimen/x20"
+
                         tools:ignore="UselessParent">
 
                         <TextView
@@ -426,8 +345,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
                             android:text="车架号："
+                            android:textColor="#000"
+                            android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,RtlHardcoded" />
 
                         <TextView
@@ -435,10 +355,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="@dimen/x20"
                             android:layout_toRightOf="@+id/customer_data_car_vin_no"
                             android:text="12312dsadadasda"
+                            android:textColor="#000"
+                            android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
 
 
@@ -446,15 +367,19 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="5dp"
+                        android:layout_height="1dp"
                         android:background="#EFEFF4"
                         tools:ignore="InefficientWeight" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_shape"
-                        android:padding="@dimen/activity_horizontal_margin"
+                        android:background="@color/mainBackgroundColor"
+                        android:paddingBottom="@dimen/x26"
+                        android:paddingLeft="@dimen/x50"
+                        android:paddingTop="@dimen/x26"
+                        android:paddingRight="@dimen/x20"
+
                         tools:ignore="UselessParent">
 
                         <TextView
@@ -462,8 +387,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
                             android:text="设备号："
+                            android:textColor="#000"
+                            android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,RtlHardcoded" />
 
                         <TextView
@@ -471,10 +397,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="@dimen/x20"
                             android:layout_toRightOf="@+id/customer_data_car_imei_no"
                             android:text="DFASF32RWFSDFSDFSD"
+                            android:textColor="#000"
+                            android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
 
 
@@ -485,34 +412,6 @@
                         android:layout_height="20dp"
                         android:background="#EFEFF4"
                         tools:ignore="InefficientWeight" />
-
-                 <!--   <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_shape"
-                        android:padding="@dimen/activity_horizontal_margin"
-                        tools:ignore="UselessParent">
-
-                        <TextView
-                            android:id="@+id/customer_data_listview6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            android:text="保险到期时间："
-                            tools:ignore="HardcodedText,RtlHardcoded" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_toRightOf="@+id/customer_data_listview6"
-                            android:text="2018-10-10"
-                            tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
-
-                    </RelativeLayout>-->
 
                     <View
                         android:layout_width="match_parent"
@@ -521,15 +420,15 @@
                         android:background="#EFEFF4"
                         tools:ignore="InefficientWeight" />
 
-                <!--    <Button
-                        android:id="@+id/btn_client_send_message"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@color/buttonPrimary"
-                        android:text="消息发送"
-                        tools:ignore="HardcodedText" />-->
+                    <!--    <Button
+                            android:id="@+id/btn_client_send_message"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/buttonPrimary"
+                            android:text="消息发送"
+                            tools:ignore="HardcodedText" />-->
 
                     <View
                         android:layout_width="match_parent"
