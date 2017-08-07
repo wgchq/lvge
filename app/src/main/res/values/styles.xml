@@ -68,8 +68,8 @@
     </style>
 
     <style name="system_hint_style">
-        <item name="android:padding">@dimen/system_edit_view_padding</item>
-        <item name="android:textSize">@dimen/system_hint_size</item>
+        <item name="android:paddingLeft">@dimen/x10</item>
+        <item name="android:textSize">@dimen/x30</item>
     </style>
 
     <!--  tablayout字体大小-->

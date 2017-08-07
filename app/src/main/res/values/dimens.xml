@@ -16,7 +16,7 @@
     <!--app 各部分字体大小设置-->
     <dimen name="system_title_size">16sp</dimen>
     <dimen name="system_hint_size">12sp</dimen>
-    <dimen name="system_edit_view_padding">12sp</dimen>
+    <dimen name="system_edit_view_padding">2px</dimen>
 
         <dimen name="x1">1px</dimen>
         <dimen name="x2">2px</dimen>

@@ -95,7 +95,10 @@
         <activity android:name=".modules.RefundAfterSale.RefundAfterSaleActivity" />
         <activity android:name=".modules.PendingSendGoods.PendingSendGoodsActivity" />
         <activity android:name=".RegisterInputNumber" />
-        <activity android:name=".ForgetPasswordActivity"></activity>
+        <activity android:name=".ForgetPasswordActivity" />
+        <activity android:name=".modules.maintain_client_management.MaintainClientActivity" />
+        <activity android:name=".modules.alert_client_management.AlertClientActivity" />
+        <activity android:name=".modules.crawl_client_management.CrawlClientActivity"></activity>
     </application>
 
 </manifest>

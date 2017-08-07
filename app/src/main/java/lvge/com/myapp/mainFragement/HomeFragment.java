@@ -16,11 +16,14 @@ import lvge.com.myapp.modules.PendingSendGoods.PendingSendGoodsActivity;
 import lvge.com.myapp.modules.RefundAfterSale.RefundAfterSaleActivity;
 import lvge.com.myapp.modules.ValidationHistory.ValidationHistoryActivity;
 import lvge.com.myapp.modules.ValidationTypeScanQR.ValidationTypeScanQRActivity;
+import lvge.com.myapp.modules.alert_client_management.AlertClientActivity;
 import lvge.com.myapp.modules.car_data_management.CarDataManagementActivity;
 import lvge.com.myapp.modules.commodity_management.CommodityManageHomepage;
 import lvge.com.myapp.modules.coupon.CouponActivity;
+import lvge.com.myapp.modules.crawl_client_management.CrawlClientActivity;
 import lvge.com.myapp.modules.evaluation_management.EvaluationManagementActivity;
 import lvge.com.myapp.modules.financial_management.FinancialManagementActivity;
+import lvge.com.myapp.modules.maintain_client_management.MaintainClientActivity;
 import lvge.com.myapp.modules.my_4s_management.My4sManagementActivity;
 import lvge.com.myapp.modules.royalty_management.RoyaltyManagementActivity;
 import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
@@ -48,7 +51,7 @@ public class HomeFragment extends Fragment {
 
         //主页面跳转各个子模块
 
-        ImageView img_main_page_shop_management = (ImageView) view.findViewById(R.id.img_main_page_shop_management);
+        TextView img_main_page_shop_management = (TextView) view.findViewById(R.id.img_main_page_shop_management);
 
         img_main_page_shop_management.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +62,7 @@ public class HomeFragment extends Fragment {
         });
 
 
-        ImageView img_main_page_car_data_management = (ImageView) view.findViewById(R.id.img_main_page_car_data_management);
+        TextView img_main_page_car_data_management = (TextView) view.findViewById(R.id.img_main_page_car_data_management);
         img_main_page_car_data_management.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +70,7 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        ImageView img_main_page_commodity_management = (ImageView) view.findViewById(R.id.img_main_page_commodity_management);
+        TextView img_main_page_commodity_management = (TextView) view.findViewById(R.id.img_main_page_commodity_management);
         img_main_page_commodity_management.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +80,7 @@ public class HomeFragment extends Fragment {
         });
 
 
-        ImageView img_main_page_coupon = (ImageView) view.findViewById(R.id.img_main_page_coupon);
+        TextView img_main_page_coupon = (TextView) view.findViewById(R.id.img_main_page_coupon);
         img_main_page_coupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +88,7 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        ImageView img_main_page_evaluation_management = (ImageView) view.findViewById(R.id.img_main_page_evaluation_management);
+        TextView img_main_page_evaluation_management = (TextView) view.findViewById(R.id.img_main_page_evaluation_management);
         img_main_page_evaluation_management.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +98,7 @@ public class HomeFragment extends Fragment {
         });
 
 
-        ImageView img_main_page_my_4s_management = (ImageView) view.findViewById(R.id.img_main_page_my_4s_management);
+        TextView img_main_page_my_4s_management = (TextView) view.findViewById(R.id.img_main_page_my_4s_management);
         img_main_page_my_4s_management.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +108,7 @@ public class HomeFragment extends Fragment {
         });
 
 
-        ImageView img_main_page_financial_management = (ImageView) view.findViewById(R.id.img_main_page_financial_management);
+        TextView img_main_page_financial_management = (TextView) view.findViewById(R.id.img_main_page_financial_management);
         img_main_page_financial_management.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,7 +117,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ImageView img_main_page_royalty_management = (ImageView) view.findViewById(R.id.img_main_page_royalty_management);
+        TextView img_main_page_royalty_management = (TextView) view.findViewById(R.id.img_main_page_royalty_management);
         img_main_page_royalty_management.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,6 +159,33 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent  = new Intent(getActivity(), PendingSendGoodsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView tv_maintain = (TextView)view.findViewById(R.id.tv_maintain);
+        tv_maintain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(getActivity(), MaintainClientActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView tv_alert = (TextView)view.findViewById(R.id.tv_alert);
+        tv_alert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(getActivity(), AlertClientActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView tv_crawl = (TextView)view.findViewById(R.id.tv_crawl);
+        tv_crawl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(getActivity(), CrawlClientActivity.class);
                 startActivity(intent);
             }
         });
