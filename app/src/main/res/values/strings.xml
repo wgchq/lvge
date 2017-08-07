@@ -120,4 +120,6 @@
     <!--忘记密码-->
     <string name="validation_code_has_send_to">验证码已发送至</string>
     <string name="validation_code_has_send_to_phone_no">156-3819-3517</string>
+
+    <string name="kilometer">公里</string>
 </resources>

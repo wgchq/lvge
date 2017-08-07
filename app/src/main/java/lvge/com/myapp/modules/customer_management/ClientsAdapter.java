@@ -108,7 +108,7 @@ public class ClientsAdapter extends BaseAdapter {
             }
 
             TextView length = (TextView) convertView.findViewById(R.id.customer_listview_length);
-            String str_length = clients.getPageResult().getEntityList().get(position).getMileAge() + "公里";
+            String str_length = clients.getPageResult().getEntityList().get(position).getMileAge()+"";
             length.setText(str_length);
         }
 

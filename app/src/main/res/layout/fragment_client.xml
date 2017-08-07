@@ -129,30 +129,31 @@
         android:background="@android:color/white"
         app:tabIndicatorColor="#ff8386"
         app:tabIndicatorHeight="@dimen/x1"
-        app:tabMode="scrollable"
+        app:tabMode="fixed"
         app:tabSelectedTextColor="#ff8386"
         app:tabTextAppearance="@style/customer_tablayout"
         app:tabTextColor="#8c8c8c">
 
         <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/x68"
             android:text="@string/main_page_all_clients"
-            />
+            android:textAlignment="gravity" />
 
         <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/main_page_has_binding_clients" />
 
         <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/main_page_has_no_binding_clients" />
 
         <android.support.design.widget.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/main_page_has_no_cash_clients" />
 
     </android.support.design.widget.TabLayout>
