@@ -127,6 +127,7 @@
     <string name="main_page_alert_client">警情客户</string>
     <string name="main_page_crawl_client">围栏客户</string>
     <string name="no_setting">未设置</string>
+    <string name="unfilled">未填写</string>
 
 
 </resources>

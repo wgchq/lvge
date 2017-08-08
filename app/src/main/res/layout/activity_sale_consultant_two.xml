@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="lvge.com.myapp.modules.my_4s_management.SalesConsultant"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="lvge.com.myapp.modules.my_4s_management.SalesConsultant">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
+                android:textSize="@dimen/x30"
                 android:text="销售顾问"
                 tools:ignore="HardcodedText" />
 
@@ -43,6 +44,7 @@
                 android:layout_gravity="end"
                 android:layout_margin="@dimen/activity_horizontal_margin"
                 android:text="保存"
+                android:textSize="@dimen/x30"
                 android:textColor="@color/mainFontColor"
                 tools:ignore="HardcodedText" />
         </android.support.v7.widget.Toolbar>
@@ -61,15 +63,16 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#EFEFF4"
+            android:layout_height="@dimen/x28"
+            android:background="@color/line_background_gray"
             tools:ignore="InefficientWeight" />
 
         <RelativeLayout
             android:id="@+id/sale_consultant_two_iamge"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/edit_text_shape"
+            android:layout_height="@dimen/x140"
+            android:background="@color/mainBackgroundColor"
+            android:paddingLeft="@dimen/x28"
             tools:ignore="UselessParent">
 
             <TextView
@@ -78,7 +81,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:text="头像"
-                android:textSize="15sp"
+                android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <ImageView
@@ -90,14 +93,14 @@
                 android:src="@mipmap/lg_user"
                 tools:ignore="ContentDescription,HardcodedText,RtlHardcoded,SmallSp" />
 
-            <ImageButton
+            <TextView
                 android:id="@+id/commodity_my4s_sales_consultant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
                 android:background="@mipmap/gray_right"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
@@ -105,14 +108,15 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#EFEFF4"
+            android:layout_height="@dimen/x1"
+            android:background="@color/line_background_gray"
             tools:ignore="InefficientWeight" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="@drawable/edit_text_shape"
+            android:layout_height="@dimen/x90"
+            android:background="@color/mainBackgroundColor"
+            android:paddingLeft="@dimen/x28"
             tools:ignore="UselessParent">
 
             <TextView
@@ -122,7 +126,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:text="姓名"
-                android:textSize="16sp"
+                android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <EditText
@@ -131,24 +135,39 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="30dp"
+                android:layout_toLeftOf="@+id/name_detail"
                 android:layout_toRightOf="@+id/sale_consultant_Textview1"
                 android:background="@drawable/edit_text_shape"
-                android:hint="请输入姓名"
+                android:gravity="right"
+                android:textSize="@dimen/x30"
+                android:hint="@string/unfilled"
+                android:textColorHint="@color/my4s_hint_color"
                 android:inputType="text"
                 tools:ignore="HardcodedText,RtlHardcoded,UnknownIdInLayout" />
 
+            <TextView
+                android:id="@+id/name_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:background="@mipmap/gray_right"
+                tools:ignore="ContentDescription,RtlHardcoded" />
         </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#EFEFF4"
+            android:layout_height="@dimen/x1"
+            android:background="@color/line_background_gray"
             tools:ignore="InefficientWeight" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="@drawable/edit_text_shape"
+            android:layout_height="@dimen/x90"
+            android:background="@color/mainBackgroundColor"
+            android:paddingLeft="@dimen/x28"
             tools:ignore="UselessParent">
 
             <TextView
@@ -158,7 +177,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:text="电话"
-                android:textSize="16sp"
+                android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <EditText
@@ -168,43 +187,49 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="30dp"
                 android:layout_toRightOf="@+id/sale_consultant_Textview2"
+                android:layout_toLeftOf="@+id/my_4s_shop_phone_detail"
                 android:background="@drawable/edit_text_shape"
-                android:hint="请输入电话"
+                android:textColorHint="@color/my4s_hint_color"
+                android:gravity="right"
+                android:hint="@string/unfilled"
                 android:inputType=""
+                android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText,RtlHardcoded,TextFields,UnknownIdInLayout" />
-
+            <TextView
+                android:id="@+id/my_4s_shop_phone_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:background="@mipmap/gray_right"
+                tools:ignore="ContentDescription,RtlHardcoded" />
         </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#EFEFF4"
+            android:layout_height="@dimen/x1"
+            android:background="@color/line_background_gray"
             tools:ignore="InefficientWeight" />
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x90"
             android:background="@drawable/edit_text_shape"
+            android:paddingLeft="@dimen/x28"
             tools:ignore="UselessParent">
 
             <TextView
+                android:id="@+id/tv_my_4s_shop_signature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:text="个性签名"
-                android:textSize="16sp"
+                android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText,RtlHardcoded" />
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_shape"
-            tools:ignore="UselessParent">
 
             <EditText
                 android:id="@+id/sale_consultant_inputmemo"
@@ -213,11 +238,26 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/edit_text_shape"
-                android:hint="编辑个性签名"
+                android:layout_toLeftOf="@+id/my_4s_shop_signature_detail"
+                android:layout_toRightOf="@+id/tv_my_4s_shop_signature"
+                android:gravity="right"
+                android:textColorHint="@color/my4s_hint_color"
+                android:hint="@string/unfilled"
                 android:inputType=""
+                android:textSize="@dimen/x30"
                 android:minLines="1"
                 tools:ignore="HardcodedText,RtlHardcoded,TextFields,UnknownIdInLayout" />
 
+            <TextView
+                android:id="@+id/my_4s_shop_signature_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:background="@mipmap/gray_right"
+                tools:ignore="ContentDescription,RtlHardcoded" />
         </RelativeLayout>
 
     </LinearLayout>
