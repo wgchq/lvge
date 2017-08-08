@@ -62,21 +62,69 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#EFEFF4"
+            android:layout_height="@dimen/x10"
+            android:background="@color/line_background_gray"
             tools:ignore="InefficientWeight" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/mainBackgroundColor"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/x20"
+                android:text="@string/my_4s_shop_picture" />
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#EFEFF4"
+            android:layout_height="@dimen/x1"
+            android:background="@color/line_background_gray"
             tools:ignore="InefficientWeight" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/mainBackgroundColor">
+
+            <ImageView
+                android:id="@+id/my_4s_shop_pic_1"
+                android:layout_width="@dimen/x226"
+                android:layout_height="@dimen/x140"
+                android:layout_margin="@dimen/x10"
+                android:background="@drawable/my_4s_shop_pic_shape">
+
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/my_4s_shop_pic_2"
+                android:layout_width="@dimen/x226"
+                android:layout_height="@dimen/x140"
+                android:layout_margin="@dimen/x10"
+                android:background="@drawable/my_4s_shop_pic_shape">
+
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/my_4s_shop_pic_3"
+                android:layout_width="@dimen/x226"
+                android:layout_height="@dimen/x140"
+                android:layout_margin="@dimen/x10"
+                android:background="@drawable/my_4s_shop_pic_shape">
+
+            </ImageView>
+
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#EFEFF4"
+            android:layout_height="@dimen/x10"
+            android:background="@color/line_background_gray"
             tools:ignore="InefficientWeight" />
 
         <RelativeLayout
@@ -101,13 +149,22 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/x20"
                 android:drawablePadding="@dimen/text_left_to_img_padding"
                 android:drawableRight="@mipmap/gray_right"
-                android:text="未设置"
+                android:hint="未设置"
+                android:textColor="#000"
+                android:textColorHint="#999"
+                android:textSize="@dimen/x28"
                 tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
 
         </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"
+            android:background="@color/line_background_gray"
+            tools:ignore="InefficientWeight" />
 
         <LinearLayout
             android:id="@+id/my4s_management_to_address"
@@ -139,10 +196,13 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/x20"
                     android:drawablePadding="@dimen/text_left_to_img_padding"
                     android:drawableRight="@mipmap/gray_right"
-                    android:hint="未设置"
+                    android:hint="@string/no_setting"
+                    android:textColor="#000"
+                    android:textColorHint="#999"
+                    android:textSize="@dimen/x28"
                     tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp" />
             </RelativeLayout>
 
@@ -151,8 +211,8 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#EFEFF4"
+            android:layout_height="@dimen/x10"
+            android:background="@color/line_background_gray"
             tools:ignore="InefficientWeight" />
 
         <RelativeLayout
@@ -179,8 +239,13 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toLeftOf="@+id/commodity_freight_setting_textview2"
                 android:layout_toRightOf="@+id/commodity_my4s_setting_textview1"
-                android:background="#EFEFF4"
+                android:background="@drawable/edit_text_shape"
+                android:gravity="right"
+                android:hint="@string/no_setting"
                 android:inputType="text"
+                android:textColor="#000"
+                android:textColorHint="#999"
+                android:textSize="@dimen/x28"
                 tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
 
 
@@ -191,12 +256,18 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="*"
+                android:layout_marginRight="@dimen/x20"
+                android:drawableRight="@mipmap/gray_right"
                 android:textColor="@color/colorPrimary"
                 tools:ignore="ContentDescription,HardcodedText,RtlHardcoded" />
 
         </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"
+            android:background="@color/line_background_gray"
+            tools:ignore="InefficientWeight" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -221,10 +292,13 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toLeftOf="@+id/commodity_freight_setting_textview3"
                 android:layout_toRightOf="@+id/commodity_my4s_setting_textview2"
-                android:background="#EFEFF4"
+                android:background="@drawable/edit_text_shape"
+                android:gravity="right"
+                android:hint="未设置"
                 android:inputType="text"
+                android:textColorHint="#999"
+                android:textSize="@dimen/x28"
                 tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
-
 
             <TextView
                 android:id="@+id/commodity_freight_setting_textview3"
@@ -233,12 +307,17 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="*"
+                android:layout_marginRight="@dimen/x20"
+                android:drawableRight="@mipmap/gray_right"
                 android:textColor="@color/colorPrimary"
                 tools:ignore="ContentDescription,HardcodedText,RtlHardcoded" />
-
         </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"
+            android:background="@color/line_background_gray"
+            tools:ignore="InefficientWeight" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -263,8 +342,13 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toLeftOf="@+id/commodity_freight_setting_textview4"
                 android:layout_toRightOf="@+id/commodity_my4s_setting_textview3"
-                android:background="#EFEFF4"
+                android:background="@drawable/edit_text_shape"
+                android:gravity="right"
+                android:hint="@string/no_setting"
                 android:inputType="text"
+                android:textColor="#000"
+                android:textColorHint="#999"
+                android:textSize="@dimen/x28"
                 tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
 
 
@@ -275,8 +359,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="*"
+                android:layout_marginRight="@dimen/x20"
+                android:drawableRight="@mipmap/gray_right"
                 android:textColor="@color/colorPrimary"
                 tools:ignore="ContentDescription,HardcodedText,RtlHardcoded" />
 

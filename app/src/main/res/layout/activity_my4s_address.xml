@@ -65,8 +65,8 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/x708"
+                android:layout_height="@dimen/x86"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
@@ -78,33 +78,38 @@
                 android:paddingRight="@dimen/text_left_padding"
                 android:paddingStart="@dimen/text_left_padding"
                 tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
-
-                <TextView
-                    android:id="@+id/my4s_address_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/txt_current_position"
-                    android:textSize="16sp" />
-
-                <EditText
-                    android:id="@+id/current_position"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/my4s_address_search_ImageView"
-                    android:layout_toRightOf="@+id/my4s_address_textview"
-                    android:textSize="16sp"
-                    tools:ignore="TextFields" />
-
                 <ImageView
                     android:id="@+id/my4s_address_search_ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
                     android:src="@mipmap/searcg"
-                    tools:ignore="ContentDescription,RtlSymmetry" />
+                    android:layout_centerVertical="true"
+                    tools:ignore="ContentDescription,RtlSymmetry"
+                    android:layout_alignTop="@+id/my4s_address_textview"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                <TextView
+                    android:layout_marginLeft="@dimen/x10"
+                    android:id="@+id/my4s_address_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textColor="#000"
+                    android:layout_toRightOf="@+id/my4s_address_search_ImageView"
+                    android:text="@string/txt_current_position"
+                    android:textSize="@dimen/x30" />
+
+                <EditText
+                    android:layout_marginLeft="@dimen/x26"
+                    android:id="@+id/current_position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/my4s_address_textview"
+                    android:textSize="@dimen/x28"
+                    android:textColor="#333"
+                    android:background="@drawable/edit_text_shape"
+                    tools:ignore="TextFields" />
             </RelativeLayout>
 
             <ListView
