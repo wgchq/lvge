@@ -62,6 +62,18 @@ public class My4sManagementActivityGson {
         private String lng;
         private String photo;
         private String lat;
+        private List<My4sShopPic> imgVOs;
+
+        public List<My4sShopPic> getImgVOs() {
+            return imgVOs;
+        }
+
+        public void setImgVOs(List<My4sShopPic> imgVOs) {
+            this.imgVOs = imgVOs;
+        }
+
+
+
 
         public String getLat() {
             return lat;
@@ -149,6 +161,29 @@ public class My4sManagementActivityGson {
 
 
 
+    }
+
+
+    class My4sShopPic {
+        private int id =0;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getPath() {
+            return path;
+        }
+
+        public void setPath(String path) {
+            this.path = path;
+        }
+
+        private String path="";
     }
 
 }

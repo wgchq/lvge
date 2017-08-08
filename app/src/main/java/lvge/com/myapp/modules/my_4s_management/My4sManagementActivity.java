@@ -3,6 +3,7 @@ package lvge.com.myapp.modules.my_4s_management;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import com.amap.api.maps2d.model.Text;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.BitmapCallback;
 import com.zhy.http.okhttp.callback.Callback;
 
 import java.io.File;
@@ -57,6 +59,9 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
     private TextView takePhoto;
     private TextView cancelPhoto;
     private Dialog dialog;
+    private String path;
+
+    private int currentIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +88,11 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
         final EditText commodity_my4s_setting_inputnumber = (EditText) findViewById(R.id.commodity_my4s_setting_inputnumber);
         final EditText commodity_my4s_setting_inputsosnumber = (EditText) findViewById(R.id.commodity_my4s_setting_inputsosnumber);
         final EditText commodity_my4s_setting_inputInsurancenumber = (EditText) findViewById(R.id.commodity_my4s_setting_inputInsurancenumber);
+
+        final ImageView my_4s_shop_pic_1 = (ImageView) findViewById(R.id.my_4s_shop_pic_1);
+        final ImageView my_4s_shop_pic_2 = (ImageView) findViewById(R.id.my_4s_shop_pic_2);
+        final ImageView my_4s_shop_pic_3 = (ImageView) findViewById(R.id.my_4s_shop_pic_3);
+
         RelativeLayout my4s_management_to_salesconsultant = (RelativeLayout) findViewById(R.id.my4s_management_to_salesconsultant);
         LinearLayout my4s_management_to_address = (LinearLayout) findViewById(R.id.my4s_management_to_address);
 
@@ -128,6 +138,49 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                     commodity_my4s_setting_inputnumber.setText(String.valueOf(result.getMarketEntity().getServerPhone()));
                                     commodity_my4s_setting_inputsosnumber.setText(String.valueOf(result.getMarketEntity().getAssistPhone()));
                                     commodity_my4s_setting_inputInsurancenumber.setText(String.valueOf(result.getMarketEntity().getNotifyDangerPhone()));
+
+                                    if (result.getMarketEntity().getImgVOs() != null) {
+                                        int size = result.getMarketEntity().getImgVOs().size();
+                                        for (int index = 0; index < size; index++) {
+                                            int id = result.getMarketEntity().getImgVOs().get(index).getId();
+                                            path = result.getMarketEntity().getImgVOs().get(index).getPath();
+                                            currentIndex = index + 1;
+                                            new Thread(new Runnable() {
+                                                @Override
+                                                public void run() {
+
+                                                    OkHttpUtils.get()
+                                                            .url(path)
+                                                            .build()
+                                                            .connTimeOut(20000).readTimeOut(20000).writeTimeOut(20000)
+                                                            .execute(new BitmapCallback() {
+                                                                @Override
+                                                                public void onError(Call call, Exception e, int i) {
+
+                                                                }
+
+                                                                @Override
+                                                                public void onResponse(Bitmap bitmap, int i) {
+                                                                    if (currentIndex == 1) {
+                                                                        my_4s_shop_pic_1.setImageBitmap(bitmap);
+
+                                                                    } else if (currentIndex == 2) {
+                                                                        my_4s_shop_pic_2.setImageBitmap(bitmap);
+
+                                                                    } else if (currentIndex == 3) {
+                                                                        my_4s_shop_pic_3.setImageBitmap(bitmap);
+
+                                                                    }
+
+                                                                }
+                                                            });
+                                                }
+                                            }).start();
+
+
+                                        }
+                                    }
+
                                 } else {
                                     // Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
                                     // startActivity(intent);
@@ -260,14 +313,11 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 // 此处这句intent的值设置关系到后面的onActivityResult中会进入那个分支，即关系到data是否为null，如果此处指定，则后来的data为null
                 // set the image file name
                 take_photo_intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-             try
-             {
-                 startActivityForResult(take_photo_intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-             }
-             catch (Exception e)
-             {
-                 e.printStackTrace();
-             }
+                try {
+                    startActivityForResult(take_photo_intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 break;
             case R.id.cancel:

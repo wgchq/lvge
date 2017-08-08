@@ -74,7 +74,6 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
     private String assistPhone;
     private String notifyDangerPhone;
 
-
     private TextView getCurentPoistion;
     private TextView currentPosition;
     private TextView my_4s_address_detail;
