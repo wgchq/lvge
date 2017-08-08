@@ -105,38 +105,19 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my4s_address);
 
+        /*导航条*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_4s_address_management);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Intent intent = new Intent(My4sAddressActivity.this, My4sManagementActivity.class);
-               // startActivity(intent);
                 finish();
             }
         });
+
+        /*获取页面传值*/
         Intent intent = getIntent();
-        TextView confirm = (TextView) findViewById(R.id.my_4s_address_confirm);
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        getCurentPoistion = (TextView) findViewById(R.id.my4s_address_textview);
-        getCurentPoistion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
-                //将地图移动到定位点
-                aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(lat, lng)));
-                currentPosition = (TextView) findViewById(R.id.current_position);
-                currentPosition.setText(address);
-            }
-        });
-
         lng = Double.parseDouble(intent.getStringExtra("lng"));
         lat = Double.parseDouble(intent.getStringExtra("lat"));
         address = intent.getStringExtra("address");
@@ -145,8 +126,26 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         assistPhone = intent.getStringExtra("assistPhone");
         notifyDangerPhone = intent.getStringExtra("notifyDangerPhone");
 
+
+       /*页面点击事件注册*/
+        //当前位置按钮
+        getCurentPoistion = (TextView) findViewById(R.id.my4s_address_textview);
+        getCurentPoistion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+                //将地图移动到定位点
+                aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(lat, lng)));
+                currentPosition = (TextView) findViewById(R.id.current_position);
+                currentPosition.setText(address);
+                my_4s_address_detail = (TextView) findViewById(R.id.my_4s_address_detail);
+                my_4s_address_detail.setText(address);
+            }
+        });
+
         final EditText current_position = (EditText) findViewById(R.id.current_position);
         current_position.addTextChangedListener(this);
+
         TextView my_4s_address_confirm = (TextView) findViewById(R.id.my_4s_address_confirm);
         my_4s_address_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,16 +196,6 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                         });
             }
         });
-/*
-        final EditText current_position = (EditText) findViewById(R.id.current_position);
-        current_position.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(My4sAddressActivity.this, My4sAddressSearchActivity.class);
-                intent.putExtra("address", address);
-                startActivity(intent);
-            }
-        });*/
 
         ImageView my4s_address_search_ImageView = (ImageView) findViewById(R.id.my4s_address_search_ImageView);
         my4s_address_search_ImageView.setOnClickListener(new View.OnClickListener()
@@ -218,18 +207,14 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
             }
         });
 
-        /**
-         * 地图定位
-         */
-        //显示地图
-        mapView = (MapView)
 
-                findViewById(R.id.map);
+        /*地图定位*/
+        //显示地图
+        mapView = (MapView) findViewById(R.id.map);
         //必须要写
         mapView.onCreate(savedInstanceState);
         //获取地图对象
         aMap = mapView.getMap();
-
         //设置显示定位按钮 并且可以点击
         UiSettings settings = aMap.getUiSettings();
         aMap.setLocationSource(this);
@@ -244,8 +229,6 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         myLocationStyle.strokeColor(android.R.color.holo_orange_dark);
         aMap.setMyLocationStyle(myLocationStyle);
         //开始定位
-        //设置定位监听
-
         initLoc();
 
     }
@@ -257,7 +240,6 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         }
         //初始化定位
         mLocationClient = new AMapLocationClient(this);
-
         //设置定位回调监听
 /*
         mLocationClient.setLocationListener(this);
@@ -268,11 +250,12 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
             //添加图钉
             attentionMark = aMap.addMarker(getMarkerOptions(address));
             aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
-
             //将地图移动到定位点
             aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(this.lat, this.lng)));
             currentPosition = (TextView) findViewById(R.id.current_position);
             currentPosition.setText(address);
+            my_4s_address_detail = (TextView) findViewById(R.id.my_4s_address_detail);
+            my_4s_address_detail.setText(address);
         }
         //初始化定位参数
         mLocationOption = new AMapLocationClientOption();
@@ -327,7 +310,6 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                     public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
                         String Province = regeocodeResult.getRegeocodeAddress().getProvince();
                         String City = regeocodeResult.getRegeocodeAddress().getCity();
-
                         String Crossroads = regeocodeResult.getRegeocodeAddress().getTowncode();
                         String Building = regeocodeResult.getRegeocodeAddress().getBuilding();
                         String FormatAddress = regeocodeResult.getRegeocodeAddress().getFormatAddress();
@@ -358,7 +340,6 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                     aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
                     //将地图移动到定位点
                     aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude())));
-
                     //获取定位信息
                 }
 
@@ -481,7 +462,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progDialog.setIndeterminate(false);
         progDialog.setCancelable(false);
-        progDialog.setMessage("正在搜索：。。。");
+        progDialog.setMessage("正在搜索：...");
         progDialog.show();
     }
 
