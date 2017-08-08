@@ -71,6 +71,7 @@
     <string name="shop_image_shop_environment">店铺环境</string>
     <string name="shop_image_shop_other">店铺其他</string>
     <string name="select_shop_image">选取图片</string>
+    <string name="take_photo">拍照</string>
     <string name="from_phone_photo">从相册选择</string>
     <string name="cancel">取消</string>
 

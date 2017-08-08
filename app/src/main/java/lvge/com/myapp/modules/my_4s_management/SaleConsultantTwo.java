@@ -463,7 +463,7 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
         progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progDialog.setIndeterminate(false);
         progDialog.setCancelable(false);
-        progDialog.setMessage("正在上传：。。。");
+        progDialog.setMessage("正在上传 ...");
         progDialog.show();
     }
 

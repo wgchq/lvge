@@ -96,6 +96,7 @@
                 android:layout_width="@dimen/x226"
                 android:layout_height="@dimen/x140"
                 android:layout_margin="@dimen/x10"
+                android:onClick="show"
                 android:src="@mipmap/my_4s_shop_no_pic">
 
             </ImageView>
@@ -105,6 +106,7 @@
                 android:layout_width="@dimen/x226"
                 android:layout_height="@dimen/x140"
                 android:layout_margin="@dimen/x10"
+                android:onClick="show"
                 android:src="@mipmap/my_4s_shop_no_pic"
                 >
 
@@ -115,6 +117,7 @@
                 android:layout_width="@dimen/x226"
                 android:layout_height="@dimen/x140"
                 android:layout_margin="@dimen/x10"
+                android:onClick="show"
                 android:src="@mipmap/my_4s_shop_no_pic">
 
             </ImageView>
