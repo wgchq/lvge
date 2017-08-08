@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -47,80 +47,115 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/appBarLayout">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <com.amap.api.maps2d.MapView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/map"
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@id/appBarLayout">
 
-        </com.amap.api.maps2d.MapView>
+            <com.amap.api.maps2d.MapView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            </com.amap.api.maps2d.MapView>
 
-            <RelativeLayout
-                android:layout_width="@dimen/x708"
-                android:layout_height="@dimen/x86"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/layout_border_shap"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:paddingEnd="@dimen/text_left_padding"
-                android:paddingLeft="@dimen/text_left_padding"
-                android:paddingRight="@dimen/text_left_padding"
-                android:paddingStart="@dimen/text_left_padding"
-                tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
-                <ImageView
-                    android:id="@+id/my4s_address_search_ImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/searcg"
-                    android:layout_centerVertical="true"
-                    tools:ignore="ContentDescription,RtlSymmetry"
-                    android:layout_alignTop="@+id/my4s_address_textview"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-                <TextView
-                    android:layout_marginLeft="@dimen/x10"
-                    android:id="@+id/my4s_address_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textColor="#000"
-                    android:layout_toRightOf="@+id/my4s_address_search_ImageView"
-                    android:text="@string/txt_current_position"
-                    android:textSize="@dimen/x30" />
-
-                <EditText
-                    android:layout_marginLeft="@dimen/x26"
-                    android:id="@+id/current_position"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/my4s_address_textview"
-                    android:textSize="@dimen/x28"
-                    android:textColor="#333"
-                    android:background="@drawable/edit_text_shape"
-                    tools:ignore="TextFields" />
-            </RelativeLayout>
-
-            <ListView
-                android:id="@+id/search_list_view"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/mainBackgroundColor">
+                android:orientation="vertical">
 
-            </ListView>
-        </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="@dimen/x708"
+                    android:layout_height="@dimen/x86"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/layout_border_shap"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:paddingEnd="@dimen/text_left_padding"
+                    android:paddingLeft="@dimen/text_left_padding"
+                    android:paddingRight="@dimen/text_left_padding"
+                    android:paddingStart="@dimen/text_left_padding"
+                    tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
 
-    </FrameLayout>
+                    <ImageView
+                        android:id="@+id/my4s_address_search_ImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignTop="@+id/my4s_address_textview"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/searcg"
+                        tools:ignore="ContentDescription,RtlSymmetry" />
 
-</RelativeLayout>
+                    <TextView
+                        android:id="@+id/my4s_address_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:layout_toRightOf="@+id/my4s_address_search_ImageView"
+                        android:text="@string/txt_current_position"
+                        android:textColor="#000"
+                        android:textSize="@dimen/x30" />
+
+                    <EditText
+                        android:id="@+id/current_position"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x26"
+                        android:layout_toRightOf="@+id/my4s_address_textview"
+                        android:background="@drawable/edit_text_shape"
+                        android:textColor="#333"
+                        android:textSize="@dimen/x28"
+                        tools:ignore="TextFields" />
+                </RelativeLayout>
+
+                <ListView
+                    android:id="@+id/search_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/mainBackgroundColor">
+
+                </ListView>
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x121"
+        android:orientation="vertical"
+        android:background="@color/mainBackgroundColor">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/x26"
+            android:textColor="#000"
+            android:layout_marginLeft="@dimen/x28"
+            android:text="[位置]"/>
+
+        <TextView
+            android:id="@+id/my_4s_address_detail"
+            android:layout_marginTop="@dimen/x30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#333"
+            android:layout_marginLeft="@dimen/x28"
+            android:text="郑州"
+            android:textSize="@dimen/x22"/>
+
+
+    </LinearLayout>
+</LinearLayout>

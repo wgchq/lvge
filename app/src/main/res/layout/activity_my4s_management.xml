@@ -88,15 +88,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:background="@color/mainBackgroundColor">
+            android:background="@color/mainBackgroundColor"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/my_4s_shop_pic_1"
                 android:layout_width="@dimen/x226"
                 android:layout_height="@dimen/x140"
                 android:layout_margin="@dimen/x10"
-                android:background="@drawable/my_4s_shop_pic_shape">
+                android:src="@mipmap/my_4s_shop_no_pic">
 
             </ImageView>
 
@@ -105,7 +105,8 @@
                 android:layout_width="@dimen/x226"
                 android:layout_height="@dimen/x140"
                 android:layout_margin="@dimen/x10"
-                android:background="@drawable/my_4s_shop_pic_shape">
+                android:src="@mipmap/my_4s_shop_no_pic"
+                >
 
             </ImageView>
 
@@ -114,7 +115,7 @@
                 android:layout_width="@dimen/x226"
                 android:layout_height="@dimen/x140"
                 android:layout_margin="@dimen/x10"
-                android:background="@drawable/my_4s_shop_pic_shape">
+                android:src="@mipmap/my_4s_shop_no_pic">
 
             </ImageView>
 
@@ -130,15 +131,15 @@
         <RelativeLayout
             android:id="@+id/my4s_management_to_salesconsultant"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x88"
             android:background="@drawable/edit_text_shape"
+            android:paddingLeft="@dimen/x20"
             tools:ignore="UselessParent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
                 android:text="销售顾问"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
@@ -148,9 +149,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/x20"
                 android:layout_marginRight="@dimen/x20"
-                android:drawablePadding="@dimen/text_left_to_img_padding"
+                android:drawablePadding="@dimen/x20"
                 android:drawableRight="@mipmap/gray_right"
                 android:hint="未设置"
                 android:textColor="#000"
@@ -169,7 +170,7 @@
         <LinearLayout
             android:id="@+id/my4s_management_to_address"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x88"
             android:layout_gravity="center_vertical"
             android:background="@drawable/edit_text_shape"
             android:gravity="center_vertical"
@@ -187,7 +188,8 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/x20">
 
                 <TextView
                     android:id="@+id/commodity_my4s_address"
@@ -195,9 +197,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="@dimen/x20"
-                    android:drawablePadding="@dimen/text_left_to_img_padding"
+                    android:drawablePadding="@dimen/x20"
                     android:drawableRight="@mipmap/gray_right"
                     android:hint="@string/no_setting"
                     android:textColor="#000"
@@ -217,8 +218,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x88"
             android:background="@drawable/edit_text_shape"
+            android:paddingLeft="@dimen/x20"
             tools:ignore="UselessParent">
 
             <TextView
@@ -226,7 +228,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
                 android:text="服务电话："
 
                 tools:ignore="HardcodedText,RtlHardcoded" />
@@ -236,7 +237,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/x20"
                 android:layout_toLeftOf="@+id/commodity_freight_setting_textview2"
                 android:layout_toRightOf="@+id/commodity_my4s_setting_textview1"
                 android:background="@drawable/edit_text_shape"
@@ -255,7 +256,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/x20"
                 android:layout_marginRight="@dimen/x20"
                 android:drawableRight="@mipmap/gray_right"
                 android:textColor="@color/colorPrimary"
@@ -271,8 +272,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x88"
             android:background="@drawable/edit_text_shape"
+            android:paddingLeft="@dimen/x20"
             tools:ignore="UselessParent">
 
             <TextView
@@ -280,7 +282,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
                 android:text="救援电话："
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
@@ -306,7 +307,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/x20"
                 android:layout_marginRight="@dimen/x20"
                 android:drawableRight="@mipmap/gray_right"
                 android:textColor="@color/colorPrimary"
@@ -321,8 +322,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x88"
             android:background="@drawable/edit_text_shape"
+            android:paddingLeft="@dimen/x20"
             tools:ignore="UselessParent">
 
             <TextView
@@ -330,7 +332,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
                 android:text="保险电话："
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
@@ -358,7 +359,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/x20"
                 android:layout_marginRight="@dimen/x20"
                 android:drawableRight="@mipmap/gray_right"
                 android:textColor="@color/colorPrimary"

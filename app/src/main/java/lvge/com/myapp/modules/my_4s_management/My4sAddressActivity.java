@@ -77,6 +77,7 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
 
     private TextView getCurentPoistion;
     private TextView currentPosition;
+    private TextView my_4s_address_detail;
     private Marker attentionMark = null;
 
     //显示地图需要的变量
@@ -336,7 +337,8 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
 
                         currentPosition = (TextView) findViewById(R.id.current_position);
                         currentPosition.setText(address);
-
+                        my_4s_address_detail = (TextView) findViewById(R.id.my_4s_address_detail);
+                        my_4s_address_detail.setText(address);
                     }
 
                     @Override
@@ -460,6 +462,8 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
                     aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(lat, lng)));
                     currentPosition = (TextView) findViewById(R.id.current_position);
                     currentPosition.setText(address);
+                    my_4s_address_detail = (TextView) findViewById(R.id.my_4s_address_detail);
+                    my_4s_address_detail.setText(address);
 
                 }
             });
