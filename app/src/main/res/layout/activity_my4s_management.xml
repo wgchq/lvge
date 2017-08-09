@@ -76,7 +76,8 @@
                 android:background="@color/mainBackgroundColor"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/x20"
-                android:text="@string/my_4s_shop_picture" />
+                android:text="@string/my_4s_shop_picture"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
         </LinearLayout>
 
         <View
@@ -97,7 +98,9 @@
                 android:layout_height="@dimen/x140"
                 android:layout_margin="@dimen/x10"
                 android:onClick="show"
-                android:src="@mipmap/my_4s_shop_no_pic">
+                android:src="@mipmap/my_4s_shop_no_pic"
+                android:contentDescription=""
+                tools:ignore="ContentDescription">
 
             </ImageView>
 
@@ -108,7 +111,7 @@
                 android:layout_margin="@dimen/x10"
                 android:onClick="show"
                 android:src="@mipmap/my_4s_shop_no_pic"
-                >
+                tools:ignore="ContentDescription">
 
             </ImageView>
 
@@ -118,7 +121,8 @@
                 android:layout_height="@dimen/x140"
                 android:layout_margin="@dimen/x10"
                 android:onClick="show"
-                android:src="@mipmap/my_4s_shop_no_pic">
+                android:src="@mipmap/my_4s_shop_no_pic"
+                tools:ignore="ContentDescription">
 
             </ImageView>
 
@@ -137,7 +141,7 @@
             android:layout_height="@dimen/x88"
             android:background="@drawable/edit_text_shape"
             android:paddingLeft="@dimen/x20"
-            tools:ignore="UselessParent">
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -160,7 +164,7 @@
                 android:textColor="#000"
                 android:textColorHint="#999"
                 android:textSize="@dimen/x28"
-                tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
+                tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,SmallSp" />
 
         </RelativeLayout>
 
@@ -192,7 +196,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="@dimen/x20">
+                android:paddingLeft="@dimen/x20"
+                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                 <TextView
                     android:id="@+id/commodity_my4s_address"
@@ -224,7 +229,7 @@
             android:layout_height="@dimen/x88"
             android:background="@drawable/edit_text_shape"
             android:paddingLeft="@dimen/x20"
-            tools:ignore="UselessParent">
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
 
             <TextView
                 android:id="@+id/commodity_my4s_setting_textview1"
@@ -278,7 +283,7 @@
             android:layout_height="@dimen/x88"
             android:background="@drawable/edit_text_shape"
             android:paddingLeft="@dimen/x20"
-            tools:ignore="UselessParent">
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
 
             <TextView
                 android:id="@+id/commodity_my4s_setting_textview2"
@@ -328,7 +333,7 @@
             android:layout_height="@dimen/x88"
             android:background="@drawable/edit_text_shape"
             android:paddingLeft="@dimen/x20"
-            tools:ignore="UselessParent">
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
 
             <TextView
                 android:id="@+id/commodity_my4s_setting_textview3"

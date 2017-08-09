@@ -2,10 +2,15 @@
 package lvge.com.myapp.modules.my_4s_management;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,9 +34,18 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.BitmapCallback;
 import com.zhy.http.okhttp.callback.Callback;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import lvge.com.myapp.MainActivity;
 import lvge.com.myapp.MainPageActivity;
@@ -63,6 +77,22 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
 
     private int currentIndex = 0;
 
+   // private Uri imageUri = null;
+    private Uri fileUri = null;
+
+    private ImageView my_4s_shop_pic_1;
+    private ImageView my_4s_shop_pic_2;
+    private ImageView my_4s_shop_pic_3;
+
+    private int id_iamge;
+    private Bitmap bitmap;
+
+    private ProgressDialog progDialog = null;
+    private boolean my_4s_pic_1_bool = false;
+    private boolean my_4s_pic_2_bool = false;
+    private boolean my_4s_pic_3_bool = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,9 +119,9 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
         final EditText commodity_my4s_setting_inputsosnumber = (EditText) findViewById(R.id.commodity_my4s_setting_inputsosnumber);
         final EditText commodity_my4s_setting_inputInsurancenumber = (EditText) findViewById(R.id.commodity_my4s_setting_inputInsurancenumber);
 
-        final ImageView my_4s_shop_pic_1 = (ImageView) findViewById(R.id.my_4s_shop_pic_1);
-        final ImageView my_4s_shop_pic_2 = (ImageView) findViewById(R.id.my_4s_shop_pic_2);
-        final ImageView my_4s_shop_pic_3 = (ImageView) findViewById(R.id.my_4s_shop_pic_3);
+        my_4s_shop_pic_1 = (ImageView) findViewById(R.id.my_4s_shop_pic_1);
+        my_4s_shop_pic_2 = (ImageView) findViewById(R.id.my_4s_shop_pic_2);
+        my_4s_shop_pic_3 = (ImageView) findViewById(R.id.my_4s_shop_pic_3);
 
         RelativeLayout my4s_management_to_salesconsultant = (RelativeLayout) findViewById(R.id.my4s_management_to_salesconsultant);
         LinearLayout my4s_management_to_address = (LinearLayout) findViewById(R.id.my4s_management_to_address);
@@ -241,6 +271,59 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 } catch (Exception e) {
                     Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
                 }
+
+                try{
+
+                    if(my_4s_pic_1_bool) {
+                        my_4s_shop_pic_1.setDrawingCacheEnabled(true);
+                        bitmap = my_4s_shop_pic_1.getDrawingCache();
+
+                        new Thread() {
+                            public void run() {
+                                try {
+                                    // showProgressDialog();
+                                    post_str();
+                                    Thread.sleep(1000);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }.start();
+                    }
+                    if(my_4s_pic_2_bool){
+                        my_4s_shop_pic_2.setDrawingCacheEnabled(true);
+                        bitmap = my_4s_shop_pic_2.getDrawingCache();
+
+                        new Thread() {
+                            public void run() {
+                                try {
+                                    // showProgressDialog();
+                                    post_str();
+                                    Thread.sleep(1000);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }.start();
+                    }
+                    if(my_4s_pic_3_bool){
+                        my_4s_shop_pic_3.setDrawingCacheEnabled(true);
+                        bitmap = my_4s_shop_pic_3.getDrawingCache();
+
+                        new Thread() {
+                            public void run() {
+                                try {
+                                    // showProgressDialog();
+                                    post_str();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }.start();
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -273,6 +356,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
     }
 
     public void show(View view) {
+        id_iamge = view.getId();
         dialog = new Dialog(this, R.style.ActionSheetDialogStyle);
         //填充对话框的布局
         inflate = LayoutInflater.from(this).inflate(R.layout.layout_menu_shop_manage_img_dialog, null);
@@ -308,7 +392,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
             case R.id.take_photo:
                 Intent take_photo_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 // create a file to save the image
-                Uri fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+                fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
 
                 // 此处这句intent的值设置关系到后面的onActivityResult中会进入那个分支，即关系到data是否为null，如果此处指定，则后来的data为null
                 // set the image file name
@@ -382,4 +466,203 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
 
         return mediaFile;
     }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        dialog.dismiss();
+        if (requestCode == 1 && data != null)
+        {
+            fileUri = data.getData();
+
+        }
+        if (fileUri != null) {
+            try {
+                String[] prjo = {MediaStore.Images.Media.DATA};
+                Cursor cursor = managedQuery(fileUri, prjo, null, null, null);
+                if (cursor != null) {
+                    cursor.moveToFirst();
+                    String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                    // file = new File(path);
+                    Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(fileUri));
+
+                    if (bitmap != null) {
+                        switch (id_iamge){
+                            case  R.id.my_4s_shop_pic_1:
+                                my_4s_shop_pic_1.setImageBitmap(bitmap);
+                                my_4s_pic_1_bool = true;
+                                break;
+                            case R.id.my_4s_shop_pic_2:
+                                my_4s_shop_pic_2.setImageBitmap(bitmap);
+                                my_4s_pic_2_bool = true;
+                                break;
+                            case R.id.my_4s_shop_pic_3:
+                                my_4s_shop_pic_3.setImageBitmap(bitmap);
+                                my_4s_pic_3_bool = true;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE && fileUri != null)
+        {
+           // imageUri = data.getData();
+            try{
+                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(fileUri));
+
+                if(bitmap != null){
+                    switch (id_iamge){
+                        case  R.id.my_4s_shop_pic_1:
+                            my_4s_shop_pic_1.setImageBitmap(bitmap);
+                            my_4s_pic_1_bool = true;
+                            break;
+                        case R.id.my_4s_shop_pic_2:
+                            my_4s_shop_pic_2.setImageBitmap(bitmap);
+                            my_4s_pic_2_bool = true;
+                            break;
+                        case R.id.my_4s_shop_pic_3:
+                            my_4s_shop_pic_3.setImageBitmap(bitmap);
+                            my_4s_pic_3_bool = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
+    private void showProgressDialog(){
+        if(progDialog == null){
+            progDialog = new ProgressDialog(this);
+        }
+        progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progDialog.setIndeterminate(false);
+        progDialog.setCancelable(false);
+        progDialog.setMessage("正在上传 ...");
+        progDialog.show();
+    }
+
+    private void dissmissProgressDialog(){
+        if(progDialog != null){
+            progDialog.dismiss();
+        }
+    }
+
+    private void post_str() {
+
+        try {
+
+            String path = "http://www.lvgew.com/obdcarmarket/sellerapp/shop4S/sellerImgSave";
+
+            List<String> filePaths = new ArrayList<>();
+            filePaths.add(saveBitmap());
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            BaseTest bs = new BaseTest();
+            String str = bs.imgPut(path, filePaths, map);
+            returnMessage(str);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            returnMessage("error");
+        }
+    }
+
+
+    private String saveBitmap() throws IOException {
+        File sd = Environment.getExternalStorageDirectory();
+        boolean can_write = sd.canWrite();
+
+        // Bitmap bitm = convertViewToBitMap(sale_consultant_two_iamgeview);
+        String strPath = Environment.getExternalStorageDirectory().toString() + "/save";
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+
+        if (baos.toByteArray().length / 1024 > 500) {
+            int option = 90;
+            while (baos.toByteArray().length / 1024 > 500) {
+                baos.reset();
+                bitmap.compress(Bitmap.CompressFormat.PNG, option, baos);
+                option -= 10;
+            }
+            ByteArrayInputStream isbm = new ByteArrayInputStream(baos.toByteArray());
+            bitmap = BitmapFactory.decodeStream(isbm, null, null);
+
+            isbm.close();
+        }
+        baos.close();
+
+        try {
+            File desDir = new File(strPath);
+            if (!desDir.exists()) {
+                desDir.mkdir();
+            }
+
+            File imageFile = new File(strPath + "/1.PNG");
+            if (imageFile.exists()) {
+                imageFile.delete();
+            }
+            imageFile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return strPath + "/1.PNG";
+    }
+    private void returnMessage(String string) {
+        Message msg = new Message();
+        if(string.equals("error")){
+            msg.what = 1;
+            mHander.sendMessage(msg);
+            return;
+        }
+
+        LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+
+        if(result.getOperationResult().getResultCode() == 0){
+
+            msg.what = 0;
+            mHander.sendMessage(msg);
+        }else {
+            msg.what = 1;
+            mHander.sendMessage(msg);
+        }
+        // dissmissProgressDialog();
+    }
+
+    Handler mHander = new Handler() {
+        public void handleMessage(Message msg){
+            dissmissProgressDialog();
+            my_4s_shop_pic_1.setDrawingCacheEnabled(false);
+            my_4s_shop_pic_2.setDrawingCacheEnabled(false);
+            my_4s_shop_pic_3.setDrawingCacheEnabled(false);
+            switch (msg.what){
+                case 0:
+                    Toast.makeText(My4sManagementActivity.this,"上传成功！",Toast.LENGTH_LONG).show();
+                    //finish();
+                    break;
+                case 1:
+                    Toast.makeText(My4sManagementActivity.this,"上传失败！",Toast.LENGTH_LONG).show();
+                    break;
+            }
+        }
+
+    };
 }
