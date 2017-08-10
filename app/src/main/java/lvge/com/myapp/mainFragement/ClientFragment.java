@@ -52,6 +52,10 @@ public class ClientFragment extends Fragment {
      String status = "0";
     private boolean search_show = false;
 
+    private String query;
+
+    private boolean isSearch_show = false;
+
     public ClientFragment() {
         // Required empty public constructor
     }
@@ -77,7 +81,8 @@ public class ClientFragment extends Fragment {
                 if(tab != null){
                     tab.select();
                 }
-                search(query,view);
+                search(query,view,"1");
+                query = query;
                 appBarLayout.setVisibility(view.GONE);
                 search_show = false;
                 return false;
@@ -95,11 +100,12 @@ public class ClientFragment extends Fragment {
 
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                try {
 
+                isSearch_show = false;
+                try {
                     switch (tab.getPosition()) {
                         case 0:
-                             status = "0";//所有
+                            status = "0";//所有
                             break;
                         case 1:
                              status = "1";//有硬件
@@ -157,6 +163,11 @@ public class ClientFragment extends Fragment {
                                                         public void run() {
 
                                                             try {
+                                                                if(isSearch_show){
+                                                                    search(query,view,Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1));
+                                                                    return;
+                                                                }
+
                                                                 OkHttpUtils.get()//get 方法
                                                                         .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                                                                         .addParams("pageIndex", Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1)) //需要传递的参数
@@ -260,6 +271,7 @@ public class ClientFragment extends Fragment {
             public void onClick(View v) {
                // Intent intent = new Intent(getActivity(), CustomerSearch.class);
                // startActivity(intent);
+                isSearch_show = true;
                 if(search_show){
                    appBarLayout.setVisibility(v.GONE);
                     search_show = false;
@@ -396,11 +408,11 @@ public class ClientFragment extends Fragment {
         }
     }
 
-    private void search(String str, final View view){
+    private void search(String str, final View view , String index){
         try {
             OkHttpUtils.get()//get 方法
                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
-                    .addParams("pageIndex", "1") //需要传递的参数
+                    .addParams("pageIndex", index) //需要传递的参数
                     .addParams("pageSize", "10")
                     .addParams("status", "0")
                     .addParams("keyword",str)

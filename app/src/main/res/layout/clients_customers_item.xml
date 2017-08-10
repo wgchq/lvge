@@ -14,7 +14,7 @@
         android:layout_marginTop="@dimen/x22"
         android:layout_marginBottom="@dimen/x22"
         android:layout_marginRight="@dimen/x22"
-        tools:ignore="UselessParent">
+        tools:ignore="RtlHardcoded,UselessParent">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -66,7 +66,8 @@
                         android:drawableLeft="@mipmap/client_kilometer"
                         android:drawablePadding="@dimen/x12"
                         android:text="88888"
-                        android:textColor="#ff8f92" />
+                        android:textColor="#ff8f92"
+                        tools:ignore="HardcodedText,RtlHardcoded" />
 
                     <TextView
                         android:id="@+id/client_kilometer"
@@ -100,7 +101,8 @@
                     android:gravity="center_vertical"
                     android:text="11"
                     android:textColor="#333"
-                    android:textSize="@dimen/x26" />
+                    android:textSize="@dimen/x26"
+                    tools:ignore="HardcodedText,RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/customer_listview_type"

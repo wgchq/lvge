@@ -1,8 +1,10 @@
 
 package lvge.com.myapp.modules.my_4s_management;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -51,6 +53,7 @@ import lvge.com.myapp.MainActivity;
 import lvge.com.myapp.MainPageActivity;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.LoginResultModel;
+import lvge.com.myapp.model.My4sUpdataImageViewModel;
 import lvge.com.myapp.modules.shop_management.ShopManageShopImgActivity;
 import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
 import okhttp3.Call;
@@ -85,12 +88,22 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
     private ImageView my_4s_shop_pic_3;
 
     private int id_iamge;
-    private Bitmap bitmap;
 
     private ProgressDialog progDialog = null;
     private boolean my_4s_pic_1_bool = false;
     private boolean my_4s_pic_2_bool = false;
     private boolean my_4s_pic_3_bool = false;
+
+    private int my_4s_pic_1_id = 0;
+    private int my_4s_pic_2_id = 0;
+    private int my_4s_pic_3_id = 0;
+
+    private   Bitmap my_4s_1_bitmap;
+    private   Bitmap my_4s_2_bitmap;
+    private   Bitmap my_4s_3_bitmap;
+
+    private int ImageNum = 0;
+
 
 
     @Override
@@ -122,6 +135,212 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
         my_4s_shop_pic_1 = (ImageView) findViewById(R.id.my_4s_shop_pic_1);
         my_4s_shop_pic_2 = (ImageView) findViewById(R.id.my_4s_shop_pic_2);
         my_4s_shop_pic_3 = (ImageView) findViewById(R.id.my_4s_shop_pic_3);
+
+        my_4s_shop_pic_1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(My4sManagementActivity.this);
+                builder.setIcon(R.mipmap.warming);
+                builder.setTitle("删除");
+                builder.setMessage("是否确定删除？");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(my_4s_pic_1_id == 0){
+                            my_4s_shop_pic_1.setImageResource(R.mipmap.my_4s_shop_no_pic);
+                        }else {
+                            try {
+                                OkHttpUtils.post()//get 方法
+                                        .url("http://www.lvgew.com/obdcarmarket/sellerapp/shop4S/sellerImgDelete") //地址
+                                        .addParams("imgID", String.valueOf(my_4s_pic_1_id))
+                                        .build()
+                                        .execute(new Callback() {
+                                            @Override
+                                            public Object parseNetworkResponse(Response response, int i) throws Exception {
+                                                String string = response.body().string();//获取相应中的内容Json格式
+                                                //把json转化成对应对象
+                                                //LoginResultModel是和后台返回值类型结构一样的对象
+                                                LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                                                return result;
+                                            }
+
+                                            @Override
+                                            public void onError(Call call, Exception e, int i) {
+
+                                            }
+
+                                            @Override
+                                            public void onResponse(Object o, int i) {
+                                                if (null != o) {
+                                                    LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
+                                                    if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                                        Toast.makeText(My4sManagementActivity.this, "删除成功！", Toast.LENGTH_SHORT).show();
+                                                        my_4s_shop_pic_1.setImageResource(R.mipmap.my_4s_shop_no_pic);
+                                                        my_4s_pic_1_id = 0;
+                                                    } else {
+                                                        Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                } else {//当没有返回对象时，表示网络没有联通
+                                                    Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                            } catch (Exception e) {
+                                Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                return  false;
+            }
+        });
+
+        my_4s_shop_pic_2.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(My4sManagementActivity.this);
+                builder.setIcon(R.mipmap.warming);
+                builder.setTitle("删除");
+                builder.setMessage("是否确定删除？");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(my_4s_pic_2_id == 0){
+                            my_4s_shop_pic_2.setImageResource(R.mipmap.my_4s_shop_no_pic);
+                        }else {
+                            try {
+                                OkHttpUtils.post()//get 方法
+                                        .url("http://www.lvgew.com/obdcarmarket/sellerapp/shop4S/sellerImgDelete") //地址
+                                        .addParams("imgID", String.valueOf(my_4s_pic_2_id))
+                                        .build()
+                                        .execute(new Callback() {
+                                            @Override
+                                            public Object parseNetworkResponse(Response response, int i) throws Exception {
+                                                String string = response.body().string();//获取相应中的内容Json格式
+                                                //把json转化成对应对象
+                                                //LoginResultModel是和后台返回值类型结构一样的对象
+                                                LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                                                return result;
+                                            }
+
+                                            @Override
+                                            public void onError(Call call, Exception e, int i) {
+
+                                            }
+
+                                            @Override
+                                            public void onResponse(Object o, int i) {
+                                                if (null != o) {
+                                                    LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
+                                                    if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                                        Toast.makeText(My4sManagementActivity.this, "删除成功！", Toast.LENGTH_SHORT).show();
+                                                        my_4s_shop_pic_2.setImageResource(R.mipmap.my_4s_shop_no_pic);
+                                                        my_4s_pic_2_id = 0;
+                                                    } else {
+                                                        Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                } else {//当没有返回对象时，表示网络没有联通
+                                                    Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                            } catch (Exception e) {
+                                Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                return  false;
+            }
+        });
+
+        my_4s_shop_pic_3.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(My4sManagementActivity.this);
+                builder.setIcon(R.mipmap.warming);
+                builder.setTitle("删除");
+                builder.setMessage("是否确定删除？");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(my_4s_pic_3_id == 0){
+                            my_4s_shop_pic_3.setImageResource(R.mipmap.my_4s_shop_no_pic);
+                        }else {
+                            try {
+                                OkHttpUtils.post()//get 方法
+                                        .url("http://www.lvgew.com/obdcarmarket/sellerapp/shop4S/sellerImgDelete") //地址
+                                        .addParams("imgID", String.valueOf(my_4s_pic_3_id))
+                                        .build()
+                                        .execute(new Callback() {
+                                            @Override
+                                            public Object parseNetworkResponse(Response response, int i) throws Exception {
+                                                String string = response.body().string();//获取相应中的内容Json格式
+                                                //把json转化成对应对象
+                                                //LoginResultModel是和后台返回值类型结构一样的对象
+                                                LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                                                return result;
+                                            }
+
+                                            @Override
+                                            public void onError(Call call, Exception e, int i) {
+
+                                            }
+
+                                            @Override
+                                            public void onResponse(Object o, int i) {
+                                                if (null != o) {
+                                                    LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
+                                                    if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                                        Toast.makeText(My4sManagementActivity.this, "删除成功！", Toast.LENGTH_SHORT).show();
+                                                        my_4s_shop_pic_3.setImageResource(R.mipmap.my_4s_shop_no_pic);
+                                                        my_4s_pic_3_id = 0;
+                                                    } else {
+                                                        Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                } else {//当没有返回对象时，表示网络没有联通
+                                                    Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                            } catch (Exception e) {
+                                Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                return  false;
+            }
+        });
 
         RelativeLayout my4s_management_to_salesconsultant = (RelativeLayout) findViewById(R.id.my4s_management_to_salesconsultant);
         LinearLayout my4s_management_to_address = (LinearLayout) findViewById(R.id.my4s_management_to_address);
@@ -172,42 +391,51 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                     if (result.getMarketEntity().getImgVOs() != null) {
                                         int size = result.getMarketEntity().getImgVOs().size();
                                         for (int index = 0; index < size; index++) {
-                                            int id = result.getMarketEntity().getImgVOs().get(index).getId();
                                             path = result.getMarketEntity().getImgVOs().get(index).getPath();
-                                            currentIndex = index + 1;
+                                            if(path == null || path == "")
+                                                continue;
+                                            if(my_4s_pic_1_id == 0){
+                                                my_4s_pic_1_id =  result.getMarketEntity().getImgVOs().get(index).getId();
+                                            }else if (my_4s_pic_2_id == 0){
+                                                my_4s_pic_2_id =  result.getMarketEntity().getImgVOs().get(index).getId();
+                                            }else if(my_4s_pic_3_id == 0){
+                                                my_4s_pic_3_id =  result.getMarketEntity().getImgVOs().get(index).getId();
+                                            }
+                                            OkHttpUtils.get()
+                                                    .url(path)
+                                                    .build()
+                                                    .execute(new BitmapCallback() {
+                                                        @Override
+                                                        public void onError(Call call, Exception e, int i) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onResponse(Bitmap bitmap, int i) {
+                                                            if (currentIndex == 0) {
+                                                                my_4s_shop_pic_1.setImageBitmap(bitmap);
+
+                                                            }
+                                                            if (currentIndex == 1) {
+                                                                my_4s_shop_pic_2.setImageBitmap(bitmap);
+
+                                                            }
+                                                            if (currentIndex == 2) {
+                                                                my_4s_shop_pic_3.setImageBitmap(bitmap);
+                                                            }
+                                                            currentIndex++;
+                                                        }
+                                                    });
+                                            /**
+                                          //  currentIndex = index + 1;
                                             new Thread(new Runnable() {
                                                 @Override
                                                 public void run() {
 
-                                                    OkHttpUtils.get()
-                                                            .url(path)
-                                                            .build()
-                                                            .connTimeOut(20000).readTimeOut(20000).writeTimeOut(20000)
-                                                            .execute(new BitmapCallback() {
-                                                                @Override
-                                                                public void onError(Call call, Exception e, int i) {
 
-                                                                }
-
-                                                                @Override
-                                                                public void onResponse(Bitmap bitmap, int i) {
-                                                                    if (currentIndex == 1) {
-                                                                        my_4s_shop_pic_1.setImageBitmap(bitmap);
-
-                                                                    } else if (currentIndex == 2) {
-                                                                        my_4s_shop_pic_2.setImageBitmap(bitmap);
-
-                                                                    } else if (currentIndex == 3) {
-                                                                        my_4s_shop_pic_3.setImageBitmap(bitmap);
-
-                                                                    }
-
-                                                                }
-                                                            });
                                                 }
                                             }).start();
-
-
+                                             **/
                                         }
                                     }
 
@@ -220,11 +448,10 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                             }
                         }
                     });
+            currentIndex = 0;
         } catch (Exception e) {
             Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
         }
-
-
         my4s_manage_finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -273,53 +500,76 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 }
 
                 try{
-
+                    if(my_4s_pic_1_bool || my_4s_pic_2_bool || my_4s_pic_3_bool)
+                        showProgressDialog();
                     if(my_4s_pic_1_bool) {
+                        final List<String> filePaths = new ArrayList<>();
+                        final Map<String, Object> map = new HashMap<String, Object>();
                         my_4s_shop_pic_1.setDrawingCacheEnabled(true);
-                        bitmap = my_4s_shop_pic_1.getDrawingCache();
-
+                        my_4s_1_bitmap = my_4s_shop_pic_1.getDrawingCache();
+                        filePaths.add(saveBitmap("1", my_4s_1_bitmap));
+                        if(my_4s_pic_1_id != 0){
+                            map.put("imgID",String.valueOf(my_4s_pic_1_id));
+                        }
                         new Thread() {
                             public void run() {
                                 try {
                                     // showProgressDialog();
-                                    post_str();
-                                    Thread.sleep(1000);
+                                    post_str(filePaths,map);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }
                         }.start();
+                        Thread.sleep(500);
+                        ImageNum ++;
+                        my_4s_pic_1_bool = false;
                     }
-                    if(my_4s_pic_2_bool){
+                    if(my_4s_pic_2_bool) {
+                        final List<String> filePaths = new ArrayList<>();
+                        final Map<String, Object> map = new HashMap<String, Object>();
                         my_4s_shop_pic_2.setDrawingCacheEnabled(true);
-                        bitmap = my_4s_shop_pic_2.getDrawingCache();
-
+                        my_4s_2_bitmap = my_4s_shop_pic_2.getDrawingCache();
+                        filePaths.add(saveBitmap("2", my_4s_2_bitmap));
+                        if(my_4s_pic_2_id != 0){
+                            map.put("imgID",String.valueOf(my_4s_pic_2_id));
+                        }
                         new Thread() {
                             public void run() {
                                 try {
                                     // showProgressDialog();
-                                    post_str();
-                                    Thread.sleep(1000);
+                                    post_str(filePaths,map);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }
                         }.start();
+                        Thread.sleep(500);
+                        my_4s_pic_2_bool = false;
+                        ImageNum ++;
                     }
-                    if(my_4s_pic_3_bool){
+                    if(my_4s_pic_3_bool) {
+                        final List<String> filePaths = new ArrayList<>();
+                        final Map<String, Object> map = new HashMap<String, Object>();
                         my_4s_shop_pic_3.setDrawingCacheEnabled(true);
-                        bitmap = my_4s_shop_pic_3.getDrawingCache();
-
+                        my_4s_3_bitmap = my_4s_shop_pic_3.getDrawingCache();
+                        filePaths.add(saveBitmap("3", my_4s_3_bitmap));
+                        if(my_4s_pic_3_id != 0){
+                            map.put("imgID",String.valueOf(my_4s_pic_3_id));
+                        }
                         new Thread() {
                             public void run() {
                                 try {
                                     // showProgressDialog();
-                                    post_str();
+                                    post_str(filePaths,map);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }
                         }.start();
+                        Thread.sleep(500);
+                        my_4s_pic_3_bool = false;
+                        ImageNum++;
                     }
                 }catch (Exception e){
                     e.printStackTrace();
@@ -558,20 +808,16 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
         }
     }
 
-    private void post_str() {
+    private void post_str(List<String> filePaths, Map<String, Object> map) {
 
         try {
 
             String path = "http://www.lvgew.com/obdcarmarket/sellerapp/shop4S/sellerImgSave";
 
-            List<String> filePaths = new ArrayList<>();
-            filePaths.add(saveBitmap());
-
-            Map<String, Object> map = new HashMap<String, Object>();
-
             BaseTest bs = new BaseTest();
             String str = bs.imgPut(path, filePaths, map);
-            returnMessage(str);
+
+           returnMessage(str);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -580,7 +826,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
     }
 
 
-    private String saveBitmap() throws IOException {
+    private String saveBitmap(String name,Bitmap bitmap) throws IOException {
         File sd = Environment.getExternalStorageDirectory();
         boolean can_write = sd.canWrite();
 
@@ -610,7 +856,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 desDir.mkdir();
             }
 
-            File imageFile = new File(strPath + "/1.PNG");
+            File imageFile = new File(strPath + "/" + name + ".PNG");
             if (imageFile.exists()) {
                 imageFile.delete();
             }
@@ -624,7 +870,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return strPath + "/1.PNG";
+        return strPath + "/" + name + ".PNG";
     }
     private void returnMessage(String string) {
         Message msg = new Message();
@@ -634,7 +880,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
             return;
         }
 
-        LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+        My4sUpdataImageViewModel result = new Gson().fromJson(string, My4sUpdataImageViewModel.class);
 
         if(result.getOperationResult().getResultCode() == 0){
 
@@ -649,14 +895,20 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
 
     Handler mHander = new Handler() {
         public void handleMessage(Message msg){
-            dissmissProgressDialog();
-            my_4s_shop_pic_1.setDrawingCacheEnabled(false);
-            my_4s_shop_pic_2.setDrawingCacheEnabled(false);
-            my_4s_shop_pic_3.setDrawingCacheEnabled(false);
+            //dissmissProgressDialog();
+           // my_4s_shop_pic_1.setDrawingCacheEnabled(false);
+           // my_4s_shop_pic_2.setDrawingCacheEnabled(false);
+           // my_4s_shop_pic_3.setDrawingCacheEnabled(false);
             switch (msg.what){
                 case 0:
-                    Toast.makeText(My4sManagementActivity.this,"上传成功！",Toast.LENGTH_LONG).show();
-                    //finish();
+                    ImageNum --;
+                    if(ImageNum == 0){
+                        dissmissProgressDialog();
+                        my_4s_shop_pic_1.setDrawingCacheEnabled(false);
+                        my_4s_shop_pic_2.setDrawingCacheEnabled(false);
+                        my_4s_shop_pic_3.setDrawingCacheEnabled(false);
+                        Toast.makeText(My4sManagementActivity.this,"上传成功！",Toast.LENGTH_LONG).show();
+                    }
                     break;
                 case 1:
                     Toast.makeText(My4sManagementActivity.this,"上传失败！",Toast.LENGTH_LONG).show();

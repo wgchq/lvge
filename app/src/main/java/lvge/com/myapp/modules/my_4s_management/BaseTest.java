@@ -93,7 +93,7 @@ public class BaseTest {
                 DataInputStream i = new DataInputStream(is);
 
                 int bytes = 0;
-                byte[] bufferOut = new byte[1024];
+                byte[] bufferOut = new byte[1024 * 500 * 3];
                 while ((bytes = i.read(bufferOut)) != -1) {
                     out.write(bufferOut, 0, bytes);
                 }

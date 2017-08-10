@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,6 +49,7 @@ public class HomeFragment extends Fragment {
         TextView main_page_content_shop_order = (TextView)view.findViewById(R.id.main_page_content_shop_order);
         main_page_content_shop_order.setText(getArguments().getString("name"));
       //  main_page_content_shop_order.setText(fragmentTitle.getShop_title());
+
 
         //主页面跳转各个子模块
 
