@@ -911,6 +911,8 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                     }
                     break;
                 case 1:
+                    dissmissProgressDialog();
+
                     Toast.makeText(My4sManagementActivity.this,"上传失败！",Toast.LENGTH_LONG).show();
                     break;
             }
