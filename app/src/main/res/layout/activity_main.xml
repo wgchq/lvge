@@ -3,65 +3,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/mainBackgroundColor"
+    android:orientation="vertical"
     tools:context="lvge.com.myapp.MainActivity">
 
     <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x20"
         android:text="员工登陆"
         android:textColor="#FF575C"
         android:textSize="@dimen/x36"
-        android:layout_marginLeft="@dimen/x20"
-        tools:ignore="HardcodedText,PxUsage,RtlHardcoded"
-        android:id="@+id/textView5" />
+        tools:ignore="HardcodedText,PxUsage,RtlHardcoded" />
 
     <ImageView
         android:id="@+id/login_imageView"
         android:layout_width="@dimen/x160"
         android:layout_height="@dimen/x160"
+        android:layout_below="@+id/textView5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/x80"
         android:adjustViewBounds="true"
         android:background="@mipmap/lg_user_background"
         android:cropToPadding="true"
         android:padding="@dimen/x26"
-        android:layout_marginTop="@dimen/x80"
         android:scaleType="fitCenter"
         android:src="@mipmap/lg_user"
-        tools:ignore="ContentDescription"
-        android:layout_below="@+id/textView5"
-        android:layout_centerHorizontal="true" />
+        tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/username"
         android:layout_width="@dimen/x666"
         android:layout_height="@dimen/x110"
-        android:layout_marginBottom="@dimen/x16"
-        android:layout_marginTop="@dimen/x32"
         android:layout_below="@+id/login_imageView"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/x16"
+        android:layout_marginTop="@dimen/x32"
         android:ems="10"
         android:hint="@string/login_username"
-        android:textColorHint="#C3C3C3"
         android:inputType="text"
-        android:textSize="@dimen/x36"
         android:textColor="#333333"
+        android:textColorHint="#C3C3C3"
+        android:textSize="@dimen/x36"
         tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="@dimen/x666"
         android:layout_height="@dimen/x110"
-        android:drawableRight="@mipmap/lg_eye"
-        android:layout_marginBottom="@dimen/x16"
         android:layout_below="@+id/username"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/x16"
+        android:drawableRight="@mipmap/lg_eye"
         android:ems="10"
+        android:hint="@string/login_password"
+        android:inputType="textPassword"
+        android:textColor="#333333"
         android:textColorHint="#C3C3C3"
         android:textSize="@dimen/x36"
-        android:hint="@string/login_password"
-        android:textColor="#333333"
-        android:inputType="textPassword"
         tools:ignore="RtlHardcoded" />
 
 
@@ -85,23 +85,23 @@
                 android:id="@+id/lg_forget_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x52"
+                android:layout_marginTop="@dimen/x28"
                 android:text="@string/forget_password"
                 android:textColor="#707070"
                 android:textSize="@dimen/x30"
-                android:layout_marginTop="@dimen/x28"
-                android:layout_marginLeft="@dimen/x52"
                 tools:ignore="PxUsage,RelativeOverlap" />
 
             <TextView
                 android:id="@+id/lg_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x52"
+                android:layout_marginTop="@dimen/x28"
                 android:text="注册"
                 android:textColor="#707070"
                 android:textSize="@dimen/x30"
-                android:layout_marginTop="@dimen/x28"
-                android:layout_marginRight="@dimen/x52"
-                android:layout_alignParentRight="true"
                 tools:ignore="HardcodedText,PxUsage" />
         </RelativeLayout>
 
@@ -112,6 +112,7 @@
             android:textColor="#fd0101"
             android:textSize="@dimen/x18"
             tools:ignore="HardcodedText" />
+
         <Button
             android:id="@+id/login_submit"
             android:layout_width="match_parent"
@@ -132,15 +133,15 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:drawableTop="@mipmap/lg_company_logo"
-        android:textSize="@dimen/x28"
-        android:textColor="#383838"
-        android:layout_centerHorizontal="true"
         android:layout_above="@+id/textView4"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_marginBottom="@dimen/x12"
+        android:drawableTop="@mipmap/lg_company_logo"
         android:gravity="center"
-        android:text="@string/company_name" />
+        android:text="@string/company_name"
+        android:textColor="#383838"
+        android:textSize="@dimen/x28" />
 
     <TextView
         android:id="@+id/textView4"

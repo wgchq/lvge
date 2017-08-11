@@ -3,6 +3,8 @@ package lvge.com.myapp.modules.customer_management;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,20 +98,25 @@ public class ClientsAdapter extends BaseAdapter {
 
 
             }
-
-            TextView type = (TextView) convertView.findViewById(R.id.customer_listview_type);
-            if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("1")) {
-                type.setText("已绑定硬件");
-            } else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("0")){
-                type.setText("未绑定硬件");
-            }
-            else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("2")){
-                type.setText("离线/欠费");
-            }
-
             TextView length = (TextView) convertView.findViewById(R.id.customer_listview_length);
             String str_length = clients.getPageResult().getEntityList().get(position).getMileAge()+"";
             length.setText(str_length);
+            Drawable leftDrawable = mContext.getResources().getDrawable(R.mipmap.client_kilometer);
+            TextView type = (TextView) convertView.findViewById(R.id.customer_listview_type);
+            if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("1")) {
+                type.setText("已绑定硬件");
+                leftDrawable = mContext.getResources().getDrawable(R.mipmap.client_kilometer);
+            } else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("0")){
+                type.setText("未绑定硬件");
+                leftDrawable = mContext.getResources().getDrawable(R.mipmap.client_kilometer);
+            }
+            else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("2")){
+                type.setText("离线/欠费");
+                leftDrawable = mContext.getResources().getDrawable(R.mipmap.client_kilometer);
+            }
+            leftDrawable.setBounds(0,0,leftDrawable.getIntrinsicWidth(),leftDrawable.getIntrinsicHeight());
+            length.setCompoundDrawables(leftDrawable,null,null,null);
+
         }
 
         return convertView;
