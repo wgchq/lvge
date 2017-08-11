@@ -112,7 +112,7 @@ public class ClientsAdapter extends BaseAdapter {
             }
             else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("2")){
                 type.setText("离线/欠费");
-                leftDrawable = mContext.getResources().getDrawable(R.mipmap.client_kilometer);
+                leftDrawable = mContext.getResources().getDrawable(R.mipmap.client_kilometer_not_on_line);
             }
             leftDrawable.setBounds(0,0,leftDrawable.getIntrinsicWidth(),leftDrawable.getIntrinsicHeight());
             length.setCompoundDrawables(leftDrawable,null,null,null);
