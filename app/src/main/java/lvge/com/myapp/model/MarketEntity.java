@@ -14,6 +14,16 @@ public class MarketEntity {
     private double lng;
     private String bName;
 
+    public String getMileAge() {
+        return mileAge;
+    }
+
+    public void setMileAge(String mileAge) {
+        this.mileAge = mileAge;
+    }
+
+    private String mileAge;
+
     public String getId() {
         return id;
     }
