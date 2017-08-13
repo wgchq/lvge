@@ -203,6 +203,18 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
                 });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (null!=mLocationClient)
+        {
+            mLocationClient.stopLocation();
+
+        }
+        mapView.onDestroy();
+    }
+
     //定位
     private void initLoc() {
 
@@ -276,6 +288,11 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
 
     @Override
     public void deactivate() {
+        if (null!=mLocationClient)
+        {
+            mLocationClient.stopLocation();
+
+        }
 
     }
 

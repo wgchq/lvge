@@ -264,7 +264,10 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
         //设置定位间隔,单位毫秒,默认为2000ms
         mLocationOption.setInterval(2000);
         //设置是否只定位一次,默认为false
-        mLocationOption.setOnceLocation(false);
+/*
+        mLocationOption.setOnceLocation(true);
+*/
+
     /*    //设置是否返回地址信息（默认返回地址信息）
         mLocationOption.setNeedAddress(true);
         //设置是否只定位一次,默认为false
@@ -404,6 +407,11 @@ public class My4sAddressActivity extends AppCompatActivity implements LocationSo
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (null!=mLocationClient)
+        {
+            mLocationClient.stopLocation();
+
+        }
         mapView.onDestroy();
     }
 
