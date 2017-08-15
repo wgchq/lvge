@@ -521,7 +521,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                 }
                             }
                         }.start();
-                        Thread.sleep(500);
+                        Thread.sleep(1000);
                         ImageNum ++;
                         my_4s_pic_1_bool = false;
                     }
@@ -544,7 +544,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                 }
                             }
                         }.start();
-                        Thread.sleep(500);
+                        Thread.sleep(1000);
                         my_4s_pic_2_bool = false;
                         ImageNum ++;
                     }
@@ -567,7 +567,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                 }
                             }
                         }.start();
-                        Thread.sleep(500);
+                        Thread.sleep(1000);
                         my_4s_pic_3_bool = false;
                         ImageNum++;
                     }
