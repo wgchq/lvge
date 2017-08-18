@@ -3,6 +3,7 @@ package lvge.com.myapp.modules.my_4s_management;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -66,6 +67,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.EventListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,6 +106,7 @@ public class SaleConsultantTwo extends AppCompatActivity implements View.OnClick
     private TextView takePhoto;
     private TextView cancelPhoto;
     private Dialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -373,7 +376,7 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100,baos);
 
-        if(baos.toByteArray().length/1024 >500){
+        if(baos.toByteArray().length/1024 >500 ){
             int option = 90;
             while (baos.toByteArray().length/1024 >500){
                 baos.reset();
@@ -446,7 +449,6 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
             }else {
                  path = "http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/update";
             }
-
 
 
             List<String> filePaths = new ArrayList<>();
@@ -560,6 +562,8 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
             case R.id.from_phone_photo:
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
+
+               // intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
                 startActivityForResult(intent, 1);
                 break;
             case R.id.take_photo:
@@ -643,28 +647,30 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
         if (requestCode == 1 && data != null)
         {
             fileUri = data.getData();
+            if (fileUri != null) {
+                try {
+                    String[] prjo = {MediaStore.Images.Media.DATA};
+                    Cursor cursor = managedQuery(fileUri, prjo, null, null, null);
+                    if (cursor != null) {
+                        cursor.moveToFirst();
+                        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                        // file = new File(path);
+                        bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(fileUri));
 
-        }
-        if (fileUri != null) {
-            try {
-                String[] prjo = {MediaStore.Images.Media.DATA};
-                Cursor cursor = managedQuery(fileUri, prjo, null, null, null);
-                if (cursor != null) {
-                    cursor.moveToFirst();
-                    String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                    // file = new File(path);
-                    Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(fileUri));
-
-                    if (bitmap != null) {
-                        sale_consultant_two_iamgeview.setImageBitmap(bitmap);
+                        if (bitmap != null) {
+                            // sale_consultant_two_iamgeview.setImageBitmap(bitmap);
+                            crop(fileUri);
+                        }
                     }
-                }
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE && fileUri != null)
+
+
+       else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE && fileUri != null)
         {
             // imageUri = data.getData();
             try{
@@ -678,8 +684,147 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
                 e.printStackTrace();
             }
 
+        }else if(requestCode == 2){
+            Bitmap bitmap = data.getParcelableExtra("data");
+            if(bitmap != null){
+                sale_consultant_two_iamgeview.setImageBitmap(bitmap);
+            }
         }
 
+    }
+
+    private void crop(Uri uri){
+
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            try{
+                String path = getPath(this,uri);
+                intent.setDataAndType(Uri.fromFile(new File(path)),"image/*");
+            }catch (Exception e){
+                e.toString();
+            }
+
+        }else {
+            intent.setDataAndType(uri,"image/*");
+        }
+
+        intent.putExtra("crop","true");
+
+        //裁剪比例1:1
+        intent.putExtra("aspectX",1);
+        intent.putExtra("aspectY",1);
+
+        //裁剪后输出图片尺寸大小
+        intent.putExtra("outputX",250);
+        intent.putExtra("outputY",250);
+
+        intent.putExtra("outputFormat","JPEG");  //图片格式
+        intent.putExtra("noFaceDetection",true);   //取消人脸识别
+        intent.putExtra("return-data",true);
+
+        startActivityForResult(intent,2);
+    }
+
+    public static String getPath(final Context context,final Uri uri){
+        final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+        if(!DocumentsContract.isDocumentUri(context,uri)){
+            if(uri != null){
+                String uriStr = uri.toString();
+                String path = uriStr.substring(10,uriStr.length());
+                if(path.startsWith("com.sec.android.gallery3d")){
+                    return null;
+                }
+            }
+            String[] filePaehColumn = {MediaStore.Images.Media.DATA};
+            Cursor cursor = context.getContentResolver().query(uri,filePaehColumn,null,null,null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePaehColumn[0]);
+            String picturePath = context.getString(columnIndex);
+            cursor.close();
+
+            return picturePath;
+        }
+        if(isKitKat && DocumentsContract.isDocumentUri(context, uri)){
+            if(isExternalStorgeDocument(uri)){
+                final String docld = DocumentsContract.getDocumentId(uri);
+                final String[] split = docld.split(":");
+                final String type = split[0];
+
+                if("primary".equalsIgnoreCase(type)){
+                    return Environment.getExternalStorageDirectory() + "/" + split[1];
+                }
+            }else if(isDownloadsDocument(uri)){
+                final String id = DocumentsContract.getDocumentId(uri);
+                final Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"),Long.valueOf(id));
+                return getDataColumn(context,contentUri,null,null);
+            }else if(isMediaDocument(uri)){
+                final String docld = DocumentsContract.getDocumentId(uri);
+                final String[] split = docld.split(":");
+                final String type = split[0];
+
+                Uri contentUri = null;
+
+                if("image".equals(type)){
+                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                }else if("video".equals(type)){
+                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                }else if("audio".equals(type)){
+                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                }
+                final String selection = "_id=?";
+                final String[] selectionArgs = new String[]{
+                        split[1]
+                };
+
+                return getDataColumn(context,contentUri,selection,selectionArgs);
+            }
+        }else if("content".equalsIgnoreCase(uri.getScheme())){
+            if(isGooglePhotosUri(uri)){
+                return uri.getLastPathSegment();
+            }
+
+            return getDataColumn(context,uri,null,null);
+        }else if("file".equalsIgnoreCase(uri.getScheme())){
+            return uri.getPath();
+        }
+        return  null;
+    }
+
+    public static boolean isExternalStorgeDocument(Uri uri){
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
+    }
+
+    public static  boolean isDownloadsDocument(Uri uri){
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    public static String getDataColumn(Context context,Uri uri,String selection,String[] seletionArgs){
+        Cursor cursor = null;
+        final String column = "_data";
+        final String[] projection={
+                column
+        };
+
+        try{
+            cursor = context.getContentResolver().query(uri,projection,selection,seletionArgs,null);
+            if(cursor != null && cursor.moveToFirst()){
+                final int index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(index);
+            }
+        }finally {
+            if(cursor != null){
+                cursor.close();
+            }
+        }
+        return null;
+    }
+
+    public static boolean isMediaDocument(Uri uri){
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    public static boolean isGooglePhotosUri(Uri uri){
+        return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
 
 }
