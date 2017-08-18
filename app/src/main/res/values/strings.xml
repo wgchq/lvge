@@ -130,5 +130,10 @@
     <string name="no_setting">未设置</string>
     <string name="unfilled">未填写</string>
 
+    <string name="complete">完成</string>
+    <string name="phone_number">电话</string>
+    <string name="insurance_phone_number">保险电话</string>
+    <string name="sos_phone_number">救援电话</string>
+
 
 </resources>

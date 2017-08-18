@@ -80,7 +80,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
 
     private int currentIndex = 0;
 
-   // private Uri imageUri = null;
+    // private Uri imageUri = null;
     private Uri fileUri = null;
 
     private ImageView my_4s_shop_pic_1;
@@ -98,12 +98,11 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
     private int my_4s_pic_2_id = 0;
     private int my_4s_pic_3_id = 0;
 
-    private   Bitmap my_4s_1_bitmap;
-    private   Bitmap my_4s_2_bitmap;
-    private   Bitmap my_4s_3_bitmap;
+    private Bitmap my_4s_1_bitmap;
+    private Bitmap my_4s_2_bitmap;
+    private Bitmap my_4s_3_bitmap;
 
     private int ImageNum = 0;
-
 
 
     @Override
@@ -128,9 +127,40 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
         TextView my4s_manage_finish = (TextView) findViewById(R.id.my4s_finish);
         final TextView commodity_my4s_sales_consultant = (TextView) findViewById(R.id.commodity_my4s_sales_consultant);
         final TextView commodity_my4s_address = (TextView) findViewById(R.id.commodity_my4s_address);
-        final EditText commodity_my4s_setting_inputnumber = (EditText) findViewById(R.id.commodity_my4s_setting_inputnumber);
-        final EditText commodity_my4s_setting_inputsosnumber = (EditText) findViewById(R.id.commodity_my4s_setting_inputsosnumber);
-        final EditText commodity_my4s_setting_inputInsurancenumber = (EditText) findViewById(R.id.commodity_my4s_setting_inputInsurancenumber);
+        final TextView commodity_my4s_setting_inputnumber = (TextView) findViewById(R.id.commodity_my4s_setting_inputnumber);
+        final TextView commodity_my4s_setting_inputsosnumber = (TextView) findViewById(R.id.commodity_my4s_setting_inputsosnumber);
+        final TextView commodity_my4s_setting_inputInsurancenumber = (TextView) findViewById(R.id.commodity_my4s_setting_inputInsurancenumber);
+
+        commodity_my4s_setting_inputnumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(My4sManagementActivity.this, SalesConsultantPhoneActivity.class);
+                String inputnumber = commodity_my4s_setting_inputnumber.getText().toString();
+                intent.putExtra("inputnumber", inputnumber);
+                startActivityForResult(intent, 6);
+
+            }
+        });
+
+        commodity_my4s_setting_inputsosnumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(My4sManagementActivity.this, SalesConsultantSosPhoneActivity.class);
+                String sosnumber = commodity_my4s_setting_inputsosnumber.getText().toString();
+                intent.putExtra("sosnumber", sosnumber);
+                startActivityForResult(intent, 5);
+            }
+        });
+
+        commodity_my4s_setting_inputInsurancenumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(My4sManagementActivity.this, SalesConsultantInsurancePhoneActivity.class);
+                String inputInsurancenumber = commodity_my4s_setting_inputInsurancenumber.getText().toString();
+                intent.putExtra("inputInsurancenumber", inputInsurancenumber);
+                startActivityForResult(intent, 55);
+            }
+        });
 
         my_4s_shop_pic_1 = (ImageView) findViewById(R.id.my_4s_shop_pic_1);
         my_4s_shop_pic_2 = (ImageView) findViewById(R.id.my_4s_shop_pic_2);
@@ -147,9 +177,9 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(my_4s_pic_1_id == 0){
+                        if (my_4s_pic_1_id == 0) {
                             my_4s_shop_pic_1.setImageResource(R.mipmap.my_4s_shop_no_pic);
-                        }else {
+                        } else {
                             try {
                                 OkHttpUtils.post()//get 方法
                                         .url("http://www.lvgew.com/obdcarmarket/sellerapp/shop4S/sellerImgDelete") //地址
@@ -201,7 +231,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
-                return  false;
+                return false;
             }
         });
 
@@ -216,9 +246,9 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(my_4s_pic_2_id == 0){
+                        if (my_4s_pic_2_id == 0) {
                             my_4s_shop_pic_2.setImageResource(R.mipmap.my_4s_shop_no_pic);
-                        }else {
+                        } else {
                             try {
                                 OkHttpUtils.post()//get 方法
                                         .url("http://www.lvgew.com/obdcarmarket/sellerapp/shop4S/sellerImgDelete") //地址
@@ -270,7 +300,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
-                return  false;
+                return false;
             }
         });
 
@@ -285,9 +315,9 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(my_4s_pic_3_id == 0){
+                        if (my_4s_pic_3_id == 0) {
                             my_4s_shop_pic_3.setImageResource(R.mipmap.my_4s_shop_no_pic);
-                        }else {
+                        } else {
                             try {
                                 OkHttpUtils.post()//get 方法
                                         .url("http://www.lvgew.com/obdcarmarket/sellerapp/shop4S/sellerImgDelete") //地址
@@ -338,7 +368,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
-                return  false;
+                return false;
             }
         });
 
@@ -392,14 +422,14 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                         int size = result.getMarketEntity().getImgVOs().size();
                                         for (int index = 0; index < size; index++) {
                                             path = result.getMarketEntity().getImgVOs().get(index).getPath();
-                                            if(path == null || path == "")
+                                            if (path == null || path == "")
                                                 continue;
-                                            if(my_4s_pic_1_id == 0){
-                                                my_4s_pic_1_id =  result.getMarketEntity().getImgVOs().get(index).getId();
-                                            }else if (my_4s_pic_2_id == 0){
-                                                my_4s_pic_2_id =  result.getMarketEntity().getImgVOs().get(index).getId();
-                                            }else if(my_4s_pic_3_id == 0){
-                                                my_4s_pic_3_id =  result.getMarketEntity().getImgVOs().get(index).getId();
+                                            if (my_4s_pic_1_id == 0) {
+                                                my_4s_pic_1_id = result.getMarketEntity().getImgVOs().get(index).getId();
+                                            } else if (my_4s_pic_2_id == 0) {
+                                                my_4s_pic_2_id = result.getMarketEntity().getImgVOs().get(index).getId();
+                                            } else if (my_4s_pic_3_id == 0) {
+                                                my_4s_pic_3_id = result.getMarketEntity().getImgVOs().get(index).getId();
                                             }
                                             OkHttpUtils.get()
                                                     .url(path)
@@ -427,13 +457,12 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                                         }
                                                     });
                                             /**
-                                          //  currentIndex = index + 1;
-                                            new Thread(new Runnable() {
-                                                @Override
-                                                public void run() {
+                                             //  currentIndex = index + 1;
+                                             new Thread(new Runnable() {
+                                            @Override public void run() {
 
 
-                                                }
+                                            }
                                             }).start();
                                              **/
                                         }
@@ -499,46 +528,46 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                     Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
                 }
 
-                try{
-                    if(my_4s_pic_1_bool || my_4s_pic_2_bool || my_4s_pic_3_bool)
+                try {
+                    if (my_4s_pic_1_bool || my_4s_pic_2_bool || my_4s_pic_3_bool)
                         showProgressDialog();
-                    if(my_4s_pic_1_bool) {
+                    if (my_4s_pic_1_bool) {
                         final List<String> filePaths = new ArrayList<>();
                         final Map<String, Object> map = new HashMap<String, Object>();
                         my_4s_shop_pic_1.setDrawingCacheEnabled(true);
                         my_4s_1_bitmap = my_4s_shop_pic_1.getDrawingCache();
                         filePaths.add(saveBitmap("1", my_4s_1_bitmap));
-                        if(my_4s_pic_1_id != 0){
-                            map.put("imgID",String.valueOf(my_4s_pic_1_id));
+                        if (my_4s_pic_1_id != 0) {
+                            map.put("imgID", String.valueOf(my_4s_pic_1_id));
                         }
                         new Thread() {
                             public void run() {
                                 try {
                                     // showProgressDialog();
-                                    post_str(filePaths,map);
+                                    post_str(filePaths, map);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }
                         }.start();
                         Thread.sleep(1000);
-                        ImageNum ++;
+                        ImageNum++;
                         my_4s_pic_1_bool = false;
                     }
-                    if(my_4s_pic_2_bool) {
+                    if (my_4s_pic_2_bool) {
                         final List<String> filePaths = new ArrayList<>();
                         final Map<String, Object> map = new HashMap<String, Object>();
                         my_4s_shop_pic_2.setDrawingCacheEnabled(true);
                         my_4s_2_bitmap = my_4s_shop_pic_2.getDrawingCache();
                         filePaths.add(saveBitmap("2", my_4s_2_bitmap));
-                        if(my_4s_pic_2_id != 0){
-                            map.put("imgID",String.valueOf(my_4s_pic_2_id));
+                        if (my_4s_pic_2_id != 0) {
+                            map.put("imgID", String.valueOf(my_4s_pic_2_id));
                         }
                         new Thread() {
                             public void run() {
                                 try {
                                     // showProgressDialog();
-                                    post_str(filePaths,map);
+                                    post_str(filePaths, map);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -546,22 +575,22 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                         }.start();
                         Thread.sleep(1000);
                         my_4s_pic_2_bool = false;
-                        ImageNum ++;
+                        ImageNum++;
                     }
-                    if(my_4s_pic_3_bool) {
+                    if (my_4s_pic_3_bool) {
                         final List<String> filePaths = new ArrayList<>();
                         final Map<String, Object> map = new HashMap<String, Object>();
                         my_4s_shop_pic_3.setDrawingCacheEnabled(true);
                         my_4s_3_bitmap = my_4s_shop_pic_3.getDrawingCache();
                         filePaths.add(saveBitmap("3", my_4s_3_bitmap));
-                        if(my_4s_pic_3_id != 0){
-                            map.put("imgID",String.valueOf(my_4s_pic_3_id));
+                        if (my_4s_pic_3_id != 0) {
+                            map.put("imgID", String.valueOf(my_4s_pic_3_id));
                         }
                         new Thread() {
                             public void run() {
                                 try {
                                     // showProgressDialog();
-                                    post_str(filePaths,map);
+                                    post_str(filePaths, map);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -571,7 +600,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                         my_4s_pic_3_bool = false;
                         ImageNum++;
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -718,9 +747,45 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        dialog.dismiss();
-        if (requestCode == 1 && data != null)
-        {
+
+
+        if (5 == requestCode && data != null) {
+            String edit = data.getStringExtra("edit").toString();
+            if (edit.equals("t") ) {
+                TextView sos_phone = (TextView) findViewById(R.id.commodity_my4s_setting_inputsosnumber);
+                String sos_phone_number = data.getStringExtra("sosphone").toString();
+                sos_phone.setText(sos_phone_number);
+            }
+
+        } else if (6 == requestCode && data != null) {
+            String edit = data.getStringExtra("edit").toString();
+            if (edit.equals("t"))
+            {
+                TextView phone_number = (TextView) findViewById(R.id.commodity_my4s_setting_inputnumber);
+                String str_phone_number = data.getStringExtra("phone_number").toString();
+                phone_number.setText(str_phone_number);
+            }
+
+
+        } else if (55 == requestCode && data != null) {
+
+            String edit = data.getStringExtra("edit").toString();
+            if (edit.equals("t"))
+            {
+                TextView insurance_phone_number = (TextView) findViewById(R.id.commodity_my4s_setting_inputInsurancenumber);
+                String str_insurance_phone_number = data.getStringExtra("insurance_phone_number").toString();
+                insurance_phone_number.setText(str_insurance_phone_number);
+            }
+
+
+        }
+
+        if (null == dialog) {
+        } else {
+            dialog.dismiss();
+        }
+
+        if (requestCode == 1 && data != null) {
             fileUri = data.getData();
 
         }
@@ -735,8 +800,8 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                     Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(fileUri));
 
                     if (bitmap != null) {
-                        switch (id_iamge){
-                            case  R.id.my_4s_shop_pic_1:
+                        switch (id_iamge) {
+                            case R.id.my_4s_shop_pic_1:
                                 my_4s_shop_pic_1.setImageBitmap(bitmap);
                                 my_4s_pic_1_bool = true;
                                 break;
@@ -758,15 +823,14 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 e.printStackTrace();
             }
         }
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE && fileUri != null)
-        {
-           // imageUri = data.getData();
-            try{
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE && fileUri != null) {
+            // imageUri = data.getData();
+            try {
                 Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(fileUri));
 
-                if(bitmap != null){
-                    switch (id_iamge){
-                        case  R.id.my_4s_shop_pic_1:
+                if (bitmap != null) {
+                    switch (id_iamge) {
+                        case R.id.my_4s_shop_pic_1:
                             my_4s_shop_pic_1.setImageBitmap(bitmap);
                             my_4s_pic_1_bool = true;
                             break;
@@ -783,7 +847,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                     }
                 }
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -791,8 +855,8 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
 
     }
 
-    private void showProgressDialog(){
-        if(progDialog == null){
+    private void showProgressDialog() {
+        if (progDialog == null) {
             progDialog = new ProgressDialog(this);
         }
         progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -802,8 +866,8 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
         progDialog.show();
     }
 
-    private void dissmissProgressDialog(){
-        if(progDialog != null){
+    private void dissmissProgressDialog() {
+        if (progDialog != null) {
             progDialog.dismiss();
         }
     }
@@ -817,7 +881,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
             BaseTest bs = new BaseTest();
             String str = bs.imgPut(path, filePaths, map);
 
-           returnMessage(str);
+            returnMessage(str);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -826,7 +890,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
     }
 
 
-    private String saveBitmap(String name,Bitmap bitmap) throws IOException {
+    private String saveBitmap(String name, Bitmap bitmap) throws IOException {
         File sd = Environment.getExternalStorageDirectory();
         boolean can_write = sd.canWrite();
 
@@ -872,9 +936,10 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
         }
         return strPath + "/" + name + ".PNG";
     }
+
     private void returnMessage(String string) {
         Message msg = new Message();
-        if(string.equals("error")){
+        if (string.equals("error")) {
             msg.what = 1;
             mHander.sendMessage(msg);
             return;
@@ -882,11 +947,11 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
 
         My4sUpdataImageViewModel result = new Gson().fromJson(string, My4sUpdataImageViewModel.class);
 
-        if(result.getOperationResult().getResultCode() == 0){
+        if (result.getOperationResult().getResultCode() == 0) {
 
             msg.what = 0;
             mHander.sendMessage(msg);
-        }else {
+        } else {
             msg.what = 1;
             mHander.sendMessage(msg);
         }
@@ -894,29 +959,31 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
     }
 
     Handler mHander = new Handler() {
-        public void handleMessage(Message msg){
+        public void handleMessage(Message msg) {
             //dissmissProgressDialog();
-           // my_4s_shop_pic_1.setDrawingCacheEnabled(false);
-           // my_4s_shop_pic_2.setDrawingCacheEnabled(false);
-           // my_4s_shop_pic_3.setDrawingCacheEnabled(false);
-            switch (msg.what){
+            // my_4s_shop_pic_1.setDrawingCacheEnabled(false);
+            // my_4s_shop_pic_2.setDrawingCacheEnabled(false);
+            // my_4s_shop_pic_3.setDrawingCacheEnabled(false);
+            switch (msg.what) {
                 case 0:
-                    ImageNum --;
-                    if(ImageNum == 0){
+                    ImageNum--;
+                    if (ImageNum == 0) {
                         dissmissProgressDialog();
                         my_4s_shop_pic_1.setDrawingCacheEnabled(false);
                         my_4s_shop_pic_2.setDrawingCacheEnabled(false);
                         my_4s_shop_pic_3.setDrawingCacheEnabled(false);
-                        Toast.makeText(My4sManagementActivity.this,"上传成功！",Toast.LENGTH_LONG).show();
+                        Toast.makeText(My4sManagementActivity.this, "上传成功！", Toast.LENGTH_LONG).show();
                     }
                     break;
                 case 1:
                     dissmissProgressDialog();
 
-                    Toast.makeText(My4sManagementActivity.this,"上传失败！",Toast.LENGTH_LONG).show();
+                    Toast.makeText(My4sManagementActivity.this, "上传失败！", Toast.LENGTH_LONG).show();
                     break;
             }
         }
 
     };
 }
+
+

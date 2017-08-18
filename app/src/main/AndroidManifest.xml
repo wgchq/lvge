@@ -6,8 +6,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 申请必要的权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <!-- 用于访问GPS定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -99,7 +99,10 @@
         <activity android:name=".ForgetPasswordActivity" />
         <activity android:name=".modules.maintain_client_management.MaintainClientActivity" />
         <activity android:name=".modules.alert_client_management.AlertClientActivity" />
-        <activity android:name=".modules.crawl_client_management.CrawlClientActivity"></activity>
+        <activity android:name=".modules.crawl_client_management.CrawlClientActivity" />
+        <activity android:name=".modules.my_4s_management.SalesConsultantPhoneActivity" />
+        <activity android:name=".modules.my_4s_management.SalesConsultantSosPhoneActivity" />
+        <activity android:name=".modules.my_4s_management.SalesConsultantInsurancePhoneActivity"></activity>
     </application>
 
 </manifest>

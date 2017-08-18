@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
-                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/x20"
                 android:text="完成"
                 android:textColor="@color/mainFontColor"
                 tools:ignore="HardcodedText" />
@@ -97,9 +97,9 @@
                 android:layout_width="@dimen/x226"
                 android:layout_height="@dimen/x140"
                 android:layout_margin="@dimen/x10"
+                android:contentDescription=""
                 android:onClick="show"
                 android:src="@mipmap/my_4s_shop_no_pic"
-                android:contentDescription=""
                 tools:ignore="ContentDescription">
 
             </ImageView>
@@ -240,7 +240,24 @@
 
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <EditText
+            <!-- <EditText
+                 android:id="@+id/commodity_my4s_setting_inputnumber"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_centerVertical="true"
+                 android:layout_marginLeft="@dimen/x20"
+                 android:layout_toLeftOf="@+id/commodity_freight_setting_textview2"
+                 android:layout_toRightOf="@+id/commodity_my4s_setting_textview1"
+                 android:background="@drawable/edit_text_shape"
+                 android:gravity="right"
+                 android:hint="@string/no_setting"
+                 android:inputType="text"
+                 android:textColor="#000"
+                 android:textColorHint="#999"
+                 android:textSize="@dimen/x28"
+                 tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />-->
+
+            <TextView
                 android:id="@+id/commodity_my4s_setting_inputnumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -256,7 +273,6 @@
                 android:textColorHint="#999"
                 android:textSize="@dimen/x28"
                 tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
-
 
             <TextView
                 android:id="@+id/commodity_freight_setting_textview2"
@@ -293,7 +309,22 @@
                 android:text="救援电话："
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <EditText
+            <!--    <EditText
+                    android:id="@+id/commodity_my4s_setting_inputsosnumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@+id/commodity_freight_setting_textview3"
+                    android:layout_toRightOf="@+id/commodity_my4s_setting_textview2"
+                    android:background="@drawable/edit_text_shape"
+                    android:gravity="right"
+                    android:hint="未设置"
+                    android:inputType="text"
+                    android:textColorHint="#999"
+                    android:textSize="@dimen/x28"
+                    tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />-->
+            <TextView
                 android:id="@+id/commodity_my4s_setting_inputsosnumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -343,7 +374,24 @@
                 android:text="保险电话："
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <EditText
+            <!-- <EditText
+                 android:id="@+id/commodity_my4s_setting_inputInsurancenumber"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_centerVertical="true"
+                 android:layout_marginLeft="10dp"
+                 android:layout_toLeftOf="@+id/commodity_freight_setting_textview4"
+                 android:layout_toRightOf="@+id/commodity_my4s_setting_textview3"
+                 android:background="@drawable/edit_text_shape"
+                 android:gravity="right"
+                 android:hint="@string/no_setting"
+                 android:inputType="text"
+                 android:textColor="#000"
+                 android:textColorHint="#999"
+                 android:textSize="@dimen/x28"
+                 tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />-->
+
+            <TextView
                 android:id="@+id/commodity_my4s_setting_inputInsurancenumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -359,7 +407,6 @@
                 android:textColorHint="#999"
                 android:textSize="@dimen/x28"
                 tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
-
 
             <TextView
                 android:id="@+id/commodity_freight_setting_textview4"
