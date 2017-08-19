@@ -33,11 +33,13 @@ import lvge.com.myapp.modules.customer_management.ClientsAdapter;
 
 import lvge.com.myapp.modules.customer_management.CustomerData;
 import lvge.com.myapp.modules.customer_management.CustomerSearch;
+import lvge.com.myapp.modules.search_tools_page.SearchToolsPage;
 import lvge.com.myapp.ui.LoadListView;
 import okhttp3.Call;
 import okhttp3.Response;
 
 import static lvge.com.myapp.R.id.appBarLayout;
+import static lvge.com.myapp.R.id.default_activity_button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,6 +58,10 @@ public class ClientFragment extends Fragment {
 
     private boolean isSearch_show = false;
 
+    private final static int RESULT_OK = 1001;
+    private TabLayout tabLayout;
+    private View view;
+
     public ClientFragment() {
         // Required empty public constructor
     }
@@ -64,14 +70,15 @@ public class ClientFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        final View view = inflater.inflate(R.layout.fragment_client, container, false);
+        view = inflater.inflate(R.layout.fragment_client, container, false);
         adapter = new ClientsAdapter(getActivity());
-        final  TabLayout tabLayout = (TabLayout) view.findViewById(R.id.title);
+        tabLayout = (TabLayout) view.findViewById(R.id.title);
 
 
         final AppBarLayout appBarLayout = (AppBarLayout)view.findViewById(R.id.search_edit_frame);
         final SearchView search_view = (SearchView)view.findViewById(R.id.search_view);
 
+        /**
         search_view.setIconifiedByDefault(false);
         search_view.setSubmitButtonEnabled(true);
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -93,6 +100,7 @@ public class ClientFragment extends Fragment {
                 return false;
             }
         });
+         **/
 
         iniPage(view);
 
@@ -271,6 +279,7 @@ public class ClientFragment extends Fragment {
             public void onClick(View v) {
                // Intent intent = new Intent(getActivity(), CustomerSearch.class);
                // startActivity(intent);
+                /**
                 isSearch_show = true;
                 if(search_show){
                    appBarLayout.setVisibility(v.GONE);
@@ -281,6 +290,10 @@ public class ClientFragment extends Fragment {
                     search_view.requestFocusFromTouch();
                     search_show = true;
                 }
+                 **/
+                Intent search_tools_page_intent = new Intent();
+                search_tools_page_intent.setClass(getActivity(), SearchToolsPage.class);
+                startActivityForResult(search_tools_page_intent,0);
             }
         });
 
@@ -288,6 +301,21 @@ public class ClientFragment extends Fragment {
         return view;
     }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        switch (resultCode){
+            case RESULT_OK:
+                Bundle b = data.getExtras();
+                String str = b.getString("SearchResult");
+                TabLayout.Tab tab = tabLayout.getTabAt(0);
+                if(tab != null){
+                    tab.select();
+                }
+                search(str,view,"1");
+                break;
+            default:
+                break;
+        }
+    }
     void iniPage(final View view) {
         try {
             OkHttpUtils.get()//get 方法

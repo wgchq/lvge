@@ -105,7 +105,11 @@
         <activity android:name=".modules.my_4s_management.SalesConsultantInsurancePhoneActivity" />
         <activity android:name=".modules.my_4s_management.SaleConsultantTwoNameActivity" />
         <activity android:name=".modules.my_4s_management.SaleConsultantTwoPhonoActivity" />
-        <activity android:name=".modules.my_4s_management.SaleConsultantTwoMemoActivity"></activity>
+        <activity android:name=".modules.my_4s_management.SaleConsultantTwoMemoActivity" />
+        <activity
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:screenOrientation="portrait"
+            android:name=".modules.search_tools_page.SearchToolsPage"></activity>
     </application>
 
 </manifest>

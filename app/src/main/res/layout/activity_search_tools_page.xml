@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="lvge.com.myapp.mainFragement.ClientFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/search_edit_bar"
+            android:background="@color/background_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            tools:ignore="InefficientWeight">
+
+            <android.support.v7.widget.SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/search_view_bar"
+                android:iconifiedByDefault="true"
+                android:imeOptions="actionSearch"
+                android:queryHint="请输入车架号">
+
+            </android.support.v7.widget.SearchView>
+        </android.support.design.widget.AppBarLayout>
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat"
+            android:id="@+id/search_tools_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:text="@string/cancel"
+            tools:ignore="RtlHardcoded,SpUsage" />
+    </LinearLayout>
+</LinearLayout>
