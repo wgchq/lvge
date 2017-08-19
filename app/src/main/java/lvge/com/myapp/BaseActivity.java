@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import lvge.com.myapp.broadcast.NetBroadcastReceiver;
-import lvge.com.myapp.service.NetworkService;
+//import lvge.com.myapp.service.NetworkService;
 import lvge.com.myapp.util.L;
 import lvge.com.myapp.util.NetUtil;
 

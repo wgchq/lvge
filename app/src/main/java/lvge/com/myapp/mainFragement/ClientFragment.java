@@ -76,7 +76,7 @@ public class ClientFragment extends Fragment {
 
 
         final AppBarLayout appBarLayout = (AppBarLayout)view.findViewById(R.id.search_edit_frame);
-        final SearchView search_view = (SearchView)view.findViewById(R.id.search_view);
+       // final SearchView search_view = (SearchView)view.findViewById(R.id.search_view);
 
         /**
         search_view.setIconifiedByDefault(false);
