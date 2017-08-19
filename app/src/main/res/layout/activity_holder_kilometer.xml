@@ -63,14 +63,14 @@
             android:textColorHint="#666"
             android:textSize="@dimen/x32" />
 
-        <TextView
+        <!--<TextView
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/x20"
             android:paddingLeft="@dimen/x32"
             android:text="输入准确的电话号码，以便后续保养服务"
-            android:textSize="@dimen/x28" />
+            android:textSize="@dimen/x28" />-->
     </LinearLayout>
 
 </LinearLayout>
