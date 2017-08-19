@@ -139,6 +139,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 intent.putExtra("inputnumber", inputnumber);
                 startActivityForResult(intent, 6);
 
+
             }
         });
 
@@ -617,6 +618,9 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
         my4s_management_to_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+/*
+                Intent intent = new Intent(My4sManagementActivity.this, My4sAddressActivity.class);
+*/
                 Intent intent = new Intent(My4sManagementActivity.this, My4sAddressActivity.class);
 
                 Bundle bundle = new Bundle();

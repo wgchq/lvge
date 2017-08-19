@@ -70,6 +70,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+
+
                 <RelativeLayout
                     android:layout_width="@dimen/x708"
                     android:layout_height="@dimen/x86"
@@ -85,27 +87,27 @@
                     android:paddingStart="@dimen/text_left_padding"
                     tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
 
-                    <ImageView
-                        android:id="@+id/my4s_address_search_ImageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignTop="@+id/my4s_address_textview"
-                        android:layout_centerVertical="true"
-                        android:src="@mipmap/searcg"
-                        tools:ignore="ContentDescription,RtlSymmetry" />
+                    <!--    <ImageView
+                            android:id="@+id/my4s_address_search_ImageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignTop="@+id/my4s_address_textview"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/searcg"
+                            tools:ignore="ContentDescription,RtlSymmetry" />
 
-                    <TextView
-                        android:id="@+id/my4s_address_textview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/x10"
-                        android:layout_toRightOf="@+id/my4s_address_search_ImageView"
-                        android:text="@string/txt_current_position"
-                        android:textColor="#000"
-                        android:textSize="@dimen/x30" />
+                        <TextView
+                            android:id="@+id/my4s_address_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/x10"
+                            android:layout_toRightOf="@+id/my4s_address_search_ImageView"
+                            android:text="@string/txt_current_position"
+                            android:textColor="#000"
+                            android:textSize="@dimen/x30" />-->
 
                     <EditText
                         android:id="@+id/current_position"
@@ -113,8 +115,12 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/x26"
-                        android:layout_toRightOf="@+id/my4s_address_textview"
                         android:background="@drawable/edit_text_shape"
+                        android:drawableLeft="@mipmap/searcg"
+                        android:drawablePadding="@dimen/x20"
+                        android:hint="@string/txt_current_position"
+                        android:singleLine="true"
+                        android:imeOptions="actionSearch"
                         android:textColor="#333"
                         android:textSize="@dimen/x28"
                         tools:ignore="TextFields" />
@@ -135,26 +141,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x121"
-        android:orientation="vertical"
-        android:background="@color/mainBackgroundColor">
+        android:background="@color/mainBackgroundColor"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/x26"
-            android:textColor="#000"
             android:layout_marginLeft="@dimen/x28"
-            android:text="[位置]"/>
+            android:text="[位置]"
+            android:textColor="#000"
+            android:textSize="@dimen/x26" />
 
         <TextView
             android:id="@+id/my_4s_address_detail"
-            android:layout_marginTop="@dimen/x30"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#333"
             android:layout_marginLeft="@dimen/x28"
+            android:layout_marginTop="@dimen/x30"
             android:text="郑州"
-            android:textSize="@dimen/x22"/>
+            android:textColor="#333"
+            android:textSize="@dimen/x22" />
 
 
     </LinearLayout>
