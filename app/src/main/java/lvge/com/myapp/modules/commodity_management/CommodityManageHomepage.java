@@ -54,7 +54,7 @@ public class CommodityManageHomepage extends FragmentActivity {
 
         mViewPager = (ViewPager)findViewById(R.id.id_commodity_viewpager);
 
-        ImageView  commodity_manage_homepage_callback = (ImageView)findViewById(R.id.commodity_manage_homepage_callback);
+        TextView  commodity_manage_homepage_callback = (TextView) findViewById(R.id.commodity_manage_homepage_callback);
         commodity_manage_homepage_callback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
