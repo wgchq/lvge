@@ -6,9 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="0dp"
+
     android:orientation="vertical">
 
     <LinearLayout
+        android:paddingTop="@dimen/x50"
         android:id="@+id/toolbar_main_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
