@@ -45,6 +45,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
     //显示地图需要的变量
     private MapView mapView;//地图控件
     private AMap aMap;//地图对象
+    String custumerID ="";
     //定位需要的声明
     private AMapLocationClient mLocationClient = null;//定位发起端
     private AMapLocationClientOption mLocationOption = null;//定位参数
@@ -54,6 +55,20 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
     private double lat;
     private String address;
     private CustomerDetail customer_detail;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 5) {
+            String edit = data.getStringExtra("edit").toString();
+            if (edit.equals("t"))
+            {
+                String kilometer = data.getStringExtra("kilometer").toString();
+                TextView txt_customer_data_car_holder_kilometer = (TextView) findViewById(R.id.txt_customer_data_car_holder_kilometer);
+                txt_customer_data_car_holder_kilometer.setText(kilometer);
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +97,18 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
             }
         });*/
 
+        TextView customer_data_car_holder_kilometer_txt = (TextView) findViewById(R.id.customer_data_car_holder_kilometer_txt);
+        customer_data_car_holder_kilometer_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustomerData.this, HolderKilometerActivity.class);
+                TextView txt_customer_data_car_holder_kilometer = (TextView) findViewById(R.id.txt_customer_data_car_holder_kilometer);
+                String str_customer_data_car_holder_kilometer = txt_customer_data_car_holder_kilometer.getText().toString();
+                intent.putExtra("kilometer", str_customer_data_car_holder_kilometer);
+                intent.putExtra("customerID", custumerID);
+                startActivityForResult(intent, 5);
+            }
+        });
 
         ImageView call_phone = (ImageView) findViewById(R.id.customer_data_call_phone);
         call_phone.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +134,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
-
+        custumerID = id;
         /**
          * 地图定位
          */
@@ -183,7 +210,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
                             TextView txt_customer_data_car_type = (TextView) findViewById(R.id.txt_customer_data_car_type);
                             txt_customer_data_car_type.setText(customerDetail.getMarketEntity().getbName());
                             //公里数
-                            TextView txt_customer_data_car_holder_kilometer = (TextView)findViewById(R.id.txt_customer_data_car_holder_kilometer);
+                            TextView txt_customer_data_car_holder_kilometer = (TextView) findViewById(R.id.txt_customer_data_car_holder_kilometer);
                             txt_customer_data_car_holder_kilometer.setText(customerDetail.getMarketEntity().getMileAge());
 
                             //车架号
@@ -207,8 +234,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
     protected void onDestroy() {
         super.onDestroy();
 
-        if (null!=mLocationClient)
-        {
+        if (null != mLocationClient) {
             mLocationClient.stopLocation();
 
         }
@@ -288,8 +314,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
 
     @Override
     public void deactivate() {
-        if (null!=mLocationClient)
-        {
+        if (null != mLocationClient) {
             mLocationClient.stopLocation();
 
         }

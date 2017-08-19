@@ -1,8 +1,5 @@
 package lvge.com.myapp;
 
-
-import android.app.Activity;
-
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -194,6 +191,7 @@ public class MainPageActivity extends BaseActivity {
         // TODO Auto-generated method stub
         //在这个判断，根据需要做处理
         if(netMobile == NetUtil.NETWORK_NONE){
+            Toast.makeText(MainPageActivity.this,"网络中断",Toast.LENGTH_SHORT).show();
             L.d("223 no network");
         }else{
             L.d("223 ok network");
