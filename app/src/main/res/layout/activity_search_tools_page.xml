@@ -13,10 +13,10 @@
         tools:ignore="UselessParent">
 
         <android.support.design.widget.AppBarLayout
-            android:id="@+id/search_edit_bar"
+            android:id="@+id/search_edit_frame"
             android:background="@color/background_gray"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/x78"
             android:layout_margin="10dp"
             android:layout_weight="1"
             tools:ignore="InefficientWeight">
@@ -27,8 +27,8 @@
                 android:id="@+id/search_view_bar"
                 android:iconifiedByDefault="true"
                 android:imeOptions="actionSearch"
-                android:queryHint="请输入车架号">
-
+                android:inputType="textCapWords"
+                tools:ignore="RtlHardcoded">
             </android.support.v7.widget.SearchView>
         </android.support.design.widget.AppBarLayout>
         <TextView
