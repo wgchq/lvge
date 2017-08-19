@@ -28,6 +28,7 @@
                 android:iconifiedByDefault="true"
                 android:imeOptions="actionSearch"
                 android:inputType="textCapWords"
+
                 tools:ignore="RtlHardcoded">
             </android.support.v7.widget.SearchView>
         </android.support.design.widget.AppBarLayout>
