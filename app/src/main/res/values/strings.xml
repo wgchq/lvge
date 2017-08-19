@@ -134,6 +134,8 @@
     <string name="phone_number">电话</string>
     <string name="insurance_phone_number">保险电话</string>
     <string name="sos_phone_number">救援电话</string>
+    <string name="sale_consultant_two_name">姓名</string>
+    <string name="sale_consultant_two_memo">个性签名</string>
 
 
 </resources>
