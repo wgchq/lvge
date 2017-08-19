@@ -112,7 +112,7 @@
     <string name="main_page_has_no_binding_clients">未绑定硬件</string>
     <string name="main_page_has_no_cash_clients">离线/欠费</string>
     <string name="client_information">客户资料</string>
-    <string name="txt_current_position">当前位置：</string>
+    <string name="txt_current_position">当前位置</string>
 
     <string name="loading">加载中</string>
     <string name="title_activity_validation_history">ValidationHistoryActivity</string>
@@ -136,6 +136,6 @@
     <string name="sos_phone_number">救援电话</string>
     <string name="sale_consultant_two_name">姓名</string>
     <string name="sale_consultant_two_memo">个性签名</string>
-
+    <string name="map_not_ready">地图未准备好</string>
 
 </resources>

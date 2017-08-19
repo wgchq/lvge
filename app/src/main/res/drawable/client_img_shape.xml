@@ -4,7 +4,7 @@
     <corners android:radius="4px" />
 
 
-    <solid android:color="@color/background_gray">
+   <!-- <solid android:color="@color/background_gray">
 
-    </solid>
+    </solid>-->
 </shape>
