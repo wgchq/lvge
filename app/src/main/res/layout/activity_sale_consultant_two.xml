@@ -114,6 +114,7 @@
             tools:ignore="InefficientWeight" />
 
         <RelativeLayout
+            android:id="@+id/sale_consultant_Relayout_name"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x90"
             android:background="@color/mainBackgroundColor"
@@ -130,7 +131,7 @@
                 android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <EditText
+            <TextView
                 android:id="@+id/sale_consultant_inputname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -140,11 +141,11 @@
                 android:layout_toRightOf="@+id/sale_consultant_Textview1"
                 android:background="@drawable/edit_text_shape"
                 android:gravity="right"
-                android:textSize="@dimen/x30"
                 android:hint="@string/unfilled"
-                android:textColorHint="@color/my4s_hint_color"
                 android:inputType="text"
-                tools:ignore="HardcodedText,RtlHardcoded,UnknownIdInLayout" />
+                android:textColorHint="@color/my4s_hint_color"
+                android:textSize="@dimen/x30"
+                tools:ignore="HardcodedText,RtlHardcoded,TextViewEdits,UnknownIdInLayout" />
 
             <TextView
                 android:id="@+id/name_detail"
@@ -165,6 +166,7 @@
             tools:ignore="InefficientWeight" />
 
         <RelativeLayout
+            android:id="@+id/sale_consultant_Relayout_photo"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x90"
             android:background="@color/mainBackgroundColor"
@@ -181,21 +183,22 @@
                 android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <EditText
+            <TextView
                 android:id="@+id/sale_consultant_inputphone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="30dp"
-                android:layout_toRightOf="@+id/sale_consultant_Textview2"
                 android:layout_toLeftOf="@+id/my_4s_shop_phone_detail"
+                android:layout_toRightOf="@+id/sale_consultant_Textview2"
                 android:background="@drawable/edit_text_shape"
-                android:textColorHint="@color/my4s_hint_color"
                 android:gravity="right"
                 android:hint="@string/unfilled"
                 android:inputType=""
+                android:textColorHint="@color/my4s_hint_color"
                 android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText,RtlHardcoded,TextFields,UnknownIdInLayout" />
+
             <TextView
                 android:id="@+id/my_4s_shop_phone_detail"
                 android:layout_width="wrap_content"
@@ -216,6 +219,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/sale_consultant_Relayout_memo"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x90"
             android:background="@drawable/edit_text_shape"
@@ -232,21 +236,21 @@
                 android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <EditText
+            <TextView
                 android:id="@+id/sale_consultant_inputmemo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/edit_text_shape"
                 android:layout_toLeftOf="@+id/my_4s_shop_signature_detail"
                 android:layout_toRightOf="@+id/tv_my_4s_shop_signature"
+                android:background="@drawable/edit_text_shape"
                 android:gravity="right"
-                android:textColorHint="@color/my4s_hint_color"
                 android:hint="@string/unfilled"
                 android:inputType=""
-                android:textSize="@dimen/x30"
                 android:minLines="1"
+                android:textColorHint="@color/my4s_hint_color"
+                android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText,RtlHardcoded,TextFields,UnknownIdInLayout" />
 
             <TextView

@@ -107,6 +107,10 @@ public class SaleConsultantTwo extends AppCompatActivity implements View.OnClick
     private TextView cancelPhoto;
     private Dialog dialog;
 
+    private TextView et_rname;
+    private TextView et_phone;
+    private TextView et_memo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,11 +118,15 @@ public class SaleConsultantTwo extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_sale_consultant_two);
 
         final RelativeLayout sale_consultant_two_iamge = (RelativeLayout) findViewById(R.id.sale_consultant_two_iamge);
-        final EditText et_rname = (EditText) findViewById(R.id.sale_consultant_inputname);
-        final EditText et_phone = (EditText) findViewById(R.id.sale_consultant_inputphone);
-        final EditText et_memo = (EditText) findViewById(R.id.sale_consultant_inputmemo);
+        et_rname = (TextView) findViewById(R.id.sale_consultant_inputname);
+        et_phone = (TextView) findViewById(R.id.sale_consultant_inputphone);
+        et_memo = (TextView) findViewById(R.id.sale_consultant_inputmemo);
         sale_consultant_two_iamgeview = (ImageView) findViewById(R.id.sale_consultant_two_iamgeview);
         TextView sale_consultant_Preservation = (TextView) findViewById(R.id.sale_consultant_Preservation);
+
+        final RelativeLayout sale_consultant_Relayout_name  = (RelativeLayout)findViewById(R.id.sale_consultant_Relayout_name);
+        final RelativeLayout sale_consultant_Relayout_memo = (RelativeLayout)findViewById(R.id.sale_consultant_Relayout_memo);
+        final RelativeLayout sale_consultant_Relayout_photo = (RelativeLayout)findViewById(R.id.sale_consultant_Relayout_photo);
 /**
         ImageView sale_consultant_back = (ImageView) findViewById(R.id.sale_consultant_back);
         sale_consultant_back.setOnClickListener(new View.OnClickListener() {
@@ -129,6 +137,36 @@ public class SaleConsultantTwo extends AppCompatActivity implements View.OnClick
             }
         });
  **/
+
+        sale_consultant_Relayout_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SaleConsultantTwo.this, SaleConsultantTwoNameActivity.class);
+                String inputname = et_rname.getText().toString();
+                intent.putExtra("inputname", inputname);
+                startActivityForResult(intent, 10);
+            }
+        });
+
+        sale_consultant_Relayout_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SaleConsultantTwo.this, SaleConsultantTwoPhonoActivity.class);
+                String inputphone = et_phone.getText().toString();
+                intent.putExtra("inputphone", inputphone);
+                startActivityForResult(intent, 11);
+            }
+        });
+
+        sale_consultant_Relayout_memo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SaleConsultantTwo.this, SaleConsultantTwoMemoActivity.class);
+                String inputmemo = et_memo.getText().toString();
+                intent.putExtra("inputmemo", inputmemo);
+                startActivityForResult(intent, 12);
+            }
+        });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_4s_sales_consultant_two);
         toolbar.setTitle("");
@@ -643,9 +681,10 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        dialog.dismiss();
+
         if (requestCode == 1 && data != null)
         {
+            dialog.dismiss();
             fileUri = data.getData();
             if (fileUri != null) {
                 try {
@@ -672,6 +711,7 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
 
        else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE && fileUri != null)
         {
+            dialog.dismiss();
             // imageUri = data.getData();
             try{
                 Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(fileUri));
@@ -684,11 +724,24 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
                 e.printStackTrace();
             }
 
-        }else if(requestCode == 2){
+        }else if(2 == requestCode){
             Bitmap bitmap = data.getParcelableExtra("data");
             if(bitmap != null){
                 sale_consultant_two_iamgeview.setImageBitmap(bitmap);
             }
+        }
+        else if (10 == requestCode && data != null) {
+
+            //TextView sos_phone = (TextView) findViewById(R.id.commodity_my4s_setting_inputsosnumber);
+            String inputname = data.getStringExtra("inputname").toString();
+            et_rname.setText(inputname);
+
+        }else if(11 == requestCode && data != null){
+            String inputphone = data.getStringExtra("inputphone").toString();
+            et_phone.setText(inputphone);
+        }else if(12 == requestCode && data != null){
+            String inputmemo = data.getStringExtra("inputmemo").toString();
+            et_memo.setText(inputmemo);
         }
 
     }

@@ -102,7 +102,10 @@
         <activity android:name=".modules.crawl_client_management.CrawlClientActivity" />
         <activity android:name=".modules.my_4s_management.SalesConsultantPhoneActivity" />
         <activity android:name=".modules.my_4s_management.SalesConsultantSosPhoneActivity" />
-        <activity android:name=".modules.my_4s_management.SalesConsultantInsurancePhoneActivity"></activity>
+        <activity android:name=".modules.my_4s_management.SalesConsultantInsurancePhoneActivity" />
+        <activity android:name=".modules.my_4s_management.SaleConsultantTwoNameActivity" />
+        <activity android:name=".modules.my_4s_management.SaleConsultantTwoPhonoActivity" />
+        <activity android:name=".modules.my_4s_management.SaleConsultantTwoMemoActivity"></activity>
     </application>
 
 </manifest>

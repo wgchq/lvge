@@ -17,7 +17,7 @@
         tools:layout_editor_absoluteY="0dp">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_sonsultant_phone"
+            android:id="@+id/toolbar_sonsultant_two_phone"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -34,7 +34,7 @@
                 android:text="@string/phone_number" />
 
             <TextView
-                android:id="@+id/consultant_complete"
+                android:id="@+id/consultant_two_phone_compltant"
                 style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,13 +53,13 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/phone_number"
+            android:id="@+id/sales_consultant_two_phone_input"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x88"
             android:layout_marginTop="@dimen/x10"
             android:background="@drawable/edit_text_has_corner_shape"
             android:gravity="center_vertical"
-            android:hint="请输入电话号码"
+            android:hint="请输入电话"
             android:paddingLeft="@dimen/x32"
             android:textColorHint="#666"
             android:textSize="@dimen/x32"
@@ -67,11 +67,10 @@
 
         <TextView
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/x20"
             android:paddingLeft="@dimen/x32"
-            android:text="输入准确的电话号码，以便后续保养服务"
+            android:text="输入准确的电话，以便后续保养服务"
             android:textSize="@dimen/x28"
             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
     </LinearLayout>

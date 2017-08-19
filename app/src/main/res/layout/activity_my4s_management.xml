@@ -272,7 +272,7 @@
                 android:textColor="#000"
                 android:textColorHint="#999"
                 android:textSize="@dimen/x28"
-                tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
+                tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,TextViewEdits,UnknownIdInLayout" />
 
             <TextView
                 android:id="@+id/commodity_freight_setting_textview2"
@@ -338,7 +338,7 @@
                 android:inputType="text"
                 android:textColorHint="#999"
                 android:textSize="@dimen/x28"
-                tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
+                tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,TextViewEdits,UnknownIdInLayout" />
 
             <TextView
                 android:id="@+id/commodity_freight_setting_textview3"
@@ -406,7 +406,7 @@
                 android:textColor="#000"
                 android:textColorHint="#999"
                 android:textSize="@dimen/x28"
-                tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
+                tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,TextViewEdits,UnknownIdInLayout" />
 
             <TextView
                 android:id="@+id/commodity_freight_setting_textview4"
