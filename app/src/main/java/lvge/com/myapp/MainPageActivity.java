@@ -49,11 +49,13 @@ import lvge.com.myapp.modules.ValidationTypeScanQR.ValidationTypeScanQRActivity;
 import lvge.com.myapp.ui.MenuAdapter;
 import lvge.com.myapp.ui.SlideMenu;
 import lvge.com.myapp.util.BottomNavigationViewHelper;
+import lvge.com.myapp.util.L;
+import lvge.com.myapp.util.NetUtil;
 import okhttp3.Call;
 import okhttp3.Response;
 
 
-public class MainPageActivity extends Activity {
+public class MainPageActivity extends BaseActivity {
     private SharedPreferences preferences;
     private final static String FILE_NAME = "login_file";
     private HomeFragment homeFragment = null;
@@ -185,9 +187,17 @@ public class MainPageActivity extends Activity {
                         return true;
                     }
                 });
+    }
 
-
-
+    @Override
+    public void onNetChange(int netMobile) {
+        // TODO Auto-generated method stub
+        //在这个判断，根据需要做处理
+        if(netMobile == NetUtil.NETWORK_NONE){
+            L.d("223 no network");
+        }else{
+            L.d("223 ok network");
+        }
     }
 
 

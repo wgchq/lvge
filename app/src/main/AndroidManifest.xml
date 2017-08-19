@@ -31,6 +31,7 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -41,6 +42,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/lg_company_logo"
         android:label="@string/app_name"
+
         android:roundIcon="@mipmap/lg_company_logo"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
@@ -51,61 +53,209 @@
             android:value="4b16b5d396673d026bb8dfaabfe1e226" />
         <!-- 声明定位service -->
         <service android:name="com.amap.api.location.APSService" />
+        <receiver android:name="lvge.com.myapp.broadcast.NetBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainPageActivity" />
-        <activity android:name=".modules.shop_management.ShopManagementActivity" />
-        <activity android:name=".modules.commodity_management.CommodityManageHomepage" />
-        <activity android:name=".modules.car_data_management.CarDataManagementActivity" />
+        <activity
+            android:name=".MainPageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.shop_management.ShopManagementActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.commodity_management.CommodityManageHomepage"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.car_data_management.CarDataManagementActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".modules.coupon.CouponActivity" />
-        <activity android:name=".modules.evaluation_management.EvaluationManagementActivity" />
-        <activity android:name=".modules.fence_management.FenceManagementActivity" />
-        <activity android:name=".modules.financial_management.FinancialManagementActivity" />
-        <activity android:name=".modules.my_4s_management.My4sManagementActivity" />
-        <activity android:name=".modules.performance_analysis_management.PerformanceAnalysisManagementActivity" />
-        <activity android:name=".modules.royalty_management.RoyaltyManagementActivity" />
-        <activity android:name=".modules.commodity_management.CommodityNewgoods" />
-        <activity android:name=".modules.shop_management.ShopManageShopImgActivity" />
-        <activity android:name=".modules.shop_management.ShopManageAuthenticationActivity" />
-        <activity android:name=".modules.shop_management.ShopManageShopDepositActivity" />
-        <activity android:name=".modules.commodity_management.CommodityInstall" />
-        <activity android:name=".modules.commodity_management.CommodityCultivarType" />
-        <activity android:name=".modules.commodity_management.CommodityCommonProblem" />
-        <activity android:name=".modules.commodity_management.CommodityCultivarTypeChoice" />
-        <activity android:name=".modules.commodity_management.CommodityDescriptionOfGoods" />
-        <activity android:name=".modules.commodity_management.CommodityFreightSetting" />
-        <activity android:name=".modules.my_4s_management.SalesConsultant" />
-        <activity android:name=".modules.Order_management.Order_management_Homepage" />
-        <activity android:name=".modules.Order_management.OrderDetails" />
-        <activity android:name=".modules.Order_management.OrderDetailsTwo" />
-        <activity android:name=".modules.my_4s_management.SaleConsultantTwo" />
-        <activity android:name=".modules.customer_management.MyCustomer" />
-        <activity android:name=".modules.customer_management.CustomerSearch" />
-        <activity android:name=".modules.my_4s_management.My4sAddressActivity" />
-        <activity android:name=".modules.customer_management.CustomerData" />
-        <activity android:name=".modules.customer_management.MessagePush" />
-        <activity android:name=".modules.my_4s_management.My4sAddressSearchActivity" />
-        <activity android:name=".modules.ValidationTypeScanQR.ValidationTypeScanQRActivity" />
-        <activity android:name=".modules.ValidationHistory.ValidationHistoryActivity" />
-        <activity android:name=".modules.RefundAfterSale.RefundAfterSaleActivity" />
-        <activity android:name=".modules.PendingSendGoods.PendingSendGoodsActivity" />
-        <activity android:name=".RegisterInputNumber" />
-        <activity android:name=".ForgetPasswordActivity" />
-        <activity android:name=".modules.maintain_client_management.MaintainClientActivity" />
-        <activity android:name=".modules.alert_client_management.AlertClientActivity" />
-        <activity android:name=".modules.crawl_client_management.CrawlClientActivity" />
-        <activity android:name=".modules.my_4s_management.SalesConsultantPhoneActivity" />
-        <activity android:name=".modules.my_4s_management.SalesConsultantSosPhoneActivity" />
-        <activity android:name=".modules.my_4s_management.SalesConsultantInsurancePhoneActivity" />
-        <activity android:name=".modules.my_4s_management.SaleConsultantTwoNameActivity" />
-        <activity android:name=".modules.my_4s_management.SaleConsultantTwoPhonoActivity" />
-        <activity android:name=".modules.my_4s_management.SaleConsultantTwoMemoActivity"></activity>
+        <activity
+            android:name=".modules.evaluation_management.EvaluationManagementActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.fence_management.FenceManagementActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.financial_management.FinancialManagementActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.my_4s_management.My4sManagementActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.performance_analysis_management.PerformanceAnalysisManagementActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.royalty_management.RoyaltyManagementActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.commodity_management.CommodityNewgoods"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.shop_management.ShopManageShopImgActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.shop_management.ShopManageAuthenticationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.shop_management.ShopManageShopDepositActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.commodity_management.CommodityInstall"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.commodity_management.CommodityCultivarType"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.commodity_management.CommodityCommonProblem"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.commodity_management.CommodityCultivarTypeChoice"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.commodity_management.CommodityDescriptionOfGoods"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.commodity_management.CommodityFreightSetting"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.my_4s_management.SalesConsultant"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.Order_management.Order_management_Homepage"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.Order_management.OrderDetails"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.Order_management.OrderDetailsTwo"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.my_4s_management.SaleConsultantTwo"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.customer_management.MyCustomer"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.customer_management.CustomerSearch"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.my_4s_management.My4sAddressActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.customer_management.CustomerData"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.customer_management.MessagePush"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.my_4s_management.My4sAddressSearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.ValidationTypeScanQR.ValidationTypeScanQRActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.ValidationHistory.ValidationHistoryActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.RefundAfterSale.RefundAfterSaleActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.PendingSendGoods.PendingSendGoodsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".RegisterInputNumber"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".ForgetPasswordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.maintain_client_management.MaintainClientActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.alert_client_management.AlertClientActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.crawl_client_management.CrawlClientActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.my_4s_management.SalesConsultantPhoneActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.my_4s_management.SalesConsultantSosPhoneActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.my_4s_management.SalesConsultantInsurancePhoneActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.my_4s_management.SaleConsultantTwoNameActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.my_4s_management.SaleConsultantTwoPhonoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.my_4s_management.SaleConsultantTwoMemoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden">
+
+        </activity>
     </application>
 
 </manifest>
