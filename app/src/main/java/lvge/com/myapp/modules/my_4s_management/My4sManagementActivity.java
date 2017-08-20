@@ -48,6 +48,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import lvge.com.myapp.MainActivity;
 import lvge.com.myapp.MainPageActivity;
@@ -486,46 +488,65 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
             @Override
             public void onClick(View v) {
                 try {
-                    OkHttpUtils.post()//get 方法
-                            .url("http://www.lvgew.com/obdcarmarket/sellerapp/shop4S/update") //地址
-                            .addParams("id", id)
-                            .addParams("lat", lat)
-                            .addParams("lng", lng)
-                            .addParams("address", address)
-                            .addParams("serverPhone", commodity_my4s_setting_inputnumber.getText().toString())
-                            .addParams("assistPhone", commodity_my4s_setting_inputsosnumber.getText().toString())
-                            .addParams("notifyDangerPhone", commodity_my4s_setting_inputInsurancenumber.getText().toString())
-                            .build()
-                            .execute(new Callback() {
-                                @Override
-                                public Object parseNetworkResponse(Response response, int i) throws Exception {
-                                    String string = response.body().string();//获取相应中的内容Json格式
-                                    //把json转化成对应对象
-                                    //LoginResultModel是和后台返回值类型结构一样的对象
-                                    LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
-                                    return result;
-                                }
 
-                                @Override
-                                public void onError(Call call, Exception e, int i) {
 
-                                }
-
-                                @Override
-                                public void onResponse(Object o, int i) {
-                                    if (null != o) {
-                                        LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
-                                        if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
-                                            Toast.makeText(My4sManagementActivity.this, "更新成功！", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                    showProgressDialog();
+                    TimerTask task = new TimerTask() {
+                        @Override
+                        public void run() {
+                            /**
+                             *要执行的操作
+                             */
+                            OkHttpUtils.post()//get 方法
+                                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/shop4S/update") //地址
+                                    .addParams("id", id)
+                                    .addParams("lat", lat)
+                                    .addParams("lng", lng)
+                                    .addParams("address", address)
+                                    .addParams("serverPhone", commodity_my4s_setting_inputnumber.getText().toString())
+                                    .addParams("assistPhone", commodity_my4s_setting_inputsosnumber.getText().toString())
+                                    .addParams("notifyDangerPhone", commodity_my4s_setting_inputInsurancenumber.getText().toString())
+                                    .build()
+                                    .execute(new Callback() {
+                                        @Override
+                                        public Object parseNetworkResponse(Response response, int i) throws Exception {
+                                            String string = response.body().string();//获取相应中的内容Json格式
+                                            //把json转化成对应对象
+                                            //LoginResultModel是和后台返回值类型结构一样的对象
+                                            LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                                            return result;
                                         }
-                                    } else {//当没有返回对象时，表示网络没有联通
-                                        Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
+
+                                        @Override
+                                        public void onError(Call call, Exception e, int i) {
+                                            dissmissProgressDialog();
+                                        }
+
+                                        @Override
+                                        public void onResponse(Object o, int i) {
+                                            if (null != o) {
+                                                LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
+                                                if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                                    Toast.makeText(My4sManagementActivity.this, "更新成功！", Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            } else {//当没有返回对象时，表示网络没有联通
+                                                Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+                                            }
+                                            dissmissProgressDialog();
+                                        }
+                                    });
+                        }
+                    };
+
+                    Timer timer = new Timer();
+                    timer.schedule(task, 2000);//3秒后执行
+
+
+
                 } catch (Exception e) {
+                    dissmissProgressDialog();
                     Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
                 }
 
@@ -872,6 +893,13 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
 
     private void dissmissProgressDialog() {
         if (progDialog != null) {
+            try {
+
+            }
+            catch (Exception e)
+            {
+            }
+
             progDialog.dismiss();
         }
     }
