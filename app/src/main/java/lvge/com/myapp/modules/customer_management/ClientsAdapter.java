@@ -1,9 +1,11 @@
 package lvge.com.myapp.modules.customer_management;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.FloatRange;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,6 +71,12 @@ public class ClientsAdapter extends BaseAdapter {
             final TextView car_no = (TextView) convertView.findViewById(R.id.customer_car_no);
             String str_car_no = "车架号：" + clients.getPageResult().getEntityList().get(position).getVin();
             car_no.setText(str_car_no);
+            Drawable drawable = mContext.getResources().getDrawable(R.mipmap.car_logo_default);
+           /* Float width = convertView.getResources().getDimension(R.dimen.x34);
+            Integer int_width = Integer.parseInt( width.toString());*/
+            drawable.setBounds(0,0,34,34);
+            car_no.setCompoundDrawables(drawable,null,null,null);
+
 
             final ImageView headimge = (ImageView) convertView.findViewById(R.id.sale_consultant_iamage);
 

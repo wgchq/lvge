@@ -93,7 +93,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/dazhong"
+                    android:drawableLeft="@mipmap/car_logo_default"
                     android:drawablePadding="@dimen/x14"
                     android:gravity="center_vertical"
                     android:text="112"

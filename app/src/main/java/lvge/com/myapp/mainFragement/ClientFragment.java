@@ -51,6 +51,7 @@ public class ClientFragment extends Fragment {
     private LoadListView listview;
     ClientsAdapter adapter;
     private int count = 0;
+    private String PageSize ="1000";
      String status = "0";
     private boolean search_show = false;
 
@@ -129,7 +130,7 @@ public class ClientFragment extends Fragment {
                     OkHttpUtils.get()//get 方法
                             .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                             .addParams("pageIndex", "1") //需要传递的参数
-                            .addParams("pageSize", "10")
+                            .addParams("pageSize",PageSize)
                             .addParams("status",status)
                             .build()
                             .execute(new Callback() {//通用的callBack
@@ -179,7 +180,7 @@ public class ClientFragment extends Fragment {
                                                                 OkHttpUtils.get()//get 方法
                                                                         .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                                                                         .addParams("pageIndex", Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1)) //需要传递的参数
-                                                                        .addParams("pageSize", "10")
+                                                                        .addParams("pageSize", PageSize)
                                                                         .addParams("status",status)
                                                                         .build()
                                                                         .execute(new Callback() {//通用的callBack
@@ -321,7 +322,7 @@ public class ClientFragment extends Fragment {
             OkHttpUtils.get()//get 方法
                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                     .addParams("pageIndex", "1") //需要传递的参数
-                    .addParams("pageSize", "10")
+                    .addParams("pageSize",PageSize)
                     .addParams("status","0")
                     .build()
                     .execute(new Callback() {//通用的callBack
@@ -365,7 +366,7 @@ public class ClientFragment extends Fragment {
                                                         OkHttpUtils.get()//get 方法
                                                                 .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                                                                 .addParams("pageIndex", Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1)) //需要传递的参数
-                                                                .addParams("pageSize", "10")
+                                                                .addParams("pageSize", PageSize)
                                                                 .build()
                                                                 .execute(new Callback() {//通用的callBack
 
@@ -441,7 +442,7 @@ public class ClientFragment extends Fragment {
             OkHttpUtils.get()//get 方法
                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                     .addParams("pageIndex", index) //需要传递的参数
-                    .addParams("pageSize", "10")
+                    .addParams("pageSize", PageSize)
                     .addParams("status", "0")
                     .addParams("keyword",str)
                     .build()
@@ -484,7 +485,7 @@ public class ClientFragment extends Fragment {
                                                             OkHttpUtils.get()//get 方法
                                                                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                                                                     .addParams("pageIndex", Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1)) //需要传递的参数
-                                                                    .addParams("pageSize", "10")
+                                                                    .addParams("pageSize", PageSize)
                                                                     .build()
                                                                     .execute(new Callback() {//通用的callBack
 
