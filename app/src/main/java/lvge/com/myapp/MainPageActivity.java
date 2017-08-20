@@ -1,5 +1,6 @@
 package lvge.com.myapp;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -20,7 +21,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,20 +40,14 @@ import lvge.com.myapp.mainFragement.HomeFragment;
 import lvge.com.myapp.mainFragement.MyFragment;
 import lvge.com.myapp.mainFragement.OrderFragment;
 import lvge.com.myapp.model.LoginResultModel;
-import lvge.com.myapp.modules.PendingSendGoods.PendingSendGoodsActivity;
-import lvge.com.myapp.modules.RefundAfterSale.RefundAfterSaleActivity;
-import lvge.com.myapp.modules.ValidationHistory.ValidationHistoryActivity;
-import lvge.com.myapp.modules.ValidationTypeScanQR.ValidationTypeScanQRActivity;
 import lvge.com.myapp.ui.MenuAdapter;
 import lvge.com.myapp.ui.SlideMenu;
 import lvge.com.myapp.util.BottomNavigationViewHelper;
-import lvge.com.myapp.util.L;
-import lvge.com.myapp.util.NetUtil;
 import okhttp3.Call;
 import okhttp3.Response;
 
 
-public class MainPageActivity extends BaseActivity {
+public class MainPageActivity extends Activity {
     private SharedPreferences preferences;
     private final static String FILE_NAME = "login_file";
     private HomeFragment homeFragment = null;
@@ -61,7 +55,6 @@ public class MainPageActivity extends BaseActivity {
     private OrderFragment orderFragment = null;
     private MyFragment myFragment = null;
     private FragmentManager fragmentManager = getFragmentManager();
-
 
     private SlideMenu mMenu;
 
@@ -194,18 +187,6 @@ public class MainPageActivity extends BaseActivity {
         }
         return false;
 
-    }
-
-    @Override
-    public void onNetChange(int netMobile) {
-        // TODO Auto-generated method stub
-        //在这个判断，根据需要做处理
-        if(netMobile == NetUtil.NETWORK_NONE){
-            Toast.makeText(MainPageActivity.this,"网络中断",Toast.LENGTH_SHORT).show();
-            L.d("223 no network");
-        }else{
-            L.d("223 ok network");
-        }
     }
 
 
