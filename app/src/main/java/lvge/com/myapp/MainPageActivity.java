@@ -13,6 +13,7 @@ import android.os.Bundle;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -184,6 +185,15 @@ public class MainPageActivity extends BaseActivity {
                         return true;
                     }
                 });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            return true;
+        }
+        return false;
+
     }
 
     @Override

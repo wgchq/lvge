@@ -108,7 +108,7 @@ public class ClientsAdapter extends BaseAdapter {
                 leftDrawable = mContext.getResources().getDrawable(R.mipmap.client_kilometer);
             } else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("0")){
                 type.setText("未绑定硬件");
-                leftDrawable = mContext.getResources().getDrawable(R.mipmap.client_kilometer);
+                leftDrawable = mContext.getResources().getDrawable(R.mipmap.client_kilometer_not_on_line);
             }
             else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("2")){
                 type.setText("离线/欠费");

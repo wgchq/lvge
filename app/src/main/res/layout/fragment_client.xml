@@ -10,14 +10,14 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/x50"
+        android:paddingTop="@dimen/x40"
         android:theme="@style/AppTheme"
         app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_fragement_client"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x118"
+            android:layout_height="@dimen/x108"
             android:layout_gravity="bottom"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
@@ -38,7 +38,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
                 android:layout_marginLeft="@dimen/x26"
-                android:layout_marginRight="@dimen/x20"
+                android:layout_marginRight="@dimen/x40"
                 android:src="@mipmap/ic_search"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 

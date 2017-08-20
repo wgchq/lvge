@@ -147,12 +147,14 @@ public class MainActivity extends Activity{
 
                                     bundle.putString("name", et_username.getText().toString());
                                     intent.putExtras(bundle);
+                                    TextView clear_lg_return_error = (TextView)findViewById(R.id.lg_return_error);
+                                    clear_lg_return_error.setText("");
                                     startActivity(intent);
 
                                 } else {
                                     //Toast.makeText(MainActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
                                     TextView lg_return_error = (TextView)findViewById(R.id.lg_return_error);
-                                    lg_return_error.setText("密码或账号错误");
+                                    lg_return_error.setText(result.getOperationResult().getResultMsg());
                                 }
                             } else {//当没有返回对象时，表示网络没有联通
                                 Toast.makeText(MainActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
