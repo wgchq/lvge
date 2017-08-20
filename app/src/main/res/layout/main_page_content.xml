@@ -10,13 +10,13 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:paddingTop="@dimen/x40"
         android:id="@+id/toolbar_main_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:baselineAligned="false"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/x40">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -82,29 +82,31 @@
             android:gravity="center"
             android:orientation="vertical"
             tools:ignore="UselessParent">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true">
-            <EditText
-                style="@style/system_hint_style"
-                android:layout_width="@dimen/x712"
-                android:layout_height="@dimen/x90"
-                android:background="@drawable/edit_text_shape"
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:hint="@string/please_enter_validation"
-                android:inputType="text"
-                android:textColor="#999"
-                android:textSize="@dimen/x30" />
-        </LinearLayout>
+                android:focusableInTouchMode="true">
+
+                <EditText
+                    style="@style/system_hint_style"
+                    android:layout_width="@dimen/x712"
+                    android:layout_height="@dimen/x90"
+                    android:background="@drawable/edit_text_shape"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/please_enter_validation"
+                    android:inputType="text"
+                    android:textColor="#999"
+                    android:textSize="@dimen/x30" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/x20"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="@dimen/x20">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -152,6 +154,15 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/network_check"
+            android:layout_width="match_parent"
+            android:background="@color/colorAccent"
+            android:text="当前网络不可用，请检查您的网络设置"
+            android:visibility="gone"
+            android:textColor="@color/mainFontColor"
+            android:layout_height="wrap_content" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/x8"
@@ -179,8 +190,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/x30"
-                        android:drawableTop="@mipmap/main_page_maintain"
                         android:drawablePadding="@dimen/x20"
+                        android:drawableTop="@mipmap/main_page_maintain"
                         android:gravity="center"
                         android:text="@string/main_page_maintain_client"
                         android:textSize="@dimen/x28"
@@ -215,8 +226,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/x30"
-                        android:drawableTop="@mipmap/main_page_alert"
                         android:drawablePadding="@dimen/x20"
+                        android:drawableTop="@mipmap/main_page_alert"
                         android:gravity="center"
                         android:text="@string/main_page_alert_client"
                         android:textSize="@dimen/x28"
@@ -234,6 +245,7 @@
                         tools:ignore="HardcodedText,RtlHardcoded" />
                 </FrameLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -250,8 +262,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/x30"
-                        android:drawableTop="@mipmap/main_page_crawl"
                         android:drawablePadding="@dimen/x20"
+                        android:drawableTop="@mipmap/main_page_crawl"
                         android:gravity="center"
                         android:text="@string/main_page_crawl_client"
                         android:textSize="@dimen/x28"
@@ -345,29 +357,29 @@
                     <TextView
                         android:id="@+id/img_main_page_shop_management"
                         android:layout_weight="1"
-                        android:text="@string/shop_management"
-                        android:textSize="@dimen/x22"
-                        android:gravity="center"
                         android:drawablePadding="@dimen/x18"
-                        android:drawableTop="@mipmap/main_page_shop_management" />
+                        android:drawableTop="@mipmap/main_page_shop_management"
+                        android:gravity="center"
+                        android:text="@string/shop_management"
+                        android:textSize="@dimen/x22" />
 
                     <TextView
                         android:id="@+id/img_main_page_commodity_management"
                         android:layout_weight="1"
-                        android:text="@string/commodity_management"
-                        android:gravity="center"
                         android:drawablePadding="@dimen/x18"
-                        android:textSize="@dimen/x22"
-                        android:drawableTop="@mipmap/main_page_commodity_management" />
+                        android:drawableTop="@mipmap/main_page_commodity_management"
+                        android:gravity="center"
+                        android:text="@string/commodity_management"
+                        android:textSize="@dimen/x22" />
 
                     <TextView
                         android:id="@+id/img_main_page_financial_management"
                         android:layout_weight="1"
-                        android:text="@string/financial_management"
-                        android:gravity="center"
-                        android:textSize="@dimen/x22"
                         android:drawablePadding="@dimen/x18"
-                        android:drawableTop="@mipmap/main_page_financial_management" />
+                        android:drawableTop="@mipmap/main_page_financial_management"
+                        android:gravity="center"
+                        android:text="@string/financial_management"
+                        android:textSize="@dimen/x22" />
 
 
                 </TableRow>
@@ -379,29 +391,29 @@
                     <TextView
                         android:id="@+id/img_main_page_car_data_management"
                         android:layout_weight="1"
-                        android:text="@string/car_data_management"
-                        android:gravity="center"
-                        android:textSize="@dimen/x22"
                         android:drawablePadding="@dimen/x18"
-                        android:drawableTop="@mipmap/main_page_car_data_management" />
+                        android:drawableTop="@mipmap/main_page_car_data_management"
+                        android:gravity="center"
+                        android:text="@string/car_data_management"
+                        android:textSize="@dimen/x22" />
 
                     <TextView
                         android:id="@+id/img_main_page_royalty_management"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:drawablePadding="@dimen/x18"
+                        android:drawableTop="@mipmap/main_page_royalty_management"
+                        android:gravity="center"
                         android:text="@string/royalty_management"
-                        android:textSize="@dimen/x22"
-                        android:drawableTop="@mipmap/main_page_royalty_management" />
+                        android:textSize="@dimen/x22" />
 
                     <TextView
                         android:id="@+id/img_main_page_evaluation_management"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:drawablePadding="@dimen/x18"
-                        android:textSize="@dimen/x22"
+                        android:drawableTop="@mipmap/main_page_evaluation_management"
+                        android:gravity="center"
                         android:text="@string/evaluation_management"
-                        android:drawableTop="@mipmap/main_page_evaluation_management" />
+                        android:textSize="@dimen/x22" />
                 </TableRow>
 
                 <TableRow
@@ -411,26 +423,26 @@
                     <TextView
                         android:id="@+id/img_main_page_my_4s_management"
                         android:layout_weight="1"
-                        android:text="@string/my_4s_management"
-                        android:gravity="center"
                         android:drawablePadding="@dimen/x18"
-                        android:textSize="@dimen/x22"
-                        android:drawableTop="@mipmap/main_page_my_4s_management" />
+                        android:drawableTop="@mipmap/main_page_my_4s_management"
+                        android:gravity="center"
+                        android:text="@string/my_4s_management"
+                        android:textSize="@dimen/x22" />
 
                     <TextView
                         android:id="@+id/img_main_page_coupon"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:drawablePadding="@dimen/x18"
-                        android:textSize="@dimen/x22"
+                        android:drawableTop="@mipmap/main_page_coupon"
+                        android:gravity="center"
                         android:text="@string/coupon"
-                        android:drawableTop="@mipmap/main_page_coupon" />
+                        android:textSize="@dimen/x22" />
 
                     <TextView
                         android:id="@+id/main_page_other1"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:drawablePadding="@dimen/x18"
+                        android:gravity="center"
                         android:textSize="@dimen/x22"
                         tools:ignore="ContentDescription" />
 

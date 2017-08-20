@@ -33,6 +33,7 @@ public class NetBroadcastReceiver extends BroadcastReceiver {
                 .setMessage(
                         "You forget to write the message. Do you want to fill out it ??")
                 .create().show();*/
+
         Toast.makeText(context, status, Toast.LENGTH_LONG).show();
 
     }
