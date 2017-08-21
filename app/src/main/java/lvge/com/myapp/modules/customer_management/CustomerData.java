@@ -211,7 +211,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
                             txt_customer_data_car_type.setText(customerDetail.getMarketEntity().getbName());
                             //公里数
                             TextView txt_customer_data_car_holder_kilometer = (TextView) findViewById(R.id.txt_customer_data_car_holder_kilometer);
-                            txt_customer_data_car_holder_kilometer.setText(customerDetail.getMarketEntity().getMileAge());
+                            txt_customer_data_car_holder_kilometer.setText(customerDetail.getMarketEntity().getMileage());
 
                             //车架号
                             TextView txt_customer_data_car_vin_no = (TextView) findViewById(R.id.txt_customer_data_car_vin_no);

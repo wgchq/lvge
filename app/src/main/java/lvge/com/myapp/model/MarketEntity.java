@@ -14,15 +14,16 @@ public class MarketEntity {
     private double lng;
     private String bName;
 
-    public String getMileAge() {
-        return mileAge;
+
+    public String getMileage() {
+        return mileage;
     }
 
-    public void setMileAge(String mileAge) {
-        this.mileAge = mileAge;
+    public void setMileage(String mileage) {
+        this.mileage = mileage;
     }
 
-    private String mileAge;
+    private String mileage;
 
     public String getId() {
         return id;
