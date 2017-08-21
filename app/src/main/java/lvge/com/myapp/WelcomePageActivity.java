@@ -75,7 +75,7 @@ public class WelcomePageActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onError(okhttp3.Call call, Exception e, int i) {
-
+                                    Toast.makeText(WelcomePageActivity.this, "服务器异常！", Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override

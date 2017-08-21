@@ -332,6 +332,13 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
             String address = Province + City + Crossroads + Building;
             TextView client_address = (TextView) findViewById(R.id.client_address);
             client_address.setText(FormatAddress);
+            client_address.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(CustomerData.this,CustomerSosAddressCheckActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
 
     }
