@@ -336,6 +336,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(CustomerData.this,CustomerSosAddressCheckActivity.class);
+                    intent.putExtra("id",custumerID);
                     startActivity(intent);
                 }
             });
