@@ -130,7 +130,8 @@
         android:background="@android:color/white"
         app:tabIndicatorColor="#ff8386"
         app:tabIndicatorHeight="@dimen/x1"
-        app:tabMode="fixed"
+        app:tabMode="scrollable"
+        app:tabPadding="@dimen/x28"
         app:tabSelectedTextColor="#ff8386"
         app:tabTextAppearance="@style/customer_tablayout"
         app:tabTextColor="#8c8c8c">
@@ -138,7 +139,7 @@
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="    全部客户"
+            android:text="全部客户"
             tools:ignore="HardcodedText" />
 
         <android.support.design.widget.TabItem
@@ -154,7 +155,7 @@
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="  离线/欠费"
+            android:text="离线/欠费"
             tools:ignore="HardcodedText" />
 
     </android.support.design.widget.TabLayout>

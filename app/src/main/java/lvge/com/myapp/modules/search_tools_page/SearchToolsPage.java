@@ -42,7 +42,7 @@ public class SearchToolsPage extends AppCompatActivity{
 
         final AppBarLayout appBarLayout = (AppBarLayout)findViewById(R.id.search_edit_frame);
         final SearchView search_view = (SearchView)findViewById(R.id.search_view_bar);
-        search_view.setQueryHint("请输入车架号搜索");
+        search_view.setQueryHint("请输入车架号、用户名或设备号码搜索");
         search_view.setIconifiedByDefault(false);
         search_view.setSubmitButtonEnabled(true);
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

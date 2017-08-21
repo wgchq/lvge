@@ -716,7 +716,8 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
                 Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(fileUri));
 
                 if(bitmap != null){
-                    sale_consultant_two_iamgeview.setImageBitmap(bitmap);
+                    //sale_consultant_two_iamgeview.setImageBitmap(bitmap);
+                    crop(fileUri);
                 }
 
             }catch (Exception e){
