@@ -335,9 +335,14 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
             client_address.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(CustomerData.this,CustomerSosAddressCheckActivity.class);
-                    intent.putExtra("id",custumerID);
-                    startActivity(intent);
+                    TextView txt_customer_data_car_imei_no = (TextView) findViewById(R.id.txt_customer_data_car_imei_no);
+                    if (!txt_customer_data_car_imei_no.getText().equals(""))
+                    {
+                        Intent intent = new Intent(CustomerData.this,CustomerSosAddressCheckActivity.class);
+                        intent.putExtra("id",custumerID);
+                        startActivity(intent);
+                    }
+
                 }
             });
         }
