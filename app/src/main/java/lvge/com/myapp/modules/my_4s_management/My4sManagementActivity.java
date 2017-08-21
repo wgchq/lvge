@@ -53,6 +53,7 @@ import java.util.TimerTask;
 
 import lvge.com.myapp.MainActivity;
 import lvge.com.myapp.MainPageActivity;
+import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.model.My4sUpdataImageViewModel;
@@ -106,6 +107,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
 
     private int ImageNum = 0;
 
+    private CustomProgressDialog progressDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -490,7 +492,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 try {
 
 
-                    showProgressDialog();
+                    startProgerssDialog();
                     TimerTask task = new TimerTask() {
                         @Override
                         public void run() {
@@ -519,7 +521,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
 
                                         @Override
                                         public void onError(Call call, Exception e, int i) {
-                                            dissmissProgressDialog();
+                                            stopProgressDialog();
                                         }
 
                                         @Override
@@ -534,7 +536,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                             } else {//当没有返回对象时，表示网络没有联通
                                                 Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
                                             }
-                                            dissmissProgressDialog();
+                                            stopProgressDialog();
                                         }
                                     });
                         }
@@ -546,13 +548,13 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
 
 
                 } catch (Exception e) {
-                    dissmissProgressDialog();
+                    stopProgressDialog();
                     Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
                 }
 
                 try {
                     if (my_4s_pic_1_bool || my_4s_pic_2_bool || my_4s_pic_3_bool)
-                        showProgressDialog();
+                        startProgerssDialog();
                     if (my_4s_pic_1_bool) {
                         final List<String> filePaths = new ArrayList<>();
                         final Map<String, Object> map = new HashMap<String, Object>();
@@ -880,27 +882,18 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
 
     }
 
-    private void showProgressDialog() {
-        if (progDialog == null) {
-            progDialog = new ProgressDialog(this);
+    private void startProgerssDialog(){
+        if(progressDialog == null){
+            progressDialog = CustomProgressDialog.createDialog(this);
+            // progressDialog.setMessage("正在加载中。。");
         }
-        progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progDialog.setIndeterminate(false);
-        progDialog.setCancelable(false);
-        progDialog.setMessage("正在上传 ...");
-        progDialog.show();
+        progressDialog.show();
     }
 
-    private void dissmissProgressDialog() {
-        if (progDialog != null) {
-            try {
-
-            }
-            catch (Exception e)
-            {
-            }
-
-            progDialog.dismiss();
+    private void stopProgressDialog(){
+        if(progressDialog != null){
+            progressDialog.dismiss();
+            progressDialog = null;
         }
     }
 
@@ -1000,7 +993,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 case 0:
                     ImageNum--;
                     if (ImageNum == 0) {
-                        dissmissProgressDialog();
+                        stopProgressDialog();
                         my_4s_shop_pic_1.setDrawingCacheEnabled(false);
                         my_4s_shop_pic_2.setDrawingCacheEnabled(false);
                         my_4s_shop_pic_3.setDrawingCacheEnabled(false);
@@ -1008,8 +1001,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                     }
                     break;
                 case 1:
-                    dissmissProgressDialog();
-
+                    stopProgressDialog();
                     Toast.makeText(My4sManagementActivity.this, "上传失败！", Toast.LENGTH_LONG).show();
                     break;
             }

@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
+import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.ClientResultModel;
 
@@ -62,6 +63,8 @@ public class ClientFragment extends Fragment {
     private final static int RESULT_OK = 1001;
     private TabLayout tabLayout;
     private View view;
+
+    private CustomProgressDialog progressDialog = null;
 
     public ClientFragment() {
         // Required empty public constructor
@@ -126,7 +129,7 @@ public class ClientFragment extends Fragment {
                             status = "3";//离线
                             break;
                     }
-
+                    startProgerssDialog();
                     OkHttpUtils.get()//get 方法
                             .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                             .addParams("pageIndex", "1") //需要传递的参数
@@ -148,7 +151,7 @@ public class ClientFragment extends Fragment {
 
                                 @Override
                                 public void onError(okhttp3.Call call, Exception e, int i) {
-
+                                    stopProgressDialog();
                                 }
 
                                 @Override
@@ -160,6 +163,7 @@ public class ClientFragment extends Fragment {
                                             adapter.setClients(clientResultModel);
 
                                             LoadListView client_lst = (LoadListView) view.findViewById(R.id.clients_list);
+                                            stopProgressDialog();
                                             client_lst.setInterface(new LoadListView.IloadListener() {
                                                 @Override
                                                 public void onLoad() {
@@ -176,7 +180,7 @@ public class ClientFragment extends Fragment {
                                                                     search(query,view,Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1));
                                                                     return;
                                                                 }
-
+                                                                startProgerssDialog();
                                                                 OkHttpUtils.get()//get 方法
                                                                         .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                                                                         .addParams("pageIndex", Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1)) //需要传递的参数
@@ -198,7 +202,7 @@ public class ClientFragment extends Fragment {
 
                                                                             @Override
                                                                             public void onError(okhttp3.Call call, Exception e, int i) {
-
+                                                                            stopProgressDialog();
 
                                                                             }
 
@@ -219,16 +223,20 @@ public class ClientFragment extends Fragment {
                                                                                         client.setAdapter(adapter);
                                                                                         client.setSelection(client.getBottom());
                                                                                         client.loadComplete();
+                                                                                        stopProgressDialog();
 
                                                                                     } else {
+                                                                                        stopProgressDialog();
                                                                                         Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
                                                                                     }
                                                                                 } else {//当没有返回对象时，表示网络没有联通
+                                                                                    stopProgressDialog();
                                                                                     Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
                                                                                 }
                                                                             }
                                                                         });
                                                             } catch (Exception e) {
+                                                                stopProgressDialog();
                                                                 e.printStackTrace();
                                                             }
                                                         }
@@ -236,16 +244,19 @@ public class ClientFragment extends Fragment {
                                                 }
                                             });
                                             client_lst.setAdapter(adapter);
-
+                                            stopProgressDialog();
                                         } else {
+                                            stopProgressDialog();
                                             Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {//当没有返回对象时，表示网络没有联通
+                                        stopProgressDialog();
                                         Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
                 } catch (Exception e) {
+                    stopProgressDialog();
                     Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
                 }
 
@@ -318,6 +329,7 @@ public class ClientFragment extends Fragment {
         }
     }
     void iniPage(final View view) {
+        startProgerssDialog();
         try {
             OkHttpUtils.get()//get 方法
                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
@@ -351,6 +363,7 @@ public class ClientFragment extends Fragment {
                                 if (clientResultModel.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
                                     adapter.setClients(clientResultModel);
                                     LoadListView client_lst = (LoadListView) view.findViewById(R.id.clients_list);
+                                    stopProgressDialog();
                                     client_lst.setInterface(new LoadListView.IloadListener() {
                                         @Override
                                         public void onLoad() {
@@ -363,6 +376,7 @@ public class ClientFragment extends Fragment {
                                                 public void run() {
 
                                                     try {
+                                                        startProgerssDialog();
                                                         OkHttpUtils.get()//get 方法
                                                                 .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                                                                 .addParams("pageIndex", Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1)) //需要传递的参数
@@ -385,7 +399,7 @@ public class ClientFragment extends Fragment {
                                                                     public void onError(okhttp3.Call call, Exception e, int i) {
 
                                                                         int a = 0;
-
+                                                                        stopProgressDialog();
                                                                     }
 
                                                                     @Override
@@ -405,16 +419,20 @@ public class ClientFragment extends Fragment {
                                                                                 client.setAdapter(adapter);
                                                                                 client.setSelection(client.getBottom());
                                                                                 client.loadComplete();
+                                                                                stopProgressDialog();
 
                                                                             } else {
+                                                                                stopProgressDialog();
                                                                                 Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
                                                                             }
                                                                         } else {//当没有返回对象时，表示网络没有联通
+                                                                            stopProgressDialog();
                                                                             Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
                                                                         }
                                                                     }
                                                                 });
                                                     } catch (Exception e) {
+                                                        stopProgressDialog();
                                                         e.printStackTrace();
                                                     }
 
@@ -423,22 +441,26 @@ public class ClientFragment extends Fragment {
                                         }
                                     });
                                     client_lst.setAdapter(adapter);
-
+                                    stopProgressDialog();
                                 } else {
+                                    stopProgressDialog();
                                     Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
                                 }
                             } else {//当没有返回对象时，表示网络没有联通
+                                stopProgressDialog();
                                 Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
         } catch (Exception e) {
+            stopProgressDialog();
             Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void search(String str, final View view , String index){
         try {
+            startProgerssDialog();
             OkHttpUtils.get()//get 方法
                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                     .addParams("pageIndex", index) //需要传递的参数
@@ -459,7 +481,7 @@ public class ClientFragment extends Fragment {
 
                         @Override
                         public void onError(Call call, Exception e, int i) {
-
+                            stopProgressDialog();
                         }
 
                         @Override
@@ -470,6 +492,7 @@ public class ClientFragment extends Fragment {
                                     if (clientResultModel.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
                                         adapter.setClients(clientResultModel);
                                         LoadListView client_lst = (LoadListView)view.findViewById(R.id.clients_list);
+                                        stopProgressDialog();
                                         client_lst.setInterface(new LoadListView.IloadListener() {
                                             @Override
                                             public void onLoad() {
@@ -482,6 +505,7 @@ public class ClientFragment extends Fragment {
                                                     public void run() {
 
                                                         try {
+                                                            startProgerssDialog();
                                                             OkHttpUtils.get()//get 方法
                                                                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                                                                     .addParams("pageIndex", Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1)) //需要传递的参数
@@ -504,7 +528,7 @@ public class ClientFragment extends Fragment {
                                                                         public void onError(okhttp3.Call call, Exception e, int i) {
 
                                                                             int a = 0;
-
+                                                                            stopProgressDialog();
                                                                         }
 
                                                                         @Override
@@ -524,16 +548,20 @@ public class ClientFragment extends Fragment {
                                                                                     client.setAdapter(adapter);
                                                                                     client.setSelection(client.getBottom());
                                                                                     client.loadComplete();
+                                                                                    stopProgressDialog();
 
                                                                                 } else {
                                                                                     Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                                                                    stopProgressDialog();
                                                                                 }
                                                                             } else {//当没有返回对象时，表示网络没有联通
                                                                                 Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
+                                                                                stopProgressDialog();
                                                                             }
                                                                         }
                                                                     });
                                                         } catch (Exception e) {
+                                                            stopProgressDialog();
                                                             e.printStackTrace();
                                                         }
 
@@ -542,16 +570,33 @@ public class ClientFragment extends Fragment {
                                             }
                                         });
                                         client_lst.setAdapter(adapter);
+                                        stopProgressDialog();
                                     } else {
+                                        stopProgressDialog();
                                         Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
                                     }
                             }
                         }
                     });
         }catch (Exception e){
+            stopProgressDialog();
             Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
         }
     }
 
+    private void startProgerssDialog(){
+        if(progressDialog == null){
+            progressDialog = CustomProgressDialog.createDialog(getActivity());
+           // progressDialog.setMessage("正在加载中。。");
+        }
+        progressDialog.show();
+    }
+
+    private void stopProgressDialog(){
+        if(progressDialog != null){
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
+    }
 
 }

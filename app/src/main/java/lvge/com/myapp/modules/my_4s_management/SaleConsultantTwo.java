@@ -75,6 +75,7 @@ import java.util.logging.LogRecord;
 
 import lvge.com.myapp.MainActivity;
 import lvge.com.myapp.MainPageActivity;
+import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.model.SaleConsultantTwoMode;
@@ -111,6 +112,7 @@ public class SaleConsultantTwo extends AppCompatActivity implements View.OnClick
     private TextView et_phone;
     private TextView et_memo;
 
+    private CustomProgressDialog progressDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -213,7 +215,7 @@ public class SaleConsultantTwo extends AppCompatActivity implements View.OnClick
                     sale_consultant_two_iamgeview.setDrawingCacheEnabled(true);
                     bitmap = sale_consultant_two_iamgeview.getDrawingCache();
 
-                    showProgressDialog();
+                    startProgerssDialog();
 
                      new Thread() {
                         public void run() {
@@ -222,7 +224,7 @@ public class SaleConsultantTwo extends AppCompatActivity implements View.OnClick
                                 post_str(et_rname.getText().toString(), et_phone.getText().toString(), et_memo.getText().toString());
                                 } catch ( Exception e) {
                                 e.printStackTrace();
-                                dissmissProgressDialog();
+                                stopProgressDialog();
                             }
                         }
                     }.start();
@@ -532,27 +534,24 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
        // dissmissProgressDialog();
     }
 
-
-    private void showProgressDialog(){
-        if(progDialog == null){
-            progDialog = new ProgressDialog(this);
+    private void startProgerssDialog(){
+        if(progressDialog == null){
+            progressDialog = CustomProgressDialog.createDialog(this);
+            // progressDialog.setMessage("正在加载中。。");
         }
-        progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progDialog.setIndeterminate(false);
-        progDialog.setCancelable(false);
-        progDialog.setMessage("正在上传 ...");
-        progDialog.show();
+        progressDialog.show();
     }
 
-    private void dissmissProgressDialog(){
-        if(progDialog != null){
-            progDialog.dismiss();
+    private void stopProgressDialog(){
+        if(progressDialog != null){
+            progressDialog.dismiss();
+            progressDialog = null;
         }
     }
 
     Handler mHander = new Handler() {
         public void handleMessage(Message msg){
-            dissmissProgressDialog();
+            stopProgressDialog();
             sale_consultant_two_iamgeview.setDrawingCacheEnabled(false);
             switch (msg.what){
                 case 0:
