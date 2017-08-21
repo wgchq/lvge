@@ -1,13 +1,9 @@
 package lvge.com.myapp.modules.customer_management;
 
-
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.media.Image;
+
 import android.os.Build;
-import android.provider.ContactsContract;
-import android.renderscript.Double2;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;

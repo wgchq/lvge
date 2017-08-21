@@ -147,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/x50"
-                    android:src="@mipmap/client_manage_location_on" />
+                    android:src="@mipmap/client_manage_location_off" />
 
 
             </LinearLayout>
