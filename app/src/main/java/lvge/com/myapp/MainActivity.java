@@ -40,8 +40,8 @@ public class MainActivity extends Activity{
         et_password = (EditText) findViewById(R.id.password);
         TextView  lg_forget_password = (TextView)findViewById(R.id.lg_forget_password);
 
-        action = "auto_submit";
-        Login(action);
+     /*   action = "auto_submit";
+        Login(action);*/
         login_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
