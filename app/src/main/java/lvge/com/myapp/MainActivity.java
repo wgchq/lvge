@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -164,6 +165,15 @@ public class MainActivity extends Activity{
         } catch (Exception e) {
             Toast.makeText(MainActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            return true;
+        }
+        return false;
 
     }
 

@@ -257,13 +257,11 @@
         <activity
             android:name=".modules.customer_management.HolderKilometerActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <activity android:name=".ProgressDialog.CustomProgressDialog">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:windowSoftInputMode="adjustPan|stateHidden">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity android:name=".ProgressDialog.CustomProgressDialog">
+
         </activity>
         <activity android:name=".WelcomePageActivity">
             <intent-filter>
