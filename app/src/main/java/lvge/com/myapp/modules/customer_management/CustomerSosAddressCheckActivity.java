@@ -9,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -221,7 +223,13 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
         mapView.onCreate(savedInstanceState);
         //获取地图对象
         aMap = mapView.getMap();
+        aMap.setOnMapTouchListener(new AMap.OnMapTouchListener() {
+            @Override
+            public void onTouch(MotionEvent motionEvent) {
+                img_client_manage_rescue.setVisibility(View.GONE);
 
+            }
+        });
         //设置显示定位按钮 并且可以点击
         UiSettings settings = aMap.getUiSettings();
         settings.setZoomControlsEnabled(false);
@@ -262,6 +270,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
         GetClientInfor(custumerId);
 
     }
+
 
     private void GetClientInfor(String customerID) {
         OkHttpUtils.get()//get 方法

@@ -277,6 +277,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/x80"
             android:layout_marginRight="@dimen/x20"
+            android:visibility="gone"
             android:src="@mipmap/client_manage_rescue" />
     </LinearLayout>
 
