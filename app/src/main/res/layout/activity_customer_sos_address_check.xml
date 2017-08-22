@@ -140,7 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/client_manage_person_big"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible" />
 
                 <ImageView
                     android:id="@+id/img_client_manage_location"
@@ -163,7 +163,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/client_manage_person_and_car"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible" />
 
                 <ImageView
                     android:id="@+id/client_manage_car_big"
@@ -171,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/x25"
                     android:src="@mipmap/client_manage_car_big"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible" />
             </LinearLayout>
         </LinearLayout>
 
@@ -183,7 +183,7 @@
         android:layout_height="match_parent"
         android:gravity="bottom">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/x128"
             android:background="@drawable/client_detail_map_address_shape"
@@ -192,7 +192,8 @@
             android:paddingTop="@dimen/x28">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -206,17 +207,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/client_manage_person_small" />
+
                     <ImageView
-                        android:layout_marginTop="@dimen/x30"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x30"
                         android:src="@mipmap/client_manage_car_samll" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginLeft="@dimen/x20"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x20"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -224,17 +226,19 @@
                         android:id="@+id/client_detail_user_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
                         android:text="地址"
                         android:textColor="#888"
-                        android:ellipsize="end"
                         android:textSize="@dimen/x24" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/x26"
-                        android:text="地址"
                         android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="地址"
                         android:textColor="#888"
                         android:textSize="@dimen/x24" />
                 </LinearLayout>
@@ -245,15 +249,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
                 android:layout_marginBottom="@dimen/x20"
                 android:layout_marginRight="@dimen/x20"
+                android:layout_marginLeft="@dimen/x20"
                 android:gravity="bottom"
                 android:text="2228米"
                 android:textColor="#ffaa58"
                 android:textSize="@dimen/x40" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
