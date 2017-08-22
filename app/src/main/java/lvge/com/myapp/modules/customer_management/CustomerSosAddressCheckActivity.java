@@ -48,6 +48,8 @@ import com.zhy.http.okhttp.callback.Callback;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.ClientDetailSosModel;
 
+import lvge.com.myapp.util.MapUtils.CustomInfoWindowAdapter;
+import lvge.com.myapp.util.MapUtils.CustomMarker;
 import lvge.com.myapp.util.MapUtils.MapOpenUtil;
 import lvge.com.myapp.util.MapUtils.PackageManagerUtil;
 import okhttp3.Response;
@@ -64,7 +66,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
     private LocationSource.OnLocationChangedListener mListener = null;//定位监听器
     //标识，用于判断是否只显示一次定位信息和用户重新定位
     private boolean isFirstLoc = true;
-
+    private Marker LocationMarker;
 
     private String custumerId;
 
@@ -220,10 +222,15 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
         mapView.onCreate(savedInstanceState);
         //获取地图对象
         aMap = mapView.getMap();
+        aMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(CustomerSosAddressCheckActivity.this));
+
         aMap.setOnMapTouchListener(new AMap.OnMapTouchListener() {
             @Override
             public void onTouch(MotionEvent motionEvent) {
                 img_client_manage_rescue.setVisibility(View.GONE);
+                if (null  !=LocationMarker ) {
+                    LocationMarker.hideInfoWindow();
+                }
 
             }
         });
@@ -256,8 +263,12 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
         aMap.setMyLocationEnabled(true);
         //定位的小图标 默认是蓝点 这里自定义一团火，其实就是一张图片
         MyLocationStyle myLocationStyle = new MyLocationStyle();
-
+        CustomMarker customMarker = new CustomMarker(CustomerSosAddressCheckActivity.this);
+        View myView = customMarker.getMyView("");
+        myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromView(myView));
+/*
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromResource(R.mipmap.client_manage_user_location));
+*/
         myLocationStyle.radiusFillColor(android.R.color.holo_orange_dark);
         myLocationStyle.strokeColor(android.R.color.holo_orange_dark);
         aMap.setMyLocationStyle(myLocationStyle);
@@ -302,7 +313,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                                 String speed = result.getMarketEntity().getSpeed();
                                 client_kilometer_map.setText(speed);
                                 String voltage = result.getMarketEntity().getVoltage();
-                                String str_voltage =voltage + "V";
+                                String str_voltage = voltage + "V";
                                 txt_client_manage_battery.setText(str_voltage);
                                 if (Integer.parseInt(voltage) > 0) {
                                     img_client_manage_battery.setImageResource(R.mipmap.client_manage_battery_on);
@@ -336,9 +347,12 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                                     img_client_manage_acc.setImageResource(R.mipmap.client_manage_acc_off);
                                 }
 
+
                                 lat = Double.parseDouble(result.getMarketEntity().getLat());
                                 lng = Double.parseDouble(result.getMarketEntity().getLng());
 
+                                String title = "公里数：" + result.getMarketEntity().getMeliage() + "公里";
+                                addMarker(title);
                                 GeocodeSearch geocodeSearch = new GeocodeSearch(CustomerSosAddressCheckActivity.this);
                                 geocodeSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
                                     @Override
@@ -374,7 +388,6 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
 
                                 geocodeSearch.getFromLocationAsyn(query);
 
-                                addMarker();
 
                             } else {
                                 Toast.makeText(CustomerSosAddressCheckActivity.this, "没有数据传输", Toast.LENGTH_SHORT).show();
@@ -398,7 +411,6 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
 
         mLocationClient.setLocationListener(this);
 
-
         //初始化定位参数
         mLocationOption = new AMapLocationClientOption();
         //设置定位模式为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
@@ -416,16 +428,19 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
     /**
      * 往地图上添加marker
      */
-    private void addMarker() {
-        MarkerOptions markerOptions = getMarkerOptions("");
-        aMap.addMarker(markerOptions);
+    private void addMarker(String title) {
+        aMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(CustomerSosAddressCheckActivity.this));
+        MarkerOptions markerOptions = getMarkerOptions(title);
+        LocationMarker = aMap.addMarker(markerOptions);
+        LocationMarker.setTitle(title);
         aMap.setOnMarkerClickListener(new AMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                LatLng latLng = new LatLng(lat, lng);
-                return false;
+                marker.showInfoWindow();
+                return true;
             }
         });
+
     }
 
     private MarkerOptions getMarkerOptions(String str) {
@@ -433,6 +448,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
         //设置图钉选项
         MarkerOptions options = new MarkerOptions();
         //图标
+        options.title(str);
         //  options.icon(options.getIcon());
         options.icon(BitmapDescriptorFactory.fromResource(R.mipmap.client_manage_car_location));
         options.position(new LatLng(lat, lng));
