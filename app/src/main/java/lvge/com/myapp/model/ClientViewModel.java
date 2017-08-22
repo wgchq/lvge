@@ -13,6 +13,16 @@ public class ClientViewModel {
     private String hasTerminalID;
     private double mileAge;
 
+    public String getBrandID() {
+        return brandID;
+    }
+
+    public void setBrandID(String brandID) {
+        this.brandID = brandID;
+    }
+
+    private String brandID;
+
 
     public int getId() {
         return id;
