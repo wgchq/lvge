@@ -112,5 +112,11 @@ public class WelcomePageActivity extends AppCompatActivity {
         }
     }
 
+    protected void onRestart(){
+        super.onRestart();
+        Intent intent = new Intent(WelcomePageActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
 }
 
