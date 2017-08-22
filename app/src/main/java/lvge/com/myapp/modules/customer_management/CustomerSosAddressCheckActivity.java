@@ -200,13 +200,10 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
         img_client_manage_switch_map_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(showSatellite)
-                {
+                if (showSatellite) {
                     aMap.setMapType(AMap.MAP_TYPE_NORMAL);
                     showSatellite = false;
-                }
-                else
-                {
+                } else {
                     aMap.setMapType(AMap.MAP_TYPE_SATELLITE);
                     showSatellite = true;
                 }
@@ -305,7 +302,8 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                                 String speed = result.getMarketEntity().getSpeed();
                                 client_kilometer_map.setText(speed);
                                 String voltage = result.getMarketEntity().getVoltage();
-                                txt_client_manage_battery.setText(voltage);
+                                String str_voltage =voltage + "V";
+                                txt_client_manage_battery.setText(str_voltage);
                                 if (Integer.parseInt(voltage) > 0) {
                                     img_client_manage_battery.setImageResource(R.mipmap.client_manage_battery_on);
                                 } else {
@@ -352,14 +350,14 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                                             String Building = regeocodeResult.getRegeocodeAddress().getBuilding();
                                             String FormatAddress = regeocodeResult.getRegeocodeAddress().getFormatAddress();
                                             address = FormatAddress;
-                                            TextView client_detail_client_address = (TextView)findViewById(R.id.client_detail_client_address);
+                                            TextView client_detail_client_address = (TextView) findViewById(R.id.client_detail_client_address);
                                             client_detail_client_address.setText(address);
 
-                                            LatLng latLng = new LatLng(lat,lng);
-                                            LatLng UserLatLng = new LatLng(userlat,userlng);
-                                            float distinct = AMapUtils.calculateLineDistance(latLng,UserLatLng);
-                                            TextView client_and_user_distinct = (TextView)findViewById(R.id.client_and_user_distinct);
-                                            String str_distinct = distinct + "";
+                                            LatLng latLng = new LatLng(lat, lng);
+                                            LatLng UserLatLng = new LatLng(userlat, userlng);
+                                            float distinct = AMapUtils.calculateLineDistance(latLng, UserLatLng);
+                                            TextView client_and_user_distinct = (TextView) findViewById(R.id.client_and_user_distinct);
+                                            String str_distinct = distinct + "米";
                                             client_and_user_distinct.setText(str_distinct);
 
                                         }
@@ -376,11 +374,6 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
 
                                 geocodeSearch.getFromLocationAsyn(query);
 
-
-
-/*
-                                address =
-*/
                                 addMarker();
 
                             } else {
@@ -458,7 +451,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                 //定位成功回调信息，设置相关消息
                 userlat = amapLocation.getLatitude();//获取纬度
                 userlng = amapLocation.getLongitude();//获取经度
-                String userAddress = amapLocation.getAddress();
+                userAddress = amapLocation.getAddress();
                 user_address.setText(userAddress);
 
                 // 如果不设置标志位，此时再拖动地图时，它会不断将地图移动到当前的位置
@@ -525,24 +518,18 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
         PackageManagerUtil packageManagerUtil = new PackageManagerUtil(CustomerSosAddressCheckActivity.this);
         switch (v.getId()) {
             case R.id.gao_map:
-              if (PackageManagerUtil.haveGaodeMap())
-              {
-                  mapOpenUtil.openGaodeMapToGuide();
-              }
-              else
-              {
-                  Toast.makeText(CustomerSosAddressCheckActivity.this,"未检测到高德地图",Toast.LENGTH_SHORT).show();
-              }
+                if (PackageManagerUtil.haveGaodeMap()) {
+                    mapOpenUtil.openGaodeMapToGuide();
+                } else {
+                    Toast.makeText(CustomerSosAddressCheckActivity.this, "未检测到高德地图", Toast.LENGTH_SHORT).show();
+                }
 
                 break;
             case R.id.baidu_map:
-                if (PackageManagerUtil.haveBaiduMap())
-                {
+                if (PackageManagerUtil.haveBaiduMap()) {
                     mapOpenUtil.openBaiduMapToGuide();
-                }
-                else
-                {
-                    Toast.makeText(CustomerSosAddressCheckActivity.this,"未检测到百度地图",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(CustomerSosAddressCheckActivity.this, "未检测到百度地图", Toast.LENGTH_SHORT).show();
                 }
 
                 break;

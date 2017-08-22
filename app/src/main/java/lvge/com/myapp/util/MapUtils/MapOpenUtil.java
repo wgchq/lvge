@@ -1,5 +1,6 @@
 package lvge.com.myapp.util.MapUtils;
 
+import android.app.admin.SecurityLog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -85,8 +86,11 @@ public class MapOpenUtil {
     public void openBaiduMapToGuide() {
         Intent intent = new Intent();
         double[] location = GPSUtil.gcj02_To_Bd09(DLAT, DLNG);
+        double[] slocation = GPSUtil.gcj02_To_Bd09(SLAT, SLNG);
+
         String url = "baidumap://map/direction?" +
-                "destination=name:" + DName + "|latlng:" + location[0] + "," + location[1] +
+                "origin=name:" + SName + "|latlng:" + slocation[0] + "," + slocation[1] +
+                "&destination=name:" + DName + "|latlng:" + location[0] + "," + location[1] +
                 "&mode=transit&sy=3&index=0&target=1";
         Uri uri = Uri.parse(url);
         //将功能Scheme以URI的方式传入data
@@ -110,8 +114,8 @@ public class MapOpenUtil {
 
 
     public void openBrowserToGuide() {
-        String url = "http://uri.amap.com/navigation?to=" + DLAT + "," + DLNG + "," +
-                DName + "&mode=car&policy=1&src=mypage&coordinate=gaode&callnative=0";
+        String url = "http://uri.amap.com/navigation?from=" + SLAT + "," + SLNG + "," +SName+
+                "&to=" + DLAT + "," + DLNG + "," + DName + "&mode=car&policy=1&src=mypage&coordinate=gaode&callnative=0";
         Uri uri = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         mContext.startActivity(intent);
