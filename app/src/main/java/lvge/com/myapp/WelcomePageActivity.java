@@ -20,7 +20,9 @@ import com.zhy.http.okhttp.callback.Callback;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import lvge.com.myapp.model.CarImagViewLoadMode;
 import lvge.com.myapp.model.LoginResultModel;
+import okhttp3.Call;
 import okhttp3.Response;
 
 public class WelcomePageActivity extends AppCompatActivity {
@@ -42,7 +44,6 @@ public class WelcomePageActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
         }
-
         Login();
     }
 
@@ -117,6 +118,5 @@ public class WelcomePageActivity extends AppCompatActivity {
         Intent intent = new Intent(WelcomePageActivity.this, MainActivity.class);
         startActivity(intent);
     }
-
 }
 
