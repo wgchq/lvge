@@ -233,6 +233,7 @@
                         android:textSize="@dimen/x24" />
 
                     <TextView
+                        android:id="@+id/client_detail_client_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/x26"
@@ -247,6 +248,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/client_and_user_distinct"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/x20"
@@ -271,9 +273,11 @@
         <ImageView
             android:id="@+id/img_client_manage_rescue"
             android:layout_width="wrap_content"
+            android:onClick="show"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/x80"
             android:layout_marginRight="@dimen/x20"
+            android:visibility="gone"
             android:src="@mipmap/client_manage_rescue" />
     </LinearLayout>
 
