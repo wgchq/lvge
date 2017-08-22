@@ -1,12 +1,17 @@
 package lvge.com.myapp.modules.customer_management;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 
 import android.os.Build;
 
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,6 +25,7 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps2d.AMap;
+import com.amap.api.maps2d.AMapUtils;
 import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
@@ -30,6 +36,11 @@ import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
 
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
@@ -37,9 +48,12 @@ import com.zhy.http.okhttp.callback.Callback;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.ClientDetailSosModel;
 
+import lvge.com.myapp.util.MapUtils.MapOpen;
+import lvge.com.myapp.util.MapUtils.PackageManagerUtil;
 import okhttp3.Response;
 
-public class CustomerSosAddressCheckActivity extends AppCompatActivity implements AMapLocationListener {
+
+public class CustomerSosAddressCheckActivity extends AppCompatActivity implements AMapLocationListener, View.OnClickListener {
 
     //显示地图需要的变量
     private MapView mapView;//地图控件
@@ -68,16 +82,28 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
     private ImageView img_client_manage_rescue;
     private ImageView client_manage_location;
     private ImageView back_client_page;
+    private ImageView img_client_manage_switch_map_view;
 
+
+    private View inflate;
+    private TextView gaoMap;
+    private TextView baiduMap;
+    private TextView webMap;
+    private TextView cancelMap;
+    private Dialog dialog;
+    private String path;
+    private int id_iamge;
 
     private double lat;//client
     private double lng;//client
+    private String address;
 
     private double userlat;//user
     private double userlng;//user
     private String userAddress;
 
     private boolean show = false;
+    private boolean showSatellite = false;
 
 
     @Override
@@ -169,6 +195,25 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                 finish();
             }
         });
+        img_client_manage_switch_map_view = (ImageView) findViewById(R.id.img_client_manage_switch_map_view);
+
+        img_client_manage_switch_map_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(showSatellite)
+                {
+                    aMap.setMapType(AMap.MAP_TYPE_NORMAL);
+                    showSatellite = false;
+                }
+                else
+                {
+                    aMap.setMapType(AMap.MAP_TYPE_SATELLITE);
+                    showSatellite = true;
+                }
+
+            }
+        });
+
 
         //显示地图
         mapView = (MapView)
@@ -288,6 +333,47 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
 
                                 lat = Double.parseDouble(result.getMarketEntity().getLat());
                                 lng = Double.parseDouble(result.getMarketEntity().getLng());
+
+                                GeocodeSearch geocodeSearch = new GeocodeSearch(CustomerSosAddressCheckActivity.this);
+                                geocodeSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
+                                    @Override
+                                    public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
+                                        if (null != regeocodeResult) {
+                                            String Province = regeocodeResult.getRegeocodeAddress().getProvince();
+                                            String City = regeocodeResult.getRegeocodeAddress().getCity();
+                                            String Crossroads = regeocodeResult.getRegeocodeAddress().getTowncode();
+                                            String Building = regeocodeResult.getRegeocodeAddress().getBuilding();
+                                            String FormatAddress = regeocodeResult.getRegeocodeAddress().getFormatAddress();
+                                            address = FormatAddress;
+                                            TextView client_detail_client_address = (TextView)findViewById(R.id.client_detail_client_address);
+                                            client_detail_client_address.setText(address);
+
+                                            LatLng latLng = new LatLng(lat,lng);
+                                            LatLng UserLatLng = new LatLng(userlat,userlng);
+                                            float distinct = AMapUtils.calculateLineDistance(latLng,UserLatLng);
+                                            TextView client_and_user_distinct = (TextView)findViewById(R.id.client_and_user_distinct);
+                                            String str_distinct = distinct + "";
+                                            client_and_user_distinct.setText(str_distinct);
+
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+
+                                    }
+                                });
+
+                                LatLonPoint latLonPoint = new LatLonPoint(lat, lng);
+                                RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200, GeocodeSearch.AMAP);
+
+                                geocodeSearch.getFromLocationAsyn(query);
+
+
+
+/*
+                                address =
+*/
                                 addMarker();
 
                             } else {
@@ -391,4 +477,74 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
         }
     }
 
+
+    public void show(View view) {
+        id_iamge = view.getId();
+        dialog = new Dialog(this, R.style.ActionSheetDialogStyle);
+        //填充对话框的布局
+        inflate = LayoutInflater.from(this).inflate(R.layout.layout_client_address_go_map_dialog, null);
+        //初始化控件
+        gaoMap = (TextView) inflate.findViewById(R.id.gao_map);
+        baiduMap = (TextView) inflate.findViewById(R.id.baidu_map);
+        webMap = (TextView) inflate.findViewById(R.id.web_map);
+        cancelMap = (TextView) inflate.findViewById(R.id.cancel);
+        gaoMap.setOnClickListener(this);
+        baiduMap.setOnClickListener(this);
+        webMap.setOnClickListener(this);
+        cancelMap.setOnClickListener(this);
+        //将布局设置给Dialog
+        dialog.setContentView(inflate);
+        //获取当前Activity所在的窗体
+        Window dialogWindow = dialog.getWindow();
+        //设置Dialog从窗体底部弹出
+        dialogWindow.setGravity(Gravity.BOTTOM);
+        //获得窗体的属性
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.y = 20;//设置Dialog距离底部的距离
+//       将属性设置给窗体
+        dialogWindow.setAttributes(lp);
+        dialog.show();//显示对话框
+    }
+
+    @Override
+    public void onClick(View v) {
+        MapOpen mapOpen = new MapOpen(CustomerSosAddressCheckActivity.this);
+        mapOpen.setSLAT(userlat);
+        mapOpen.setSLNG(userlng);
+        mapOpen.setDLAT(lat);
+        mapOpen.setDLNG(lng);
+        mapOpen.setDName(address);
+        mapOpen.setSName(userAddress);
+        PackageManagerUtil packageManagerUtil = new PackageManagerUtil(CustomerSosAddressCheckActivity.this);
+        switch (v.getId()) {
+            case R.id.gao_map:
+              if (PackageManagerUtil.haveGaodeMap())
+              {
+                  mapOpen.openGaodeMapToGuide();
+              }
+              else
+              {
+                  Toast.makeText(CustomerSosAddressCheckActivity.this,"未检测到高德地图",Toast.LENGTH_SHORT).show();
+              }
+
+                break;
+            case R.id.baidu_map:
+                if (PackageManagerUtil.haveBaiduMap())
+                {
+                    mapOpen.openBaiduMapToGuide();
+                }
+                else
+                {
+                    Toast.makeText(CustomerSosAddressCheckActivity.this,"未检测到百度地图",Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+            case R.id.web_map:
+                mapOpen.openBrowserToGuide();
+                break;
+            case R.id.cancel:
+                dialog.dismiss();
+                break;
+        }
+    }
 }
