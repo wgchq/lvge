@@ -1,12 +1,10 @@
 package lvge.com.myapp.modules.customer_management;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.Color;
 
 import android.os.Build;
 
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,7 +46,7 @@ import com.zhy.http.okhttp.callback.Callback;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.ClientDetailSosModel;
 
-import lvge.com.myapp.util.MapUtils.MapOpen;
+import lvge.com.myapp.util.MapUtils.MapOpenUtil;
 import lvge.com.myapp.util.MapUtils.PackageManagerUtil;
 import okhttp3.Response;
 
@@ -508,19 +506,19 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
 
     @Override
     public void onClick(View v) {
-        MapOpen mapOpen = new MapOpen(CustomerSosAddressCheckActivity.this);
-        mapOpen.setSLAT(userlat);
-        mapOpen.setSLNG(userlng);
-        mapOpen.setDLAT(lat);
-        mapOpen.setDLNG(lng);
-        mapOpen.setDName(address);
-        mapOpen.setSName(userAddress);
+        MapOpenUtil mapOpenUtil = new MapOpenUtil(CustomerSosAddressCheckActivity.this);
+        mapOpenUtil.setSLAT(userlat);
+        mapOpenUtil.setSLNG(userlng);
+        mapOpenUtil.setDLAT(lat);
+        mapOpenUtil.setDLNG(lng);
+        mapOpenUtil.setDName(address);
+        mapOpenUtil.setSName(userAddress);
         PackageManagerUtil packageManagerUtil = new PackageManagerUtil(CustomerSosAddressCheckActivity.this);
         switch (v.getId()) {
             case R.id.gao_map:
               if (PackageManagerUtil.haveGaodeMap())
               {
-                  mapOpen.openGaodeMapToGuide();
+                  mapOpenUtil.openGaodeMapToGuide();
               }
               else
               {
@@ -531,7 +529,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
             case R.id.baidu_map:
                 if (PackageManagerUtil.haveBaiduMap())
                 {
-                    mapOpen.openBaiduMapToGuide();
+                    mapOpenUtil.openBaiduMapToGuide();
                 }
                 else
                 {
@@ -540,7 +538,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
 
                 break;
             case R.id.web_map:
-                mapOpen.openBrowserToGuide();
+                mapOpenUtil.openBrowserToGuide();
                 break;
             case R.id.cancel:
                 dialog.dismiss();

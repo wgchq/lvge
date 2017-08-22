@@ -8,7 +8,7 @@ import android.net.Uri;
  * Created by JGG on 2017-08-22.
  */
 
-public class MapOpen {
+public class MapOpenUtil {
     private Double DLAT;
     private Double DLNG;
     private Double SLAT;
@@ -78,7 +78,7 @@ public class MapOpen {
         this.DName = DName;
     }
 
-    public MapOpen(Context context) {
+    public MapOpenUtil(Context context) {
         mContext = context;
     }
 
