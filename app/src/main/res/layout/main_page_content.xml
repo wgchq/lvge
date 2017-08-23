@@ -66,7 +66,11 @@
 
 
     </LinearLayout>
+    <lvge.com.myapp.ui.NetworkCheckView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+    </lvge.com.myapp.ui.NetworkCheckView>
     <LinearLayout
         android:id="@+id/fragment_content"
         android:layout_width="match_parent"
@@ -153,15 +157,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/network_check"
-            android:layout_width="match_parent"
-            android:background="@color/colorAccent"
-            android:text="当前网络不可用，请检查您的网络设置"
-            android:visibility="gone"
-            android:textColor="@color/mainFontColor"
-            android:layout_height="wrap_content" />
 
         <View
             android:layout_width="match_parent"
