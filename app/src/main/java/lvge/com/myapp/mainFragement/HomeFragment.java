@@ -53,23 +53,6 @@ public class HomeFragment extends Fragment {
 
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-         broadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                String status = NetworkUtil.getConnectivityStatusString(context);
-                TextView network_check = (TextView) view.findViewById(R.id.network_check);
-                if (status.equals("网络连接中断")) {
-                    network_check.setVisibility(View.VISIBLE);
-                } else {
-                    network_check.setVisibility(View.GONE);
-                }
-
-            }
-        };
-       /* IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        getActivity().registerReceiver(broadcastReceiver, intentFilter);*/
-
 
         TextView main_page_content_shop_order = (TextView) view.findViewById(R.id.main_page_content_shop_order);
         main_page_content_shop_order.setText(getArguments().getString("name"));

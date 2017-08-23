@@ -10,9 +10,9 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/x40"
         android:theme="@style/AppTheme"
         app:elevation="0dp"
-        android:paddingTop="@dimen/x40"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="0dp">
 
@@ -45,6 +45,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.AppBarLayout
+
         android:id="@+id/order_management_searcg_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,6 +62,10 @@
 
         </android.support.v7.widget.SearchView>
     </android.support.design.widget.AppBarLayout>
+    <!--网络监测-->
+    <lvge.com.myapp.ui.NetworkCheckView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"

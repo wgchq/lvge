@@ -29,15 +29,15 @@ public class NetworkUtil {
         return TYPE_NOT_CONNECTED;
     }
 
-    public static String getConnectivityStatusString(Context context) {
+    public static int getConnectivityStatusString(Context context) {
         int conn = NetworkUtil.getConnectivityStatus(context);
-        String status = null;
+        int status = 0;
         if (conn == NetworkUtil.TYPE_WIFI) {
-            status = "Wifi网络可用";
+            status = 1;// "Wifi网络可用";
         } else if (conn == NetworkUtil.TYPE_MOBILE) {
-            status = "移动网络可用";
+            status = 2;//"移动网络可用";
         } else if (conn == NetworkUtil.TYPE_NOT_CONNECTED) {
-            status = "网络连接中断";
+            status = 3;//"网络连接中断";
         }
         return status;
     }

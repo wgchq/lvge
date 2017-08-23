@@ -1,6 +1,8 @@
 package lvge.com.myapp.ui;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.net.ConnectivityManager;
@@ -11,9 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import lvge.com.myapp.R;
 import lvge.com.myapp.broadcast.NetBroadcastReceiver;
+import lvge.com.myapp.util.NetworkUtil;
 
 /**
  * Created by JGG on 2017-08-23.
@@ -24,6 +28,7 @@ public class NetworkCheckView extends LinearLayout {
 
     private String ErrorMessage;
     private View view;
+    BroadcastReceiver receiver;
 
     public NetworkCheckView(Context context) {
         this(context, null);
@@ -33,7 +38,7 @@ public class NetworkCheckView extends LinearLayout {
         super(context, attrs);
 
         //加载视图的布局
-       inflate(getContext(),R.layout.layout_frame_with_network_check,this);
+        view  = inflate(getContext(), R.layout.layout_frame_with_network_check, this);
 
         //加载自定义的属性
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.NetworkCheckView);
@@ -43,15 +48,34 @@ public class NetworkCheckView extends LinearLayout {
         a.recycle();
     }
 
+    @Override
+    public void onViewRemoved(View child) {
+        super.onViewRemoved(child);
+        getContext().unregisterReceiver(receiver);
+    }
+
 
     @Override
     protected void onFinishInflate() {
 
         super.onFinishInflate();
-        TextView txt_network_check_message = (TextView) findViewById(R.id.txt_network_check_message);
-        txt_network_check_message.bringToFront();
 
-        NetBroadcastReceiver receiver = new NetBroadcastReceiver();
+         receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                int status = NetworkUtil.getConnectivityStatusString(context);
+
+                TextView txt_network_check_message = (TextView) findViewById(R.id.txt_network_check_message);
+                if (status == 3) {
+
+                    view.setVisibility(VISIBLE);
+                } else {
+                    view.setVisibility(GONE);
+                }
+            }
+        };
+
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         getContext().registerReceiver(receiver, intentFilter);

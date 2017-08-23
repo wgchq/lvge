@@ -24,7 +24,7 @@ public class NetBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String status = NetworkUtil.getConnectivityStatusString(context);
+        int status = NetworkUtil.getConnectivityStatusString(context);
   /*      new AlertDialog.Builder(context)
                 .setTitle("Warnning")
                 .setMessage(
