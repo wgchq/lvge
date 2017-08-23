@@ -18,6 +18,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -696,13 +697,23 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
         switch (v.getId()) {
             case R.id.from_phone_photo:
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
+                if(Build.VERSION.SDK_INT >= 24){
+                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
+                }else {
+                    intent.setType("image/*");
+                }
                 startActivityForResult(intent, 1);
                 break;
             case R.id.take_photo:
                 Intent take_photo_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 // create a file to save the image
-                fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+               // fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+
+                if(Build.VERSION.SDK_INT >= 24){
+                    fileUri = FileProvider.getUriForFile(this,"lvge.com.myapp" + ".fileprovider",getOutputMediaFile(MEDIA_TYPE_IMAGE));
+                }else {
+                    fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+                }
 
                 // 此处这句intent的值设置关系到后面的onActivityResult中会进入那个分支，即关系到data是否为null，如果此处指定，则后来的data为null
                 // set the image file name
@@ -1028,8 +1039,12 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
         Intent intent = new Intent("com.android.camera.action.CROP");
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
             try{
-                String path = getPath(this,uri);
-                intent.setDataAndType(Uri.fromFile(new File(path)),"image/*");
+                if(Build.VERSION.SDK_INT >= 24){
+                    intent.setDataAndType(uri,"image/*");
+                }else {
+                    String path = getPath(this,uri);
+                    intent.setDataAndType(Uri.fromFile(new File(path)),"image/*");
+                }
             }catch (Exception e){
                 e.toString();
             }
