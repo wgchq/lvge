@@ -37,6 +37,15 @@ import android.os.Handler;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.jph.takephoto.app.TakePhoto;
+import com.jph.takephoto.app.TakePhotoImpl;
+import com.jph.takephoto.model.CropOptions;
+import com.jph.takephoto.model.InvokeParam;
+import com.jph.takephoto.model.TContextWrap;
+import com.jph.takephoto.model.TResult;
+import com.jph.takephoto.permission.InvokeListener;
+import com.jph.takephoto.permission.PermissionManager;
+import com.jph.takephoto.permission.TakePhotoInvocationHandler;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.BitmapCallback;
@@ -85,7 +94,7 @@ import okhttp3.Response;
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO;
 
-public class SaleConsultantTwo extends AppCompatActivity implements View.OnClickListener {
+public class SaleConsultantTwo extends AppCompatActivity implements View.OnClickListener,TakePhoto.TakeResultListener,InvokeListener {
 
     public static final int CUT_PICTURE = 1;
     public static final int SHOW_PICTURE = 2;
@@ -113,12 +122,14 @@ public class SaleConsultantTwo extends AppCompatActivity implements View.OnClick
     private TextView et_memo;
 
     private CustomProgressDialog progressDialog = null;
-
+    private CropOptions cropOptions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getTakePhoto().onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sale_consultant_two);
 
+        cropOptions = new CropOptions.Builder().setAspectX(1).setAspectY(1).setWithOwnCrop(true).create();
         final RelativeLayout sale_consultant_two_iamge = (RelativeLayout) findViewById(R.id.sale_consultant_two_iamge);
         et_rname = (TextView) findViewById(R.id.sale_consultant_inputname);
         et_phone = (TextView) findViewById(R.id.sale_consultant_inputphone);
@@ -367,45 +378,6 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
         }
     }
 
-    public String getPath(Uri uri) {
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor cursor = managedQuery(uri, projection, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }
-
-    /***
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1 && data != null)
-        {
-                imageUri = data.getData();
-
-        }
-        if (imageUri != null) {
-            try {
-                String[] prjo = {MediaStore.Images.Media.DATA};
-                Cursor cursor = managedQuery(imageUri, prjo, null, null, null);
-                if (cursor != null) {
-                    cursor.moveToFirst();
-                    String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                    // file = new File(path);
-                   Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
-
-                    if (bitmap != null) {
-                        sale_consultant_two_iamgeview.setImageBitmap(bitmap);
-                    }
-                }
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-     **/
-
-
     private String saveBitmap() throws IOException {
         File sd = Environment.getExternalStorageDirectory();
         boolean can_write = sd.canWrite();
@@ -456,33 +428,6 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
     private void post_str(String name, String phone, String memo) {
 
         try {
-            /*
-            HttpURLConnection connection = null;
-            URL url = new URL("http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save");
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Charset", "UTF-8");
-            connection.setRequestProperty("name", name);
-            connection.setRequestProperty("phone",phone);
-            connection.setRequestProperty("memo", memo);
-            FileInputStream fileInputStream = new FileInputStream(strpath);
-
-            OutputStream os = connection.getOutputStream();
-            int count = 0;
-            while ((count = fileInputStream.read()) != -1) {
-                os.write(count);
-            }
-            os.flush();
-            os.close();
-
-            int resultcode = connection.getResponseCode();
-            if (resultcode!= HttpURLConnection.HTTP_OK) {
-                Toast.makeText(SaleConsultantTwo.this, "上传失败！", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(SaleConsultantTwo.this, "上传成功！", Toast.LENGTH_SHORT).show();
-            }
-            */
-
             String path;
             if(id == null){
                  path = "http://www.lvgew.com/obdcarmarket/sellerapp/salesConsultant/save";
@@ -597,27 +542,23 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.from_phone_photo:
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-
-               // intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-                startActivityForResult(intent, 1);
+                /**
+                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                 if(Build.VERSION.SDK_INT >= 24){
+                 intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
+                 }else {
+                 intent.setType("image/*");
+                 }
+                 startActivityForResult(intent, 1);
+                 break;
+                 **/
+                fileUri = getImageCropUri();
+                getTakePhoto().onPickFromGalleryWithCrop(fileUri,cropOptions);
                 break;
             case R.id.take_photo:
-                Intent take_photo_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                // create a file to save the image
-                fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+                fileUri = getImageCropUri();
+                getTakePhoto().onPickFromCaptureWithCrop(fileUri,cropOptions);
 
-                // 此处这句intent的值设置关系到后面的onActivityResult中会进入那个分支，即关系到data是否为null，如果此处指定，则后来的data为null
-                // set the image file name
-                take_photo_intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                try {
-                    startActivityForResult(take_photo_intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                break;
             case R.id.cancel:
                 dialog.dismiss();
                 break;
@@ -680,7 +621,7 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+/**
         if (requestCode == 1 && data != null)
         {
             dialog.dismiss();
@@ -730,7 +671,13 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
                 sale_consultant_two_iamgeview.setImageBitmap(bitmap);
             }
         }
-        else if (10 == requestCode && data != null) {
+ **/
+
+        if (null == dialog) {
+        } else {
+            dialog.dismiss();
+        }
+         if (10 == requestCode && data != null) {
 
             //TextView sos_phone = (TextView) findViewById(R.id.commodity_my4s_setting_inputsosnumber);
             String inputname = data.getStringExtra("inputname").toString();
@@ -743,6 +690,9 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
             String inputmemo = data.getStringExtra("inputmemo").toString();
             et_memo.setText(inputmemo);
         }
+
+        getTakePhoto().onActivityResult(requestCode,resultCode,data);
+        super.onActivityResult(requestCode,requestCode,data);
 
     }
 
@@ -896,6 +846,64 @@ LoginResultModel result = new Gson().fromJson(s, LoginResultModel.class);
      */
     public static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    @Override
+    public void takeSuccess(TResult result) {
+        try {
+            Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(fileUri));
+            if(bitmap != null){
+                sale_consultant_two_iamgeview.setImageBitmap(bitmap);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void takeFail(TResult result, String msg) {
+
+    }
+
+    @Override
+    public void takeCancel() {
+
+    }
+
+    private TakePhoto takePhoto_ta;
+    private InvokeParam invokeParam;
+    @Override
+    public PermissionManager.TPermissionType invoke(InvokeParam invokeParam) {
+        PermissionManager.TPermissionType type = PermissionManager.checkPermission(TContextWrap.of(this),invokeParam.getMethod());
+        if(PermissionManager.TPermissionType.WAIT.equals(type)){
+            this.invokeParam = invokeParam;
+        }
+        return type;
+    }
+
+    public TakePhoto getTakePhoto(){
+        if (takePhoto_ta == null){
+            takePhoto_ta = (TakePhoto) TakePhotoInvocationHandler.of(this).bind(new TakePhotoImpl(this,this));
+        }
+        return takePhoto_ta;
+    }
+    public void onRequestPermissionResult(int requestCode, String[] permissions,int[] grantResultsnts){
+        super.onRequestPermissionsResult(requestCode,permissions,grantResultsnts);
+        PermissionManager.TPermissionType type = PermissionManager.onRequestPermissionsResult(requestCode,permissions,grantResultsnts);
+        PermissionManager.handlePermissionsResult(this,type,invokeParam,this);
+    }
+
+    protected void onSaveInstanceState(Bundle outState){
+        getTakePhoto().onSaveInstanceState(outState);
+        super.onSaveInstanceState(outState);
+    }
+
+    private Uri getImageCropUri(){
+        File file = new File(Environment.getExternalStorageDirectory(),"/temp/" + System.currentTimeMillis() + ".jpg");
+        if(!file.getParentFile().exists())
+            file.getParentFile().mkdir();
+
+        return Uri.fromFile(file);
     }
 
     /*public static String getPath(final Context context,final Uri uri){

@@ -18,6 +18,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,7 +37,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amap.api.maps2d.model.Text;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.jph.takephoto.app.TakePhoto;
+import com.jph.takephoto.app.TakePhotoImpl;
+import com.jph.takephoto.model.CropOptions;
+import com.jph.takephoto.model.InvokeParam;
+import com.jph.takephoto.model.TContextWrap;
+import com.jph.takephoto.model.TResult;
+import com.jph.takephoto.permission.InvokeListener;
+import com.jph.takephoto.permission.PermissionManager;
+import com.jph.takephoto.permission.TakePhotoInvocationHandler;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.BitmapCallback;
 import com.zhy.http.okhttp.callback.Callback;
@@ -70,7 +81,7 @@ import okhttp3.Response;
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO;
 
-public class My4sManagementActivity extends AppCompatActivity implements View.OnClickListener {
+public class My4sManagementActivity extends AppCompatActivity implements View.OnClickListener,TakePhoto.TakeResultListener,InvokeListener{
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     My4sManagementActivityGson result;
     private static final String LOG_TAG = "HelloCamera";
@@ -113,13 +124,15 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
     private int ImageNum = 0;
 
     private CustomProgressDialog progressDialog = null;
-
+    private CropOptions cropOptions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getTakePhoto().onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my4s_management);
 
 
+        cropOptions = new CropOptions.Builder().setAspectX(1).setAspectY(1).setWithOwnCrop(true).create();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_4s_management);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -696,6 +709,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.from_phone_photo:
+                /**
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 if(Build.VERSION.SDK_INT >= 24){
                     intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
@@ -704,7 +718,14 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 }
                 startActivityForResult(intent, 1);
                 break;
+                 **/
+                fileUri = getImageCropUri();
+                getTakePhoto().onPickFromGalleryWithCrop(fileUri,cropOptions);
+                break;
             case R.id.take_photo:
+                fileUri = getImageCropUri();
+                getTakePhoto().onPickFromCaptureWithCrop(fileUri,cropOptions);
+            /**
                 Intent take_photo_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 // create a file to save the image
                // fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
@@ -723,7 +744,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
+                **/
                 break;
             case R.id.cancel:
                 dialog.dismiss();
@@ -819,7 +840,6 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 insurance_phone_number.setText(str_insurance_phone_number);
             }
 
-
         }
 
         if (null == dialog) {
@@ -827,6 +847,9 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
             dialog.dismiss();
         }
 
+        getTakePhoto().onActivityResult(requestCode,resultCode,data);
+        super.onActivityResult(requestCode,requestCode,data);
+        /**
         if (requestCode == 1 && data != null) {
             fileUri = data.getData();
             if(fileUri != null){
@@ -868,7 +891,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-        }**/
+        }
 
        else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE && fileUri != null) {
             // imageUri = data.getData();
@@ -905,6 +928,7 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                 }
             }
         }
+         **/
     }
 
     private void startProgerssDialog(){
@@ -1188,6 +1212,85 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
      */
     public static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    @Override
+    public void takeSuccess(TResult result) {
+        try{
+            String strPath = result.getImage().getCompressPath();
+            Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(fileUri));
+            if(bitmap != null){
+                switch (id_iamge) {
+                    case R.id.my_4s_shop_pic_1:
+                       // Glide.with(this).load(strPath).into(my_4s_shop_pic_1);
+                         my_4s_shop_pic_1.setImageBitmap(bitmap);
+                        my_4s_pic_1_bool = true;
+                        break;
+                    case R.id.my_4s_shop_pic_2:
+                        my_4s_shop_pic_2.setImageBitmap(bitmap);
+                        my_4s_pic_2_bool = true;
+                        break;
+                    case R.id.my_4s_shop_pic_3:
+                        my_4s_shop_pic_3.setImageBitmap(bitmap);
+                        my_4s_pic_3_bool = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Override
+    public void takeFail(TResult result, String msg) {
+
+    }
+
+    @Override
+    public void takeCancel() {
+
+    }
+
+    private TakePhoto takePhoto_ta;
+    private InvokeParam invokeParam;
+    @Override
+    public PermissionManager.TPermissionType invoke(InvokeParam invokeParam) {
+        PermissionManager.TPermissionType type = PermissionManager.checkPermission(TContextWrap.of(this),invokeParam.getMethod());
+        if(PermissionManager.TPermissionType.WAIT.equals(type)){
+            this.invokeParam = invokeParam;
+        }
+        return type;
+    }
+
+    public TakePhoto getTakePhoto(){
+        if (takePhoto_ta == null){
+            takePhoto_ta = (TakePhoto) TakePhotoInvocationHandler.of(this).bind(new TakePhotoImpl(this,this));
+        }
+        return takePhoto_ta;
+    }
+
+    protected void onSaveInstanceState(Bundle outState){
+        getTakePhoto().onSaveInstanceState(outState);
+        super.onSaveInstanceState(outState);
+    }
+
+    public void onRequestPermissionResult(int requestCode, String[] permissions,int[] grantResultsnts){
+        super.onRequestPermissionsResult(requestCode,permissions,grantResultsnts);
+        PermissionManager.TPermissionType type = PermissionManager.onRequestPermissionsResult(requestCode,permissions,grantResultsnts);
+        PermissionManager.handlePermissionsResult(this,type,invokeParam,this);
+    }
+
+    private Uri getImageCropUri(){
+        File file = new File(Environment.getExternalStorageDirectory(),"/temp/" + System.currentTimeMillis() + ".jpg");
+        if(!file.getParentFile().exists())
+            file.getParentFile().mkdir();
+
+        return Uri.fromFile(file);
     }
 }
 
