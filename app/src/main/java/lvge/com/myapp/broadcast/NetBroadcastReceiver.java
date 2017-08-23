@@ -25,14 +25,12 @@ public class NetBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String status = NetworkUtil.getConnectivityStatusString(context);
-        /*ActivityManager am = (ActivityManager) context.getSystemService(ACTIVITY_SERVICE);
-        ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
-       *//* Class.forName(cn.getClassName().toString());*//*
-        new AlertDialog.Builder()
+  /*      new AlertDialog.Builder(context)
                 .setTitle("Warnning")
                 .setMessage(
-                        "You forget to write the message. Do you want to fill out it ??")
+                        "网络断开")
                 .create().show();*/
+
 
         Toast.makeText(context, status, Toast.LENGTH_LONG).show();
 

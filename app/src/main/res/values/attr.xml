@@ -7,4 +7,8 @@
         <attr name="rightPadding" />
     </declare-styleable>
 
+    <declare-styleable name="NetworkCheckView">
+        <attr name="ErrorMessage" format="string" />
+    </declare-styleable>
+
 </resources>
