@@ -556,5 +556,6 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                 dialog.dismiss();
                 break;
         }
+        dialog.dismiss();
     }
 }
