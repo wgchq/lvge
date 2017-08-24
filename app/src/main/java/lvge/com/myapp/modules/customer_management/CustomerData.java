@@ -5,8 +5,8 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,7 +45,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
     //显示地图需要的变量
     private MapView mapView;//地图控件
     private AMap aMap;//地图对象
-    String custumerID ="";
+    String custumerID = "";
     //定位需要的声明
     private AMapLocationClient mLocationClient = null;//定位发起端
     private AMapLocationClientOption mLocationOption = null;//定位参数
@@ -61,8 +61,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 5) {
             String edit = data.getStringExtra("edit").toString();
-            if (edit.equals("t"))
-            {
+            if (edit.equals("t")) {
                 String kilometer = data.getStringExtra("kilometer").toString();
                 TextView txt_customer_data_car_holder_kilometer = (TextView) findViewById(R.id.txt_customer_data_car_holder_kilometer);
                 txt_customer_data_car_holder_kilometer.setText(kilometer);
@@ -96,6 +95,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
                 startActivity(intent);
             }
         });*/
+
 
         TextView customer_data_car_holder_kilometer_txt = (TextView) findViewById(R.id.customer_data_car_holder_kilometer_txt);
         customer_data_car_holder_kilometer_txt.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +146,18 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
         //获取地图对象
 
         aMap = mapView.getMap();
+        aMap.setOnMapClickListener(new AMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                TextView txt_customer_data_car_imei_no = (TextView) findViewById(R.id.txt_customer_data_car_imei_no);
+                if (!txt_customer_data_car_imei_no.getText().equals("")) {
+                    Intent intent = new Intent(CustomerData.this, CustomerSosAddressCheckActivity.class);
+                    intent.putExtra("id", custumerID);
+                    startActivity(intent);
+                }
+            }
+        });
+
 
         //设置显示定位按钮 并且可以点击
         UiSettings settings = aMap.getUiSettings();
@@ -332,19 +344,18 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
             String address = Province + City + Crossroads + Building;
             TextView client_address = (TextView) findViewById(R.id.client_address);
             client_address.setText(FormatAddress);
-            client_address.setOnClickListener(new View.OnClickListener() {
+           /* client_address.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     TextView txt_customer_data_car_imei_no = (TextView) findViewById(R.id.txt_customer_data_car_imei_no);
-                    if (!txt_customer_data_car_imei_no.getText().equals(""))
-                    {
-                        Intent intent = new Intent(CustomerData.this,CustomerSosAddressCheckActivity.class);
-                        intent.putExtra("id",custumerID);
+                    if (!txt_customer_data_car_imei_no.getText().equals("")) {
+                        Intent intent = new Intent(CustomerData.this, CustomerSosAddressCheckActivity.class);
+                        intent.putExtra("id", custumerID);
                         startActivity(intent);
                     }
 
                 }
-            });
+            });*/
         }
 
     }

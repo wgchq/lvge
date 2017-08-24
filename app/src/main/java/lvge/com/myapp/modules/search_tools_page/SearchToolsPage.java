@@ -3,7 +3,13 @@ package lvge.com.myapp.modules.search_tools_page;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +49,11 @@ public class SearchToolsPage extends AppCompatActivity{
         final AppBarLayout appBarLayout = (AppBarLayout)findViewById(R.id.search_edit_frame);
         final SearchView search_view = (SearchView)findViewById(R.id.search_view_bar);
         search_view.setQueryHint("请输入车架号、用户名或设备号码搜索");
+        SearchView.SearchAutoComplete  mEdit = (SearchView.SearchAutoComplete) search_view.findViewById(R.id.search_src_text);
+        mEdit.setTextSize(12);
+        Drawable drawable = getResources().getDrawable(R.drawable.edit_text_shape);
+
+
         search_view.setIconifiedByDefault(false);
         search_view.setSubmitButtonEnabled(true);
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

@@ -45,6 +45,8 @@ import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
+import java.text.DecimalFormat;
+
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.ClientDetailSosModel;
 
@@ -53,6 +55,9 @@ import lvge.com.myapp.util.MapUtils.CustomMarker;
 import lvge.com.myapp.util.MapUtils.MapOpenUtil;
 import lvge.com.myapp.util.MapUtils.PackageManagerUtil;
 import okhttp3.Response;
+
+import static java.lang.Math.floor;
+import static java.lang.Math.round;
 
 
 public class CustomerSosAddressCheckActivity extends AppCompatActivity implements AMapLocationListener, View.OnClickListener {
@@ -228,7 +233,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
             @Override
             public void onTouch(MotionEvent motionEvent) {
                 img_client_manage_rescue.setVisibility(View.GONE);
-                if (null  !=LocationMarker ) {
+                if (null != LocationMarker) {
                     LocationMarker.hideInfoWindow();
                 }
 
@@ -371,7 +376,10 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                                             LatLng UserLatLng = new LatLng(userlat, userlng);
                                             float distinct = AMapUtils.calculateLineDistance(latLng, UserLatLng);
                                             TextView client_and_user_distinct = (TextView) findViewById(R.id.client_and_user_distinct);
-                                            String str_distinct = distinct + "米";
+                                            DecimalFormat df = new DecimalFormat("#.0");
+                                            Double double_distinct =Double.parseDouble(df.format(distinct)) ;
+
+                                            String str_distinct = double_distinct + "米";
                                             client_and_user_distinct.setText(str_distinct);
 
                                         }

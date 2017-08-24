@@ -39,7 +39,7 @@ public class NetworkCheckView extends LinearLayout {
 
         //加载视图的布局
         view  = inflate(getContext(), R.layout.layout_frame_with_network_check, this);
-
+        view.setVisibility(GONE);
         //加载自定义的属性
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.NetworkCheckView);
         ErrorMessage = a.getString(R.styleable.NetworkCheckView_ErrorMessage);

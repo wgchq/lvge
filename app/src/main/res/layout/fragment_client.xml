@@ -17,7 +17,7 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_fragement_client"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x108"
+            android:layout_height="?attr/actionBarSize"
             android:layout_gravity="bottom"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
@@ -134,15 +134,17 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         app:tabIndicatorColor="#ff8386"
-        app:tabIndicatorHeight="@dimen/x1"
+        app:tabIndicatorHeight="0dp"
         app:tabMode="scrollable"
         app:tabPadding="@dimen/x28"
         app:tabSelectedTextColor="#ff8386"
-        app:tabTextAppearance="@style/customer_tablayout"
+        app:tabGravity="center"
+        app:tabTextAppearance="@style/TextAppearance.Design.Tab.Custom"
         app:tabTextColor="#8c8c8c">
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
             android:text="全部客户"
             tools:ignore="HardcodedText" />
@@ -155,12 +157,13 @@
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main_page_has_no_binding_clients" />
+            android:text="@string/main_page_has_no_binding_clients"
+             />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="离线/欠费"
+            android:text="@string/main_page_has_no_cash_clients"
             tools:ignore="HardcodedText" />
 
     </android.support.design.widget.TabLayout>
