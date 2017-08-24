@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
-                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/x20"
                 android:text="@string/my_4s_address_confirm"
                 android:textColor="@color/mainFontColor" />
         </android.support.v7.widget.Toolbar>
@@ -125,7 +125,7 @@
                         android:ellipsize="end"
                         android:hint="@string/txt_current_position"
                         android:imeOptions="actionSearch"
-                        android:maxLines="1"
+                        android:singleLine="true"
                         android:textColor="#333"
                         android:textSize="@dimen/x28"
                         tools:ignore="TextFields" />

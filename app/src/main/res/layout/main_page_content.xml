@@ -16,6 +16,7 @@
         android:baselineAligned="false"
         android:gravity="center_vertical"
 
+        android:paddingBottom="@dimen/x20"
         android:paddingTop="@dimen/x40">
 
         <LinearLayout

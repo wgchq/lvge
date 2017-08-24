@@ -134,7 +134,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         app:tabIndicatorColor="#ff8386"
-        app:tabIndicatorHeight="0dp"
+        app:tabIndicatorHeight="1dp"
         app:tabMode="scrollable"
         app:tabPadding="@dimen/x28"
         app:tabSelectedTextColor="#ff8386"
