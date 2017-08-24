@@ -1,9 +1,12 @@
 package lvge.com.myapp;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +25,7 @@ import java.util.TimerTask;
 
 import lvge.com.myapp.model.CarImagViewLoadMode;
 import lvge.com.myapp.model.LoginResultModel;
+import lvge.com.myapp.util.NetworkUtil;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -30,12 +34,14 @@ public class WelcomePageActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private String username = "";
     private String password = "";
+    BroadcastReceiver receiver;
     private final static String FILE_NAME = "login_file";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -44,7 +50,53 @@ public class WelcomePageActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
         }
-        Login();
+         receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                int status = NetworkUtil.getConnectivityStatusString(context);
+
+                TextView txt_network_check_message = (TextView) findViewById(R.id.txt_network_check_message);
+                if (status == 3) {
+                    Toast.makeText(WelcomePageActivity.this,"您处于离线状态，请检查网络！",Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Login();
+                }
+            }
+        };
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(receiver, intentFilter);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (null!=receiver)
+        {
+            unregisterReceiver(receiver);
+        }
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (null!=receiver)
+        {
+            unregisterReceiver(receiver);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(receiver, intentFilter);
     }
 
     void Login() {
