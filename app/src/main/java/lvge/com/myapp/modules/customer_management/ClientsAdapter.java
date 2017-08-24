@@ -28,6 +28,9 @@ import okhttp3.Call;
 
 public class ClientsAdapter extends BaseAdapter {
     private Context mContext;
+    private View view;
+    ImageView headimge;
+    String headimgeurl;
 
     public ClientsAdapter(Context context) {
         this.mContext = context;
@@ -59,9 +62,10 @@ public class ClientsAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.clients_customers_item, null);
+            view = convertView;
         }
         if (clients != null) {
 
@@ -74,67 +78,68 @@ public class ClientsAdapter extends BaseAdapter {
             Drawable drawable = mContext.getResources().getDrawable(SwitchCarLog(clients.getPageResult().getEntityList().get(position).getBrandID()));
            /* Float width = convertView.getResources().getDimension(R.dimen.x34);
             Integer int_width = Integer.parseInt( width.toString());*/
-            drawable.setBounds(0,0,34,34);
-            car_no.setCompoundDrawables(drawable,null,null,null);
-
-
-            final ImageView headimge = (ImageView) convertView.findViewById(R.id.sale_consultant_iamage);
+            drawable.setBounds(0, 0, 34, 34);
+            car_no.setCompoundDrawables(drawable, null, null, null);
 
             if (!clients.getPageResult().getEntityList().get(position).getHeadImg().equals("")) {
 
-                final int int_position = position;
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        OkHttpUtils.get()
-                                .url(clients.getPageResult().getEntityList().get(int_position).getHeadImg())
-                                .build()
-                                .connTimeOut(20000).readTimeOut(20000).writeTimeOut(20000)
-                                .execute(new BitmapCallback() {
-                                    @Override
-                                    public void onError(Call call, Exception e, int i) {
+                headimge = (ImageView) view.findViewById(R.id.sale_consultant_iamage);
+                headimge.setImageBitmap(null);
+                headimgeurl = clients.getPageResult().getEntityList().get(position).getHeadImg();
+                headimge.setTag(headimgeurl);
 
-                                    }
+                OkHttpUtils.get()
+                        .url(headimgeurl)
+                        .build()
+                        .connTimeOut(20000).readTimeOut(20000).writeTimeOut(20000)
+                        .execute(new BitmapCallback() {
+                            @Override
+                            public void onError(Call call, Exception e, int i) {
 
-                                    @Override
-                                    public void onResponse(Bitmap bitmap, int i) {
-                                        headimge.setImageBitmap(bitmap);
-                                    }
-                                });
-                    }
-                }).start();
+                            }
+
+                            @Override
+                            public void onResponse(Bitmap bitmap, int i) {
+
+
+                                if (headimge.getTag().equals(headimgeurl))
+                                {
+                                    headimge.setImageBitmap(bitmap);
+                                }
+
+                            }
+                        });
 
 
             }
             TextView length = (TextView) convertView.findViewById(R.id.customer_listview_length);
-            String str_length = clients.getPageResult().getEntityList().get(position).getMileAge()+"";
+            String str_length = clients.getPageResult().getEntityList().get(position).getMileAge() + "";
             length.setText(str_length);
             Drawable leftDrawable = mContext.getResources().getDrawable(R.mipmap.client_kilometer);
             TextView type = (TextView) convertView.findViewById(R.id.customer_listview_type);
             if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("1")) {
                 type.setText("已绑定硬件");
                 leftDrawable = mContext.getResources().getDrawable(R.mipmap.client_kilometer);
-            } else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("0")){
+            } else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("0")) {
                 type.setText("未绑定硬件");
                 leftDrawable = mContext.getResources().getDrawable(R.mipmap.client_kilometer_not_on_line);
-            }
-            else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("2")){
+            } else if (clients.getPageResult().getEntityList().get(position).getHasTerminalID().equals("2")) {
                 type.setText("离线/欠费");
                 leftDrawable = mContext.getResources().getDrawable(R.mipmap.client_kilometer_not_on_line);
             }
-            leftDrawable.setBounds(0,0,leftDrawable.getIntrinsicWidth(),leftDrawable.getIntrinsicHeight());
-            length.setCompoundDrawables(leftDrawable,null,null,null);
+            leftDrawable.setBounds(0, 0, leftDrawable.getIntrinsicWidth(), leftDrawable.getIntrinsicHeight());
+            length.setCompoundDrawables(leftDrawable, null, null, null);
 
         }
 
         return convertView;
     }
 
-    private int SwitchCarLog(String carID){
+    private int SwitchCarLog(String carID) {
         int carLogID = R.mipmap.car_logo_default;
-        switch (carID){
+        switch (carID) {
             case "1":
-               carLogID = R.mipmap.a1;
+                carLogID = R.mipmap.a1;
                 break;
             case "2":
                 carLogID = R.mipmap.a2;
