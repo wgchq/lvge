@@ -275,16 +275,6 @@
 
         </activity>
 
-        <provider
-            android:authorities="com.jph.takephoto.fileprovider"
-            android:name="android.support.v4.content.FileProvider"
-            android:grantUriPermissions="true"
-            android:exported="false"
-            tools:replace="android:authorities">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATH"
-                android:resource="@xml/file_path"/>
-        </provider>
     </application>
 
 </manifest>
