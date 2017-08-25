@@ -218,7 +218,8 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
+                            android:background="?android:selectableItemBackground"
+                            android:padding="@dimen/x30"
                             android:src="@mipmap/phone"
                             tools:ignore="ContentDescription,HardcodedText,RtlHardcoded" />
 
@@ -276,9 +277,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/mainBackgroundColor"
-                        android:paddingBottom="@dimen/x27"
                         android:paddingLeft="@dimen/x50"
-                        android:paddingTop="@dimen/x27"
+
                         android:paddingRight="@dimen/x20"
                         tools:ignore="UselessParent">
 
@@ -298,6 +298,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/x20"
+
                             android:layout_toLeftOf="@+id/customer_data_car_holder_kilometer_txt"
                             android:layout_toRightOf="@+id/customer_data_car_holder_kilometer"
                             android:text="1234125235234"
@@ -313,9 +314,10 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="@dimen/x20"
                             android:drawablePadding="@dimen/x16"
                             android:drawableRight="@mipmap/arrow_right_gray"
+                            android:background="?android:selectableItemBackground"
+                            android:padding="@dimen/x27"
                             android:text="校正"
                             android:textColor="#000"
                             tools:ignore="ContentDescription,HardcodedText,RtlHardcoded" />

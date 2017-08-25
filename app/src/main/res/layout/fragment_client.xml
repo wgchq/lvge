@@ -37,9 +37,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
-                android:layout_marginLeft="@dimen/x26"
-                android:layout_marginRight="@dimen/x40"
                 android:src="@mipmap/ic_search"
+                android:background="?android:selectableItemBackground"
+                android:padding="@dimen/x30"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
             <!--   <ImageView
