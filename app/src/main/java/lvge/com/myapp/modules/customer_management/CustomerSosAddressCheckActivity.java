@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -90,6 +91,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
     private ImageView client_manage_location;
     private ImageView back_client_page;
     private ImageView img_client_manage_switch_map_view;
+    private LinearLayout customer_distinct_view;
 
 
     private View inflate;
@@ -169,6 +171,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
         img_show_rescue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                customer_distinct_view.setVisibility(View.VISIBLE);
                 img_client_manage_rescue.setVisibility(View.VISIBLE);
             }
 
@@ -218,7 +221,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
             }
         });
 
-
+        customer_distinct_view = (LinearLayout)findViewById(R.id.customer_distinct_view);
         //显示地图
         mapView = (MapView)
 
@@ -233,6 +236,8 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
             @Override
             public void onTouch(MotionEvent motionEvent) {
                 img_client_manage_rescue.setVisibility(View.GONE);
+                customer_distinct_view.setVisibility(View.GONE);
+
                 if (null != LocationMarker) {
                     LocationMarker.hideInfoWindow();
                 }

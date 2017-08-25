@@ -124,7 +124,6 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/x20"
                             android:layout_toRightOf="@+id/customer_data_che"
-                            android:text="豫B   A56892"
                             android:textColor="#000"
                             android:textSize="@dimen/x28" />
                     </RelativeLayout>
@@ -162,7 +161,6 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/x20"
                             android:layout_toRightOf="@+id/customer_data_car_holder"
-                            android:text="嘻嘻嘻"
                             android:textColor="#000"
                             android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
@@ -205,7 +203,6 @@
                             android:layout_marginLeft="@dimen/x20"
                             android:layout_toLeftOf="@+id/customer_data_call_phone"
                             android:layout_toRightOf="@+id/customer_data_car_holder_phone"
-                            android:text="1234125235234"
                             android:textColor="#000"
                             android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
@@ -259,7 +256,6 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/x20"
                             android:layout_toRightOf="@+id/customer_data_car_type"
-                            android:text="上海大众帕萨特123"
                             android:textColor="#000"
                             android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
@@ -301,7 +297,6 @@
 
                             android:layout_toLeftOf="@+id/customer_data_car_holder_kilometer_txt"
                             android:layout_toRightOf="@+id/customer_data_car_holder_kilometer"
-                            android:text="1234125235234"
                             android:textColor="#000"
                             android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
@@ -359,7 +354,6 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/x20"
                             android:layout_toRightOf="@+id/customer_data_car_vin_no"
-                            android:text="12312dsadadasda"
                             android:textColor="#000"
                             android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />
@@ -401,7 +395,6 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/x20"
                             android:layout_toRightOf="@+id/customer_data_car_imei_no"
-                            android:text="DFASF32RWFSDFSDFSD"
                             android:textColor="#000"
                             android:textSize="@dimen/x28"
                             tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,UnknownIdInLayout" />

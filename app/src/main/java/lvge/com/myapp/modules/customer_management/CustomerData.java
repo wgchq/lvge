@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
@@ -195,6 +196,7 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
 
                     @Override
                     public void onError(okhttp3.Call call, Exception e, int i) {
+                        Toast.makeText(CustomerData.this,"服务器异常",Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -205,35 +207,43 @@ public class CustomerData extends AppCompatActivity implements LocationSource, G
                         if (null != object) {
                             CustomerDetail customerDetail = (CustomerDetail) object;//把通用的Object转化成指定的对象
                             customer_detail = customerDetail;
-                            //车牌号
-                            TextView client_car_plate_number = (TextView) findViewById(R.id.client_car_plate_number);
-                            String str_client_car_plate_number = customerDetail.getMarketEntity().getPlatenumber();
-                            client_car_plate_number.setText(str_client_car_plate_number);
+                            if (customer_detail.getOperationResult().getResultCode()==0)
+                            {
+                                //车牌号
+                                TextView client_car_plate_number = (TextView) findViewById(R.id.client_car_plate_number);
+                                String str_client_car_plate_number = customerDetail.getMarketEntity().getPlatenumber();
+                                client_car_plate_number.setText(str_client_car_plate_number);
 
-                            //车主姓名
-                            TextView txt_customer_data_car_holder = (TextView) findViewById(R.id.txt_customer_data_car_holder);
-                            txt_customer_data_car_holder.setText(customerDetail.getMarketEntity().getName());
+                                //车主姓名
+                                TextView txt_customer_data_car_holder = (TextView) findViewById(R.id.txt_customer_data_car_holder);
+                                txt_customer_data_car_holder.setText(customerDetail.getMarketEntity().getName());
 
-                            //车主电话
-                            TextView txt_customer_data_car_holder_phone = (TextView) findViewById(R.id.txt_customer_data_car_holder_phone);
-                            txt_customer_data_car_holder_phone.setText(customerDetail.getMarketEntity().getPhone());
+                                //车主电话
+                                TextView txt_customer_data_car_holder_phone = (TextView) findViewById(R.id.txt_customer_data_car_holder_phone);
+                                txt_customer_data_car_holder_phone.setText(customerDetail.getMarketEntity().getPhone());
 
-                            //车型
-                            TextView txt_customer_data_car_type = (TextView) findViewById(R.id.txt_customer_data_car_type);
-                            txt_customer_data_car_type.setText(customerDetail.getMarketEntity().getbName());
-                            //公里数
-                            TextView txt_customer_data_car_holder_kilometer = (TextView) findViewById(R.id.txt_customer_data_car_holder_kilometer);
-                            txt_customer_data_car_holder_kilometer.setText(customerDetail.getMarketEntity().getMileage());
+                                //车型
+                                TextView txt_customer_data_car_type = (TextView) findViewById(R.id.txt_customer_data_car_type);
+                                txt_customer_data_car_type.setText(customerDetail.getMarketEntity().getbName());
+                                //公里数
+                                TextView txt_customer_data_car_holder_kilometer = (TextView) findViewById(R.id.txt_customer_data_car_holder_kilometer);
+                                txt_customer_data_car_holder_kilometer.setText(customerDetail.getMarketEntity().getMileage());
 
-                            //车架号
-                            TextView txt_customer_data_car_vin_no = (TextView) findViewById(R.id.txt_customer_data_car_vin_no);
-                            txt_customer_data_car_vin_no.setText(customerDetail.getMarketEntity().getVin());
+                                //车架号
+                                TextView txt_customer_data_car_vin_no = (TextView) findViewById(R.id.txt_customer_data_car_vin_no);
+                                txt_customer_data_car_vin_no.setText(customerDetail.getMarketEntity().getVin());
 
-                            TextView txt_customer_data_car_imei_no = (TextView) findViewById(R.id.txt_customer_data_car_imei_no);
-                            txt_customer_data_car_imei_no.setText(customerDetail.getMarketEntity().getImei());
-                            lng = customerDetail.getMarketEntity().getLng();
-                            lat = customerDetail.getMarketEntity().getLat();
-                            initLoc();
+                                TextView txt_customer_data_car_imei_no = (TextView) findViewById(R.id.txt_customer_data_car_imei_no);
+                                txt_customer_data_car_imei_no.setText(customerDetail.getMarketEntity().getImei());
+                                lng = customerDetail.getMarketEntity().getLng();
+                                lat = customerDetail.getMarketEntity().getLat();
+                                initLoc();
+                            }
+                            else
+                            {
+                                Toast.makeText(CustomerData.this,customer_detail.getOperationResult().getResultMsg(),Toast.LENGTH_SHORT).show();
+                            }
+
 
 
                         }

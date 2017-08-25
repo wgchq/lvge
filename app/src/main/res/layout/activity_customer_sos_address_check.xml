@@ -191,6 +191,8 @@
         android:gravity="bottom">
 
         <LinearLayout
+            android:id="@+id/customer_distinct_view"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x128"
             android:background="@drawable/client_detail_map_address_shape"
