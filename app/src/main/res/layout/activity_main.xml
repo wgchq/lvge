@@ -43,10 +43,12 @@
         android:ems="10"
         android:hint="@string/login_username"
         android:inputType="text"
+        android:selectAllOnFocus="false"
         android:textColor="#333333"
         android:textColorHint="#C3C3C3"
         android:textSize="@dimen/x36"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"
+        android:maxLines="1" />
 
     <EditText
         android:id="@+id/password"
