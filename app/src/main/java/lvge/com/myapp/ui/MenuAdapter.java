@@ -27,6 +27,7 @@ public class MenuAdapter extends BaseAdapter {
     public final class ListItemView {
         public ImageView menuLogo;
         public TextView title;
+        public ImageView menu_go;
     }
 
     public MenuAdapter(Context context, List<Map<String, Object>> listItems) {
@@ -62,6 +63,7 @@ public class MenuAdapter extends BaseAdapter {
 
             listItemView.menuLogo = (ImageView) convertView.findViewById(R.id.menu_icon);
             listItemView.title = (TextView) convertView.findViewById(R.id.menu_text);
+            listItemView.menu_go = (ImageView)convertView.findViewById(R.id.menu_go);
 
             convertView.setTag(listItemView);
 
