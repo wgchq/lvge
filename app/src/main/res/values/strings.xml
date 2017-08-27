@@ -18,7 +18,7 @@
     <string name="menu_authority">权限设置</string>
     <string name="menu_push_notice">推送设置</string>
     <string name="menu_print_setting">打印机设置</string>
-    <string name="menu_exit">注销</string>
+    <string name="menu_exit">退出登陆</string>
 
     <!--底部菜单-->
     <string name="title_home">主页</string>

@@ -59,12 +59,21 @@ public class MainPageActivity extends Activity {
     private SlideMenu mMenu;
 
     private int[] menus_logo = {
-       /*     R.mipmap.menu_personal,
+            R.mipmap.menu_personal,
             R.mipmap.menu_staff_info,
             R.mipmap.menu_authority,
             R.mipmap.menu_push_notice,
-            R.mipmap.menu_print_setting,*/
+            R.mipmap.menu_print_setting,
             R.mipmap.menu_exit
+    };
+
+    private int[] menu_go ={
+            R.mipmap.menu_go,
+            R.mipmap.menu_go,
+            R.mipmap.menu_go,
+            R.mipmap.menu_go,
+            R.mipmap.menu_go,
+            R.mipmap.menu_right
     };
 
     private ListView listView;
@@ -96,7 +105,7 @@ public class MainPageActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
-                    case 0:
+                    case 5:
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainPageActivity.this);
                         builder.setIcon(R.mipmap.warming);
                         builder.setTitle("注销");
@@ -210,11 +219,11 @@ public class MainPageActivity extends Activity {
     private List<Map<String, Object>> getMenuListItems() {
 
         String[] menu_text = {
-              /*  this.getString(R.string.menu_personal),
+                this.getString(R.string.menu_personal),
                 this.getString(R.string.menu_staff_info),
                 this.getString(R.string.menu_authority),
                 this.getString(R.string.menu_push_notice),
-                this.getString(R.string.menu_print_setting),*/
+                this.getString(R.string.menu_print_setting),
                 this.getString(R.string.menu_exit)
         };
 
@@ -225,6 +234,7 @@ public class MainPageActivity extends Activity {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("menuLogo", menus_logo[i]);
             map.put("title", menu_text[i]);
+            map.put("menu_go",menu_go[i]);
             listItems.add(map);
         }
         return listItems;
