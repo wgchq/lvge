@@ -325,7 +325,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                                 String voltage = result.getMarketEntity().getVoltage();
                                 String str_voltage = voltage + "V";
                                 txt_client_manage_battery.setText(str_voltage);
-                                if (Integer.parseInt(voltage) > 0) {
+                                if (Double.parseDouble(voltage) > 0) {
                                     img_client_manage_battery.setImageResource(R.mipmap.client_manage_battery_on);
                                 } else {
                                     img_client_manage_battery.setImageResource(R.mipmap.client_manage_battery_off);
