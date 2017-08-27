@@ -152,6 +152,7 @@ public class WelcomePageActivity extends AppCompatActivity {
 
                                     } else {//当没有返回对象时，表示网络没有联通
                                         Toast.makeText(WelcomePageActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+
                                     }
                                 }
                             });

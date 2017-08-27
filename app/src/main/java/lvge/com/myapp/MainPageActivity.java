@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.jph.takephoto.permission.InvokeListener;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
@@ -40,6 +41,7 @@ import lvge.com.myapp.mainFragement.HomeFragment;
 import lvge.com.myapp.mainFragement.MyFragment;
 import lvge.com.myapp.mainFragement.OrderFragment;
 import lvge.com.myapp.model.LoginResultModel;
+import lvge.com.myapp.modules.right_side_slider_menu_mansgement.EmployeeInformation;
 import lvge.com.myapp.modules.right_side_slider_menu_mansgement.PersonalProfile;
 import lvge.com.myapp.ui.MenuAdapter;
 import lvge.com.myapp.ui.SlideMenu;
@@ -105,9 +107,14 @@ public class MainPageActivity extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
                 switch (position) {
                     case 0:
-                        Intent intent = new Intent(MainPageActivity.this, PersonalProfile.class);
+                        intent.setClass(MainPageActivity.this,PersonalProfile.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        intent.setClass(MainPageActivity.this,EmployeeInformation.class);
                         startActivity(intent);
                         break;
                     case 5:

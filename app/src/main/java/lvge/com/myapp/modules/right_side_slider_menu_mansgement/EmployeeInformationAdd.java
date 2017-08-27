@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,18 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
         employee_information_add_inputsex = (TextView)findViewById(R.id.employee_information_add_inputsex);
         employee_information_add_name = (TextView)findViewById(R.id.employee_information_add_name);
         employee_information_add_iamgeview = (ImageView)findViewById(R.id.employee_information_add_iamgeview);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_employee_information_add);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //finish();
+                choose_dialog(v);
+            }
+        });
+
     }
 
     public void employee_add_name(View view){
@@ -67,6 +80,14 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
         String inputname = employee_information_add_name.getText().toString();
         intent.putExtra("inputname", inputname);
         startActivityForResult(intent, 10);
+    }
+    public void choose_dialog(View v){
+        dialog = new Dialog(this,R.style.ChooseDialog);
+        inflate = LayoutInflater.from(this).inflate(R.layout.choose_dialog,null);
+        dialog.setContentView(inflate);
+        Window dialogWindow = dialog.getWindow();
+        dialogWindow.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL);
+        dialog.show();
     }
     public void employee_add_sexchange(View view){
         dialog = new Dialog(this, R.style.ActionSheetDialogStyle);

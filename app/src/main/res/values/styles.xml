@@ -98,4 +98,21 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <!--choosedialog-->
+    <style name="ChooseDialog"
+        parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="edittext_style" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorControlNormal">@color/lg_button_text_color</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
 </resources>
