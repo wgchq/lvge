@@ -43,7 +43,7 @@
         android:ems="10"
         android:hint="@string/login_username"
         android:inputType="text"
-        android:theme="@style/edittext_style"
+
         android:selectAllOnFocus="false"
         android:textColor="#333333"
         android:textColorHint="#C3C3C3"
@@ -60,7 +60,6 @@
         android:layout_marginBottom="@dimen/x16"
         android:drawableRight="@mipmap/lg_eye"
         android:ems="10"
-        android:theme="@style/edittext_style"
         android:hint="@string/login_password"
         android:inputType="textPassword"
         android:textColor="#333333"
