@@ -55,6 +55,8 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
         et_password = (EditText) findViewById(R.id.password);
         TextView  lg_forget_password = (TextView)findViewById(R.id.lg_forget_password);
 
+
+
      /*   action = "auto_submit";
         Login(action);*/
         login_submit.setOnClickListener(new View.OnClickListener() {

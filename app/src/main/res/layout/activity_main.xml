@@ -41,6 +41,7 @@
         android:layout_marginBottom="@dimen/x16"
         android:layout_marginTop="@dimen/x32"
         android:ems="10"
+        android:background="@drawable/lg_edit_view_shape"
         android:hint="@string/login_username"
         android:inputType="text"
 
@@ -55,6 +56,7 @@
         android:id="@+id/password"
         android:layout_width="@dimen/x666"
         android:layout_height="@dimen/x110"
+        android:background="@drawable/lg_edit_view_shape"
         android:layout_below="@+id/username"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/x16"
