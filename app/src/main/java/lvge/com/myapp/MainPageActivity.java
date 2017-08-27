@@ -40,6 +40,7 @@ import lvge.com.myapp.mainFragement.HomeFragment;
 import lvge.com.myapp.mainFragement.MyFragment;
 import lvge.com.myapp.mainFragement.OrderFragment;
 import lvge.com.myapp.model.LoginResultModel;
+import lvge.com.myapp.modules.right_side_slider_menu_mansgement.PersonalProfile;
 import lvge.com.myapp.ui.MenuAdapter;
 import lvge.com.myapp.ui.SlideMenu;
 import lvge.com.myapp.util.BottomNavigationViewHelper;
@@ -105,6 +106,10 @@ public class MainPageActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
+                    case 0:
+                        Intent intent = new Intent(MainPageActivity.this, PersonalProfile.class);
+                        startActivity(intent);
+                        break;
                     case 5:
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainPageActivity.this);
                         builder.setIcon(R.mipmap.warming);

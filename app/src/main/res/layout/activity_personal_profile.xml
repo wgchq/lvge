@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="lvge.com.myapp.modules.my_4s_management.SalesConsultant">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/persion_profile_toobar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/ic_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
+
+            <TextView
+                style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:textSize="@dimen/x30"
+                android:text="个人资料"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/sale_consultant_Preservation"
+                style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="end"
+                android:padding="@dimen/x20"
+                android:gravity="center"
+                android:background="?android:selectableItemBackground"
+                android:text=""
+                android:textSize="@dimen/x30"
+                android:textColor="@color/mainFontColor"
+                tools:ignore="HardcodedText" />
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+    <!--网络监测-->
+    <lvge.com.myapp.ui.NetworkCheckView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_main_page"
+        android:background="@color/line_background_gray"
+        android:orientation="vertical"
+        tools:ignore="ObsoleteLayoutParam">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x28"
+            android:background="@color/line_background_gray"
+            tools:ignore="InefficientWeight" />
+
+        <RelativeLayout
+            android:id="@+id/persion_profile_iamge"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x140"
+            android:onClick="profile_Imageview"
+            android:background="@color/mainBackgroundColor"
+            android:paddingLeft="@dimen/x28"
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="头像"
+                android:textSize="@dimen/x30"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <ImageView
+                android:id="@+id/persion_profile_iamgeview"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/perison_profile_consultant"
+                android:src="@mipmap/lg_user"
+                tools:ignore="ContentDescription,HardcodedText,RtlHardcoded,SmallSp" />
+
+            <TextView
+                android:id="@+id/perison_profile_consultant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:background="@mipmap/gray_right"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x30"
+            android:background="@color/line_background_gray"
+            tools:ignore="InefficientWeight" />
+
+        <RelativeLayout
+            android:id="@+id/persion_profile_Relayout_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x90"
+            android:background="@color/mainBackgroundColor"
+            android:paddingLeft="@dimen/x28"
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+            <TextView
+                android:id="@+id/persion_profile_Textview1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="姓名"
+                android:textSize="@dimen/x30"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/persion_profile_inputname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:layout_toLeftOf="@+id/name_detail"
+                android:layout_toRightOf="@+id/persion_profile_Textview1"
+                android:background="@drawable/edit_text_shape"
+                android:gravity="right"
+                android:hint="@string/unfilled"
+                android:inputType="text"
+                android:textColorHint="@color/my4s_hint_color"
+                android:textSize="@dimen/x30"
+                tools:ignore="HardcodedText,RtlHardcoded,TextViewEdits,UnknownIdInLayout" />
+
+            <TextView
+                android:id="@+id/name_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:background="@mipmap/gray_right"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"
+            android:background="@color/line_background_gray"
+            tools:ignore="InefficientWeight" />
+
+        <RelativeLayout
+            android:id="@+id/persion_profile_Relayout_sex"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x90"
+            android:onClick="profile_sexchange"
+            android:background="@color/mainBackgroundColor"
+            android:paddingLeft="@dimen/x28"
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+            <TextView
+                android:id="@+id/persion_profile_Textview2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="性别"
+                android:textSize="@dimen/x30"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/persion_profile_inputsex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:layout_toLeftOf="@+id/sex_detail"
+                android:layout_toRightOf="@+id/persion_profile_Textview2"
+                android:background="@drawable/edit_text_shape"
+                android:gravity="right"
+                android:hint="@string/unfilled"
+                android:inputType=""
+                android:textColorHint="@color/my4s_hint_color"
+                android:textSize="@dimen/x30"
+                tools:ignore="HardcodedText,RtlHardcoded,TextFields,UnknownIdInLayout" />
+
+            <TextView
+                android:id="@+id/sex_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:background="@mipmap/gray_right"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"
+            android:background="@color/line_background_gray"
+            tools:ignore="InefficientWeight" />
+
+
+        <RelativeLayout
+            android:id="@+id/persion_profile_Relayout_changePassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x90"
+            android:background="@drawable/edit_text_shape"
+            android:paddingLeft="@dimen/x28"
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+            <TextView
+                android:id="@+id/persion_profile_changePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="修改密码"
+                android:textSize="@dimen/x30"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/persion_profile_inputPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@+id/persion_profile_detail"
+                android:layout_toRightOf="@+id/persion_profile_changePassword"
+                android:background="@drawable/edit_text_shape"
+                android:gravity="right"
+                android:minLines="1"
+                android:textColorHint="@color/my4s_hint_color"
+                android:textSize="@dimen/x30"
+                tools:ignore="HardcodedText,RtlHardcoded,TextFields,UnknownIdInLayout" />
+
+            <TextView
+                android:id="@+id/persion_profile_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:background="@mipmap/gray_right"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="lvge.com.myapp.modules.my_4s_management.SalesConsultant">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_emplyee_information_list"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/ic_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
+
+            <TextView
+                style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="员工资料"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/employee_information_toadd"
+                style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="end"
+                android:text="添加"
+                android:padding="@dimen/x20"
+                android:background="?android:selectableItemBackground"
+                android:textColor="@color/mainFontColor"
+                tools:ignore="HardcodedText" />
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+    <!--网络监测-->
+    <lvge.com.myapp.ui.NetworkCheckView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_main_page"
+        android:background="@color/line_background_gray"
+        android:orientation="vertical"
+        tools:ignore="ObsoleteLayoutParam">
+
+        <com.baoyz.swipemenulistview.SwipeMenuListView
+            android:id="@+id/employee_information_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>
