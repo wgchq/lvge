@@ -7,10 +7,9 @@
         <item name="android:actionBarSize">@dimen/x88</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
+
+     <!--   <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>-->
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -118,5 +117,8 @@
         <!-- Customize your theme here. -->
         <item name="colorControlNormal">@color/lg_button_text_color</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+    <style name="my_title_style">
+        <item name="android:paddingTop">@dimen/x1</item>
     </style>
 </resources>

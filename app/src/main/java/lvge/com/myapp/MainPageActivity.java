@@ -62,11 +62,11 @@ public class MainPageActivity extends Activity {
     private SlideMenu mMenu;
 
     private int[] menus_logo = {
-            R.mipmap.menu_personal,
+        /*    R.mipmap.menu_personal,
             R.mipmap.menu_staff_info,
             R.mipmap.menu_authority,
             R.mipmap.menu_push_notice,
-            R.mipmap.menu_print_setting,
+            R.mipmap.menu_print_setting,*/
             R.mipmap.menu_exit
     };
 
@@ -108,7 +108,7 @@ public class MainPageActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
-                switch (position) {
+               /* switch (position) {
                     case 0:
                         intent.setClass(MainPageActivity.this,PersonalProfile.class);
                         startActivity(intent);
@@ -138,7 +138,27 @@ public class MainPageActivity extends Activity {
                         AlertDialog dialog = builder.create();
                         dialog.show();
                         break;
-                }
+                }*/
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainPageActivity.this);
+                builder.setIcon(R.mipmap.warming);
+                builder.setTitle("注销");
+                builder.setMessage("是否确定注销？");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        logout();
+
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
             }
         });
@@ -231,11 +251,11 @@ public class MainPageActivity extends Activity {
     private List<Map<String, Object>> getMenuListItems() {
 
         String[] menu_text = {
-                this.getString(R.string.menu_personal),
+          /*      this.getString(R.string.menu_personal),
                 this.getString(R.string.menu_staff_info),
                 this.getString(R.string.menu_authority),
                 this.getString(R.string.menu_push_notice),
-                this.getString(R.string.menu_print_setting),
+                this.getString(R.string.menu_print_setting),*/
                 this.getString(R.string.menu_exit)
         };
 

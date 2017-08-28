@@ -321,7 +321,8 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                             ClientDetailSosModel result = (ClientDetailSosModel) object;//把通用的Object转化成指定的对象
                             if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
                                 String speed = result.getMarketEntity().getSpeed();
-                                client_kilometer_map.setText(speed);
+                                String str_speed = speed + "km";
+                                client_kilometer_map.setText(str_speed);
                                 String voltage = result.getMarketEntity().getVoltage();
                                 String str_voltage = voltage + "V";
                                 txt_client_manage_battery.setText(str_voltage);

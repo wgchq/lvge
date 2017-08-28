@@ -10,7 +10,7 @@
         android:id="@+id/toolbar_main_page"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-
+        style="@style/my_title_style"
         android:background="@color/colorPrimary"
         android:baselineAligned="false"
         android:gravity="center_vertical"
