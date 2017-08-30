@@ -51,10 +51,11 @@ public class SearchToolsPage extends AppCompatActivity{
         search_view.setQueryHint("请输入车架号、用户名或设备号码搜索");
         SearchView.SearchAutoComplete  mEdit = (SearchView.SearchAutoComplete) search_view.findViewById(R.id.search_src_text);
         mEdit.setTextSize(12);
+
         Drawable drawable = getResources().getDrawable(R.drawable.edit_text_shape);
-
-
-        search_view.setIconifiedByDefault(false);
+        mEdit.setBackground(drawable);
+        search_view.setIconified(false);
+        search_view.setIconifiedByDefault(true);
         search_view.setSubmitButtonEnabled(true);
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
