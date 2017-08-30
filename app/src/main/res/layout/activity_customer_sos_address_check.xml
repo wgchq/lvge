@@ -35,7 +35,7 @@
                 android:id="@+id/img_client_manage_switch_map_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/client_manage_switch_map_view" />
+                android:src="@mipmap/client_manage_switch_map_view_off" />
 
             <ImageView
                 android:id="@+id/img_client_manage_acc"
@@ -56,20 +56,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/x16">
 
-                <ImageView
-                    android:id="@+id/img_client_manage_battery"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/client_manage_battery_on" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txt_client_manage_battery"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:layout_marginTop="@dimen/x35"
-                    android:text="12V"
-                    android:textSize="@dimen/x12" />
+                    <ImageView
+                        android:id="@+id/img_client_manage_battery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/client_manage_battery_on" />
+
+                    <TextView
+                        android:id="@+id/txt_client_manage_battery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x_40"
+                        android:text="12V"
+                        android:textSize="@dimen/x24" />
+                </LinearLayout>
+
 
             </FrameLayout>
 
@@ -78,20 +85,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/x16">
 
-                <ImageView
-                    android:id="@+id/img_client_manage_gps"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/client_manage_gps_on" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txt_client_manage_gps"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:layout_marginTop="@dimen/x35"
-                    android:text="12"
-                    android:textSize="@dimen/x12" />
+                    <ImageView
+                        android:id="@+id/img_client_manage_gps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/client_manage_gps_on" />
+
+                    <TextView
+                        android:id="@+id/txt_client_manage_gps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x_40"
+                        android:text="12"
+                        android:textSize="@dimen/x24" />
+                </LinearLayout>
+
 
             </FrameLayout>
 
@@ -192,18 +206,18 @@
 
         <LinearLayout
             android:id="@+id/customer_distinct_view"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x128"
             android:background="@drawable/client_detail_map_address_shape"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/x18"
-            android:paddingTop="@dimen/x28">
+            android:paddingTop="@dimen/x28"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -261,8 +275,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/x20"
-                android:layout_marginRight="@dimen/x20"
                 android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
                 android:gravity="bottom"
                 android:text="2228米"
                 android:textColor="#ffaa58"
@@ -282,12 +296,12 @@
         <ImageView
             android:id="@+id/img_client_manage_rescue"
             android:layout_width="wrap_content"
-            android:onClick="show"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/x80"
             android:layout_marginRight="@dimen/x20"
-            android:visibility="gone"
-            android:src="@mipmap/client_manage_rescue" />
+            android:onClick="show"
+            android:src="@mipmap/client_manage_rescue"
+            android:visibility="gone" />
     </LinearLayout>
 
 </FrameLayout>

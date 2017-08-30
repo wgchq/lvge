@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        style="@style/my_title_style"
         android:background="@color/colorPrimary"
         android:orientation="horizontal"
         tools:ignore="UselessParent">

@@ -212,9 +212,11 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
             public void onClick(View v) {
                 if (showSatellite) {
                     aMap.setMapType(AMap.MAP_TYPE_NORMAL);
+                    img_client_manage_switch_map_view.setImageResource(R.mipmap.client_manage_switch_map_view_off);
                     showSatellite = false;
                 } else {
                     aMap.setMapType(AMap.MAP_TYPE_SATELLITE);
+                    img_client_manage_switch_map_view.setImageResource(R.mipmap.client_manage_switch_map_view_on);
                     showSatellite = true;
                 }
 
@@ -333,9 +335,9 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                                 }
 
                                 String engine = result.getMarketEntity().getEngine();
-                                if (engine.equals(1)) {
+                                if (engine.equals("1")) {
                                     img_client_manage_acc_power.setImageResource(R.mipmap.client_manage_acc_power_on);
-                                } else if (engine.equals(2)) {
+                                } else if (engine.equals("2")) {
                                     img_client_manage_acc_power.setImageResource(R.mipmap.client_manage_acc_power_off);
                                 } else {
                                     img_client_manage_acc_power.setImageResource(R.mipmap.client_manage_acc_power_off);
