@@ -47,6 +47,8 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
 import java.text.DecimalFormat;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.ClientDetailSosModel;
@@ -286,8 +288,18 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
         aMap.setMyLocationStyle(myLocationStyle);
 
         initLoc();
-
+/*
         GetClientInfor(custumerId);
+*/
+        Timer timer = new Timer(true);
+
+        TimerTask task = new TimerTask() {
+            public void run() {
+                GetClientInfor(custumerId);
+            }
+        };
+
+        timer.schedule(task, 0, 20*1000);
 
     }
 
@@ -384,10 +396,26 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                                             LatLng UserLatLng = new LatLng(userlat, userlng);
                                             float distinct = AMapUtils.calculateLineDistance(latLng, UserLatLng);
                                             TextView client_and_user_distinct = (TextView) findViewById(R.id.client_and_user_distinct);
+
+                                            boolean iskm = false;
+                                            if (distinct>=1000)
+                                            {
+                                                distinct = distinct/1000;
+                                                iskm = true;
+                                            }
+
                                             DecimalFormat df = new DecimalFormat("#.0");
                                             Double double_distinct =Double.parseDouble(df.format(distinct)) ;
+                                            String str_distinct = "";
+                                            if (iskm)
+                                            {
+                                                str_distinct = double_distinct + "千米";
+                                            }
+                                            else
+                                            {
+                                                str_distinct = double_distinct + "米";
+                                            }
 
-                                            String str_distinct = double_distinct + "米";
                                             client_and_user_distinct.setText(str_distinct);
 
                                         }

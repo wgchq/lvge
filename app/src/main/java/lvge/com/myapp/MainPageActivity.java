@@ -16,6 +16,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 
 import android.view.Window;
@@ -71,7 +72,7 @@ public class MainPageActivity extends Activity {
             R.mipmap.menu_exit
     };
 
-    private int[] menu_go ={
+    private int[] menu_go = {
             R.mipmap.menu_go,
             R.mipmap.menu_go,
             R.mipmap.menu_go,
@@ -88,15 +89,31 @@ public class MainPageActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         // 隐藏标题栏
-      //  requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //  requestWindowFeature(Window.FEATURE_NO_TITLE);
         /*// 隐藏状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
 
         setContentView(R.layout.activity_main_page);
 
-        mMenu = (SlideMenu) findViewById(R.id.id_menu);
 
+        mMenu = (SlideMenu) findViewById(R.id.id_menu);
+        mMenu.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                //只有主页才能侧滑
+                if (homeFragment.isVisible()) {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+
+
+
+            }
+        });
         TextView nav_header_main_shop_name = (TextView) findViewById(R.id.nav_header_main_shop_name);
         final Bundle bundle = getIntent().getExtras();
         nav_header_main_shop_name.setText(bundle.getString("name"));
@@ -241,9 +258,9 @@ public class MainPageActivity extends Activity {
         Bundle bundle = getIntent().getExtras();
 
 
-            Bundle bud = new Bundle();
-            bud.putString("name", bundle.getString("name"));
-            homeFragment.setArguments(bud);
+        Bundle bud = new Bundle();
+        bud.putString("name", bundle.getString("name"));
+        homeFragment.setArguments(bud);
 
         transaction.add(R.id.fragment_content, homeFragment);
         transaction.commit();
@@ -267,7 +284,7 @@ public class MainPageActivity extends Activity {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("menuLogo", menus_logo[i]);
             map.put("title", menu_text[i]);
-            map.put("menu_go",menu_go[i]);
+            map.put("menu_go", menu_go[i]);
             listItems.add(map);
         }
         return listItems;
@@ -277,7 +294,7 @@ public class MainPageActivity extends Activity {
         mMenu.toggle();
     }
 
-    public void logout(){
+    public void logout() {
         try {
 
             OkHttpUtils.get()//get 方法
@@ -302,7 +319,7 @@ public class MainPageActivity extends Activity {
                         public void onResponse(Object o, int i) {
                             if (null != o) {
                                 LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
-                                if (result.getOperationResult().getResultCode() == 0 ) {//当返回值为0时可登录
+                                if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
                                     Toast.makeText(MainPageActivity.this, "注销成功！", Toast.LENGTH_SHORT).show();
                                     preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor = preferences.edit();
@@ -310,7 +327,7 @@ public class MainPageActivity extends Activity {
                                     editor.remove("password");
                                     editor.apply();
 
-                                    CookieJarImpl cookieJarImpl = (CookieJarImpl)OkHttpUtils.getInstance().getOkHttpClient().cookieJar();
+                                    CookieJarImpl cookieJarImpl = (CookieJarImpl) OkHttpUtils.getInstance().getOkHttpClient().cookieJar();
                                     cookieJarImpl.getCookieStore().removeAll();
 
                                     Intent intent = new Intent(MainPageActivity.this, MainActivity.class);
@@ -319,7 +336,7 @@ public class MainPageActivity extends Activity {
                             }
                         }
                     });
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(MainPageActivity.this, "注销失败！", Toast.LENGTH_SHORT).show();
         }
     }
