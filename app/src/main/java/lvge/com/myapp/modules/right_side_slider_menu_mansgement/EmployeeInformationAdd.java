@@ -86,7 +86,10 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
         inflate = LayoutInflater.from(this).inflate(R.layout.choose_dialog,null);
         dialog.setContentView(inflate);
         Window dialogWindow = dialog.getWindow();
-        dialogWindow.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL);
+        dialogWindow.setGravity(Gravity.CENTER);
+       // WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+       // lp.x = 10;
+       // dialogWindow.setAttributes(lp);
         dialog.show();
     }
     public void employee_add_sexchange(View view){

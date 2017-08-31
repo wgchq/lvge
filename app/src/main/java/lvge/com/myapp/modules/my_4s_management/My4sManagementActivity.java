@@ -229,8 +229,17 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                                     LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
                                                     if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
                                                         Toast.makeText(My4sManagementActivity.this, "删除成功！", Toast.LENGTH_SHORT).show();
-                                                        my_4s_shop_pic_1.setImageResource(R.mipmap.my_4s_shop_no_pic);
-                                                        my_4s_pic_1_id = 0;
+                                                        my_4s_shop_pic_2.setDrawingCacheEnabled(true);
+                                                        my_4s_shop_pic_1.setImageDrawable(my_4s_shop_pic_2.getDrawable());
+                                                        my_4s_pic_1_id = my_4s_pic_2_id;
+                                                        my_4s_shop_pic_3.setDrawingCacheEnabled(true);
+                                                        my_4s_shop_pic_2.setImageDrawable(my_4s_shop_pic_3.getDrawable());
+                                                        my_4s_pic_2_id = my_4s_pic_3_id;
+                                                        my_4s_shop_pic_2.setDrawingCacheEnabled(false);
+                                                        my_4s_shop_pic_3.setDrawingCacheEnabled(false);
+
+                                                        my_4s_shop_pic_3.setImageResource(R.mipmap.my_4s_shop_no_pic);
+                                                        my_4s_pic_3_id = 0;
                                                     } else {
                                                         Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
                                                     }
@@ -298,8 +307,13 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                                     LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
                                                     if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
                                                         Toast.makeText(My4sManagementActivity.this, "删除成功！", Toast.LENGTH_SHORT).show();
-                                                        my_4s_shop_pic_2.setImageResource(R.mipmap.my_4s_shop_no_pic);
-                                                        my_4s_pic_2_id = 0;
+                                                        my_4s_shop_pic_3.setDrawingCacheEnabled(true);
+                                                        my_4s_shop_pic_2.setImageDrawable(my_4s_shop_pic_3.getDrawable());
+                                                        my_4s_pic_2_id = my_4s_pic_3_id;
+                                                        my_4s_shop_pic_3.setDrawingCacheEnabled(false);
+
+                                                        my_4s_shop_pic_3.setImageResource(R.mipmap.my_4s_shop_no_pic);
+                                                        my_4s_pic_3_id = 0;
                                                     } else {
                                                         Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
                                                     }

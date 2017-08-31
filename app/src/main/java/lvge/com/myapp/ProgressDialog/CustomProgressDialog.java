@@ -31,6 +31,7 @@ public class CustomProgressDialog extends Dialog {
         customProgressDialog = new CustomProgressDialog(context,R.style.CustomProgressDialog);
         customProgressDialog.setContentView(R.layout.activity_custom_progress_dialog);
         customProgressDialog.getWindow().getAttributes().gravity = Gravity.CENTER;
+        customProgressDialog.setCanceledOnTouchOutside(false);
 
         return customProgressDialog;
     }

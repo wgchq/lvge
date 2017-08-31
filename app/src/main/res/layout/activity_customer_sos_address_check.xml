@@ -124,7 +124,8 @@
         android:layout_marginTop="@dimen/x52"
         android:background="?android:selectableItemBackground"
         android:padding="@dimen/x30"
-        android:src="@mipmap/ic_back_red" />
+        android:src="@mipmap/ic_back_red"
+        tools:ignore="RtlHardcoded" />
 
     <TextView
         android:id="@+id/client_kilometer_map"
@@ -136,7 +137,8 @@
         android:gravity="center"
         android:text="40km"
         android:textColor="#00b6f9"
-        android:textSize="@dimen/x40" />
+        android:textSize="@dimen/x40"
+        tools:ignore="HardcodedText" />
 
     <!--左下方-->
     <LinearLayout
