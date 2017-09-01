@@ -47,9 +47,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="Android:icon, android:theme">
-        <meta-data
+     <!--   <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="4b16b5d396673d026bb8dfaabfe1e226" />
+            android:value="4b16b5d396673d026bb8dfaabfe1e226" />-->
+
+           <meta-data
+           android:name="com.amap.api.v2.apikey"
+           android:value="898ef90a196ce84877054ce9f8ff4c71" />
+
         <!-- 声明定位service -->
         <service android:name="com.amap.api.location.APSService" />
 
