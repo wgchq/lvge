@@ -13,6 +13,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -41,6 +42,7 @@ import okhttp3.Response;
 
 import static lvge.com.myapp.R.id.appBarLayout;
 import static lvge.com.myapp.R.id.default_activity_button;
+import static lvge.com.myapp.R.id.financial_management_callback;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -490,8 +492,22 @@ public class ClientFragment extends Fragment {
                                 if (null != o) {
                                     clientResultModel = (ClientResultModel) o;//把通用的Object转化成指定的对象
                                     if (clientResultModel.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
-                                        adapter.setClients(clientResultModel);
                                         LoadListView client_lst = (LoadListView)view.findViewById(R.id.clients_list);
+                                        ImageView no_client_img = (ImageView)view.findViewById(R.id.no_client_img);
+
+                                        if ( clientResultModel.getMarketEntity() == null ||clientResultModel.getMarketEntity().length() ==0)
+                                        {
+                                            client_lst.setVisibility(View.GONE);
+                                            no_client_img.setBackgroundResource(R.mipmap.client_manage_no_client);
+                                        }
+                                        else
+                                        {
+                                            client_lst.setVisibility(View.INVISIBLE);
+                                            no_client_img.setBackground(null);
+                                        }
+
+                                        adapter.setClients(clientResultModel);
+
                                         stopProgressDialog();
                                         client_lst.setInterface(new LoadListView.IloadListener() {
                                             @Override
@@ -539,6 +555,8 @@ public class ClientFragment extends Fragment {
                                                                             if (null != object) {
                                                                                 ClientResultModel resultModel = (ClientResultModel) object;//把通用的Object转化成指定的对象
                                                                                 if (resultModel.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
+
+
                                                                                     clientResultModel.getPageResult().getEntityList().addAll(resultModel.getPageResult().getEntityList());
                                                                                     clientResultModel.getPageResult().setPageIndex(resultModel.getPageResult().getPageIndex());
 
