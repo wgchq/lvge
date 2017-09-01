@@ -72,9 +72,9 @@
                         android:id="@+id/txt_client_manage_battery"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/x_40"
+                        android:layout_marginTop="@dimen/x_30"
                         android:text="12V"
-                        android:textSize="@dimen/x24" />
+                        android:textSize="@dimen/x18" />
                 </LinearLayout>
 
 
@@ -101,9 +101,9 @@
                         android:id="@+id/txt_client_manage_gps"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/x_40"
+                        android:layout_marginTop="@dimen/x_30"
                         android:text="12"
-                        android:textSize="@dimen/x24" />
+                        android:textSize="@dimen/x18" />
                 </LinearLayout>
 
 
