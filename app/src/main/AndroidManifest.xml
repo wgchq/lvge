@@ -69,7 +69,9 @@
         </receiver>
         -->
 
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".MainPageActivity"
             android:screenOrientation="portrait"
@@ -277,12 +279,26 @@
             android:name=".modules.customer_management.CustomerSosAddressCheckActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".modules.right_side_slider_menu_mansgement.PersonalProfile" />
-        <activity android:name=".modules.right_side_slider_menu_mansgement.PersionProfileName" />
-        <activity android:name=".modules.right_side_slider_menu_mansgement.PersionProfileChangePassword" />
-        <activity android:name=".modules.right_side_slider_menu_mansgement.EmployeeInformation" />
-        <activity android:name=".modules.right_side_slider_menu_mansgement.EmployeeInformationAdd" />
-        <activity android:name=".modules.right_side_slider_menu_mansgement.EmployeeInformationAddName"></activity>
+        <activity android:name=".modules.right_side_slider_menu_mansgement.PersonalProfile"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".modules.right_side_slider_menu_mansgement.PersionProfileName"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".modules.right_side_slider_menu_mansgement.PersionProfileChangePassword"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".modules.right_side_slider_menu_mansgement.EmployeeInformation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".modules.right_side_slider_menu_mansgement.EmployeeInformationAdd"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".modules.right_side_slider_menu_mansgement.EmployeeInformationAddName"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
+
+        </activity>
     </application>
 
 </manifest>

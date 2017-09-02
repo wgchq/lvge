@@ -321,11 +321,11 @@ public class MainPageActivity extends Activity {
                                 LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
                                 if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
                                     Toast.makeText(MainPageActivity.this, "注销成功！", Toast.LENGTH_SHORT).show();
-                                    preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+                                  /*  preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor = preferences.edit();
                                     editor.remove("username");
                                     editor.remove("password");
-                                    editor.apply();
+                                    editor.apply();*/
 
                                     CookieJarImpl cookieJarImpl = (CookieJarImpl) OkHttpUtils.getInstance().getOkHttpClient().cookieJar();
                                     cookieJarImpl.getCookieStore().removeAll();

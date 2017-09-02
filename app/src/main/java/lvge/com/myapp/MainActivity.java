@@ -28,7 +28,7 @@ import lvge.com.myapp.model.LoginResultModel;
 import okhttp3.CookieJar;
 import okhttp3.Response;
 
-public class MainActivity extends android.support.v7.app.AppCompatActivity{
+public class MainActivity extends android.support.v7.app.AppCompatActivity {
 
     private SharedPreferences preferences;
     private String action;
@@ -36,6 +36,7 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
     private Button login_submit;
     private EditText et_username;
     private EditText et_password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +54,7 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
         login_submit = (Button) findViewById(R.id.login_submit);
         et_username = (EditText) findViewById(R.id.username);
         et_password = (EditText) findViewById(R.id.password);
-        TextView  lg_forget_password = (TextView)findViewById(R.id.lg_forget_password);
+        TextView lg_forget_password = (TextView) findViewById(R.id.lg_forget_password);
 
 
 
@@ -81,7 +82,7 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(et_username.getText().toString().equals("")){
+                if (et_username.getText().toString().equals("")) {
                     login_submit.setBackgroundResource(R.drawable.lg_main_button_background);
                     login_submit.setTextColor(getResources().getColor(R.color.lg_button_text_color));
                 }
@@ -93,7 +94,7 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this,ForgetPasswordActivity.class);
+                intent.setClass(MainActivity.this, ForgetPasswordActivity.class);
                 startActivity(intent);
             }
         });
@@ -106,19 +107,17 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
         try {
             preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
 
-            if (action.equals("auto_submit")) {
-                String username = preferences.getString("username", "");
-                String password = preferences.getString("password", "");
+            String username = preferences.getString("username", "");
+            String password = preferences.getString("password", "");
 
-                if (username.equals("") && password.equals("")) {
-                    return;
-                }
-                et_username.setText(username);
-                et_password.setText(password);
-
-                login_submit.setBackgroundResource(R.drawable.lg_main_button_background_input);
-                login_submit.setTextColor(getResources().getColor(R.color.buttonTextColor));
+            if (username.equals("") && password.equals("")) {
+                return;
             }
+            et_username.setText(username);
+            et_password.setText(password);
+
+            login_submit.setBackgroundResource(R.drawable.lg_main_button_background_input);
+            login_submit.setTextColor(getResources().getColor(R.color.buttonTextColor));
 
             OkHttpUtils.get()//get 方法
                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/login.do") //地址
@@ -164,13 +163,13 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
 
                                     bundle.putString("name", et_username.getText().toString());
                                     intent.putExtras(bundle);
-                                    TextView clear_lg_return_error = (TextView)findViewById(R.id.lg_return_error);
+                                    TextView clear_lg_return_error = (TextView) findViewById(R.id.lg_return_error);
                                     clear_lg_return_error.setText("");
                                     startActivity(intent);
 
                                 } else {
                                     //Toast.makeText(MainActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
-                                    TextView lg_return_error = (TextView)findViewById(R.id.lg_return_error);
+                                    TextView lg_return_error = (TextView) findViewById(R.id.lg_return_error);
                                     lg_return_error.setText(result.getOperationResult().getResultMsg());
                                 }
                             } else {//当没有返回对象时，表示网络没有联通
