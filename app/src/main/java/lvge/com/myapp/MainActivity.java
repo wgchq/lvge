@@ -1,6 +1,6 @@
 package lvge.com.myapp;
 
-import android.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,7 +25,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
 import lvge.com.myapp.model.LoginResultModel;
-import okhttp3.CookieJar;
+
 import okhttp3.Response;
 
 public class MainActivity extends android.support.v7.app.AppCompatActivity {
@@ -55,7 +55,6 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity {
         et_username = (EditText) findViewById(R.id.username);
         et_password = (EditText) findViewById(R.id.password);
         TextView lg_forget_password = (TextView) findViewById(R.id.lg_forget_password);
-
 
 
      /*   action = "auto_submit";
@@ -99,22 +98,29 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity {
             }
         });
 
+        preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+
+        String username = preferences.getString("username", "");
+        String password = preferences.getString("password", "");
+        if (username.equals("") && password.equals("")) {
+            et_username.setText("");
+            et_password.setText("");
+            //  return;
+        }
+        else
+        {
+            et_username.setText("");
+            et_password.setText("");
+            et_username.setText(username);
+            et_password.setText(password);
+        }
+
     }
 
     void Login(String action) {
 
         final String submit_action = action;
         try {
-            preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-
-            String username = preferences.getString("username", "");
-            String password = preferences.getString("password", "");
-
-            if (username.equals("") && password.equals("")) {
-                return;
-            }
-            et_username.setText(username);
-            et_password.setText(password);
 
             login_submit.setBackgroundResource(R.drawable.lg_main_button_background_input);
             login_submit.setTextColor(getResources().getColor(R.color.buttonTextColor));

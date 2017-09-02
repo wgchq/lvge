@@ -150,7 +150,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
             @Override
             public void onClick(View v) {
                 //设置缩放级别
-                aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+                aMap.moveCamera(CameraUpdateFactory.zoomTo(15));
                 //将地图移动到定位点
                 aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(userlat, userlng)));
                 //获取定位信息
@@ -162,7 +162,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
             @Override
             public void onClick(View v) {
                 //设置缩放级别
-                aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+                aMap.moveCamera(CameraUpdateFactory.zoomTo(15));
                 //将地图移动到定位点
                 aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(lat, lng)));
                 //获取定位信息
@@ -519,7 +519,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                 if (isFirstLoc) {
 
                     //设置缩放级别
-                    aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+                    aMap.moveCamera(CameraUpdateFactory.zoomTo(15));
                     //将地图移动到定位点
                     aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude())));
                     //获取定位信息
