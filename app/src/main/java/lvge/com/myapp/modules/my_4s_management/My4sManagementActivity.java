@@ -241,7 +241,17 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                                         my_4s_shop_pic_3.setImageResource(R.mipmap.my_4s_shop_no_pic);
                                                         my_4s_pic_3_id = 0;
                                                     } else {
-                                                        Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                                       // Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                                        AlertDialog.Builder builder = new AlertDialog.Builder(My4sManagementActivity.this);
+                                                        builder.setMessage("网络异常，请重新登陆");
+                                                        builder.setCancelable(false);
+                                                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                Intent intent = new Intent(My4sManagementActivity.this, MainActivity.class);
+                                                                startActivity(intent);
+                                                            }
+                                                        });
                                                     }
                                                 } else {//当没有返回对象时，表示网络没有联通
                                                     Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
@@ -315,7 +325,17 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                                         my_4s_shop_pic_3.setImageResource(R.mipmap.my_4s_shop_no_pic);
                                                         my_4s_pic_3_id = 0;
                                                     } else {
-                                                        Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                                        //Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                                        AlertDialog.Builder builder = new AlertDialog.Builder(My4sManagementActivity.this);
+                                                        builder.setMessage("网络异常，请重新登陆");
+                                                        builder.setCancelable(false);
+                                                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                Intent intent = new Intent(My4sManagementActivity.this, MainActivity.class);
+                                                                startActivity(intent);
+                                                            }
+                                                        });
                                                     }
                                                 } else {//当没有返回对象时，表示网络没有联通
                                                     Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
@@ -384,7 +404,17 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                                         my_4s_shop_pic_3.setImageResource(R.mipmap.my_4s_shop_no_pic);
                                                         my_4s_pic_3_id = 0;
                                                     } else {
-                                                        Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                                       // Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                                        AlertDialog.Builder builder = new AlertDialog.Builder(My4sManagementActivity.this);
+                                                        builder.setMessage("网络异常，请重新登陆");
+                                                        builder.setCancelable(false);
+                                                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                Intent intent = new Intent(My4sManagementActivity.this, MainActivity.class);
+                                                                startActivity(intent);
+                                                            }
+                                                        });
                                                     }
                                                 } else {//当没有返回对象时，表示网络没有联通
                                                     Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
@@ -508,9 +538,29 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                 } else {
                                     // Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
                                     // startActivity(intent);
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(My4sManagementActivity.this);
+                                    builder.setMessage("网络异常，请重新登陆");
+                                    builder.setCancelable(false);
+                                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent(My4sManagementActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
                                 }
                             } else {//当没有返回对象时，表示网络没有联通
                                 // Toast.makeText(MainActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(My4sManagementActivity.this);
+                                builder.setMessage("网络异常，请重新登陆");
+                                builder.setCancelable(false);
+                                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(My4sManagementActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                });
                             }
                         }
                     });
@@ -563,7 +613,17 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                                 if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
                                                     Toast.makeText(My4sManagementActivity.this, "更新成功！", Toast.LENGTH_SHORT).show();
                                                 } else {
-                                                    Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                                   // Toast.makeText(My4sManagementActivity.this, result.getOperationResult().getResultMsg(), Toast.LENGTH_SHORT).show();
+                                                    AlertDialog.Builder builder = new AlertDialog.Builder(My4sManagementActivity.this);
+                                                    builder.setMessage("网络异常，请重新登陆");
+                                                    builder.setCancelable(false);
+                                                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {
+                                                            Intent intent = new Intent(My4sManagementActivity.this, MainActivity.class);
+                                                            startActivity(intent);
+                                                        }
+                                                    });
                                                 }
                                             } else {//当没有返回对象时，表示网络没有联通
                                                 Toast.makeText(My4sManagementActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();

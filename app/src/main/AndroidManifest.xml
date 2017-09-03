@@ -47,13 +47,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="Android:icon, android:theme">
-     <!--   <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="4b16b5d396673d026bb8dfaabfe1e226" />-->
 
-           <meta-data
-           android:name="com.amap.api.v2.apikey"
-           android:value="898ef90a196ce84877054ce9f8ff4c71" />
+        <!--
+            <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="4b16b5d396673d026bb8dfaabfe1e226" />
+        -->
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="898ef90a196ce84877054ce9f8ff4c71" />
 
         <!-- 声明定位service -->
         <service android:name="com.amap.api.location.APSService" />
@@ -69,7 +72,8 @@
         </receiver>
         -->
 
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
@@ -279,26 +283,30 @@
             android:name=".modules.customer_management.CustomerSosAddressCheckActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".modules.right_side_slider_menu_mansgement.PersonalProfile"
+        <activity
+            android:name=".modules.right_side_slider_menu_mansgement.PersonalProfile"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".modules.right_side_slider_menu_mansgement.PersionProfileName"
+        <activity
+            android:name=".modules.right_side_slider_menu_mansgement.PersionProfileName"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".modules.right_side_slider_menu_mansgement.PersionProfileChangePassword"
+        <activity
+            android:name=".modules.right_side_slider_menu_mansgement.PersionProfileChangePassword"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".modules.right_side_slider_menu_mansgement.EmployeeInformation"
+        <activity
+            android:name=".modules.right_side_slider_menu_mansgement.EmployeeInformation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".modules.right_side_slider_menu_mansgement.EmployeeInformationAdd"
+        <activity
+            android:name=".modules.right_side_slider_menu_mansgement.EmployeeInformationAdd"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".modules.right_side_slider_menu_mansgement.EmployeeInformationAddName"
+        <activity
+            android:name=".modules.right_side_slider_menu_mansgement.EmployeeInformationAddName"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" >
-
-        </activity>
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
     </application>
 
 </manifest>

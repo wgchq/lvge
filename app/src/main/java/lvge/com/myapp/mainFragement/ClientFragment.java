@@ -1,11 +1,13 @@
 package lvge.com.myapp.mainFragement;
 
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
@@ -65,6 +67,7 @@ public class ClientFragment extends Fragment {
     private String PageSize = "1000";
     String status = "0";
     private boolean search_show = false;
+    private int Netstatus = 0;
 
     private String query;
     private BroadcastReceiver receiver;
@@ -117,14 +120,15 @@ public class ClientFragment extends Fragment {
 
         iniPage(view);
 
+
         //监测断网progressDialog 停止
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
 
-                int status = NetworkUtil.getConnectivityStatusString(context);
+                Netstatus = NetworkUtil.getConnectivityStatusString(context);
 
-                if (status == 3) {
+                if (Netstatus == 3) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
@@ -142,6 +146,13 @@ public class ClientFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
+                if(Netstatus == 3){
+                    LoadListView client_lst = (LoadListView) view.findViewById(R.id.clients_list);
+                  //  ImageView no_client_img = (ImageView) view.findViewById(R.id.no_client_img);
+                    client_lst.setVisibility(View.GONE);
+                   // no_client_img.setBackground(null);
+                    return;
+                }
                 isSearch_show = false;
                 try {
                     switch (tab.getPosition()) {
@@ -192,6 +203,15 @@ public class ClientFragment extends Fragment {
                                             adapter.setClients(clientResultModel);
 
                                             LoadListView client_lst = (LoadListView) view.findViewById(R.id.clients_list);
+                                            ImageView no_client_img = (ImageView) view.findViewById(R.id.no_client_img);
+
+                                            if (clientResultModel.getPageResult().getEntityList().size() == 0) {
+                                                client_lst.setVisibility(View.GONE);
+                                                no_client_img.setBackgroundResource(R.mipmap.client_manage_no_client);
+                                            } else {
+                                                client_lst.setVisibility(View.VISIBLE);
+                                                no_client_img.setBackground(null);
+                                            }
                                             stopProgressDialog();
                                             client_lst.setInterface(new LoadListView.IloadListener() {
                                                 @Override
@@ -280,7 +300,17 @@ public class ClientFragment extends Fragment {
                                             stopProgressDialog();
                                         } else {
                                             stopProgressDialog();
-                                            Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                           // Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                            builder.setMessage("网络异常，请重新登陆");
+                                            builder.setCancelable(false);
+                                            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                                                    startActivity(intent);
+                                                }
+                                            });
                                         }
                                     } else {//当没有返回对象时，表示网络没有联通
                                         stopProgressDialog();
@@ -397,6 +427,15 @@ public class ClientFragment extends Fragment {
                                 if (clientResultModel.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
                                     adapter.setClients(clientResultModel);
                                     LoadListView client_lst = (LoadListView) view.findViewById(R.id.clients_list);
+                                    ImageView no_client_img = (ImageView) view.findViewById(R.id.no_client_img);
+
+                                    if (clientResultModel.getPageResult().getEntityList().size() == 0) {
+                                        client_lst.setVisibility(View.GONE);
+                                        no_client_img.setBackgroundResource(R.mipmap.client_manage_no_client);
+                                    } else {
+                                        client_lst.setVisibility(View.VISIBLE);
+                                        no_client_img.setBackground(null);
+                                    }
                                     stopProgressDialog();
                                     client_lst.setInterface(new LoadListView.IloadListener() {
                                         @Override
@@ -457,7 +496,17 @@ public class ClientFragment extends Fragment {
 
                                                                             } else {
                                                                                 stopProgressDialog();
-                                                                                Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                                                                //Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                                                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                                                                builder.setMessage("网络异常，请重新登陆");
+                                                                                builder.setCancelable(false);
+                                                                                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                                                                    @Override
+                                                                                    public void onClick(DialogInterface dialog, int which) {
+                                                                                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                                                                                        startActivity(intent);
+                                                                                    }
+                                                                                });
                                                                             }
                                                                         } else {//当没有返回对象时，表示网络没有联通
                                                                             stopProgressDialog();
@@ -478,7 +527,17 @@ public class ClientFragment extends Fragment {
                                     stopProgressDialog();
                                 } else {
                                     stopProgressDialog();
-                                    Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                    builder.setMessage("网络异常，请重新登陆");
+                                    builder.setCancelable(false);
+                                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
                                 }
                             } else {//当没有返回对象时，表示网络没有联通
                                 stopProgressDialog();
@@ -600,8 +659,18 @@ public class ClientFragment extends Fragment {
                                                                                 stopProgressDialog();
 
                                                                             } else {
-                                                                                Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                                                               // Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
                                                                                 stopProgressDialog();
+                                                                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                                                                builder.setMessage("网络异常，请重新登陆");
+                                                                                builder.setCancelable(false);
+                                                                                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                                                                    @Override
+                                                                                    public void onClick(DialogInterface dialog, int which) {
+                                                                                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                                                                                        startActivity(intent);
+                                                                                    }
+                                                                                });
                                                                             }
                                                                         } else {//当没有返回对象时，表示网络没有联通
                                                                             Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
@@ -622,7 +691,17 @@ public class ClientFragment extends Fragment {
                                     stopProgressDialog();
                                 } else {
                                     stopProgressDialog();
-                                    Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                    builder.setMessage("网络异常，请重新登陆");
+                                    builder.setCancelable(false);
+                                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
                                 }
                             }
                         }
