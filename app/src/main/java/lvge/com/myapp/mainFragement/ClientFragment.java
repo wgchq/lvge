@@ -559,6 +559,7 @@ public class ClientFragment extends Fragment {
 
     private void search(String str, final View view, String index) {
         try {
+            final String  condition = str;
             startProgerssDialog();
             OkHttpUtils.get()//get 方法
                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
@@ -620,6 +621,7 @@ public class ClientFragment extends Fragment {
                                                                 .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
                                                                 .addParams("pageIndex", Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1)) //需要传递的参数
                                                                 .addParams("pageSize", PageSize)
+                                                                .addParams("keyword", condition)
                                                                 .build()
                                                                 .execute(new Callback() {//通用的callBack
 
