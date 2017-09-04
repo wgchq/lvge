@@ -153,7 +153,10 @@ public class ClientFragment extends Fragment {
                    // no_client_img.setBackground(null);
                     return;
                 }
-                isSearch_show = false;
+               // isSearch_show = false;
+                if(isSearch_show){
+                    return;
+                }
                 try {
                     switch (tab.getPosition()) {
                         case 0:
@@ -225,10 +228,10 @@ public class ClientFragment extends Fragment {
                                                         public void run() {
 
                                                             try {
-                                                                if (isSearch_show) {
-                                                                    search(query, view, Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1));
-                                                                    return;
-                                                                }
+                                                              //  if (isSearch_show) {
+                                                               //     search(query, view, Integer.toString(clientResultModel.getPageResult().getPageIndex() + 1));
+                                                               //     return;
+                                                               // }
                                                                 startProgerssDialog();
                                                                 OkHttpUtils.get()//get 方法
                                                                         .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
@@ -381,6 +384,7 @@ public class ClientFragment extends Fragment {
             case RESULT_OK:
                 Bundle b = data.getExtras();
                 String str = b.getString("SearchResult");
+                isSearch_show = true;
                 TabLayout.Tab tab = tabLayout.getTabAt(0);
                 if (tab != null) {
                     tab.select();
@@ -587,8 +591,8 @@ public class ClientFragment extends Fragment {
                                 if (clientResultModel.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
                                     LoadListView client_lst = (LoadListView) view.findViewById(R.id.clients_list);
                                     ImageView no_client_img = (ImageView) view.findViewById(R.id.no_client_img);
-
-                                    if (clientResultModel.getMarketEntity() == null || clientResultModel.getMarketEntity().length() == 0) {
+                                    isSearch_show = false;
+                                    if (clientResultModel.getPageResult().getEntityList().size() == 0) {
                                         client_lst.setVisibility(View.GONE);
                                         no_client_img.setBackgroundResource(R.mipmap.client_manage_no_client);
                                     } else {
