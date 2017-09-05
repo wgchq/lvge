@@ -282,8 +282,9 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
 /*
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromResource(R.mipmap.client_manage_user_location));
 */
-     /*   myLocationStyle.radiusFillColor(android.R.color.holo_orange_dark);
-        myLocationStyle.strokeColor(android.R.color.holo_orange_dark);*/
+        myLocationStyle.radiusFillColor(android.R.color.holo_orange_dark);
+        myLocationStyle.strokeColor(android.R.color.holo_orange_dark);
+
         aMap.setMyLocationStyle(myLocationStyle);
 
         initLoc();
