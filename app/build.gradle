@@ -51,4 +51,5 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.jph.takephoto:takephoto_library:4.0.3'
     testCompile 'junit:junit:4.12'
+    compile files('libs/Android_Map3D_SDK_V5.3.0_20170815.jar')
 }

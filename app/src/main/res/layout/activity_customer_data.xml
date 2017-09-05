@@ -59,12 +59,12 @@
                 android:layout_height="wrap_content"
                 tools:ignore="UselessParent">
 
-                <com.amap.api.maps2d.MapView xmlns:android="http://schemas.android.com/apk/res/android"
+                <com.amap.api.maps.MapView xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/map"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                </com.amap.api.maps2d.MapView>
+                </com.amap.api.maps.MapView>
 
                 <TextView
                     android:id="@+id/client_address"

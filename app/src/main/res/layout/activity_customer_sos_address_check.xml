@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     tools:context="lvge.com.myapp.modules.customer_management.CustomerSosAddressCheckActivity">
 
-    <com.amap.api.maps2d.MapView xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.amap.api.maps.MapView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.amap.api.maps2d.MapView>
+    </com.amap.api.maps.MapView>
     <!--网络监测-->
     <lvge.com.myapp.ui.NetworkCheckView
         android:layout_width="match_parent"

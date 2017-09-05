@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.amap.api.maps2d.AMap;
-import com.amap.api.maps2d.model.Marker;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.model.Marker;
 
 import lvge.com.myapp.R;
 

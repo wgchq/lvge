@@ -8,11 +8,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import com.amap.api.maps2d.CameraUpdateFactory;
-import com.amap.api.maps2d.model.LatLng;
-
 import java.util.ArrayList;
 
 import lvge.com.myapp.R;

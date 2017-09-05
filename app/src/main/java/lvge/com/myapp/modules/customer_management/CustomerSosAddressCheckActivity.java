@@ -25,18 +25,17 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
-import com.amap.api.maps2d.AMap;
-import com.amap.api.maps2d.AMapUtils;
-import com.amap.api.maps2d.CameraUpdateFactory;
-import com.amap.api.maps2d.LocationSource;
-import com.amap.api.maps2d.MapView;
-import com.amap.api.maps2d.UiSettings;
-import com.amap.api.maps2d.model.BitmapDescriptorFactory;
-import com.amap.api.maps2d.model.CameraPosition;
-import com.amap.api.maps2d.model.LatLng;
-import com.amap.api.maps2d.model.Marker;
-import com.amap.api.maps2d.model.MarkerOptions;
-import com.amap.api.maps2d.model.MyLocationStyle;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.AMapUtils;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.LocationSource;
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Marker;
+import com.amap.api.maps.model.MarkerOptions;
+import com.amap.api.maps.model.MyLocationStyle;
 
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.geocoder.GeocodeResult;
@@ -60,8 +59,6 @@ import lvge.com.myapp.util.MapUtils.MapOpenUtil;
 import lvge.com.myapp.util.MapUtils.PackageManagerUtil;
 import okhttp3.Response;
 
-import static java.lang.Math.floor;
-import static java.lang.Math.round;
 
 
 public class CustomerSosAddressCheckActivity extends AppCompatActivity implements AMapLocationListener, View.OnClickListener {
@@ -253,6 +250,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
         UiSettings settings = aMap.getUiSettings();
         settings.setZoomControlsEnabled(false);
         // 是否显示定位按钮
+
         settings.setMyLocationButtonEnabled(false);
         aMap.setLocationSource(new LocationSource() {
             @Override
@@ -284,8 +282,8 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
 /*
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromResource(R.mipmap.client_manage_user_location));
 */
-        myLocationStyle.radiusFillColor(android.R.color.holo_orange_dark);
-        myLocationStyle.strokeColor(android.R.color.holo_orange_dark);
+     /*   myLocationStyle.radiusFillColor(android.R.color.holo_orange_dark);
+        myLocationStyle.strokeColor(android.R.color.holo_orange_dark);*/
         aMap.setMyLocationStyle(myLocationStyle);
 
         initLoc();
@@ -462,6 +460,9 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
         //设置定位间隔,单位毫秒,默认为2000ms
         mLocationOption.setInterval(2000);
+/*
+        mLocationOption.setOnceLocation(true);
+*/
 
         //给定位客户端对象设置定位参数
         mLocationClient.setLocationOption(mLocationOption);
@@ -477,11 +478,15 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
         aMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(CustomerSosAddressCheckActivity.this));
         MarkerOptions markerOptions = getMarkerOptions(title);
         LocationMarker = aMap.addMarker(markerOptions);
-        LocationMarker.setTitle(title);
+
         aMap.setOnMarkerClickListener(new AMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                marker.showInfoWindow();
+                if (marker.equals(LocationMarker))
+                {
+                    marker.showInfoWindow();
+                }
+
                 return true;
             }
         });
@@ -524,10 +529,9 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                     aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude())));
                     //获取定位信息
                     isFirstLoc = false;
+                    //点击定位按钮 能够将地图的中心移动到定位点
+                    mListener.onLocationChanged(amapLocation);
                 }
-
-                //点击定位按钮 能够将地图的中心移动到定位点
-                mListener.onLocationChanged(amapLocation);
 
             } else {
                 //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
