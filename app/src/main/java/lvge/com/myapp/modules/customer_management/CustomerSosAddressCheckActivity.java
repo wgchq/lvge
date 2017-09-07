@@ -73,6 +73,7 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
     //标识，用于判断是否只显示一次定位信息和用户重新定位
     private boolean isFirstLoc = true;
     private Marker LocationMarker;
+    private Marker userMarker;
 
     private String custumerId;
 
@@ -276,9 +277,10 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
         aMap.setMyLocationEnabled(true);
         //定位的小图标 默认是蓝点 这里自定义一团火，其实就是一张图片
         MyLocationStyle myLocationStyle = new MyLocationStyle();
-        CustomMarker customMarker = new CustomMarker(CustomerSosAddressCheckActivity.this);
+        myLocationStyle.showMyLocation(false);
+       /* CustomMarker customMarker = new CustomMarker(CustomerSosAddressCheckActivity.this);
         View myView = customMarker.getMyView("");
-        myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromView(myView));
+        myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromView(myView));*/
 /*
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromResource(R.mipmap.client_manage_user_location));
 */
@@ -510,6 +512,24 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
     }
 
 
+    private MarkerOptions getmyUserMarkerOptions(String str) {
+        //   AttentionModel attentionModel
+        //设置图钉选项
+        MarkerOptions options = new MarkerOptions();
+        //图标
+        options.title(str);
+
+        CustomMarker customMarker = new CustomMarker(CustomerSosAddressCheckActivity.this);
+        View myView = customMarker.getMyView("");
+
+        //  options.icon(options.getIcon());
+        options.icon(BitmapDescriptorFactory.fromView(myView));
+        options.position(new LatLng(lat, lng));
+        //设置多少帧刷新一次图片资源
+        options.period(60);
+        return options;
+
+    }
     //定位回调函数
     @Override
     public void onLocationChanged(AMapLocation amapLocation) {
@@ -533,6 +553,18 @@ public class CustomerSosAddressCheckActivity extends AppCompatActivity implement
                     //点击定位按钮 能够将地图的中心移动到定位点
                     mListener.onLocationChanged(amapLocation);
                 }
+
+                if (userMarker==null)
+                {
+                    userMarker = aMap.addMarker(getmyUserMarkerOptions(""));
+
+                }
+                else
+                {
+                    LatLng userlatlng = new LatLng(userlat,userlng);
+                    userMarker.setPosition(userlatlng);
+                }
+
 
             } else {
                 //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
