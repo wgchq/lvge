@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/x80"
+    android:layout_height="wrap_content"
     android:background="#f4f5d9"
     android:gravity="center_vertical">
 
@@ -9,7 +9,7 @@
 
         android:id="@+id/txt_network_check_message"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x80"
+        android:layout_height="wrap_content"
         android:drawableLeft="@mipmap/network_error_message"
         android:drawablePadding="@dimen/x20"
         android:gravity="center_vertical"

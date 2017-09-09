@@ -29,6 +29,8 @@
                 android:id="@+id/search_view_bar"
                 android:iconifiedByDefault="true"
                 android:background="@drawable/edit_text_shape"
+                app:closeIcon="@null"
+                app:goIcon="@null"
                 android:imeOptions="actionSearch"
                 android:inputType="textCapWords"
                 tools:ignore="RtlHardcoded"

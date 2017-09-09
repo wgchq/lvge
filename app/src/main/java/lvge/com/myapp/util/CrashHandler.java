@@ -2,6 +2,10 @@ package lvge.com.myapp.util;
 
 /**
  * Created by JGG on 2017-09-07.
+ * <p>
+ * UncaughtException处理类,当程序发生Uncaught异常的时候,由该类来接管程序,并记录发送错误报告.
+ *
+ * @author way
  */
 /**
  * UncaughtException处理类,当程序发生Uncaught异常的时候,由该类来接管程序,并记录发送错误报告.
@@ -16,6 +20,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -64,7 +69,6 @@ public class CrashHandler implements UncaughtExceptionHandler {
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();// 获取系统默认的UncaughtException处理器
         Thread.setDefaultUncaughtExceptionHandler(this);// 设置该CrashHandler为程序的默认处理器
     }
-
 
 
     /**
@@ -126,72 +130,12 @@ public class CrashHandler implements UncaughtExceptionHandler {
         builder.setPositiveButton(android.R.string.ok,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-
                         // 发送异常报告
                         try {
 
-                            new Thread(new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    try {
-                                        EmailSender sender = new EmailSender();
-                                        //设置服务器地址和端口，网上搜的到
-                                        sender.setProperties("smtp.qq.com", "25");
-                                        //分别设置发件人，邮件标题和文本内容
-                                        sender.setMessage("469597684@qq.com", "EmailSender", crashReport);
-                                        //设置收件人
-                                        sender.setReceiver(new String[]{"441915133@qq.com"});
-                                        //添加附件
-                                        //这个附件的路径是我手机里的啊，要发你得换成你手机里正确的路径
-//            				sender.addAttachment("/sdcard/DCIM/Camera/asd.jpg");
-                                        //发送邮件
-                                        sender.sendEmail("smtp.qq.com", "469597684@qq.com", "@@wgchq2006");//<span style="font-family: Arial, Helvetica, sans-serif;">sender.setMessage("你的163邮箱账号", "EmailS//ender", "Java Mail ！");这里面两个邮箱账号要一致</span>
-
-                                    } catch (AddressException e) {
-                                        // TODO Auto-generated catch block
-                                        e.printStackTrace();
-                                    } catch (MessagingException e) {
-                                        // TODO Auto-generated catch block
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }).start();
+                            int i = EmailSender.send("lvgeservice@126.com", "lvge Exception",crashReport );
 
 
-                        /*    //注释部分是已文字内容形式发送错误信息
-                            Intent intent = new Intent(Intent.ACTION_SENDTO);
-                            intent.setType("text/plain");
-                            intent.putExtra(Intent.EXTRA_SUBJECT,
-                            "旅鸽Android商户版 - 错误报告");
-                            intent.putExtra(Intent.EXTRA_TEXT, crashReport);
-                            intent.setData(Uri
-                            .parse("mailto:441915133@qq.com"));
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(intent);*/
-/*
-                            //下面是以附件形式发送邮件
-                            Intent intent = new Intent(Intent.ACTION_SEND);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            String[] tos = { "zjgavin@sina.cn" };
-                            intent.putExtra(Intent.EXTRA_EMAIL, tos);
-
-                            intent.putExtra(Intent.EXTRA_SUBJECT,
-                                    "旅鸽商户端Android客户端 - 错误报告");
-                            if (file != null) {
-                                intent.putExtra(Intent.EXTRA_STREAM,
-                                        Uri.fromFile(file));
-                                intent.putExtra(Intent.EXTRA_TEXT,
-                                        "请将此错误报告发送给我，以便我尽快修复此问题，谢谢合作！\n");
-                            } else {
-                                intent.putExtra(Intent.EXTRA_TEXT,
-                                        "请将此错误报告发送给我，以便我尽快修复此问题，谢谢合作！\n"
-                                                + crashReport);
-                            }
-                            intent.setType("text/plain");
-                            intent.setType("message/rfc882");
-                            Intent.createChooser(intent, "Choose Email Client");
-                            context.startActivity(intent);*/
                         } catch (Exception e) {
                             Toast.makeText(context,
                                     "There are no email clients installed.",
@@ -232,6 +176,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
         mContext.startActivity(intent);
         android.os.Process.killProcess(android.os.Process.myPid());//结束进程之前可以把你程序的注销或者退出代码放在这段代码之前    
     }
+
     /**
      * 获取APP崩溃异常报告
      *
