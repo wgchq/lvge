@@ -14,7 +14,10 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.text.Html;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import lvge.com.myapp.R;
@@ -24,7 +27,7 @@ import lvge.com.myapp.util.L;
  * Created by zhang on 2017/8/19.
  */
 
-public class SearchToolsPage extends AppCompatActivity{
+public class SearchToolsPage extends AppCompatActivity {
 
     private TextView cancel;
 
@@ -35,7 +38,7 @@ public class SearchToolsPage extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_tools_page);
 
-        cancel = (TextView)findViewById(R.id.search_tools_cancel);
+        cancel = (TextView) findViewById(R.id.search_tools_cancel);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,10 +46,27 @@ public class SearchToolsPage extends AppCompatActivity{
                 finish();
             }
         });
+        final EditText et_search = (EditText) findViewById(R.id.et_common_search);
+
+        et_search.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == event.KEYCODE_ENTER) {
+                    String query = et_search.getText().toString();
+                    Intent intent = new Intent();
+                    Bundle bundle=new Bundle();
+                    bundle.putString("SearchResult", query);
+                    intent.putExtras(bundle);
+                    setResult(RESULT_OK,intent);
+                    finish();
+                }
+                return false;
+            }
+        });
+
 
         //final Intent intent = getIntent();
-
-        final AppBarLayout appBarLayout = (AppBarLayout)findViewById(R.id.search_edit_frame);
+      /*  final AppBarLayout appBarLayout = (AppBarLayout)findViewById(R.id.search_edit_frame);
         final SearchView search_view = (SearchView)findViewById(R.id.search_view_bar);
         search_view.setQueryHint("请输入车架号、用户名或设备号码搜索");
 
@@ -82,6 +102,6 @@ public class SearchToolsPage extends AppCompatActivity{
             public boolean onQueryTextChange(String newText) {
                 return false;
             }
-        });
+        });*/
     }
 }

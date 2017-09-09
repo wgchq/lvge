@@ -11,4 +11,12 @@
         <attr name="ErrorMessage" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="SearchView">
+
+        <attr name="imageWidth" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="hintText" format="string" />
+    </declare-styleable>
+
 </resources>

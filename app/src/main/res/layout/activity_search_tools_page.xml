@@ -1,52 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="lvge.com.myapp.mainFragement.ClientFragment">
+
     <LinearLayout
+        style="@style/my_title_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        style="@style/my_title_style"
         android:background="@color/colorPrimary"
+        android:gravity="center"
         android:orientation="horizontal"
         tools:ignore="UselessParent">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/search_edit_frame"
-            android:background="@color/background_gray"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x78"
             android:layout_margin="10dp"
             android:layout_weight="1"
+            android:background="@color/background_gray"
             tools:ignore="InefficientWeight">
 
-            <android.support.v7.widget.SearchView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/search_view_bar"
-                android:iconifiedByDefault="true"
-                android:background="@drawable/edit_text_shape"
-                app:closeIcon="@null"
-                app:goIcon="@null"
-                android:imeOptions="actionSearch"
-                android:inputType="textCapWords"
-                tools:ignore="RtlHardcoded"
 
-                >
-            </android.support.v7.widget.SearchView>
+            <!--    <EditText
+                    android:id="@+id/et_common_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/edit_text_shape"
+                    android:drawableLeft="@mipmap/searcg"
+                    android:drawablePadding="@dimen/x20"
+                    android:ellipsize="end"
+                    android:imeOptions="actionSearch"
+                    android:singleLine="true"
+                    android:textColor="#333"
+                    android:textSize="@dimen/x28"
+                    tools:ignore="TextFields" />-->
+            <lvge.com.myapp.ui.SearchView
+                android:id="@+id/et_common_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/edit_text_shape"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/x20"
+                android:ellipsize="end"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                app:textSize="@dimen/x28"
+                android:textSize="@dimen/x28"
+                android:textColor="#333"
+                android:textCursorDrawable="@drawable/text_cursor_drawable"
+                app:hintText="请输入车架号、用户名或设备号码搜索" />
+
+
+            <!--   <android.support.v7.widget.SearchView
+                   android:id="@+id/search_view_bar"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/edit_text_shape"
+                   android:iconifiedByDefault="true"
+                   android:imeOptions="actionSearch"
+                   android:inputType="textCapWords"
+
+                   app:closeIcon="@null"
+                   app:goIcon="@null"
+                   tools:ignore="RtlHardcoded"
+
+                   >
+
+               </android.support.v7.widget.SearchView>-->
         </android.support.design.widget.AppBarLayout>
+
         <TextView
-            style="@style/Base.TextAppearance.AppCompat"
             android:id="@+id/search_tools_cancel"
+            style="@style/Base.TextAppearance.AppCompat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
+            android:text="@string/cancel"
             android:textColor="#ffffff"
             android:textSize="@dimen/x36"
-            android:text="@string/cancel"
             tools:ignore="RtlHardcoded,SpUsage" />
     </LinearLayout>
 </LinearLayout>
