@@ -491,45 +491,53 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                                                 continue;
                                             if (my_4s_pic_1_id == 0) {
                                                 my_4s_pic_1_id = result.getMarketEntity().getImgVOs().get(index).getId();
+                                                OkHttpUtils.get()
+                                                        .url(path)
+                                                        .build()
+                                                        .execute(new BitmapCallback() {
+                                                            @Override
+                                                            public void onError(Call call, Exception e, int i) {
+
+                                                            }
+
+                                                            @Override
+                                                            public void onResponse(Bitmap bitmap, int i) {
+                                                                    my_4s_shop_pic_1.setImageBitmap(bitmap);
+                                                            }
+                                                        });
                                             } else if (my_4s_pic_2_id == 0) {
                                                 my_4s_pic_2_id = result.getMarketEntity().getImgVOs().get(index).getId();
+                                                OkHttpUtils.get()
+                                                        .url(path)
+                                                        .build()
+                                                        .execute(new BitmapCallback() {
+                                                            @Override
+                                                            public void onError(Call call, Exception e, int i) {
+
+                                                            }
+
+                                                            @Override
+                                                            public void onResponse(Bitmap bitmap, int i) {
+                                                                my_4s_shop_pic_2.setImageBitmap(bitmap);
+                                                            }
+                                                        });
                                             } else if (my_4s_pic_3_id == 0) {
                                                 my_4s_pic_3_id = result.getMarketEntity().getImgVOs().get(index).getId();
-                                            }
-                                            OkHttpUtils.get()
-                                                    .url(path)
-                                                    .build()
-                                                    .execute(new BitmapCallback() {
-                                                        @Override
-                                                        public void onError(Call call, Exception e, int i) {
-
-                                                        }
-
-                                                        @Override
-                                                        public void onResponse(Bitmap bitmap, int i) {
-                                                            if (currentIndex == 0) {
-                                                                my_4s_shop_pic_1.setImageBitmap(bitmap);
+                                                OkHttpUtils.get()
+                                                        .url(path)
+                                                        .build()
+                                                        .execute(new BitmapCallback() {
+                                                            @Override
+                                                            public void onError(Call call, Exception e, int i) {
 
                                                             }
-                                                            if (currentIndex == 1) {
-                                                                my_4s_shop_pic_2.setImageBitmap(bitmap);
 
-                                                            }
-                                                            if (currentIndex == 2) {
+                                                            @Override
+                                                            public void onResponse(Bitmap bitmap, int i) {
                                                                 my_4s_shop_pic_3.setImageBitmap(bitmap);
                                                             }
-                                                            currentIndex++;
-                                                        }
-                                                    });
-                                            /**
-                                             //  currentIndex = index + 1;
-                                             new Thread(new Runnable() {
-                                            @Override public void run() {
-
-
+                                                        });
                                             }
-                                            }).start();
-                                             **/
                                         }
                                     }
 
