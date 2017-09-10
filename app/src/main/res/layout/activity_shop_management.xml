@@ -12,7 +12,6 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/my_title_style"
         android:theme="@style/AppTheme"
         app:elevation="0dp"
         tools:layout_editor_absoluteX="8dp"
@@ -34,24 +33,34 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:text="@string/shop_management" />
-
+            <TextView
+                android:id="@+id/shop_finish_1"
+                style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="end"
+                android:paddingRight="@dimen/x20"
+                android:text="完成"
+                android:textColor="@color/mainFontColor"
+                 />
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
     <!--暂时添加建设中-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="vertical">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
 
-            android:text="@string/hello_blank_fragment" />
-    </LinearLayout>
+            <!--android:text="@string/hello_blank_fragment" />-->
+    <!--</LinearLayout>-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -72,13 +81,72 @@
                 android:background="@color/mainBackgroundColor">
 
                 <EditText
+                    android:id="@+id/shop_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_shape"
                     android:hint="@string/please_enter_shop_name"
                     android:padding="@dimen/text_left_padding" />
             </LinearLayout>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="UseCompoundDrawables">
+                <ImageView
+                    android:id="@+id/shop_image_main_page"
+                    android:layout_width="@dimen/x150"
+                    android:layout_height="@dimen/x150"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:onClick="show"
+                    android:background="@drawable/image_style_shape"
+                    tools:ignore="ContentDescription" />
+                <ImageView
+                    android:id="@+id/shop_image_env_page"
+                    android:layout_width="@dimen/x150"
+                    android:layout_height="@dimen/x150"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:onClick="show"
+                    android:background="@drawable/image_style_shape"
+                    tools:ignore="ContentDescription" />
+                <ImageView
+                    android:id="@+id/shop_image_env_page_1"
+                    android:layout_width="@dimen/x150"
+                    android:layout_height="@dimen/x150"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:onClick="show"
+                    android:background="@drawable/image_style_shape"
+                    tools:ignore="ContentDescription" />
+                <ImageView
+                    android:id="@+id/shop_image_env_page_2"
+                    android:layout_width="@dimen/x150"
+                    android:layout_height="@dimen/x150"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:onClick="show"
+                    android:background="@drawable/image_style_shape"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_background_gray" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="UseCompoundDrawables">
+                <ImageView
+                    android:id="@+id/shop_image_other_page"
+                    android:layout_width="@dimen/x150"
+                    android:layout_height="@dimen/x150"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:onClick="show"
+                    android:background="@drawable/image_style_shape"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,33 +155,33 @@
                 android:background="@color/mainBackgroundColor"
                 android:orientation="vertical">
 
-                <RelativeLayout
-                    android:id="@+id/lly_shop_img_add"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/nav_header_vertical_spacing">
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/lly_shop_img_add"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:padding="@dimen/nav_header_vertical_spacing">-->
 
-                    <TextView
-                        android:id="@+id/tv_shop_add_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:drawablePadding="@dimen/text_left_to_img_padding"
-                        android:drawableStart="@mipmap/shop_manage_shop_img"
-                        android:text="@string/shop_image" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_shop_add_text"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:drawablePadding="@dimen/text_left_to_img_padding"-->
+                        <!--android:drawableStart="@mipmap/shop_manage_shop_img"-->
+                        <!--android:text="@string/shop_image" />-->
 
-                    <TextView
-                        android:id="@+id/tv_shop_add_text_content"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentTop="true"
-                        android:drawableEnd="@mipmap/see_detail_right"
-                        android:drawablePadding="@dimen/text_left_to_img_padding"
-                        android:hint="@string/shop_image_default"
-                        tools:ignore="RelativeOverlap" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_shop_add_text_content"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentEnd="true"-->
+                        <!--android:layout_alignParentTop="true"-->
+                        <!--android:drawableEnd="@mipmap/see_detail_right"-->
+                        <!--android:drawablePadding="@dimen/text_left_to_img_padding"-->
+                        <!--android:hint="@string/shop_image_default"-->
+                        <!--tools:ignore="RelativeOverlap" />-->
 
-                </RelativeLayout>
+                <!--</RelativeLayout>-->
 
                 <View
                     android:layout_width="match_parent"
@@ -221,7 +289,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/line_background_gray" />
+                <RelativeLayout
+                    android:id="@+id/lly_shop_consume_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/nav_header_vertical_spacing">
 
+                    <TextView
+                        android:id="@+id/tv_shop_consume_back_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:drawablePadding="@dimen/text_left_to_img_padding"
+                        android:drawableStart="@mipmap/shop_back_consume"
+                        android:text="@string/shop_consume_back" />
+
+                    <TextView
+                        android:id="@+id/tv_shop_consume_back_text_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:drawableEnd="@mipmap/see_detail_right"
+                        android:drawablePadding="@dimen/text_left_to_img_padding"
+                        android:hint="@string/shop_consume_default_back"
+                        tools:ignore="RelativeOverlap" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/line_background_gray" />
                 <RelativeLayout
                     android:id="@+id/lly_shop_contact"
                     android:layout_width="match_parent"

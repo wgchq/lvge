@@ -34,6 +34,7 @@
     <string name="refund_after_sale">退款售后</string>
     <string name="pending_send_goods">代发货</string>
     <string name="shop_management">店铺管理</string>
+    <string name="shop_management_phonenumber">联系电话</string>
     <string name="commodity_management">商品管理</string>
     <string name="financial_management">财务管理</string>
     <string name="car_data_management">车数据</string>
@@ -49,8 +50,10 @@
     <!--shop management-->
     <string name="please_enter_shop_name">请输入店铺名称</string>
     <string name="shop_authentication">店铺认证</string>
+    <string name="shop_authentication_help">认证帮助</string>
     <string name="non_shop_authentication">未申请店铺认证</string>
-
+    <string name="shop_management_phonenumber_tips">请输入店铺电话，方便客户及时与店家联系</string>
+    <string name="please_enter_shop_phonenumber">请输入11位电话号码</string>
     <string name="shop_address">店铺地址</string>
     <string name="shop_address_default">地址未设置</string>
 
@@ -58,9 +61,12 @@
     <string name="shop_image_default">未设置</string>
 
     <string name="shop_deposit">店铺保证金</string>
-    <string name="shop_deposit_default">未设置</string>
+    <string name="shop_deposit_default">未开通</string>
 
-    <string name="shop_contact">联系人</string>
+    <string name="shop_consume_back">未消费随便退</string>
+    <string name="shop_consume_default_back">不支持</string>
+
+    <string name="shop_contact">联系电话</string>
     <string name="shop_contact_default">未设置</string>
 
     <string name="shop_return_goods">退货管理</string>
@@ -75,6 +81,14 @@
     <string name="from_phone_photo">从相册选择</string>
     <string name="cancel">取消</string>
 
+    <string name="support">支持</string>
+    <string name="no_support">不支持</string>
+
+    <string name="shop_management_back_address">退货管理</string>
+    <string name="shop_back_address_contact_name">请输入联系人</string>
+    <string name="shop_back_address_contact_address">请输地址</string>
+    <string name="shop_back_address_postcode">请输入邮编</string>
+    <string name="shop_back_address_phonenumber">请输入电话</string>
     <!--shop management (shop authentication)-->
     <string name="company_name_text">公司名称</string>
     <string name="please_enter_company_name_text">请输入公司名称</string>
@@ -84,6 +98,9 @@
     <string name="confirm_and_submit_hint">预计在3个工作日完成人工审核</string>
     <string name="authentication_submit_success">认证信息已提交</string>
     <string name="authentication_submit_success_description">我们会在3个工作日内审核完成，您也可以访问商家社区寻求帮助！</string>
+    <string name="authentication_has_success_description">恭喜！您的店铺认证成功</string>
+    <string name="authentication_is_committing_description">认证信息审核中</string>
+    <string name="authentication_is_committing">我们会在3个工作日内审核完成，您可以和客户或者当地销售人员练习！</string>
     <string name="authentication_complete">完成</string>
     <string name="authentication_fail">很抱歉，你的店铺认证失败！</string>
     <string name="authentication_fail_description">很抱歉，你的店铺因营业执照/身份证信息无效而认证失败。请重新提供有效原件照，或加盖公章后的有效复印件，再次提交认证申请。</string>

@@ -1,22 +1,19 @@
 package lvge.com.myapp.modules.shop_management;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import lvge.com.myapp.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by cnhao on 2017/8/29.
  */
-public class HasCommitAuthenticationFragment extends Fragment {
 
-
-    public HasCommitAuthenticationFragment() {
+public class HasPassAuthenticationFragment extends Fragment{
+    public HasPassAuthenticationFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +21,7 @@ public class HasCommitAuthenticationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_shop_manage_has_commit_authentication, container, false);
+        View view = inflater.inflate(R.layout.fragment_shop_manage_has_pass_authentication, container, false);
 //        Button btn_authentication_complete = (Button) view.findViewById(R.id.btn_authentication_complete);
 //        btn_authentication_complete.setOnClickListener(new View.OnClickListener() {
 //            @Override

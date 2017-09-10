@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_shop_management_help"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:navigationIcon="@mipmap/ic_back"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:titleTextColor="@color/mainFontColor">
+
+        <TextView
+            style="@style/system_title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="认证帮助" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+        <TextView
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="#444"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="企业认证（人工审核）帮助"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="86dp"
+            android:id="@+id/textView6" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="你需要上传有效营业执照副本的照片，以及营业执照上所对应的法人身份证正反照片，等待我们的客服人工审核。"
+            android:layout_marginTop="22dp"
+            android:layout_below="@+id/textView6"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+</LinearLayout>

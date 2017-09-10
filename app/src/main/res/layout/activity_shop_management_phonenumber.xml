@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/PageBackgroundColor"
+    android:background="@color/background_gray"
     android:orientation="vertical"
-    tools:context="lvge.com.myapp.modules.shop_management.ShopManageAuthenticationActivity">
+    tools:context="lvge.com.myapp.modules.shop_management.ShopManagementActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -18,12 +18,11 @@
         tools:layout_editor_absoluteY="0dp">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_shop_authentication"
+            android:id="@+id/toolbar_shop_phonenumber"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:navigationIcon="@mipmap/ic_back"
-
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextColor="@color/mainFontColor">
 
@@ -33,29 +32,39 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="@string/shop_authentication" />
+                android:text="@string/shop_management_phonenumber" />
             <TextView
-                android:id="@+id/shop_authentication_help"
+                android:id="@+id/shop_finish_phonenumber"
                 style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
                 android:paddingRight="@dimen/x20"
-                android:text="@string/shop_authentication_help"
+                android:text="完成"
                 android:textColor="@color/mainFontColor"
                 />
         </android.support.v7.widget.Toolbar>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_gray"
+            android:orientation="vertical">
 
+
+            <EditText
+                android:id="@+id/shop_phonenumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_shape"
+                android:hint="@string/please_enter_shop_phonenumber"
+                android:padding="@dimen/text_left_padding" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/x20"
+                android:text="@string/shop_management_phonenumber_tips"/>
+        </LinearLayout>
+        
     </android.support.design.widget.AppBarLayout>
-
-    <LinearLayout
-        android:id="@+id/fragment_container_authentication"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-    </LinearLayout>
-
 </LinearLayout>

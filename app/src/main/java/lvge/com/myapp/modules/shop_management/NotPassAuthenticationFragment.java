@@ -3,6 +3,7 @@ package lvge.com.myapp.modules.shop_management;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +15,16 @@ import lvge.com.myapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
+
 public class NotPassAuthenticationFragment extends Fragment {
 
-
-    public NotPassAuthenticationFragment() {
+    private Handler mHandler;
+    public NotPassAuthenticationFragment()
+    {
+    }
+    public NotPassAuthenticationFragment(Handler mHandler) {
         // Required empty public constructor
+        this.mHandler = mHandler;
     }
 
 
@@ -32,11 +38,17 @@ public class NotPassAuthenticationFragment extends Fragment {
         btn_edit_authentication_information.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ShopManageAuthenticationActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), ShopManageAuthenticationActivity.class);
+//                startActivity(intent);
+                mHandler.sendEmptyMessage(ShopManagementParameter.AUTHENTIC_NOTAUTHENTIC_PAGE);
             }
         });
-        return inflater.inflate(R.layout.fragment_shop_manage_not_pass_autenticaiton, container, false);
+//        return inflater.inflate(R.layout.fragment_shop_manage_not_pass_autenticaiton, container, false);
+        return view;
+    }
+
+    public void show(View view){
+
     }
 
 }
