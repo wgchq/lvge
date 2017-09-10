@@ -9,11 +9,11 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
+        style="@style/my_title_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme"
         app:elevation="0dp"
-        style="@style/my_title_style"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="0dp">
 
@@ -42,10 +42,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
-                android:text="完成"
-                android:padding="@dimen/x20"
-                android:gravity="center"
                 android:background="?android:selectableItemBackground"
+                android:gravity="center"
+                android:padding="@dimen/x20"
+                android:text="完成"
                 android:textColor="@color/mainFontColor"
                 tools:ignore="HardcodedText" />
         </android.support.v7.widget.Toolbar>
@@ -56,6 +56,18 @@
     <lvge.com.myapp.ui.NetworkCheckView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_blank_fragment" />
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/fragment_content"
         android:layout_width="match_parent"
@@ -342,8 +354,8 @@
                 android:gravity="right"
                 android:hint="未设置"
                 android:inputType="text"
-                android:textColorHint="#999"
                 android:textColor="#000"
+                android:textColorHint="#999"
                 android:textSize="@dimen/x28"
                 tools:ignore="HardcodedText,LabelFor,RtlHardcoded,TextFields,TextViewEdits,UnknownIdInLayout" />
 
