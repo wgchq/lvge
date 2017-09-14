@@ -10,8 +10,8 @@ android {
         applicationId "lvge.com.myapp"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 7
-        versionName "0.58"
+        versionCode 8
+        versionName "0.59"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
