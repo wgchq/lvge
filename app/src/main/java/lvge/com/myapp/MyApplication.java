@@ -41,7 +41,7 @@ public class MyApplication extends Application {
         OkHttpUtils.initClient(okHttpClient);
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(getApplicationContext());
-       // Thread.setDefaultUncaughtExceptionHandler(restartHandler);// 程序崩溃时触发线程  以下用来捕获程序崩溃异常      
+      //  Thread.setDefaultUncaughtExceptionHandler(restartHandler);// 程序崩溃时触发线程  以下用来捕获程序崩溃异常      
     }
 
     // 创建服务用于捕获崩溃异常  
@@ -53,13 +53,13 @@ public class MyApplication extends Application {
                 @Override
                 public void run() {
 
-                /*    AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+               /*     AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
                     builder.setIcon(android.R.drawable.ic_dialog_info);
                     builder.setTitle("程序出错啦");
                     builder.setMessage("是否发送邮件给系统管理员，寻求帮助！");
                     builder.create().show();*/
 
-             /*         // TODO Auto-generated method stub
+                      // TODO Auto-generated method stub
                     AlertDialog mDialog = null;
                     AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
                     builder.setIcon(android.R.drawable.ic_dialog_info);
@@ -100,11 +100,10 @@ public class MyApplication extends Application {
                             WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                     mDialog.show();
 
-*/
-
+/*
                     int i = EmailSender.send("lvgeservice@126.com", "lvge Exception", ex);
                     Process.killProcess(Process.myPid());
-                    System.exit(1);
+                    System.exit(1);*/
                 }
             }).start();
 

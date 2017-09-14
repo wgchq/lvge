@@ -83,10 +83,10 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     My4sManagementActivityGson result;
     private static final String LOG_TAG = "HelloCamera";
-    private String id;
-    private String lat;
-    private String lng;
-    private String address;
+    private String id="";
+    private String lat="0";
+    private String lng="0";
+    private String address="";
 
     private View inflate;
     private TextView choosePhoto;
@@ -462,6 +462,8 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
                         @Override
                         public void onError(okhttp3.Call call, Exception e, int i) {
 
+                            e.printStackTrace();
+
                         }
 
                         @Override
@@ -578,8 +580,6 @@ public class My4sManagementActivity extends AppCompatActivity implements View.On
             @Override
             public void onClick(View v) {
                 try {
-
-
                     startProgerssDialog();
                     TimerTask task = new TimerTask() {
                         @Override

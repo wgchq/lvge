@@ -6,6 +6,9 @@ package lvge.com.myapp.util;
  * UncaughtException处理类,当程序发生Uncaught异常的时候,由该类来接管程序,并记录发送错误报告.
  *
  * @author way
+ * <p>
+ * UncaughtException处理类,当程序发生Uncaught异常的时候,由该类来接管程序,并记录发送错误报告.
+ * @author way
  */
 /**
  * UncaughtException处理类,当程序发生Uncaught异常的时候,由该类来接管程序,并记录发送错误报告.
@@ -15,10 +18,12 @@ package lvge.com.myapp.util;
  */
 
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.Thread.UncaughtExceptionHandler;
 
 import android.app.AlertDialog;
@@ -32,6 +37,7 @@ import android.net.Uri;
 
 import android.os.Environment;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -39,6 +45,7 @@ import android.widget.Toast;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
+import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
 import lvge.com.myapp.WelcomePageActivity;
 
 public class CrashHandler implements UncaughtExceptionHandler {
@@ -83,6 +90,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
             return false;
         final String crashReport = getCrashReport(mContext, ex);
         Log.i("error", crashReport);
+
         new Thread() {
             public void run() {
                 Looper.prepare();
@@ -121,6 +129,14 @@ public class CrashHandler implements UncaughtExceptionHandler {
 
     private void sendAppCrashReport(final Context context,
                                     final String crashReport, final File file) {
+
+
+      /*  if(CustomProgressDialog.getCustomProgressDialog()!=null)
+        {
+            CustomProgressDialog.getCustomProgressDialog().dismiss();
+        }*/
+
+
         // TODO Auto-generated method stub
         AlertDialog mDialog = null;
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -133,7 +149,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
                         // 发送异常报告
                         try {
 
-                            int i = EmailSender.send("lvgeservice@126.com", "lvge Exception",crashReport );
+                            int i = EmailSender.send("lvgeservice@126.com", "lvge Exception", crashReport);
 
 
                         } catch (Exception e) {
@@ -164,9 +180,49 @@ public class CrashHandler implements UncaughtExceptionHandler {
                     }
                 });
         mDialog = builder.create();
-        mDialog.getWindow().setType(
-                WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+
+
+        if (isMIUIRom()) {
+
+            mDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+
+        } else {
+            mDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT); //其他大部分的系统
+        }
+
+
+      /*  mDialog.getWindow().setType(
+                WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);*/
         mDialog.show();
+    }
+
+    public static boolean isMIUIRom() {
+
+        String property = getSystemProperty("ro.miui.ui.version.name");
+
+        return !TextUtils.isEmpty(property);
+
+    }
+
+    public static String getSystemProperty(String propName) {
+        String line;
+        BufferedReader input = null;
+        try {
+            Process p = Runtime.getRuntime().exec("getprop " + propName);
+            input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
+            line = input.readLine();
+            input.close();
+        } catch (IOException ex) {
+            return null;
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+        return line;
     }
 
 

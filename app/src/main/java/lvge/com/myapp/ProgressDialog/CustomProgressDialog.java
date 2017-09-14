@@ -23,12 +23,17 @@ public class CustomProgressDialog extends Dialog {
         this.context = context;
     }
 
-    public CustomProgressDialog(Context context, int theme){
-        super(context,theme);
+    public CustomProgressDialog(Context context, int theme) {
+        super(context, theme);
     }
 
-    public static CustomProgressDialog createDialog(Context context){
-        customProgressDialog = new CustomProgressDialog(context,R.style.CustomProgressDialog);
+
+    public static CustomProgressDialog getCustomProgressDialog(){
+        return customProgressDialog;
+    }
+
+    public static CustomProgressDialog createDialog(Context context) {
+        customProgressDialog = new CustomProgressDialog(context, R.style.CustomProgressDialog);
         customProgressDialog.setContentView(R.layout.activity_custom_progress_dialog);
         customProgressDialog.getWindow().getAttributes().gravity = Gravity.CENTER;
         customProgressDialog.setCanceledOnTouchOutside(false);
@@ -36,22 +41,22 @@ public class CustomProgressDialog extends Dialog {
         return customProgressDialog;
     }
 
-    public void onWindowFocusChanged(boolean hasFocus){
-        if(customProgressDialog == null){
+    public void onWindowFocusChanged(boolean hasFocus) {
+        if (customProgressDialog == null) {
             return;
         }
-        ImageView imageView = (ImageView)customProgressDialog.findViewById(R.id.loadingImageView);
-        AnimationDrawable animationDrawable = (AnimationDrawable)imageView.getBackground();
+        ImageView imageView = (ImageView) customProgressDialog.findViewById(R.id.loadingImageView);
+        AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getBackground();
         animationDrawable.start();
     }
 
-    public CustomProgressDialog setTitle(String strTitle){
+    public CustomProgressDialog setTitle(String strTitle) {
         return customProgressDialog;
     }
 
-    public CustomProgressDialog setMessage(String strMessage){
-        TextView tvMsg = (TextView)customProgressDialog.findViewById(R.id.id_tv_loading);
-        if(tvMsg != null){
+    public CustomProgressDialog setMessage(String strMessage) {
+        TextView tvMsg = (TextView) customProgressDialog.findViewById(R.id.id_tv_loading);
+        if (tvMsg != null) {
             tvMsg.setText(strMessage);
         }
 
