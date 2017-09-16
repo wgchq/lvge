@@ -398,6 +398,8 @@ public class MainPageActivity extends Activity {
                                                     @Override
                                                     public void onResponse(Bitmap bitm, int i) {
                                                         ImageView right_imageView = (ImageView)findViewById(R.id.right_imageView);
+                                                        ImageView main_page_Imagview = (ImageView)findViewById(R.id.main_page_Imagview);
+                                                        main_page_Imagview.setImageBitmap(bitm);
                                                         right_imageView.setImageBitmap(bitm);
                                                     }
                                                 });
