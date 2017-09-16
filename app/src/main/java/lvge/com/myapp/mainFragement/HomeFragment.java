@@ -1,6 +1,7 @@
 package lvge.com.myapp.mainFragement;
 
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,12 +9,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import lvge.com.myapp.MainPageActivity;
 import lvge.com.myapp.R;
@@ -30,9 +34,12 @@ import lvge.com.myapp.modules.crawl_client_management.CrawlClientActivity;
 import lvge.com.myapp.modules.evaluation_management.EvaluationManagementActivity;
 import lvge.com.myapp.modules.financial_management.FinancialManagementActivity;
 import lvge.com.myapp.modules.maintain_client_management.MaintainClientActivity;
+import lvge.com.myapp.modules.message_management.MessageManagementActivity;
 import lvge.com.myapp.modules.my_4s_management.My4sManagementActivity;
 import lvge.com.myapp.modules.royalty_management.RoyaltyManagementActivity;
 import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
+import lvge.com.myapp.ui.CustomKeyboard;
+import lvge.com.myapp.util.KeyboardUtil;
 import lvge.com.myapp.util.NetworkUtil;
 
 /**
@@ -45,6 +52,8 @@ public class HomeFragment extends Fragment {
     }
 
     private BroadcastReceiver broadcastReceiver;
+    private Context ctx;
+    private Activity act;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +61,6 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
 
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
-
 
         TextView main_page_content_shop_order = (TextView) view.findViewById(R.id.main_page_content_shop_order);
         main_page_content_shop_order.setText(getArguments().getString("name"));
@@ -199,6 +207,42 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        final EditText validation_code_input = (EditText) view.findViewById(R.id.validation_code_input);
+       /* act = getActivity();
+        ctx =getActivity();
+
+        validation_code_input.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int input = validation_code_input.getInputType();
+
+                validation_code_input.setInputType(InputType.TYPE_NULL);
+
+                new KeyboardUtil(act, ctx, validation_code_input).showKeyboard();
+                return false;
+            }
+        });*/
+           CustomKeyboard validation_keyboard = new CustomKeyboard(getActivity());
+        validation_keyboard.SetEditText(validation_code_input);
+        validation_keyboard.setValidationListner(new CustomKeyboard.OnValidationLisnter() {
+            @Override
+            public void OnValidation() {
+                Toast.makeText(getActivity(),"验证通过",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        ImageView ig_main_page_message = (ImageView) view.findViewById(R.id.ig_main_page_message);
+        ig_main_page_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MessageManagementActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        ;
+
         return view;
     }
 

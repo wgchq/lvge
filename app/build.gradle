@@ -43,6 +43,8 @@ dependencies {
     compile files('libs/commons-io-1.2.jar')
     compile files('libs/swipemenulistview.jar')
     compile files('libs/AMap_Search_V5.2.1_20170630.jar')
+    compile files('libs/Android_Map3D_SDK_V5.3.0_20170815.jar')
+    compile files('libs/activation.jar')
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
@@ -51,6 +53,4 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.jph.takephoto:takephoto_library:4.0.3'
     testCompile 'junit:junit:4.12'
-    compile files('libs/Android_Map3D_SDK_V5.3.0_20170815.jar')
-    compile files('libs/activation.jar')
 }

@@ -27,6 +27,7 @@
     <string name="title_My">我的</string>
 
     <!--首页内容-->
+    <string name="main_page_message">消息</string>
     <string name="please_enter_validation">请输入验证码</string>
     <string name="please_enter_storename">请输入商铺名称</string>
     <string name="validation_type_scan_QR">扫码校验</string>
