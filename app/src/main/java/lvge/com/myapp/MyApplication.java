@@ -18,6 +18,7 @@ import com.zhy.http.okhttp.log.LoggerInterceptor;
 
 import java.net.CookiePolicy;
 
+import lvge.com.myapp.model.LoadRightSideMode;
 import lvge.com.myapp.util.CrashHandler;
 import lvge.com.myapp.util.EmailSender;
 import okhttp3.OkHttpClient;
@@ -29,7 +30,6 @@ import okhttp3.OkHttpClient;
 public class MyApplication extends Application {
 
     protected static MyApplication instance;
-
     @Override
     public void onCreate() {
         super.onCreate();

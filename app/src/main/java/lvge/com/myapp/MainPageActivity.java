@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.jph.takephoto.permission.InvokeListener;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.BitmapCallback;
 import com.zhy.http.okhttp.callback.Callback;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
 
@@ -42,6 +45,7 @@ import lvge.com.myapp.mainFragement.ClientFragment;
 import lvge.com.myapp.mainFragement.HomeFragment;
 import lvge.com.myapp.mainFragement.MyFragment;
 import lvge.com.myapp.mainFragement.OrderFragment;
+import lvge.com.myapp.model.LoadRightSideMode;
 import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.modules.right_side_slider_menu_mansgement.EmployeeInformation;
 import lvge.com.myapp.modules.right_side_slider_menu_mansgement.PersonalProfile;
@@ -50,6 +54,7 @@ import lvge.com.myapp.ui.SlideMenu;
 import lvge.com.myapp.util.BottomNavigationViewHelper;
 import okhttp3.Call;
 import okhttp3.Response;
+
 
 
 public class MainPageActivity extends Activity {
@@ -64,11 +69,11 @@ public class MainPageActivity extends Activity {
     private SlideMenu mMenu;
 
     private int[] menus_logo = {
-        /*    R.mipmap.menu_personal,
+           R.mipmap.menu_personal,
             R.mipmap.menu_staff_info,
             R.mipmap.menu_authority,
             R.mipmap.menu_push_notice,
-            R.mipmap.menu_print_setting,*/
+            R.mipmap.menu_print_setting,
             R.mipmap.menu_exit
     };
 
@@ -95,7 +100,7 @@ public class MainPageActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
 
         setContentView(R.layout.activity_main_page);
-
+        load_right_side();
 
         mMenu = (SlideMenu) findViewById(R.id.id_menu);
         mMenu.setOnTouchListener(new View.OnTouchListener() {
@@ -126,7 +131,7 @@ public class MainPageActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
-               /* switch (position) {
+               switch (position) {
                     case 0:
                         intent.setClass(MainPageActivity.this,PersonalProfile.class);
                         startActivity(intent);
@@ -156,8 +161,9 @@ public class MainPageActivity extends Activity {
                         AlertDialog dialog = builder.create();
                         dialog.show();
                         break;
-                }*/
+                }
 
+                /**
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainPageActivity.this);
                 builder.setIcon(R.mipmap.warming);
                 builder.setTitle("注销");
@@ -177,6 +183,7 @@ public class MainPageActivity extends Activity {
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
+                 **/
 
             }
         });
@@ -269,11 +276,11 @@ public class MainPageActivity extends Activity {
     private List<Map<String, Object>> getMenuListItems() {
 
         String[] menu_text = {
-          /*      this.getString(R.string.menu_personal),
+               this.getString(R.string.menu_personal),
                 this.getString(R.string.menu_staff_info),
                 this.getString(R.string.menu_authority),
                 this.getString(R.string.menu_push_notice),
-                this.getString(R.string.menu_print_setting),*/
+                this.getString(R.string.menu_print_setting),
                 this.getString(R.string.menu_exit)
         };
 
@@ -338,6 +345,69 @@ public class MainPageActivity extends Activity {
                     });
         } catch (Exception e) {
             Toast.makeText(MainPageActivity.this, "注销失败！", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void load_right_side(){
+        try {
+
+            OkHttpUtils.get()//get 方法
+                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/getCurrentUser") //地址
+                    .build()
+                    .execute(new Callback() {
+                        @Override
+                        public Object parseNetworkResponse(Response response, int i) throws Exception {
+                            String string = response.body().string();//获取相应中的内容Json格式
+                            preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            // 设置数据 第一 个参数是key 第二个是相应数据
+                            editor.putString("right_data", string);
+                            editor.apply();
+                            //把json转化成对应对象
+                            //LoginResultModel是和后台返回值类型结构一样的对象
+                            LoadRightSideMode result = new Gson().fromJson(string, LoadRightSideMode.class);
+                            return result;
+                        }
+
+                        @Override
+                        public void onError(Call call, Exception e, int i) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Object o, int i) {
+                            if (null != o) {
+                                LoadRightSideMode result = (LoadRightSideMode) o;//把通用的Object转化成指定的对象
+                              //  LoadRightSideMode.getInstance().setMarketEntity(result.getMarketEntity());
+                                if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                    TextView nav_header_main_shop_name = (TextView)findViewById(R.id.nav_header_main_shop_name);
+                                    nav_header_main_shop_name.setText(result.getMarketEntity().getNAME());
+                                    //nav_header_main_shop_name.setText(loadRightSideMode.getMarketEntity().getNAME());
+
+                                    //String path = result.getMarketEntity().getHeadImg();
+                                    if(result.getMarketEntity().getHeadImg() != null && result.getMarketEntity().getHeadImg() != ""){
+                                        OkHttpUtils.get()
+                                                .url(result.getMarketEntity().getHeadImg())
+                                                .build()
+                                                .execute(new BitmapCallback() {
+                                                    @Override
+                                                    public void onError(Call call, Exception e, int i) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void onResponse(Bitmap bitm, int i) {
+                                                        ImageView right_imageView = (ImageView)findViewById(R.id.right_imageView);
+                                                        right_imageView.setImageBitmap(bitm);
+                                                    }
+                                                });
+                                    }
+                                }
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+            Toast.makeText(MainPageActivity.this, "获取失败！", Toast.LENGTH_SHORT).show();
         }
     }
 

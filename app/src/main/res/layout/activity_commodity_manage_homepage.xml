@@ -6,81 +6,50 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/toolbar_main_page"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         style="@style/my_title_style"
-        android:background="@color/colorPrimary"
-        android:baselineAligned="false"
-        android:gravity="center_vertical"
-        tools:ignore="UselessParent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                android:id="@+id/commodity_manage_homepage_callback"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:drawableLeft="@mipmap/menu_return"
-                tools:ignore="ContentDescription,NestedWeights" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="horizontal">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_4s_management"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/ic_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
 
             <TextView
                 style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="店铺管理"
-                tools:ignore="HardcodedText,SpUsage" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="商品管理"
+                tools:ignore="HardcodedText" />
 
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:layout_weight="1"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:padding="@dimen/x20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@mipmap/commodity_nowsgood"
                 tools:ignore="ContentDescription,NestedWeights" />
+        </android.support.v7.widget.Toolbar>
 
-        </LinearLayout>
-    </LinearLayout>
-    <!--暂时添加建设中-->
-    <LinearLayout
+    </android.support.design.widget.AppBarLayout>
+
+    <!--网络监测-->
+    <lvge.com.myapp.ui.NetworkCheckView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-
-            android:text="@string/hello_blank_fragment" />
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/commodity_manage_homepage_tablayout"
@@ -110,12 +79,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="未上架"
-            tools:ignore="HardcodedText" />
-
-        <android.support.design.widget.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="申请中"
             tools:ignore="HardcodedText" />
 
     </android.support.design.widget.TabLayout>

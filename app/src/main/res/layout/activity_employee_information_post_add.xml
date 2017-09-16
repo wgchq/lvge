@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="lvge.com.myapp.modules.commodity_management.CommodityCommonProblem">
+    tools:context="lvge.com.myapp.modules.my_4s_management.SalesConsultantPhoneActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
-        style="@style/my_title_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme"
@@ -18,7 +17,7 @@
         tools:layout_editor_absoluteY="0dp">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_4s_management"
+            android:id="@+id/toolbar_employee_information_add_post"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -32,30 +31,57 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="常见问题"
+                android:text="添加岗位"
                 tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/my4s_finish"
+                android:id="@+id/employee_information_post_compltant"
                 style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="end"
+                android:layout_gravity="right"
                 android:background="?android:selectableItemBackground"
                 android:gravity="center"
                 android:padding="@dimen/x20"
-                android:text="添加"
-                android:textColor="@color/mainFontColor"
-                tools:ignore="HardcodedText" />
+                android:text="完成"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
         </android.support.v7.widget.Toolbar>
-
     </android.support.design.widget.AppBarLayout>
-
     <!--网络监测-->
     <lvge.com.myapp.ui.NetworkCheckView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f1f5f8"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/employee_information_add_post_input"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x88"
+            android:layout_marginTop="@dimen/x10"
+            android:background="@drawable/edit_text_has_corner_shape"
+            android:gravity="center_vertical"
+            android:hint="请输入工作岗位"
+            android:paddingLeft="@dimen/x32"
+            android:textColorHint="#666"
+            android:textSize="@dimen/x32"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,TextFields" />
+
+        <!--
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:paddingLeft="@dimen/x32"
+            android:text="输入准确的姓名，以便后续保养服务"
+            android:textSize="@dimen/x28"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+            -->
+    </LinearLayout>
 
 </LinearLayout>

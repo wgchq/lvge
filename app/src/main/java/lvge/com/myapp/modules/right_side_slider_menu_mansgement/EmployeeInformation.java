@@ -1,6 +1,8 @@
 package lvge.com.myapp.modules.right_side_slider_menu_mansgement;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,14 +16,31 @@ import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import lvge.com.myapp.R;
+import lvge.com.myapp.model.LoadRightSideMode;
 import lvge.com.myapp.model.SalesConsutantListViewData;
+import lvge.com.myapp.model.SellerImgs;
+import lvge.com.myapp.modules.my_4s_management.SalesConsultant;
+import lvge.com.myapp.modules.my_4s_management.SalesConsutantListViewAdapter;
 
 public class EmployeeInformation extends AppCompatActivity {
 
     private TextView employee_information_toadd;
     private SwipeMenuListView employee_information_listview;
+
+    private SharedPreferences preferences;
+    private final static String FILE_NAME = "login_file";
+
+    private EmployeeInformationAdapter adapter;
+
+    private SwipeMenuListView customListView;
+    private List<SellerImgs> contentList = new ArrayList<SellerImgs>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +58,24 @@ public class EmployeeInformation extends AppCompatActivity {
             }
         });
 
+        preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        String string = preferences.getString("right_data","");
+        LoadRightSideMode result = new Gson().fromJson(string, LoadRightSideMode.class);
+        contentList = result.getMarketEntity().getSeller().getSellerImgs();
+        customListView = (SwipeMenuListView) findViewById(R.id.employee_information_listview);
+
+
+
+        customListView.setAdapter(new EmployeeInformationAdapter(EmployeeInformation.this, contentList));
+        /**
+        SellerImgs item = null;
+        for(int i=0;i<result.getMarketEntity().getSeller().getSellerImgs().size();i++){
+            item = new SellerImgs();
+            item.setImgPath(result.getMarketEntity().getSeller().getSellerImgs().get(i).getImgPath());
+        }
+         **/
+
+
         employee_information_toadd = (TextView)findViewById(R.id.employee_information_toadd);
         employee_information_listview = (SwipeMenuListView)findViewById(R.id.employee_information_listview);
 
@@ -48,10 +85,14 @@ public class EmployeeInformation extends AppCompatActivity {
                 SwipeMenuItem deleteItem = new SwipeMenuItem(getApplicationContext());
                 deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9, 0x3F, 0x25)));
                 deleteItem.setWidth(dp2px(90));
-                deleteItem.setTitle("删除");
+                //deleteItem.setTitle("删除");
+                deleteItem.setIcon(R.mipmap.delete);
+                //deleteItem.setTitleSize(R.dimen.x18);
+               // deleteItem.setTitleColor(R.color.mainBackgroundColor);
                 swipeMenu.addMenuItem(deleteItem);
             }
         };
+        customListView.setMenuCreator(creator);
 
         employee_information_toadd.setOnClickListener(new View.OnClickListener() {
             @Override

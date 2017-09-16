@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="lvge.com.myapp.modules.commodity_management.CommodityCommonProblem">
+    tools:context="lvge.com.myapp.modules.my_4s_management.SalesConsultantPhoneActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
-        style="@style/my_title_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme"
@@ -18,7 +17,7 @@
         tools:layout_editor_absoluteY="0dp">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_4s_management"
+            android:id="@+id/toolbar_employee_information_post"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -32,30 +31,42 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="常见问题"
+                android:text="岗位"
                 tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/my4s_finish"
+                android:id="@+id/employee_information_post_add"
                 style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="end"
-                android:background="?android:selectableItemBackground"
-                android:gravity="center"
+                android:layout_gravity="right"
                 android:padding="@dimen/x20"
+                android:gravity="center"
+                android:background="?android:selectableItemBackground"
                 android:text="添加"
-                android:textColor="@color/mainFontColor"
-                tools:ignore="HardcodedText" />
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
         </android.support.v7.widget.Toolbar>
-
     </android.support.design.widget.AppBarLayout>
-
     <!--网络监测-->
     <lvge.com.myapp.ui.NetworkCheckView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <LinearLayout
+        android:id="@+id/fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_main_page"
+        android:background="@color/line_background_gray"
+        android:orientation="vertical"
+        tools:ignore="ObsoleteLayoutParam">
+
+        <com.baoyz.swipemenulistview.SwipeMenuListView
+            android:id="@+id/employee_information_post_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -162,8 +162,8 @@ public class CustomKeyboard {
                 }
 
 
-                mEditText.setText(mEditTextContent);
-                mEditText.setSelection(start + 1);
+               // mEditText.setText(mEditTextContent);
+               // mEditText.setSelection(start + 1);
                 return false;
             }
         };

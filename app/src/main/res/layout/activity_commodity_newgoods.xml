@@ -9,70 +9,49 @@
     tools:context="lvge.com.myapp.modules.commodity_management.CommodityNewgoods"
     tools:ignore="GradleDependency">
 
-    <LinearLayout
-        android:id="@+id/toolbar_main_page"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        style="@style/my_title_style"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
 
-        android:background="@color/colorPrimary"
-        android:gravity="center_vertical"
-        android:baselineAligned="false"
-        tools:ignore="UselessParent">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:src="@mipmap/menu_return"
-                tools:ignore="ContentDescription,NestedWeights"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="horizontal">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_4s_management"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/ic_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="新增商品"
                 style="@style/system_title_style"
-                tools:ignore="HardcodedText,SpUsage" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/mainBackgroundColor"
-                android:textSize="@dimen/text_margin"
-                tools:ignore="HardcodedText,SpUsage" />
-        </LinearLayout>
-    </LinearLayout>
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="新增商品"
+                tools:ignore="HardcodedText" />
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!--网络监测-->
+    <lvge.com.myapp.ui.NetworkCheckView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:isScrollContainer="false"
         android:orientation="vertical"
         android:scrollbars="vertical"
-        android:isScrollContainer ="false"
         android:weightSum="1"
         tools:ignore="UselessParent">
 
@@ -91,22 +70,16 @@
                 android:weightSum="1"
                 tools:ignore="ObsoleteLayoutParam">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:padding="@dimen/activity_horizontal_margin"
-                    tools:ignore="UselessParent">
 
-                    <EditText
-                        android:id="@+id/commodity_newgoods_commodityname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_shape"
-                        android:hint="请输入商品名称"
-                        android:inputType="text"
-                        tools:ignore="HardcodedText" />
-                </LinearLayout>
+                <EditText
+                    style="@style/system_hint_style"
+                    android:id="@+id/commodity_newgoods_commodityname"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x98"
+                    android:background="@drawable/edit_text_shape"
+                    android:hint="请输入商品名称"
+                    android:inputType="text"
+                    tools:ignore="HardcodedText" />
 
                 <GridView
                     android:layout_width="match_parent"

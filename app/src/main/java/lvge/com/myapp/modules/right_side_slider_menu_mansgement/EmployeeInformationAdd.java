@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jph.takephoto.app.TakePhoto;
@@ -51,6 +52,7 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
     private TextView employee_information_add_inputsex;
     private TextView employee_information_add_name;
     private ImageView employee_information_add_iamgeview;
+    private TextView employee_information_add_inputemploy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +60,12 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_information_add);
 
+        cropOptions = new CropOptions.Builder().setAspectX(1).setAspectY(1).setWithOwnCrop(true).create();
+
         employee_information_add_inputsex = (TextView)findViewById(R.id.employee_information_add_inputsex);
         employee_information_add_name = (TextView)findViewById(R.id.employee_information_add_name);
         employee_information_add_iamgeview = (ImageView)findViewById(R.id.employee_information_add_iamgeview);
+        employee_information_add_inputemploy = (TextView)findViewById(R.id.employee_information_add_inputemploy);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_employee_information_add);
         toolbar.setTitle("");
@@ -75,11 +80,16 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
 
     }
 
-    public void employee_add_name(View view){
+    public void employee_add_name(View view){  //名字
         Intent intent = new Intent(EmployeeInformationAdd.this, EmployeeInformationAddName.class);
         String inputname = employee_information_add_name.getText().toString();
         intent.putExtra("inputname", inputname);
         startActivityForResult(intent, 10);
+    }
+
+    public void employee_add_post(View view){  //岗位
+        Intent intent = new Intent(EmployeeInformationAdd.this, EmployeeInformationAddPost.class);
+        startActivityForResult(intent, 11);
     }
     public void choose_dialog(View v){
         dialog = new Dialog(this,R.style.ChooseDialog);
@@ -163,6 +173,7 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
             case R.id.take_photo:
                 fileUri = getImageCropUri();
                 getTakePhoto().onPickFromCaptureWithCrop(fileUri,cropOptions);
+                break;
             case R.id.cancel:
                 dialog.dismiss();
                 break;

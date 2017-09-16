@@ -1,13 +1,18 @@
 package lvge.com.myapp.modules.right_side_slider_menu_mansgement;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +21,9 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.jph.takephoto.app.TakePhoto;
 import com.jph.takephoto.app.TakePhotoImpl;
 import com.jph.takephoto.model.CropOptions;
@@ -26,11 +33,28 @@ import com.jph.takephoto.model.TResult;
 import com.jph.takephoto.permission.InvokeListener;
 import com.jph.takephoto.permission.PermissionManager;
 import com.jph.takephoto.permission.TakePhotoInvocationHandler;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
 import lvge.com.myapp.R;
+import lvge.com.myapp.model.LoadRightSideMode;
+import lvge.com.myapp.model.LoginResultModel;
+import lvge.com.myapp.modules.my_4s_management.BaseTest;
+import lvge.com.myapp.modules.my_4s_management.SaleConsultantTwo;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class PersonalProfile extends AppCompatActivity implements View.OnClickListener,TakePhoto.TakeResultListener,InvokeListener{
 
@@ -54,17 +78,50 @@ public class PersonalProfile extends AppCompatActivity implements View.OnClickLi
     private RelativeLayout persion_profile_Relayout_name;
     private RelativeLayout persion_profile_Relayout_changePassword;
     private TextView persion_profile_inputsex;
+    private TextView sale_consultant_Preservation;
+
+    private SharedPreferences preferences;
+    private final static String FILE_NAME = "login_file";
+
+    private String password = "";
+    private String confirmPassword = "";
+    private Bitmap bitmap;
+
+    private CustomProgressDialog progressDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getTakePhoto().onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_profile);
+
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.persion_profile_toobar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         cropOptions = new CropOptions.Builder().setAspectX(1).setAspectY(1).setWithOwnCrop(true).create();
+
+        preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        String string = preferences.getString("right_data","");
+        LoadRightSideMode result = new Gson().fromJson(string, LoadRightSideMode.class);
 
         persion_profile_iamgeview = (ImageView)findViewById(R.id.persion_profile_iamgeview);
         persion_profile_inputname = (TextView)findViewById(R.id.persion_profile_inputname);
+        persion_profile_inputname.setText(result.getMarketEntity().getSeller().getName());
         persion_profile_inputsex = (TextView)findViewById(R.id.persion_profile_inputsex);
+        if(result.getMarketEntity().getSex() == 0){
+            persion_profile_inputsex.setText("男");
+        }else {
+            persion_profile_inputsex.setText("女");
+        }
+
         persion_profile_Relayout_name = (RelativeLayout)findViewById(R.id.persion_profile_Relayout_name);
         persion_profile_Relayout_changePassword = (RelativeLayout)findViewById(R.id.persion_profile_Relayout_changePassword);
 
@@ -82,7 +139,70 @@ public class PersonalProfile extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PersonalProfile.this,PersionProfileChangePassword.class);
-                startActivity(intent);
+                startActivityForResult(intent, 11);   //修改密码
+            }
+        });
+
+        sale_consultant_Preservation = (TextView)findViewById(R.id.sale_consultant_Preservation);
+        sale_consultant_Preservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                persion_profile_iamgeview.setDrawingCacheEnabled(true);
+                bitmap = persion_profile_iamgeview.getDrawingCache();
+                startProgerssDialog();
+                String sex = "";
+                if(persion_profile_inputsex.getText().toString().equals("男")){
+                    sex = "1";
+                }else {
+                    sex = "0";
+                }
+                try{
+                    OkHttpUtils.get()
+                            .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/update.do")
+                            .addParams("password",password)
+                            .addParams("confirmPassword",confirmPassword)
+                            .addParams("name",persion_profile_inputname.getText().toString())
+                            .addParams("sex",sex)
+                            .build()
+                            .execute(new Callback() {
+                                @Override
+                                public Object parseNetworkResponse(Response response, int i) throws Exception {
+                                    String string = response.body().string();//获取相应中的内容Json格式
+                                    //把json转化成对应对象
+                                    //LoginResultModel是和后台返回值类型结构一样的对象
+                                    LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                                    return result;
+                                }
+
+                                @Override
+                                public void onError(Call call, Exception e, int i) {
+
+                                }
+
+                                @Override
+                                public void onResponse(Object o, int i) {
+                                    if (null != o) {
+                                        LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
+                                        if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                            new Thread() {
+                                                public void run() {
+                                                    try {
+                                                        // showProgressDialog();
+                                                        post_str();
+                                                    } catch ( Exception e) {
+                                                        e.printStackTrace();
+                                                        stopProgressDialog();
+                                                    }
+                                                }
+                                            }.start();
+                                        }
+                                    }
+                                }
+                            });
+                }catch (Exception e){
+
+                }
+
             }
         });
     }
@@ -158,6 +278,7 @@ public class PersonalProfile extends AppCompatActivity implements View.OnClickLi
             case R.id.take_photo:
                 fileUri = getImageCropUri();
                 getTakePhoto().onPickFromCaptureWithCrop(fileUri,cropOptions);
+                break;
             case R.id.cancel:
                 dialog.dismiss();
                 break;
@@ -169,13 +290,19 @@ public class PersonalProfile extends AppCompatActivity implements View.OnClickLi
         if (10 == requestCode && data != null) {
             String inputname = data.getStringExtra("inputname");
             persion_profile_inputname.setText(inputname);
+        }else if(11 == requestCode && data != null){
+            password = data.getStringExtra("password");
+            confirmPassword = data.getStringExtra("confirmPassword");
         }
+
         if (null == dialog) {
         } else {
             dialog.dismiss();
         }
 
+
         getTakePhoto().onActivityResult(requestCode,resultCode,data);
+
         super.onActivityResult(requestCode,requestCode,data);
     }
 
@@ -234,5 +361,127 @@ public class PersonalProfile extends AppCompatActivity implements View.OnClickLi
     protected void onSaveInstanceState(Bundle outState){
         getTakePhoto().onSaveInstanceState(outState);
         super.onSaveInstanceState(outState);
+    }
+
+    private String saveBitmap() throws IOException {
+        File sd = Environment.getExternalStorageDirectory();
+        boolean can_write = sd.canWrite();
+
+        // Bitmap bitm = convertViewToBitMap(sale_consultant_two_iamgeview);
+        String strPath = Environment.getExternalStorageDirectory().toString() + "/save";
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,baos);
+
+        if(baos.toByteArray().length/1024 >500 ){
+            int option = 90;
+            while (baos.toByteArray().length/1024 >500){
+                baos.reset();
+                bitmap.compress(Bitmap.CompressFormat.PNG,option,baos);
+                option -= 10;
+            }
+            ByteArrayInputStream isbm = new ByteArrayInputStream(baos.toByteArray());
+            bitmap = BitmapFactory.decodeStream(isbm,null,null);
+
+            isbm.close();
+        }
+        baos.close();
+
+        try {
+            File desDir = new File(strPath);
+            if (!desDir.exists()) {
+                desDir.mkdir();
+            }
+
+            File imageFile = new File(strPath + "/1.PNG");
+            if(imageFile.exists()){
+                imageFile.delete();
+            }
+            imageFile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return strPath + "/1.PNG";
+    }
+    private void post_str() {
+
+        try {
+            String path = "http://www.lvgew.com/obdcarmarket/sellerapp/user/updateImage";
+
+            List<String> filePaths = new ArrayList<>();
+            filePaths.add(saveBitmap());
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+
+            BaseTest bs = new BaseTest();
+            String str = bs.imgPut(path, filePaths, map);
+            returnMessage(str);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            returnMessage("error");
+        }
+    }
+
+    private void returnMessage(String string) {
+        Message msg = new Message();
+        if(string.equals("error")){
+            msg.what = 1;
+            mHander.sendMessage(msg);
+            return;
+        }
+
+        LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+
+        if(result.getOperationResult().getResultCode() == 0){
+
+            msg.what = 0;
+            mHander.sendMessage(msg);
+        }else {
+            msg.what = 1;
+            mHander.sendMessage(msg);
+        }
+        // dissmissProgressDialog();
+    }
+
+    Handler mHander = new Handler() {
+        public void handleMessage(Message msg){
+            stopProgressDialog();
+            persion_profile_iamgeview.setDrawingCacheEnabled(false);
+            switch (msg.what){
+                case 0:
+                    Toast.makeText(PersonalProfile.this,"上传成功！",Toast.LENGTH_LONG).show();
+                    // Intent intent = new Intent(SaleConsultantTwo.this, SalesConsultant.class);
+                    // startActivity(intent);
+                    finish();
+                    break;
+                case 1:
+                    Toast.makeText(PersonalProfile.this,"上传失败！",Toast.LENGTH_LONG).show();
+                    break;
+            }
+        }
+
+    };
+
+    private void startProgerssDialog(){
+        if(progressDialog == null){
+            progressDialog = CustomProgressDialog.createDialog(this);
+            // progressDialog.setMessage("正在加载中。。");
+        }
+        progressDialog.show();
+    }
+
+    private void stopProgressDialog(){
+        if(progressDialog != null){
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
     }
 }

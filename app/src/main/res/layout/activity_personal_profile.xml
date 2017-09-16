@@ -45,7 +45,7 @@
                 android:padding="@dimen/x20"
                 android:gravity="center"
                 android:background="?android:selectableItemBackground"
-                android:text=""
+                android:text="完成"
                 android:textSize="@dimen/x30"
                 android:textColor="@color/mainFontColor"
                 tools:ignore="HardcodedText" />

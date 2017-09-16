@@ -100,7 +100,6 @@
                     android:ellipsize="end"
                     android:textColor="#333"
                     android:textSize="@dimen/x26"
-                    android:singleLine="true"
                     tools:ignore="HardcodedText,RtlHardcoded"
                     />
 

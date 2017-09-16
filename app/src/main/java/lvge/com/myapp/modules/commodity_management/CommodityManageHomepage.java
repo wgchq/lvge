@@ -54,18 +54,6 @@ public class CommodityManageHomepage extends FragmentActivity {
 
         mViewPager = (ViewPager)findViewById(R.id.id_commodity_viewpager);
 
-        TextView  commodity_manage_homepage_callback = (TextView) findViewById(R.id.commodity_manage_homepage_callback);
-        commodity_manage_homepage_callback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-       // initView();
-
-       // initTabLine();
-
 
         //初始化Adapter
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
@@ -169,10 +157,6 @@ public class CommodityManageHomepage extends FragmentActivity {
         DisplayMetrics outMetrics = new DisplayMetrics();
         getWindow().getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
         screenWidth = outMetrics.widthPixels;
-        //LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mTabLine.getLayoutParams();
-
-       // lp.width = screenWidth /4;
-       // mTabLine.setLayoutParams(lp);
     }
 
     //重置颜色
@@ -182,14 +166,6 @@ public class CommodityManageHomepage extends FragmentActivity {
         mSoldout.setTextColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
         mShelffailure.setTextColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
         mApplication.setTextColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
-    }
-
-    public void Commodity_return(View view) {    //返回上一界面
-
-    }
-
-    public  void Commodity_nowgoods(View view){   //跳转新增界面
-
     }
 
 }
