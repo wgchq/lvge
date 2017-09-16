@@ -4,6 +4,7 @@ package lvge.com.myapp.mainFragement;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +14,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
 
+import lvge.com.myapp.MainActivity;
+import lvge.com.myapp.MainPageActivity;
+import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.modules.validationtypescanqr.MipcaActivityCaptureActivity;
 import lvge.com.myapp.R;
 import lvge.com.myapp.modules.PendingSendGoods.PendingSendGoodsActivity;
@@ -33,7 +40,9 @@ import lvge.com.myapp.modules.my_4s_management.My4sManagementActivity;
 import lvge.com.myapp.modules.royalty_management.RoyaltyManagementActivity;
 import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
 import lvge.com.myapp.modules.validationtypescanqr.ValidationTypeScanQRFailActivity;
+import lvge.com.myapp.modules.validationtypescanqr.ValidationTypeScanQRSuccessActivity;
 import lvge.com.myapp.ui.CustomKeyboard;
+import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,9 +56,54 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        ValidationQR(data.getDataString());
+    }
 
-        Intent intent = new Intent(getActivity(), ValidationTypeScanQRFailActivity.class);
-        startActivity(intent);
+    public void ValidationQR(String strqr) {
+        try {
+            OkHttpUtils.get()//get 方法
+                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/code/codeUse") //地址
+                    .addParams("CODE_STR", strqr) //需要传递的参数
+                    .build()
+                    .execute(new Callback() {//通用的callBack
+
+                        @Override
+                        public Object parseNetworkResponse(Response response, int i) throws Exception {
+
+                            String string = response.body().string();//获取相应中的内容Json格式
+                            //把json转化成对应对象
+                            //LoginResultModel是和后台返回值类型结构一样的对象
+                            LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                            return result;
+                        }
+
+                        @Override
+                        public void onError(okhttp3.Call call, Exception e, int i) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Object object, int i) {
+
+                            //object 是 parseNetworkResponse的返回值
+                            if (null != object) {
+                                LoginResultModel result = (LoginResultModel) object;//把通用的Object转化成指定的对象
+                                if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+
+                                    Intent intent = new Intent(getActivity(), ValidationTypeScanQRSuccessActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    Intent intent = new Intent(getActivity(), ValidationTypeScanQRFailActivity.class);
+                                    startActivity(intent);
+                                }
+                            } else {//当没有返回对象时，表示网络没有联通
+                                Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private BroadcastReceiver broadcastReceiver;
@@ -213,7 +267,9 @@ public class HomeFragment extends Fragment {
         validation_keyboard.setValidationListner(new CustomKeyboard.OnValidationLisnter() {
             @Override
             public void OnValidation() {
-                Toast.makeText(getActivity(), "验证通过", Toast.LENGTH_SHORT).show();
+                String strvalidation_code_input = validation_code_input.getText().toString();
+
+                ValidationQR(strvalidation_code_input);
             }
         });
 

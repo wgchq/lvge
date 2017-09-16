@@ -35,8 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:background="#9F6c6b69"
-        android:gravity="center"
-        android:orientation="center">
+        android:gravity="center">
 
         <TextView
             android:id="@+id/manual_input_qr_code"
