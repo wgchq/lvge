@@ -245,7 +245,9 @@ public class HomeFragment extends Fragment {
         // integrator.setBeepEnabled(false); //扫描成功的「哔哔」声，默认开启
         integrator.setOrientationLocked(false);
         integrator.setCaptureActivity(MipcaActivityCaptureActivity.class); // 设置自定义的activity是CustomActivity
+
         integrator.initiateScan();// 初始化扫描
+
     }
 
     @Override

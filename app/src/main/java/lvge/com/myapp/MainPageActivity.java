@@ -114,9 +114,6 @@ public class MainPageActivity extends Activity {
                 {
                     return true;
                 }
-
-
-
             }
         });
         TextView nav_header_main_shop_name = (TextView) findViewById(R.id.nav_header_main_shop_name);

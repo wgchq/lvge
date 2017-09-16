@@ -14,4 +14,10 @@
     <color name="hint_color">#aaaaaa</color>
     <color name="my4s_hint_color">#aaaaaa</color>
     <color name="text_color">#000000</color>
+
+    <color name="zxing_custom_possible_result_points">#00FF00</color>
+    <color name="zxing_custom_result_view">#00FF00</color>
+    <color name="zxing_custom_viewfinder_mask">#FFDDCC</color>
+    <color name="zxing_transparent">#00000000</color>
+    <color name="zxing_status_text">#FFFFFF</color>
 </resources>
