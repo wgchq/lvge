@@ -40,7 +40,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
+               <!-- <ImageView
                     android:id="@+id/main_person_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -49,14 +49,18 @@
                     android:paddingLeft="12dp"
                     android:paddingRight="4dp"
                     android:paddingTop="14dp"
-                    android:src="@mipmap/ic_back" />
+                    android:src="@mipmap/ic_back" />-->
 
                 <TextView
+                    android:id="@+id/main_person_id"
+                    android:layout_alignParentLeft="true"
+                    android:drawableLeft="@mipmap/ic_back"
+                    android:padding="@dimen/x20"
+                    android:drawablePadding="@dimen/x20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="返回"
                     android:textColor="@android:color/white" />
-
             </LinearLayout>
 
             <TextView
@@ -64,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="扫描二维码签到"
+                android:text="扫描验证"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />

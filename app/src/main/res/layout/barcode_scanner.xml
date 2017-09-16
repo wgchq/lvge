@@ -25,14 +25,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/x80"
+        android:layout_marginTop="@dimen/x240"
         android:background="@color/zxing_transparent"
         android:text="@string/zxing_msg_default_status"
         android:textColor="@color/mainFontColor" />
 
     <LinearLayout
+        android:id="@+id/lly_manual_input_qr_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_gravity="bottom|center_horizontal"
         android:background="#9F6c6b69"
         android:gravity="center">
