@@ -19,13 +19,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+
 import lvge.com.myapp.MainPageActivity;
+import lvge.com.myapp.MipcaActivityCaptureActivity;
 import lvge.com.myapp.R;
 import lvge.com.myapp.broadcast.NetBroadcastReceiver;
 import lvge.com.myapp.modules.PendingSendGoods.PendingSendGoodsActivity;
 import lvge.com.myapp.modules.RefundAfterSale.RefundAfterSaleActivity;
 import lvge.com.myapp.modules.ValidationHistory.ValidationHistoryActivity;
-import lvge.com.myapp.modules.ValidationTypeScanQR.ValidationTypeScanQRActivity;
 import lvge.com.myapp.modules.alert_client_management.AlertClientActivity;
 import lvge.com.myapp.modules.car_data_management.CarDataManagementActivity;
 import lvge.com.myapp.modules.commodity_management.CommodityManageHomepage;
@@ -39,8 +41,6 @@ import lvge.com.myapp.modules.my_4s_management.My4sManagementActivity;
 import lvge.com.myapp.modules.royalty_management.RoyaltyManagementActivity;
 import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
 import lvge.com.myapp.ui.CustomKeyboard;
-import lvge.com.myapp.util.KeyboardUtil;
-import lvge.com.myapp.util.NetworkUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,9 +51,14 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+    }
+
     private BroadcastReceiver broadcastReceiver;
-    private Context ctx;
-    private Activity act;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -148,8 +153,10 @@ public class HomeFragment extends Fragment {
         tv_validation_type_scan_QR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ValidationTypeScanQRActivity.class);
-                startActivity(intent);
+
+                scanBarcode(v);
+               /* Intent intent = new Intent(getActivity(), ValidationTypeScanQRActivity.class);
+                startActivity(intent);*/
             }
         });
 
@@ -208,26 +215,13 @@ public class HomeFragment extends Fragment {
             }
         });
         final EditText validation_code_input = (EditText) view.findViewById(R.id.validation_code_input);
-       /* act = getActivity();
-        ctx =getActivity();
 
-        validation_code_input.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int input = validation_code_input.getInputType();
-
-                validation_code_input.setInputType(InputType.TYPE_NULL);
-
-                new KeyboardUtil(act, ctx, validation_code_input).showKeyboard();
-                return false;
-            }
-        });*/
-           CustomKeyboard validation_keyboard = new CustomKeyboard(getActivity());
+        CustomKeyboard validation_keyboard = new CustomKeyboard(getActivity());
         validation_keyboard.SetEditText(validation_code_input);
         validation_keyboard.setValidationListner(new CustomKeyboard.OnValidationLisnter() {
             @Override
             public void OnValidation() {
-                Toast.makeText(getActivity(),"验证通过",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "验证通过", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -241,9 +235,17 @@ public class HomeFragment extends Fragment {
         });
 
 
-        ;
-
         return view;
+    }
+
+    public void scanBarcode(View view) {
+        IntentIntegrator integrator = new IntentIntegrator(getActivity());
+        integrator.setPrompt("请对准二维码进行扫描"); //底部的提示文字，设为""可以置空
+        integrator.setCameraId(0); //前置或者后置摄像头
+        // integrator.setBeepEnabled(false); //扫描成功的「哔哔」声，默认开启
+        integrator.setOrientationLocked(false);
+        integrator.setCaptureActivity(MipcaActivityCaptureActivity.class); // 设置自定义的activity是CustomActivity
+        integrator.initiateScan();// 初始化扫描
     }
 
     @Override
