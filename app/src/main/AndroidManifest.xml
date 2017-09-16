@@ -209,10 +209,6 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".modules.ValidationTypeScanQR.ValidationTypeScanQRActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
             android:name=".modules.ValidationHistory.ValidationHistoryActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
@@ -322,8 +318,26 @@
             android:name=".modules.shop_management.ShopManagementBackAddress"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".modules.message_management.MessageManagementActivity" />
-        <activity android:name=".MipcaActivityCaptureActivity"></activity>
+        <activity
+            android:name=".modules.message_management.MessageManagementActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.validationtypescanqr.MipcaActivityCaptureActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".modules.validationtypescanqr.ValidationTypeScanQRFailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden">
+
+        </activity>
+        <activity
+            android:name=".modules.validationtypescanqr.ValidationTypeScanQRSuccessActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden">
+
+        </activity>
     </application>
 
 </manifest>

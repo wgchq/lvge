@@ -1,17 +1,11 @@
 package lvge.com.myapp.mainFragement;
 
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -21,10 +15,8 @@ import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 
-import lvge.com.myapp.MainPageActivity;
-import lvge.com.myapp.MipcaActivityCaptureActivity;
+import lvge.com.myapp.modules.validationtypescanqr.MipcaActivityCaptureActivity;
 import lvge.com.myapp.R;
-import lvge.com.myapp.broadcast.NetBroadcastReceiver;
 import lvge.com.myapp.modules.PendingSendGoods.PendingSendGoodsActivity;
 import lvge.com.myapp.modules.RefundAfterSale.RefundAfterSaleActivity;
 import lvge.com.myapp.modules.ValidationHistory.ValidationHistoryActivity;
@@ -40,6 +32,7 @@ import lvge.com.myapp.modules.message_management.MessageManagementActivity;
 import lvge.com.myapp.modules.my_4s_management.My4sManagementActivity;
 import lvge.com.myapp.modules.royalty_management.RoyaltyManagementActivity;
 import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
+import lvge.com.myapp.modules.validationtypescanqr.ValidationTypeScanQRFailActivity;
 import lvge.com.myapp.ui.CustomKeyboard;
 
 /**
@@ -55,7 +48,8 @@ public class HomeFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
+        Intent intent = new Intent(getActivity(), ValidationTypeScanQRFailActivity.class);
+        startActivity(intent);
     }
 
     private BroadcastReceiver broadcastReceiver;
@@ -155,8 +149,6 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
 
                 scanBarcode(v);
-               /* Intent intent = new Intent(getActivity(), ValidationTypeScanQRActivity.class);
-                startActivity(intent);*/
             }
         });
 

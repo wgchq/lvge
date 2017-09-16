@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="lvge.com.myapp.modules.ValidationTypeScanQR.ValidationTypeScanQRActivity">
+    tools:context="lvge.com.myapp.modules.validationtypescanqr.ValidationTypeScanQRFailActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
+        style="@style/my_title_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme"
-        style="@style/my_title_style"
         app:elevation="0dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="0dp">
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="@string/validation_type_scan_QR" />
+                android:text="@string/validation_type_scan_QR_result" />
 
         </android.support.v7.widget.Toolbar>
 
@@ -41,14 +41,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal|top"
+            android:text="@string/validation_type_scan_QR_result_fail" />
 
-            android:text="@string/hello_blank_fragment" />
+        <TextView
+            android:id="@+id/validation_type_scan_QR_re_validation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center_horizontal"
+            android:text="@string/validation_type_scan_QR_re_validation" />
     </LinearLayout>
 </LinearLayout>
+

@@ -31,6 +31,11 @@
     <string name="please_enter_validation">请输入验证码</string>
     <string name="please_enter_storename">请输入商铺名称</string>
     <string name="validation_type_scan_QR">扫码校验</string>
+    <string name="validation_type_scan_QR_result">二维码扫码</string>
+    <string name="validation_type_scan_QR_result_success">恭喜！二维码扫码已成功</string>
+    <string name="validation_type_scan_QR_result_fail">抱歉！二维码扫码失败</string>
+    <string name="validation_type_scan_QR_re_validation">重新认证</string>
+    <string name="Manual_input_qr_code">手动输入</string>
     <string name="validation_history">验证历史</string>
     <string name="refund_after_sale">退款售后</string>
     <string name="pending_send_goods">代发货</string>
