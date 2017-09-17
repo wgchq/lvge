@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_background_gray"
     android:orientation="vertical"
+
     tools:context="lvge.com.myapp.modules.validationtypescanqr.ValidationTypeScanQRFailActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -18,7 +20,7 @@
         tools:layout_editor_absoluteY="0dp">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_validation_type_scan_QR"
+            android:id="@+id/toolbar_validation_type_scan_QR_fail"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -40,21 +42,27 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x6"
+        android:background="@color/mainBackgroundColor"
         android:gravity="center_horizontal"
+        android:paddingTop="@dimen/x44"
+        android:paddingBottom="@dimen/x54"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|top"
+            android:drawablePadding="@dimen/x54"
+            android:textSize="@dimen/x36"
+            android:drawableTop="@mipmap/validation_qr_fail"
             android:text="@string/validation_type_scan_QR_result_fail" />
 
         <TextView
             android:id="@+id/validation_type_scan_QR_re_validation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_gravity="center_horizontal"
             android:text="@string/validation_type_scan_QR_re_validation" />
     </LinearLayout>

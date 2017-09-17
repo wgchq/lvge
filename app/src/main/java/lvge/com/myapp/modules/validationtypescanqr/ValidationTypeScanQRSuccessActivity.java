@@ -14,7 +14,7 @@ public class ValidationTypeScanQRSuccessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_validation_type_scan_qr_success);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_validation_type_scan_QR);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_validation_type_scan_QR_success);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

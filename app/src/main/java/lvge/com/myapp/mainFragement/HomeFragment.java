@@ -4,7 +4,6 @@ package lvge.com.myapp.mainFragement;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,14 +19,12 @@ import com.google.zxing.integration.android.IntentResult;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
-import lvge.com.myapp.MainActivity;
-import lvge.com.myapp.MainPageActivity;
 import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.modules.validationtypescanqr.MipcaActivityCaptureActivity;
 import lvge.com.myapp.R;
 import lvge.com.myapp.modules.PendingSendGoods.PendingSendGoodsActivity;
 import lvge.com.myapp.modules.RefundAfterSale.RefundAfterSaleActivity;
-import lvge.com.myapp.modules.ValidationHistory.ValidationHistoryActivity;
+import lvge.com.myapp.modules.validationhistory.ValidationHistoryActivity;
 import lvge.com.myapp.modules.alert_client_management.AlertClientActivity;
 import lvge.com.myapp.modules.car_data_management.CarDataManagementActivity;
 import lvge.com.myapp.modules.commodity_management.CommodityManageHomepage;
@@ -43,7 +40,6 @@ import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
 import lvge.com.myapp.modules.validationtypescanqr.ValidationTypeScanQRFailActivity;
 import lvge.com.myapp.modules.validationtypescanqr.ValidationTypeScanQRSuccessActivity;
 import lvge.com.myapp.ui.CustomKeyboard;
-import lvge.com.myapp.util.JsonUtil;
 import okhttp3.Response;
 
 /**
