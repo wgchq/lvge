@@ -2,16 +2,16 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval"
     android:useLevel="false">
-    <solid android:color="@color/colorAccent" />
+    <solid android:color="@color/colorPrimary" />
     <padding
         android:bottom="@dimen/x2"
         android:left="@dimen/x2"
         android:right="@dimen/x2"
         android:top="@dimen/x2" />
-    <solid android:color="@color/colorAccent" />
     <stroke
         android:width="2dp"
         android:color="#a2a2a2" />
-    <!--    <size android:width="15dp"
-            android:height="15dp" />-->
+    <size
+        android:width="50dp"
+        android:height="50dp" />
 </shape>

@@ -4,10 +4,13 @@ package lvge.com.myapp.mainFragement;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +21,8 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
+
+import java.lang.reflect.Method;
 
 import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.modules.validationtypescanqr.MipcaActivityCaptureActivity;
@@ -47,6 +52,7 @@ import okhttp3.Response;
  */
 public class HomeFragment extends Fragment {
 
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -54,7 +60,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (intentResult != null) {
             if (intentResult.getContents() == null) {
@@ -285,7 +290,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void OnValidation() {
                 String strvalidation_code_input = validation_code_input.getText().toString();
-
                 ValidationQR(strvalidation_code_input);
             }
         });

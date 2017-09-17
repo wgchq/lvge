@@ -20,6 +20,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.lang.reflect.Method;
+
 import butterknife.OnTextChanged;
 import lvge.com.myapp.R;
 
@@ -60,11 +62,36 @@ public class CustomKeyboard {
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         dialogWindow.setAttributes(lp);
     }
+    /**
+     * 禁止Edittext弹出软件盘，光标依然正常显示。
+     */
+    public void disableShowSoftInput() {
+        if (android.os.Build.VERSION.SDK_INT <= 10) {
+            mEditText.setInputType(InputType.TYPE_NULL);
+        } else {
+            Class<EditText> cls = EditText.class;
+            Method method;
+            try {
+                method = cls.getMethod("setShowSoftInputOnFocus", boolean.class);
+                method.setAccessible(true);
+                method.invoke(mEditText, false);
+            } catch (Exception e) {
+            }
 
+            try {
+                method = cls.getMethod("setSoftInputShownOnFocus", boolean.class);
+                method.setAccessible(true);
+                method.invoke(mEditText, false);
+            } catch (Exception e) {
+            }
+        }
+    }
     public void SetEditText(final EditText mEditText) {
         this.mEditText = mEditText;
         if (this.mEditText != null) {
+            disableShowSoftInput();
             Init(view);
+            mEditText.callOnClick();
           /*  this.mEditText.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -93,10 +120,10 @@ public class CustomKeyboard {
             mEditText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-              /*      int type = mEditText.getInputType();
-                    mEditText.setInputType(InputType.TYPE_NULL);*/
+                    int type = mEditText.getInputType();
+                    mEditText.setInputType(InputType.TYPE_NULL);
                     show(v);
-                /*    mEditText.setInputType(type);*/
+                    mEditText.setInputType(type);
                 }
             });
 
@@ -144,33 +171,59 @@ public class CustomKeyboard {
                 switch (key) {
                     case R.id.key_0:
                         mEditTextContent = mEditTextContent.substring(0, start) + "0" + mEditTextContent.substring(start, mEditTextContent.length());
+
+                        mEditText.setText(mEditTextContent);
+                        mEditText.setSelection(start + 1);
                         break;
                     case R.id.key_1:
                         mEditTextContent = mEditTextContent.substring(0, start) + "1" + mEditTextContent.substring(start, mEditTextContent.length());
+                        mEditText.setText(mEditTextContent);
+                        mEditText.setSelection(start + 1);
                         break;
                     case R.id.key_2:
                         mEditTextContent = mEditTextContent.substring(0, start) + "2" + mEditTextContent.substring(start, mEditTextContent.length());
+
+                        mEditText.setText(mEditTextContent);
+                        mEditText.setSelection(start + 1);
                         break;
                     case R.id.key_3:
                         mEditTextContent = mEditTextContent.substring(0, start) + "3" + mEditTextContent.substring(start, mEditTextContent.length());
+                        mEditText.setText(mEditTextContent);
+                        mEditText.setSelection(start + 1);
                         break;
                     case R.id.key_4:
                         mEditTextContent = mEditTextContent.substring(0, start) + "4" + mEditTextContent.substring(start, mEditTextContent.length());
+
+                        mEditText.setText(mEditTextContent);
+                        mEditText.setSelection(start + 1);
                         break;
                     case R.id.key_5:
                         mEditTextContent = mEditTextContent.substring(0, start) + "5" + mEditTextContent.substring(start, mEditTextContent.length());
+
+                        mEditText.setText(mEditTextContent);
+                        mEditText.setSelection(start + 1);
                         break;
                     case R.id.key_6:
                         mEditTextContent = mEditTextContent.substring(0, start) + "6" + mEditTextContent.substring(start, mEditTextContent.length());
+                        mEditText.setText(mEditTextContent);
+                        mEditText.setSelection(start + 1);
                         break;
                     case R.id.key_7:
                         mEditTextContent = mEditTextContent.substring(0, start) + "7" + mEditTextContent.substring(start, mEditTextContent.length());
+
+                        mEditText.setText(mEditTextContent);
+                        mEditText.setSelection(start + 1);
                         break;
                     case R.id.key_8:
                         mEditTextContent = mEditTextContent.substring(0, start) + "8" + mEditTextContent.substring(start, mEditTextContent.length());
+                        mEditText.setText(mEditTextContent);
+                        mEditText.setSelection(start + 1);
                         break;
                     case R.id.key_9:
                         mEditTextContent = mEditTextContent.substring(0, start) + "9" + mEditTextContent.substring(start, mEditTextContent.length());
+
+                        mEditText.setText(mEditTextContent);
+                        mEditText.setSelection(start + 1);
                         break;
                     case R.id.key_board_down:
                         dialog.dismiss();
@@ -180,8 +233,6 @@ public class CustomKeyboard {
                         break;
                 }
 
-                mEditText.setText(mEditTextContent);
-                mEditText.setSelection(start + 1);
 
             }
         };
@@ -202,7 +253,6 @@ public class CustomKeyboard {
     }
 
     public void show(View view) {
-
         dialog.show();//显示对话框
     }
 

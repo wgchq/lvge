@@ -31,7 +31,7 @@ public class ValidationHistoryActivity extends AppCompatActivity {
     private CustomProgressDialog progressDialog = null;
     private String PageSize = "1000";
     HistoryValidationListEntity historyValidationListEntity = null;
-
+    LoadListView history_validation_list = null;
     private String type = "0";
 
     @Override
@@ -128,8 +128,9 @@ public class ValidationHistoryActivity extends AppCompatActivity {
                                 historyValidationListEntity = (HistoryValidationListEntity) object;//把通用的Object转化成指定的对象
                                 if (historyValidationListEntity.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
                                     adapter.setHistoryValidationModels(historyValidationListEntity.getPageResult().getEntityList());
-
-                                    LoadListView history_validation_list = (LoadListView) findViewById(R.id.history_validation_list);
+                                    TextView record_total_count = (TextView) findViewById(R.id.record_total_count);
+                                    record_total_count.setText(Integer.toString(historyValidationListEntity.getPageResult().getTotalCount()));
+                                    history_validation_list = (LoadListView) findViewById(R.id.history_validation_list);
 
                                     stopProgressDialog();
                                     history_validation_list.setInterface(new LoadListView.IloadListener() {
@@ -144,7 +145,7 @@ public class ValidationHistoryActivity extends AppCompatActivity {
                                                 public void run() {
 
                                                     try {
-                                                        startProgerssDialog();
+
                                                         OkHttpUtils.get()//get 方法
                                                                 .url("http://www.lvgew.com/obdcarmarket/sellerapp/code/useList") //地址
                                                                 .addParams("pageIndex", Integer.toString(historyValidationListEntity.getPageResult().getPageIndex() + 1)) //需要传递的参数
@@ -178,8 +179,10 @@ public class ValidationHistoryActivity extends AppCompatActivity {
                                                                         if (null != object) {
                                                                             HistoryValidationListEntity resultModel = (HistoryValidationListEntity) object;//把通用的Object转化成指定的对象
                                                                             if (resultModel.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
-                                                                             TextView record_total_count = (TextView) findViewById(R.id.record_total_count);
-                                                                                record_total_count.setText(resultModel.getPageResult().getTotalCount());
+
+                                                                                if (resultModel.getPageResult().getEntityList().size() == 0) {
+                                                                                    history_validation_list.loadComplete();
+                                                                                }
 
                                                                                 historyValidationListEntity.getPageResult().getEntityList().addAll(resultModel.getPageResult().getEntityList());
                                                                                 historyValidationListEntity.getPageResult().setPageIndex(resultModel.getPageResult().getPageIndex());
@@ -215,9 +218,8 @@ public class ValidationHistoryActivity extends AppCompatActivity {
                                         }
                                     });
                                     history_validation_list.setAdapter(adapter);
-                                    stopProgressDialog();
+
                                 } else {
-                                    stopProgressDialog();
                                     // Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
                                     AlertDialog.Builder builder = new AlertDialog.Builder(ValidationHistoryActivity.this);
                                     builder.setMessage("网络异常，请重新登陆");
@@ -243,7 +245,9 @@ public class ValidationHistoryActivity extends AppCompatActivity {
     }
 
     private void init() {
+/*
         tabLayout.getChildAt(0).setSelected(true);
+*/
         getData("0");
     }
 

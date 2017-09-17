@@ -32,8 +32,8 @@
 
             <LinearLayout
                 android:id="@+id/key_1"
-                android:layout_width="@dimen/x162"
-                android:layout_height="@dimen/x162"
+                android:layout_width="@dimen/x142"
+                android:layout_height="@dimen/x142"
                 android:layout_marginBottom="@dimen/x32"
                 android:layout_marginLeft="@dimen/x26"
                 android:layout_marginRight="@dimen/x26"
@@ -63,8 +63,8 @@
 
             <LinearLayout
                 android:id="@+id/key_2"
-                android:layout_width="@dimen/x162"
-                android:layout_height="@dimen/x162"
+                android:layout_width="@dimen/x142"
+                android:layout_height="@dimen/x142"
                 android:layout_marginBottom="@dimen/x32"
                 android:layout_marginLeft="@dimen/x26"
                 android:layout_marginRight="@dimen/x26"
@@ -96,8 +96,8 @@
 
             <LinearLayout
                 android:id="@+id/key_3"
-                android:layout_width="@dimen/x162"
-                android:layout_height="@dimen/x162"
+                android:layout_width="@dimen/x142"
+                android:layout_height="@dimen/x142"
                 android:layout_marginBottom="@dimen/x32"
                 android:layout_marginLeft="@dimen/x26"
                 android:layout_marginRight="@dimen/x26"
@@ -131,8 +131,8 @@
 
             <LinearLayout
                 android:id="@+id/key_4"
-                android:layout_width="@dimen/x162"
-                android:layout_height="@dimen/x162"
+                android:layout_width="@dimen/x142"
+                android:layout_height="@dimen/x142"
                 android:layout_marginBottom="@dimen/x32"
                 android:layout_marginLeft="@dimen/x26"
                 android:layout_marginRight="@dimen/x26"
@@ -163,8 +163,8 @@
 
             <LinearLayout
                 android:id="@+id/key_5"
-                android:layout_width="@dimen/x162"
-                android:layout_height="@dimen/x162"
+                android:layout_width="@dimen/x142"
+                android:layout_height="@dimen/x142"
                 android:layout_marginBottom="@dimen/x32"
                 android:layout_marginLeft="@dimen/x26"
                 android:layout_marginRight="@dimen/x26"
@@ -196,8 +196,8 @@
 
             <LinearLayout
                 android:id="@+id/key_6"
-                android:layout_width="@dimen/x162"
-                android:layout_height="@dimen/x162"
+                android:layout_width="@dimen/x142"
+                android:layout_height="@dimen/x142"
                 android:layout_marginBottom="@dimen/x32"
                 android:layout_marginLeft="@dimen/x26"
                 android:layout_marginRight="@dimen/x26"
@@ -232,8 +232,8 @@
 
             <LinearLayout
                 android:id="@+id/key_7"
-                android:layout_width="@dimen/x162"
-                android:layout_height="@dimen/x162"
+                android:layout_width="@dimen/x142"
+                android:layout_height="@dimen/x142"
                 android:layout_marginBottom="@dimen/x32"
                 android:layout_marginLeft="@dimen/x26"
                 android:layout_marginRight="@dimen/x26"
@@ -265,8 +265,8 @@
 
             <LinearLayout
                 android:id="@+id/key_8"
-                android:layout_width="@dimen/x162"
-                android:layout_height="@dimen/x162"
+                android:layout_width="@dimen/x142"
+                android:layout_height="@dimen/x142"
                 android:layout_marginBottom="@dimen/x32"
                 android:layout_marginLeft="@dimen/x26"
                 android:layout_marginRight="@dimen/x26"
@@ -298,8 +298,8 @@
 
             <LinearLayout
                 android:id="@+id/key_9"
-                android:layout_width="@dimen/x162"
-                android:layout_height="@dimen/x162"
+                android:layout_width="@dimen/x142"
+                android:layout_height="@dimen/x142"
                 android:layout_marginBottom="@dimen/x32"
                 android:layout_marginLeft="@dimen/x26"
                 android:layout_marginRight="@dimen/x26"
@@ -332,8 +332,8 @@
         <TableRow>
 
             <LinearLayout
-                android:layout_width="@dimen/x162"
-                android:layout_height="@dimen/x162"
+                android:layout_width="@dimen/x142"
+                android:layout_height="@dimen/x142"
                 android:layout_marginBottom="@dimen/x32"
                 android:layout_marginLeft="@dimen/x26"
                 android:layout_marginRight="@dimen/x26"
@@ -361,8 +361,8 @@
 
             <LinearLayout
                 android:id="@+id/key_0"
-                android:layout_width="@dimen/x162"
-                android:layout_height="@dimen/x162"
+                android:layout_width="@dimen/x142"
+                android:layout_height="@dimen/x142"
                 android:layout_marginBottom="@dimen/x32"
                 android:layout_marginLeft="@dimen/x26"
                 android:layout_marginRight="@dimen/x26"
@@ -385,8 +385,8 @@
 
 
             <LinearLayout
-                android:layout_width="@dimen/x162"
-                android:layout_height="@dimen/x162"
+                android:layout_width="@dimen/x142"
+                android:layout_height="@dimen/x142"
                 android:layout_marginBottom="@dimen/x32"
                 android:layout_marginLeft="@dimen/x26"
                 android:layout_marginRight="@dimen/x26"

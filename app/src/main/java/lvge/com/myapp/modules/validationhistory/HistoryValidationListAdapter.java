@@ -50,7 +50,7 @@ public class HistoryValidationListAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return historyValidationModels.get(position).getOrderNO();
+        return historyValidationModels.get(position).getORDER_ID();
     }
 
     @Override
@@ -61,12 +61,13 @@ public class HistoryValidationListAdapter extends BaseAdapter {
         if (historyValidationModels!=null)
         {
             TextView history_order_no = (TextView)convertView.findViewById(R.id.history_order_no);
-            int order_no = historyValidationModels.get(position).getOrderNO();
+            String order_no = historyValidationModels.get(position).getOrderNO();
             history_order_no.setText(order_no);
             TextView history_order_date = (TextView) convertView.findViewById(R.id.history_order_no);
             history_order_date.setText(historyValidationModels.get(position).getCREATE_TIME());
             TextView car_clear_service = (TextView)convertView.findViewById(R.id.car_clear_service);
-            car_clear_service.setText(historyValidationModels.get(position).getGOODS_NUM());
+
+            car_clear_service.setText(Integer.toString(historyValidationModels.get(position).getGOODS_NUM()));
             TextView sum_price = (TextView)convertView.findViewById(R.id.sum_price);
             sum_price.setText(Double.toString(getItem(position).getORDER_PRICE()));
             TextView operation_person = (TextView) convertView.findViewById(R.id.operation_person);
