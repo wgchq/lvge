@@ -41,10 +41,12 @@ public class EmployeeInformation extends AppCompatActivity {
     private SwipeMenuListView customListView;
     private List<SellerImgs> contentList = new ArrayList<SellerImgs>();
 
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_information);
+        context = this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_emplyee_information_list);
         toolbar.setTitle("");
@@ -82,14 +84,13 @@ public class EmployeeInformation extends AppCompatActivity {
         SwipeMenuCreator creator = new SwipeMenuCreator() {
             @Override
             public void create(SwipeMenu swipeMenu) {
-                SwipeMenuItem deleteItem = new SwipeMenuItem(getApplicationContext());
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9, 0x3F, 0x25)));
-                deleteItem.setWidth(dp2px(90));
-                //deleteItem.setTitle("删除");
-                deleteItem.setIcon(R.mipmap.delete);
-                //deleteItem.setTitleSize(R.dimen.x18);
-               // deleteItem.setTitleColor(R.color.mainBackgroundColor);
-                swipeMenu.addMenuItem(deleteItem);
+                SwipeMenuItem openItem = new SwipeMenuItem(context);
+                openItem.setBackground(new ColorDrawable(Color.RED));
+                openItem.setWidth(dp2px(90));
+                openItem.setTitle("删除");
+                openItem.setTitleSize(18);
+                openItem.setTitleColor(Color.WHITE);
+                swipeMenu.addMenuItem(openItem);
             }
         };
         customListView.setMenuCreator(creator);

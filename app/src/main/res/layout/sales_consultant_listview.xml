@@ -9,26 +9,28 @@
     <LinearLayout
         android:id="@+id/toolbar_main_page"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="@dimen/x160"
         android:baselineAligned="false"
+        android:paddingTop="@dimen/x28"
         android:gravity="center_vertical"
-
         tools:ignore="UselessParent">
 
         <LinearLayout
-            android:layout_width="30dp"
+            android:layout_width="@dimen/x120"
             android:layout_height="match_parent"
             android:layout_weight="0.14"
+            android:paddingLeft="@dimen/x10"
             android:orientation="horizontal"
-            android:weightSum="1">
+            android:weightSum="1"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
 
-            <ImageView
+            <lvge.com.myapp.ProgressDialog.RoundImageView
                 android:id="@+id/sale_consultant_iamage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:layout_width="@dimen/x120"
+                android:layout_height="@dimen/x120"
+                android:layout_gravity="center"
                 android:src="@mipmap/menu_logo"
-                tools:ignore="ContentDescription,InefficientWeight,NestedWeights" />
+                tools:ignore="ContentDescription,InefficientWeight,NestedWeights,RtlHardcoded,RtlSymmetry" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,7 +60,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:text="张某某"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/x28"
                         android:textStyle="bold"
                         tools:ignore="HardcodedText,RtlHardcoded" />
 
@@ -72,6 +74,8 @@
                         android:drawableLeft="@mipmap/phone"
                         android:gravity="center"
                         android:text="1234569999901"
+                        android:textSize="@dimen/x28"
+                        android:textColor="#666"
                         tools:ignore="ContentDescription,HardcodedText,RtlHardcoded" />
 
                 </LinearLayout>
@@ -96,8 +100,8 @@
                     android:gravity="center_vertical"
                     android:maxLines="1"
                     android:text="12345678901"
-                    android:textColor="#D1D1D1"
-                    android:textSize="16sp"
+                    android:textColor="#666"
+                    android:textSize="@dimen/x28"
                     tools:ignore="ContentDescription,HardcodedText,ObsoleteLayoutParam,RtlHardcoded" />
             </LinearLayout>
 

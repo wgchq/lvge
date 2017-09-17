@@ -90,6 +90,8 @@ public class EmployeeInformationAdapter extends BaseAdapter {
         }
 
         public TextView memo;
+
+        public ImageView reImageview;
     }
 
     @Override
@@ -105,6 +107,7 @@ public class EmployeeInformationAdapter extends BaseAdapter {
             listItemView.sname = (TextView)view.findViewById(R.id.sales_consultant_liatview_name);
             listItemView.phone = (TextView)view.findViewById(R.id.sales_consultant_liatview_number);
             listItemView.memo = (TextView)view.findViewById(R.id.sales_consultant_liatview_text);
+            listItemView.reImageview= (ImageView)view.findViewById(R.id.imageView);
 
             view.setTag(listItemView);
 
@@ -139,7 +142,9 @@ public class EmployeeInformationAdapter extends BaseAdapter {
         }
         listItemView.sname.setText(item.getType());
         listItemView.phone.setText(item.getPictureId());
+        listItemView.phone.setCompoundDrawables(null,null,null,null);
         listItemView.memo.setText(item.getEntityType());
+        listItemView.reImageview.setImageBitmap(null);
 
         return view;
     }

@@ -1,41 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/x100"
+        android:paddingBottom="@dimen/x10"
         tools:ignore="UselessLeaf,UselessParent">
+
         <TextView
             android:id="@+id/post_list_item_textview1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:paddingLeft="@dimen/x15"
+            android:paddingRight="@dimen/x56"
             android:text="岗位名称"
             android:textColor="@color/text_color"
-            android:paddingLeft="@dimen/x10"
-            android:paddingRight="@dimen/x10"
+            android:textSize="@dimen/x28"
             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
             android:id="@+id/post_list_item"
-            android:gravity="center"
-            android:layout_toRightOf="@+id/post_list_item_textview1"
-            android:layout_toLeftOf="@+id/post_list_item_imagevie"
-            tools:ignore="RtlHardcoded" />
-
-        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/post_list_item_imagevie"
+            android:layout_gravity="center"
+            android:layout_toLeftOf="@+id/post_list_item_check"
+            android:layout_toRightOf="@+id/post_list_item_textview1"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/x12"
+            android:text="123"
+            android:textSize="@dimen/x28"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+        <CheckedTextView
+            android:id="@+id/post_list_item_check"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/right"
-            tools:ignore="ContentDescription,RtlHardcoded"
-            android:contentDescription="" />
+            android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+            android:contentDescription=""
+            android:gravity="center_vertical"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            tools:ignore="ContentDescription,RtlHardcoded" />
     </RelativeLayout>
+
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package lvge.com.myapp.modules.my_4s_management;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -45,11 +46,14 @@ public class SalesConsultant extends AppCompatActivity {
 
     private SalesConsultantResultModel salesConsultantResultModel;
 
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sales_consultant);
+
+        context = this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_4s_sales_consultant);
         toolbar.setTitle("");
@@ -81,11 +85,13 @@ public class SalesConsultant extends AppCompatActivity {
         SwipeMenuCreator creator = new SwipeMenuCreator() {
             @Override
             public void create(SwipeMenu swipeMenu) {
-                SwipeMenuItem deleteItem = new SwipeMenuItem(getApplicationContext());
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9, 0x3F, 0x25)));
-                deleteItem.setWidth(dp2px(90));
-                deleteItem.setIcon(R.mipmap.delete);
-                swipeMenu.addMenuItem(deleteItem);
+                SwipeMenuItem openItem = new SwipeMenuItem(context);
+                openItem.setBackground(new ColorDrawable(Color.RED));
+                openItem.setWidth(dp2px(90));
+                openItem.setTitle("删除");
+                openItem.setTitleSize(18);
+                openItem.setTitleColor(Color.WHITE);
+                swipeMenu.addMenuItem(openItem);
             }
         };
 

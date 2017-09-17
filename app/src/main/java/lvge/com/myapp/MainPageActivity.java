@@ -41,6 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lvge.com.myapp.ProgressDialog.RoundImageView;
 import lvge.com.myapp.mainFragement.ClientFragment;
 import lvge.com.myapp.mainFragement.HomeFragment;
 import lvge.com.myapp.mainFragement.MyFragment;
@@ -394,7 +395,7 @@ public class MainPageActivity extends Activity {
 
                                                     @Override
                                                     public void onResponse(Bitmap bitm, int i) {
-                                                        ImageView right_imageView = (ImageView)findViewById(R.id.right_imageView);
+                                                        RoundImageView right_imageView = (RoundImageView)findViewById(R.id.right_imageView);
                                                         ImageView main_page_Imagview = (ImageView)findViewById(R.id.main_page_Imagview);
                                                         main_page_Imagview.setImageBitmap(bitm);
                                                         right_imageView.setImageBitmap(bitm);

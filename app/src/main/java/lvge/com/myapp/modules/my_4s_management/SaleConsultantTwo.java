@@ -140,16 +140,7 @@ public class SaleConsultantTwo extends AppCompatActivity implements View.OnClick
         final RelativeLayout sale_consultant_Relayout_name  = (RelativeLayout)findViewById(R.id.sale_consultant_Relayout_name);
         final RelativeLayout sale_consultant_Relayout_memo = (RelativeLayout)findViewById(R.id.sale_consultant_Relayout_memo);
         final RelativeLayout sale_consultant_Relayout_photo = (RelativeLayout)findViewById(R.id.sale_consultant_Relayout_photo);
-/**
-        ImageView sale_consultant_back = (ImageView) findViewById(R.id.sale_consultant_back);
-        sale_consultant_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SaleConsultantTwo.this, SalesConsultant.class);
-                startActivity(intent);
-            }
-        });
- **/
+
 
         sale_consultant_Relayout_name.setOnClickListener(new View.OnClickListener() {
             @Override

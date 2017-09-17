@@ -84,7 +84,7 @@ public class BaseTest {
                 strBuf.append("\r\n").append("--").append(BOUNDARY).append("\r\n");
                 // strBuf.append("Content-Disposition: form-data; name='file" +
                 // index + "'; filename=" + filename + "\r\n");
-                strBuf.append("Content-Disposition: form-data; name=\"" + filename + "\"; filename=\"" + filename + "\"\r\n");
+                strBuf.append("Content-Disposition: form-data; name=\"file"  + "\"; filename=\"" + filename + "\"\r\n");
                 strBuf.append("Content-Type:multipart/form-data" + "\r\n\r\n");
 
                 out.write(strBuf.toString().getBytes());

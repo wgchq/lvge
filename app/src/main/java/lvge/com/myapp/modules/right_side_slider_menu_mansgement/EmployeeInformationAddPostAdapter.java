@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -56,15 +57,15 @@ public class EmployeeInformationAddPostAdapter extends BaseAdapter{
 
         private TextView textView;
 
-        public ImageView getImageView() {
-            return imageView;
+        public CheckedTextView getCheckedTextView() {
+            return checkedTextView;
         }
 
-        public void setImageView(ImageView imageView) {
-            this.imageView = imageView;
+        public void setCheckedTextView(CheckedTextView checkedTextView) {
+            this.checkedTextView = checkedTextView;
         }
 
-        private ImageView imageView;
+        private CheckedTextView checkedTextView;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -80,7 +81,7 @@ public class EmployeeInformationAddPostAdapter extends BaseAdapter{
           //  listItemView.sname = (TextView)view.findViewById(R.id.sales_consultant_liatview_name);
            // listItemView.phone = (TextView)view.findViewById(R.id.sales_consultant_liatview_number);
             listItemView.textView = (TextView)view.findViewById(R.id.post_list_item);
-            listItemView.imageView = (ImageView)view.findViewById(R.id.post_list_item_imagevie);
+            listItemView.checkedTextView = (CheckedTextView) view.findViewById(R.id.post_list_item_check);
 
             view.setTag(listItemView);
 
@@ -92,7 +93,6 @@ public class EmployeeInformationAddPostAdapter extends BaseAdapter{
         final PostListMode item =listItems.get(position);
 
         listItemView.textView.setText(item.getJOB_NAME());
-        listItemView.setImageView(null);
         return view;
     }
 }

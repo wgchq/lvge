@@ -46,6 +46,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
 import lvge.com.myapp.R;
@@ -156,6 +157,7 @@ public class PersonalProfile extends AppCompatActivity implements View.OnClickLi
                 }else {
                     sex = "0";
                 }
+
                 try{
                     OkHttpUtils.get()
                             .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/update.do")
@@ -184,6 +186,43 @@ public class PersonalProfile extends AppCompatActivity implements View.OnClickLi
                                     if (null != o) {
                                         LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
                                         if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                            try{
+                                                //List<String> filePaths = new ArrayList<>();
+                                                //filePaths.add(saveBitmap());
+                                                OkHttpUtils.post()
+                                                        .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/updateImage")
+                                                        .addFile("photo","1.png",new File(saveBitmap()))
+                                                        .build()
+                                                        .execute(new Callback() {
+                                                            @Override
+                                                            public Object parseNetworkResponse(Response response, int i) throws Exception {
+                                                                String string = response.body().string();//获取相应中的内容Json格式
+                                                                //把json转化成对应对象
+                                                                //LoginResultModel是和后台返回值类型结构一样的对象
+                                                                stopProgressDialog();
+                                                                LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                                                                return result;
+                                                            }
+
+                                                            @Override
+                                                            public void onError(Call call, Exception e, int i) {
+
+                                                            }
+
+                                                            @Override
+                                                            public void onResponse(Object o, int i) {
+                                                                if (null != o) {
+                                                                    LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
+                                                                    if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                                                        Toast.makeText(PersonalProfile.this,"上传成功！",Toast.LENGTH_LONG).show();
+                                                                    }
+                                                                }
+                                                            }
+                                                        });
+                                            }catch (Exception e){
+                                                Toast.makeText(PersonalProfile.this,"上传失败！",Toast.LENGTH_LONG).show();
+                                            }
+                                        /**
                                             new Thread() {
                                                 public void run() {
                                                     try {
@@ -195,12 +234,14 @@ public class PersonalProfile extends AppCompatActivity implements View.OnClickLi
                                                     }
                                                 }
                                             }.start();
+                                         **/
                                         }
                                     }
                                 }
                             });
                 }catch (Exception e){
-
+                    stopProgressDialog();
+                    Toast.makeText(PersonalProfile.this,"上传失败！",Toast.LENGTH_LONG).show();
                 }
 
             }

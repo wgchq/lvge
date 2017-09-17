@@ -6,18 +6,25 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.jph.takephoto.app.TakePhoto;
 import com.jph.takephoto.app.TakePhotoImpl;
 import com.jph.takephoto.model.CropOptions;
@@ -27,11 +34,27 @@ import com.jph.takephoto.model.TResult;
 import com.jph.takephoto.permission.InvokeListener;
 import com.jph.takephoto.permission.PermissionManager;
 import com.jph.takephoto.permission.TakePhotoInvocationHandler;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
 import lvge.com.myapp.R;
+import lvge.com.myapp.model.LoginResultModel;
+import lvge.com.myapp.modules.my_4s_management.BaseTest;
+import lvge.com.myapp.modules.my_4s_management.SaleConsultantTwo;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class EmployeeInformationAdd extends AppCompatActivity implements View.OnClickListener,TakePhoto.TakeResultListener,InvokeListener{
 
@@ -43,6 +66,8 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
     private TextView choosePhoto;
     private TextView takePhoto;
     private TextView cancelPhoto;
+    private Button choose_dialog_abandon;
+    private Button choose_dialog_continue;
 
     private Uri fileUri = null;
     private TakePhoto takePhoto_ta;
@@ -53,6 +78,15 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
     private TextView employee_information_add_name;
     private ImageView employee_information_add_iamgeview;
     private TextView employee_information_add_inputemploy;
+    private TextView employee_information_add_complete;
+    private EditText employee_information_add_addname;
+    private EditText employee_information_add_password;
+    private EditText employee_information_add_addpasswordagain;
+
+    private Bitmap bitmap;
+
+    private CustomProgressDialog progressDialog = null;
+    private boolean isSave = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +100,106 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
         employee_information_add_name = (TextView)findViewById(R.id.employee_information_add_name);
         employee_information_add_iamgeview = (ImageView)findViewById(R.id.employee_information_add_iamgeview);
         employee_information_add_inputemploy = (TextView)findViewById(R.id.employee_information_add_inputemploy);
+        employee_information_add_complete = (TextView)findViewById(R.id.employee_information_add_complete);
+        employee_information_add_addname = (EditText)findViewById(R.id.employee_information_add_addname);
+        employee_information_add_password = (EditText)findViewById(R.id.employee_information_add_password);
+        employee_information_add_addpasswordagain = (EditText)findViewById(R.id.employee_information_add_addpasswordagain);
+
+        employee_information_add_complete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                employee_information_add_iamgeview.setDrawingCacheEnabled(true);
+                bitmap = employee_information_add_iamgeview.getDrawingCache();
+
+
+                new Thread() {
+                    public void run() {
+                        try {
+                            // showProgressDialog();
+                            post_str(employee_information_add_addname.getText().toString(), employee_information_add_password.getText().toString(), employee_information_add_addpasswordagain.getText().toString(),employee_information_add_name.getText().toString(),employee_information_add_inputsex.getText().toString(),employee_information_add_inputemploy.getText().toString());
+                        } catch ( Exception e) {
+                            e.printStackTrace();
+                            stopProgressDialog();
+                        }
+                    }
+                }.start();
+               /* try{
+                    OkHttpUtils.get()
+                            .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/saveStaff.do")
+                            .addParams("username",employee_information_add_addname.getText().toString())
+                            .addParams("password",employee_information_add_password.getText().toString())
+                            .addParams("confirmPassword",employee_information_add_addpasswordagain.getText().toString())
+                            .addParams("name",employee_information_add_name.getText().toString())
+                            .addParams("sex",sex)
+                            .addParams("job",employee_information_add_inputemploy.getText().toString())
+                            .build()
+                            .execute(new Callback() {
+                                @Override
+                                public Object parseNetworkResponse(Response response, int i) throws Exception {
+                                    String string = response.body().string();//获取相应中的内容Json格式
+                                    //把json转化成对应对象
+                                    //LoginResultModel是和后台返回值类型结构一样的对象
+                                    LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                                    return result;
+                                }
+
+                                @Override
+                                public void onError(Call call, Exception e, int i) {
+
+                                }
+
+                                @Override
+                                public void onResponse(Object o, int i) {
+                                    if (null != o) {
+                                        LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
+                                        if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                            try{
+                                                //List<String> filePaths = new ArrayList<>();
+                                                //filePaths.add(saveBitmap());
+                                                OkHttpUtils.post()
+                                                        .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/updateImage")
+                                                        .addFile("photo","1.png",new File(saveBitmap()))
+                                                        .build()
+                                                        .execute(new Callback() {
+                                                            @Override
+                                                            public Object parseNetworkResponse(Response response, int i) throws Exception {
+                                                                String string = response.body().string();//获取相应中的内容Json格式
+                                                                //把json转化成对应对象
+                                                                //LoginResultModel是和后台返回值类型结构一样的对象
+                                                                stopProgressDialog();
+                                                                LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                                                                return result;
+                                                            }
+
+                                                            @Override
+                                                            public void onError(Call call, Exception e, int i) {
+
+                                                            }
+
+                                                            @Override
+                                                            public void onResponse(Object o, int i) {
+                                                                if (null != o) {
+                                                                    LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
+                                                                    if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                                                        isSave = true;
+                                                                        Toast.makeText(EmployeeInformationAdd.this,"上传成功！",Toast.LENGTH_LONG).show();
+                                                                    }
+                                                                }
+                                                            }
+                                                        });
+                                            }catch (Exception e){
+                                                Toast.makeText(EmployeeInformationAdd.this,"上传失败！",Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                }catch (Exception e){
+                    stopProgressDialog();
+                    Toast.makeText(EmployeeInformationAdd.this,"上传失败！",Toast.LENGTH_LONG).show();
+                }*/
+            }
+        });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_employee_information_add);
         toolbar.setTitle("");
@@ -74,33 +208,75 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
             @Override
             public void onClick(View v) {
                 //finish();
-                choose_dialog(v);
+                if(isSave){
+                    finish();
+                }else {
+                    choose_dialog();
+                }
             }
         });
 
     }
 
-    public void employee_add_name(View view){  //名字
+    public void employee_add_post(View view){  //岗位
+        try{
+            Intent intent = new Intent(EmployeeInformationAdd.this, EmployeeInformationAddPost.class);
+            startActivityForResult(intent,11);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    public void employee_add_name(View view){
         Intent intent = new Intent(EmployeeInformationAdd.this, EmployeeInformationAddName.class);
-        String inputname = employee_information_add_name.getText().toString();
-        intent.putExtra("inputname", inputname);
         startActivityForResult(intent, 10);
     }
+    public void choose_dialog(){
 
-    public void employee_add_post(View view){  //岗位
-        Intent intent = new Intent(EmployeeInformationAdd.this, EmployeeInformationAddPost.class);
-        startActivityForResult(intent, 11);
-    }
-    public void choose_dialog(View v){
-        dialog = new Dialog(this,R.style.ChooseDialog);
+        dialog = new Dialog(this, R.style.ActionSheetDialogStyle);
+        //填充对话框的布局
+        inflate = LayoutInflater.from(this).inflate(R.layout.choose_dialog, null);
+        choose_dialog_abandon = (Button)inflate.findViewById(R.id.choose_dialog_abadan);
+        choose_dialog_abandon.setOnClickListener(this);
+        choose_dialog_continue = (Button)inflate.findViewById(R.id.choose_dialog_continue);
+        choose_dialog_continue.setOnClickListener(this);
+        //初始化控件
+     /*   sex_women = (TextView) inflate.findViewById(R.id.sex_women);
+        sex_man = (TextView) inflate.findViewById(R.id.sex_man);
+        sex_cancel = (TextView) inflate.findViewById(R.id.sex_cancel);
+        sex_women.setOnClickListener(this);
+        sex_man.setOnClickListener(this);
+        sex_cancel.setOnClickListener(this);*/
+        //将布局设置给Dialog
+        dialog.setContentView(inflate);
+        //获取当前Activity所在的窗体
+        Window dialogWindow = dialog.getWindow();
+        //设置Dialog从窗体底部弹出
+       dialogWindow.setGravity(Gravity.CENTER);
+/*
+        dialogWindow.setGravity(Gravity.BOTTOM);
+*/
+        //获得窗体的属性
+       /* WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.y = 20;//设置Dialog距离底部的距离
+//       将属性设置给窗体
+        dialogWindow.setAttributes(lp);*/
+        dialog.show();//显示对话框
+
+
+/*
+
+        dialog = new Dialog(this,R.style.ActionSheetDialogStyle);
         inflate = LayoutInflater.from(this).inflate(R.layout.choose_dialog,null);
+        choose_dialog_abandon = (Button) inflate.findViewById(R.id.choose_dialog_abandon);
+        choose_dialog_continue =  (Button) inflate.findViewById(R.id.choose_dialog_continue);
         dialog.setContentView(inflate);
         Window dialogWindow = dialog.getWindow();
         dialogWindow.setGravity(Gravity.CENTER);
-       // WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-       // lp.x = 10;
-       // dialogWindow.setAttributes(lp);
-        dialog.show();
+       WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+       lp.x = 10;
+        dialogWindow.setAttributes(lp);
+        dialog.show();*/
     }
     public void employee_add_sexchange(View view){
         dialog = new Dialog(this, R.style.ActionSheetDialogStyle);
@@ -177,6 +353,15 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
             case R.id.cancel:
                 dialog.dismiss();
                 break;
+           case R.id.choose_dialog_abadan:
+                dialog.dismiss();
+                finish();
+                break;
+            case R.id.choose_dialog_continue:
+                dialog.dismiss();
+                break;
+            default:
+                break;
         }
     }
 
@@ -200,6 +385,9 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
         if (10 == requestCode && data != null) {
             String inputname = data.getStringExtra("inputname");
             employee_information_add_name.setText(inputname);
+        }else if(11 == requestCode && data != null){
+            String inputpost = data.getStringExtra("inputpost");
+            employee_information_add_inputemploy.setText(inputpost);
         }
         if (null == dialog) {
         } else {
@@ -251,4 +439,152 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
         getTakePhoto().onSaveInstanceState(outState);
         super.onSaveInstanceState(outState);
     }
+
+    private void startProgerssDialog(){
+        if(progressDialog == null){
+            progressDialog = CustomProgressDialog.createDialog(this);
+            // progressDialog.setMessage("正在加载中。。");
+        }
+        progressDialog.show();
+    }
+
+    private void stopProgressDialog(){
+        if(progressDialog != null){
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
+    }
+
+    private String saveBitmap() throws IOException {
+        File sd = Environment.getExternalStorageDirectory();
+        boolean can_write = sd.canWrite();
+
+        // Bitmap bitm = convertViewToBitMap(sale_consultant_two_iamgeview);
+        String strPath = Environment.getExternalStorageDirectory().toString() + "/save";
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,baos);
+
+        if(baos.toByteArray().length/1024 >500 ){
+            int option = 90;
+            while (baos.toByteArray().length/1024 >500){
+                baos.reset();
+                bitmap.compress(Bitmap.CompressFormat.PNG,option,baos);
+                option -= 10;
+            }
+            ByteArrayInputStream isbm = new ByteArrayInputStream(baos.toByteArray());
+            bitmap = BitmapFactory.decodeStream(isbm,null,null);
+
+            isbm.close();
+        }
+        baos.close();
+
+        try {
+            File desDir = new File(strPath);
+            if (!desDir.exists()) {
+                desDir.mkdir();
+            }
+
+            File imageFile = new File(strPath + "/1.PNG");
+            if(imageFile.exists()){
+                imageFile.delete();
+            }
+            imageFile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return strPath + "/1.PNG";
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            //System.out.println("按下了back键 onKeyDown()");
+            if(isSave){
+                finish();
+            }else {
+                choose_dialog();
+            }
+            return false;
+        }else {
+            return super.onKeyDown(keyCode, event);
+        }
+
+    }
+
+    private void post_str(String username, String password, String confirmPassword,String name,String sex,String job) {
+
+        try {
+            String path = "http://www.lvgew.com/obdcarmarket/sellerapp/user/saveStaff.do";
+            String str_sex = "";
+            List<String> filePaths = new ArrayList<>();
+            filePaths.add(saveBitmap());
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("username", username);
+            map.put("password", password);
+            map.put("confirmPassword", confirmPassword);
+            map.put("name", name);
+            if(sex.equals("男")){
+                str_sex = "1";
+            }else {
+                str_sex = "0";
+            }
+            map.put("sex", str_sex);
+            map.put("job", job);
+
+            BaseTest bs = new BaseTest();
+            String str = bs.imgPut(path, filePaths, map);
+            returnMessage(str);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            returnMessage("error");
+        }
+    }
+
+    private void returnMessage(String string) {
+        Message msg = new Message();
+        if(string.equals("error")){
+            msg.what = 1;
+            mHander.sendMessage(msg);
+            return;
+        }
+
+        LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+
+        if(result.getOperationResult().getResultCode() == 0){
+
+            msg.what = 0;
+            mHander.sendMessage(msg);
+        }else {
+            msg.what = 1;
+            mHander.sendMessage(msg);
+        }
+        // dissmissProgressDialog();
+    }
+
+    Handler mHander = new Handler() {
+        public void handleMessage(Message msg){
+            stopProgressDialog();
+            employee_information_add_iamgeview.setDrawingCacheEnabled(false);
+            switch (msg.what){
+                case 0:
+                    Toast.makeText(EmployeeInformationAdd.this,"上传成功！",Toast.LENGTH_LONG).show();
+                    // Intent intent = new Intent(SaleConsultantTwo.this, SalesConsultant.class);
+                    // startActivity(intent);
+                    finish();
+                    break;
+                case 1:
+                    Toast.makeText(EmployeeInformationAdd.this,"上传失败！",Toast.LENGTH_LONG).show();
+                    break;
+            }
+        }
+
+    };
 }

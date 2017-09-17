@@ -60,10 +60,12 @@
         android:layout_below="@+id/toolbar_main_page"
         android:background="@color/line_background_gray"
         android:orientation="vertical"
+        android:paddingTop="@dimen/x28"
         tools:ignore="ObsoleteLayoutParam">
 
         <com.baoyz.swipemenulistview.SwipeMenuListView
             android:id="@+id/employee_information_post_listview"
+            android:choiceMode="singleChoice"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
