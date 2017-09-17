@@ -3,6 +3,7 @@ package lvge.com.myapp.modules.validationtypescanqr;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,6 +16,15 @@ public class ValidationTypeScanQRFailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_validation_type_scan_qrfail);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_validation_type_scan_QR_fail);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         TextView re_validation = (TextView) findViewById(R.id.validation_type_scan_QR_re_validation);
         re_validation.setOnClickListener(new View.OnClickListener() {

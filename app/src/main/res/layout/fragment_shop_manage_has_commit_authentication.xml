@@ -5,27 +5,44 @@
     android:background="@color/background_gray"
     android:orientation="vertical"
     tools:context="lvge.com.myapp.modules.shop_management.HasCommitAuthenticationFragment">
-
+    <!--网络监测-->
+    <lvge.com.myapp.ui.NetworkCheckView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/x18">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x460"
         android:background="@color/mainBackgroundColor"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
 
+        <ImageView
+            android:layout_marginTop="@dimen/x68"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/shop_manage_commit_success"
+            android:layout_gravity="center"/>
         <TextView
+            android:layout_marginTop="@dimen/x22"
+            android:textSize="@dimen/x36"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginStart="@dimen/text_left_padding"
-            android:drawablePadding="@dimen/text_left_to_img_padding"
-            android:drawableStart="@mipmap/shop_manage_commit_success"
+            android:textColor="#000"
             android:gravity="center"
             android:text="@string/authentication_submit_success"
             android:textStyle="bold" />
 
         <TextView
+            android:layout_marginTop="@dimen/x62"
+            android:layout_marginLeft="@dimen/x56"
+            android:textSize="@dimen/x28"
+            android:textColor="#888"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/authentication_submit_success_description" />

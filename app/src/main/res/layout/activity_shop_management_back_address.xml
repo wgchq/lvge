@@ -27,6 +27,7 @@
             app:titleTextColor="@color/mainFontColor">
 
             <TextView
+
                 style="@style/system_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,6 +47,7 @@
                 />
         </android.support.v7.widget.Toolbar>
         <LinearLayout
+            android:layout_marginTop="@dimen/x6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/background_gray"
@@ -53,23 +55,27 @@
 
 
             <EditText
+                android:paddingLeft="@dimen/x22"
+                android:textSize="@dimen/x28"
+                android:textColor="#666"
+                android:layout_height="@dimen/x90"
                 android:id="@+id/shop_back_address_contact_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_shape"
                 android:hint="@string/shop_back_address_contact_name"
-                android:padding="@dimen/text_left_padding" />
+                />
             <View
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="@dimen/x6"
                 android:background="@color/line_background_gray" />
             <EditText
+                android:textSize="@dimen/x28"
                 android:id="@+id/shop_back_address_contact_address"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/x90"
                 android:background="@drawable/edit_text_shape"
                 android:hint="@string/shop_back_address_contact_address"
-                android:padding="@dimen/text_left_padding" />
+                android:paddingLeft="@dimen/x22" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
@@ -77,10 +83,13 @@
             <EditText
                 android:id="@+id/shop_back_address_postcode"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/x22"
+                android:textSize="@dimen/x28"
+                android:textColor="#666"
+                android:layout_height="@dimen/x90"
                 android:background="@drawable/edit_text_shape"
                 android:hint="@string/shop_back_address_postcode"
-                android:padding="@dimen/text_left_padding" />
+                 />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
@@ -88,15 +97,21 @@
             <EditText
                 android:id="@+id/shop_back_address_phonenumber"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/x22"
+                android:textSize="@dimen/x28"
+                android:textColor="#666"
+                android:layout_height="@dimen/x90"
                 android:background="@drawable/edit_text_shape"
                 android:hint="@string/shop_back_address_phonenumber"
-                android:padding="@dimen/text_left_padding" />
+                 />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:background="@color/line_background_gray" />
             <TextView
+                android:layout_marginLeft="@dimen/x22"
+                android:textSize="@dimen/x26"
+                android:textColor="#888"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/x20"

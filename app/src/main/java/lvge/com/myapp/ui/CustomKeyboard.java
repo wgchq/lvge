@@ -35,18 +35,37 @@ public class CustomKeyboard {
 
     private EditText mEditText;
     private View view;
-    private View.OnTouchListener onTouchListener;
+    private View.OnClickListener onClickListener;
     private OnValidationLisnter onValidationLisnter;
 
     public CustomKeyboard(Context context) {
         mContext = context;
+        dialog = new Dialog(mContext, R.style.ActionSheetDialogStyle);
+        //填充对话框的布局
+        view = LayoutInflater.from(mContext).inflate(R.layout.custom_key_board_view, null);
+        //初始化控件
 
+        //将布局设置给Dialog
+        dialog.setContentView(view);
+        //获取当前Activity所在的窗体
+        Window dialogWindow = dialog.getWindow();
+        //设置Dialog从窗体底部弹出
+        dialogWindow.setGravity(Gravity.BOTTOM);
+        dialogWindow.setDimAmount(0f);
+
+        //获得窗体的属性
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+     /*   lp.y = 20;//设置Dialog距离底部的距离*/
+//       将属性设置给窗体
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        dialogWindow.setAttributes(lp);
     }
 
     public void SetEditText(final EditText mEditText) {
         this.mEditText = mEditText;
         if (this.mEditText != null) {
-            this.mEditText.addTextChangedListener(new TextWatcher() {
+            Init(view);
+          /*  this.mEditText.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -69,19 +88,19 @@ public class CustomKeyboard {
                 public void afterTextChanged(Editable s) {
 
                 }
-            });
+            });*/
 
             mEditText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int type = mEditText.getInputType();
-                    mEditText.setInputType(InputType.TYPE_NULL);
+              /*      int type = mEditText.getInputType();
+                    mEditText.setInputType(InputType.TYPE_NULL);*/
                     show(v);
-                    mEditText.setInputType(type);
+                /*    mEditText.setInputType(type);*/
                 }
             });
 
-            mEditText.setOnTouchListener(new View.OnTouchListener() {
+         /*   mEditText.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
 
@@ -101,28 +120,28 @@ public class CustomKeyboard {
 
 
                         String textcontent = mEditText.getText().toString();
-                        textcontent = textcontent.substring(0,start-1)+textcontent.substring(end+1,textcontent.length());
+                        textcontent = textcontent.substring(0, start - 1) + textcontent.substring(end + 1, textcontent.length());
                         mEditText.setText(textcontent);
-                        mEditText.setSelection(start-1);
+                        mEditText.setSelection(start - 1);
                     }
 
                     return false;
                 }
-            });
+            });*/
         }
     }
 
     public void Init(View view) {
 
-        this.onTouchListener = new View.OnTouchListener() {
+        this.onClickListener = new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public void onClick(View v) {
 
                 String mEditTextContent = mEditText.getText().toString();
                 int start = mEditText.getSelectionStart();
                 int key = v.getId();
-                switch (key) {
 
+                switch (key) {
                     case R.id.key_0:
                         mEditTextContent = mEditTextContent.substring(0, start) + "0" + mEditTextContent.substring(start, mEditTextContent.length());
                         break;
@@ -161,48 +180,29 @@ public class CustomKeyboard {
                         break;
                 }
 
+                mEditText.setText(mEditTextContent);
+                mEditText.setSelection(start + 1);
 
-               // mEditText.setText(mEditTextContent);
-               // mEditText.setSelection(start + 1);
-                return false;
             }
         };
 
-        view.findViewById(R.id.key_0).setOnTouchListener(this.onTouchListener);
-        view.findViewById(R.id.key_1).setOnTouchListener(this.onTouchListener);
-        view.findViewById(R.id.key_2).setOnTouchListener(this.onTouchListener);
-        view.findViewById(R.id.key_3).setOnTouchListener(this.onTouchListener);
-        view.findViewById(R.id.key_4).setOnTouchListener(this.onTouchListener);
-        view.findViewById(R.id.key_5).setOnTouchListener(this.onTouchListener);
-        view.findViewById(R.id.key_6).setOnTouchListener(this.onTouchListener);
-        view.findViewById(R.id.key_7).setOnTouchListener(this.onTouchListener);
-        view.findViewById(R.id.key_8).setOnTouchListener(this.onTouchListener);
-        view.findViewById(R.id.key_9).setOnTouchListener(this.onTouchListener);
+        view.findViewById(R.id.key_0).setOnClickListener(this.onClickListener);
+        view.findViewById(R.id.key_1).setOnClickListener(this.onClickListener);
+        view.findViewById(R.id.key_2).setOnClickListener(this.onClickListener);
+        view.findViewById(R.id.key_3).setOnClickListener(this.onClickListener);
+        view.findViewById(R.id.key_4).setOnClickListener(this.onClickListener);
+        view.findViewById(R.id.key_5).setOnClickListener(this.onClickListener);
+        view.findViewById(R.id.key_6).setOnClickListener(this.onClickListener);
+        view.findViewById(R.id.key_7).setOnClickListener(this.onClickListener);
+        view.findViewById(R.id.key_8).setOnClickListener(this.onClickListener);
+        view.findViewById(R.id.key_9).setOnClickListener(this.onClickListener);
 
-        view.findViewById(R.id.key_board_down).setOnTouchListener(this.onTouchListener);
-        view.findViewById(R.id.key_board_validation).setOnTouchListener(this.onTouchListener);
+        view.findViewById(R.id.key_board_down).setOnClickListener(this.onClickListener);
+        view.findViewById(R.id.key_board_validation).setOnClickListener(this.onClickListener);
     }
 
     public void show(View view) {
-        dialog = new Dialog(mContext, R.style.ActionSheetDialogStyle);
-        //填充对话框的布局
-        view = LayoutInflater.from(mContext).inflate(R.layout.custom_key_board_view, null);
-        //初始化控件
-        Init(view);
-        //将布局设置给Dialog
-        dialog.setContentView(view);
-        //获取当前Activity所在的窗体
-        Window dialogWindow = dialog.getWindow();
-        //设置Dialog从窗体底部弹出
-        dialogWindow.setGravity(Gravity.BOTTOM);
-        dialogWindow.setDimAmount(0f);
 
-        //获得窗体的属性
-        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-     /*   lp.y = 20;//设置Dialog距离底部的距离*/
-//       将属性设置给窗体
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        dialogWindow.setAttributes(lp);
         dialog.show();//显示对话框
     }
 

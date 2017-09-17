@@ -209,7 +209,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".modules.ValidationHistory.ValidationHistoryActivity"
+            android:name=".modules.validationhistory.ValidationHistoryActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity

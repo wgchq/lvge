@@ -4,7 +4,6 @@ package lvge.com.myapp.mainFragement;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,17 +15,16 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
-import lvge.com.myapp.MainActivity;
-import lvge.com.myapp.MainPageActivity;
 import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.modules.validationtypescanqr.MipcaActivityCaptureActivity;
 import lvge.com.myapp.R;
 import lvge.com.myapp.modules.PendingSendGoods.PendingSendGoodsActivity;
 import lvge.com.myapp.modules.RefundAfterSale.RefundAfterSaleActivity;
-import lvge.com.myapp.modules.ValidationHistory.ValidationHistoryActivity;
+import lvge.com.myapp.modules.validationhistory.ValidationHistoryActivity;
 import lvge.com.myapp.modules.alert_client_management.AlertClientActivity;
 import lvge.com.myapp.modules.car_data_management.CarDataManagementActivity;
 import lvge.com.myapp.modules.commodity_management.CommodityManageHomepage;
@@ -56,7 +54,26 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        ValidationQR(data.getDataString());
+
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (intentResult != null) {
+            if (intentResult.getContents() == null) {
+                Toast.makeText(getActivity(), "无法获取内容", Toast.LENGTH_SHORT).show();
+            } else {
+                if (resultCode != 2 && resultCode != 0)//退出
+                {
+/*
+                    AttentionModel ScanResult = (AttentionModel) JsonUtil.jsonStrToObject(intentResult.getContents(), AttentionModel.class);
+*/
+                    String str_qr = "";
+                    if (data != null) {
+                        if (data.getDataString() != null)
+                            str_qr = data.getDataString();
+                    }
+                    ValidationQR(str_qr);
+                }
+            }
+        }
     }
 
     public void ValidationQR(String strqr) {
@@ -288,7 +305,9 @@ public class HomeFragment extends Fragment {
 
     public void scanBarcode(View view) {
         IntentIntegrator integrator = new IntentIntegrator(getActivity());
+/*
         integrator.setPrompt("请对准二维码进行扫描"); //底部的提示文字，设为""可以置空
+*/
         integrator.setCameraId(0); //前置或者后置摄像头
         // integrator.setBeepEnabled(false); //扫描成功的「哔哔」声，默认开启
         integrator.setOrientationLocked(false);

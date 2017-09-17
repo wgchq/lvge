@@ -294,7 +294,12 @@ public class MainPageActivity extends Activity {
         }
         return listItems;
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (homeFragment != null) {
+            homeFragment.onActivityResult(requestCode, resultCode, data);
+        }
+    }
     public void toggleMenu(View view) {
         mMenu.toggle();
     }

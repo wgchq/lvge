@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_background_gray"
     android:orientation="vertical"
-    tools:context="lvge.com.myapp.modules.ValidationHistory.ValidationHistoryActivity">
+    tools:context="lvge.com.myapp.modules.validationhistory.ValidationHistoryActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
+        style="@style/my_title_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme"
-        style="@style/my_title_style"
         app:elevation="0dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="0dp">
@@ -34,21 +35,122 @@
                 android:layout_gravity="center"
                 android:text="@string/validation_history" />
 
+            <ImageView
+                android:id="@+id/history_validation_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="end"
+                android:background="?android:selectableItemBackground"
+                android:padding="@dimen/x30"
+                android:src="@mipmap/ic_search"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <ImageView
+                android:id="@+id/search_client"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="end"
+                android:background="?android:selectableItemBackground"
+                android:padding="@dimen/x30"
+                android:src="@mipmap/ic_search"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
+
+    <!--网络监测-->
+    <lvge.com.myapp.ui.NetworkCheckView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="#ff8386"
+        app:tabIndicatorHeight="1dp"
+        app:tabMode="fixed"
+        app:tabPadding="@dimen/x28"
+        app:tabSelectedTextColor="#ff8386"
+        app:tabTextAppearance="@style/TextAppearance.Design.Tab.Custom"
+        app:tabTextColor="#8c8c8c">
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:text="今日"
+            tools:ignore="HardcodedText" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="本周" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="本月" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全部"
+            tools:ignore="HardcodedText" />
+
+    </android.support.design.widget.TabLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="@dimen/x80"
+        android:layout_marginBottom="@dimen/x28"
+        android:layout_marginTop="@dimen/x28"
+        android:background="@color/mainBackgroundColor"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x80"
+            android:layout_marginLeft="@dimen/x36"
+            android:drawableLeft="@mipmap/history_validation_count"
+            android:drawablePadding="@dimen/x14"
+            android:gravity="center"
+            android:text="总共验证"
+            android:textColor="#000"
+            android:textSize="@dimen/x28" />
+
+        <TextView
+            android:id="@+id/record_total_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/x28" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-
-            android:text="@string/hello_blank_fragment" />
+            android:text="订单"
+            android:textColor="#000"
+            android:textSize="@dimen/x28" />
     </LinearLayout>
+
+    <lvge.com.myapp.ui.LoadListView
+        android:id="@+id/history_validation_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/line_background_gray"
+        android:dividerHeight="@dimen/x14">
+
+    </lvge.com.myapp.ui.LoadListView>
+
+
 </LinearLayout>

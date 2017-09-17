@@ -23,29 +23,31 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
+        android:layout_height="@dimen/x176"
+        android:orientation="vertical"
+        android:background="@color/mainBackgroundColor"
         >
         <TextView
-            android:textSize="15sp"
+            android:paddingTop="@dimen/x28"
+            android:textSize="@dimen/x28"
             android:gravity="center"
-            android:textColor="#444"
-            android:layout_width="wrap_content"
+            android:textColor="#000"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="企业认证（人工审核）帮助"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="86dp"
             android:id="@+id/textView6" />
         <TextView
+            android:textColor="#333"
+            android:textSize="@dimen/x22"
+            android:paddingTop="@dimen/x28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="你需要上传有效营业执照副本的照片，以及营业执照上所对应的法人身份证正反照片，等待我们的客服人工审核。"
-            android:layout_marginTop="22dp"
-            android:layout_below="@+id/textView6"
-            android:layout_alignParentStart="true" />
 
-    </RelativeLayout>
+            android:layout_below="@+id/textView6"
+             />
+
+    </LinearLayout>
 </LinearLayout>

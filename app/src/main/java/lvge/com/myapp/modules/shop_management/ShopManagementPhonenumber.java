@@ -54,7 +54,7 @@ public class ShopManagementPhonenumber extends AppCompatActivity {
                 Bundle bundle=new Bundle();
                 bundle.putString("PhonenumberResult", phonenumber);
                 intent.putExtras(bundle);
-                setResult(RESULT_OK,intent);
+                setResult(1001,intent);
                 finish();
             }
         });

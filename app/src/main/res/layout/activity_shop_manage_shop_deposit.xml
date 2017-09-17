@@ -37,7 +37,10 @@
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
-
+    <!--网络监测-->
+    <lvge.com.myapp.ui.NetworkCheckView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,30 +49,39 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/x360"
             android:background="@color/mainBackgroundColor"
-            android:orientation="vertical"
-            android:padding="@dimen/activity_horizontal_margin">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginStart="@dimen/text_left_padding"
-                android:drawablePadding="@dimen/text_left_to_img_padding"
+                android:layout_marginTop="@dimen/x98"
                 android:gravity="center"
                 android:text="@string/shop_deposit_not_get"
+                android:textColor="#000"
+                android:textSize="@dimen/x36"
                 android:textStyle="bold" />
-
-
             <Button
                 android:id="@+id/btn_shop_deposit_get"
                 style="@style/my_buttonActiveStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:textSize="@dimen/x36"
+                android:layout_marginTop="@dimen/x62"
+                android:layout_marginLeft="@dimen/x44"
+                android:layout_marginRight="@dimen/x44"
+                android:layout_marginBottom="@dimen/x2"
                 android:text="@string/shop_deposit_get" />
+
+            <CheckBox
+                android:id="@+id/btn_shop_deposit_read"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x92"
+                android:paddingLeft="@dimen/x20"
+                android:text="@string/shop_deposit_read" />
         </LinearLayout>
 
         <ScrollView
@@ -82,44 +94,166 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/x34"
+                    android:textColor="#000"
+                    android:paddingTop="@dimen/x34"
+                    android:paddingLeft="@dimen/x44"
+                    android:id="@+id/textView7"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/activity_horizontal_margin"
+                    android:layout_height="@dimen/x80"
                     android:text="@string/what_is_deposit" />
 
                 <TextView
+                    android:textSize="@dimen/x30"
+                    android:textColor="#bdbdbd"
+                    android:layout_marginTop="@dimen/x20"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/x366"
                     android:background="@color/mainBackgroundColor"
                     android:padding="@dimen/activity_horizontal_margin"
                     android:text="@string/what_is_deposit_description" />
 
                 <TextView
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/x34"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/activity_horizontal_margin"
+                    android:layout_height="@dimen/x72"
+                    android:paddingStart="@dimen/x44"
+                    android:textColor="#000"
                     android:text="@string/how_get_deposit" />
-
                 <TextView
+                    android:textSize="@dimen/x30"
+                    android:textColor="#bdbdbd"
+                    android:paddingStart="@dimen/x44"
+                    android:paddingTop="@dimen/x20"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/x72"
                     android:background="@color/mainBackgroundColor"
-                    android:padding="@dimen/activity_horizontal_margin"
+
                     android:text="@string/how_get_deposit_description" />
 
                 <TextView
+                    android:gravity="center_vertical"
                     android:id="@+id/textView"
+                    android:textSize="@dimen/x34"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/activity_horizontal_margin"
+                    android:layout_height="@dimen/x72"
+                    android:paddingStart="@dimen/x44"
+                    android:textColor="#000"
                     android:text="@string/deposit_advantage" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/mainBackgroundColor"
-                    android:padding="@dimen/activity_horizontal_margin"
-                    android:text="@string/deposit_advantage_description" />
+                    android:background="#fff"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textSize="@dimen/x30"
+                            android:textColor="#bdbdbd"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@color/mainBackgroundColor"
+                            android:padding="@dimen/activity_horizontal_margin"
+                            android:text="@string/deposit_advantage_description_first" />
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:textSize="@dimen/x30"
+                            android:textColor="#bdbdbd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/mainBackgroundColor"
+                            android:padding="@dimen/activity_horizontal_margin"
+                            android:text="@string/deposit_advantage_description_second" />
+
+                    </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textSize="@dimen/x30"
+                        android:textColor="#bdbdbd"
+
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/mainBackgroundColor"
+                        android:padding="@dimen/activity_horizontal_margin"
+                        android:text="@string/deposit_advantage_description_three" />
+                    <TextView
+                        android:textSize="@dimen/x30"
+                        android:textColor="#bdbdbd"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:background="@color/mainBackgroundColor"
+                        android:padding="@dimen/activity_horizontal_margin"
+                        android:text="@string/deposit_advantage_description_four" />
+
+                </LinearLayout>
+                </LinearLayout>
+                <TextView
+
+                    android:textSize="@dimen/x34"
+                    android:paddingStart="@dimen/x44"
+                    android:textColor="#000"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Order_settlement_process"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:layout_marginBottom="@dimen/x40"
+                    >
+                    <TextView
+                        android:paddingLeft="@dimen/x44"
+                        android:textSize="@dimen/x30"
+                        android:textColor="#bdbdbd"
+                        android:layout_marginTop="@dimen/x20"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/mainBackgroundColor"
+                        android:text="@string/Order_settlement_process_first" />
+                    <TextView
+                        android:paddingLeft="@dimen/x44"
+                        android:textSize="@dimen/x30"
+                        android:textColor="#bdbdbd"
+                        android:layout_marginTop="@dimen/x20"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/mainBackgroundColor"
+
+                        android:text="@string/Order_settlement_process_second" />
+                    <TextView
+                        android:paddingLeft="@dimen/x44"
+                        android:textSize="@dimen/x30"
+                        android:textColor="#bdbdbd"
+                        android:layout_marginTop="@dimen/x32"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/mainBackgroundColor"
+                        android:text="@string/Order_settlement_process_three" />
+                    <TextView
+                        android:paddingLeft="@dimen/x44"
+                        android:textSize="@dimen/x30"
+                        android:textColor="#bdbdbd"
+                        android:layout_marginTop="@dimen/x20"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/mainBackgroundColor"
+                        android:text="@string/Order_settlement_process_four" />
+                </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

@@ -9,6 +9,7 @@
     <color name="mainBackgroundColor">#FFFFFF</color>
     <color name="PageBackgroundColor">#F0F4F7</color>
     <color name="background_gray">#EFEFF4</color>
+    <color name="main_background_gray">#f1f5f8</color>
     <color name="line_background_gray">#f1f5f8</color>
     <color name="lg_button_text_color">#7D7D7D</color>
     <color name="hint_color">#aaaaaa</color>
@@ -20,4 +21,10 @@
     <color name="zxing_custom_viewfinder_mask">#FFDDCC</color>
     <color name="zxing_transparent">#00000000</color>
     <color name="zxing_status_text">#FFFFFF</color>
+    
+    <!--shop color-->
+    <color name="myshop_hint_color">#888</color>
+    <color name="myshop_border_line_color">#d9d9d9</color>
+    <color name="myshop_mid_line_color">#efeeee</color>
+    <color name="myshop_background">#f1f5f8</color>
 </resources>

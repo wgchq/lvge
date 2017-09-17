@@ -11,53 +11,60 @@
         tools:ignore="UselessParent">
 
         <LinearLayout
+            android:layout_marginTop="@dimen/x18"
             android:id="@+id/fragment_container_authentication"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_height="@dimen/x98"
+                android:gravity="center_vertical"
                 android:background="@color/mainBackgroundColor">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginStart="@dimen/x28"
+                    android:textColor="#000"
                     android:text="@string/company_name_text" />
-
                 <EditText
                     android:id="@+id/shop_authentication_company_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/x98"
                     android:background="@drawable/edit_text_shape"
                     android:hint="@string/please_enter_company_name_text"
-                    android:padding="@dimen/text_left_padding"
-                    android:textSize="12sp" />
+                    android:layout_marginStart="@dimen/x50"
+                    android:textSize="@dimen/x26"
+                    android:textColor="#666"/>
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="@dimen/x22"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/x386"
                 android:orientation="vertical"
                 tools:ignore="UseCompoundDrawables">
-
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/mainBackgroundColor"
-                    android:padding="@dimen/activity_horizontal_margin"
-                    android:text="@string/shop_authentication_business_licence"
-                    android:textStyle="bold" />
-
+                    android:layout_height="@dimen/x98"
+                    android:background="@color/mainBackgroundColor">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/x98"
+                        android:background="@color/mainBackgroundColor"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"
+                        android:layout_marginStart="@dimen/x28"
+                        android:text="@string/shop_authentication_business_licence"
+                        />
+                </LinearLayout>
                 <ImageView
                     android:id="@+id/img_business_licence"
-                    android:layout_width="@dimen/img_size"
-                    android:layout_height="@dimen/img_size"
-                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:layout_width="@dimen/x240"
+                    android:layout_height="@dimen/x240"
+                    android:layout_marginLeft="@dimen/x86"
+                    android:layout_marginTop="@dimen/x24"
                     android:background="@drawable/image_style_shape"
                     tools:ignore="ContentDescription" />
             </LinearLayout>
@@ -67,14 +74,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/mainBackgroundColor"
-                    android:padding="@dimen/activity_horizontal_margin"
-                    android:text="@string/shop_authentication_identity_card"
-                    android:textStyle="bold" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x98"
+                    android:background="@color/mainBackgroundColor">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/x98"
+                        android:background="@color/mainBackgroundColor"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"
+                        android:layout_marginStart="@dimen/x28"
+                        android:text="@string/shop_authentication_identity_card"
+                        />
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -82,19 +96,20 @@
 
                     <ImageView
                         android:id="@+id/img_identity_card_positive"
-                        android:layout_width="@dimen/img_size"
-                        android:layout_height="@dimen/img_size"
-                        android:layout_margin="@dimen/activity_horizontal_margin"
+                        android:layout_width="@dimen/x240"
+                        android:layout_height="@dimen/x240"
+                        android:layout_marginLeft="@dimen/x86"
+                        android:layout_marginTop="@dimen/x24"
                         android:background="@drawable/image_style_shape"
                         android:onClick="show"
                         tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/img_identity_card_negative"
-                        android:layout_width="@dimen/img_size"
-                        android:layout_height="@dimen/img_size"
-                        android:layout_margin="@dimen/activity_horizontal_margin"
-
+                        android:layout_width="@dimen/x240"
+                        android:layout_height="@dimen/x240"
+                        android:layout_marginTop="@dimen/x24"
+                        android:layout_marginLeft="@dimen/x120"
                         android:background="@drawable/image_style_shape"
                         android:onClick="show"
                         tools:ignore="ContentDescription" />
@@ -107,16 +122,22 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:layout_marginTop="@dimen/x58"
+                        android:background="#ff575c"
                         android:id="@+id/shop_authentication_confirm_and_submit"
                         style="@style/my_buttonActiveStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/x680"
+                        android:layout_height="@dimen/x98"
+                        android:textSize="@dimen/x36"
                         android:text="@string/confirm_and_submit" />
 
                     <TextView
+                        android:textColor="#a2a2a2"
+                        android:layout_marginLeft="@dimen/x52"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/x28"
+                        android:textSize="@dimen/x26"
                         android:hint="@string/confirm_and_submit_hint" />
                 </LinearLayout>
 

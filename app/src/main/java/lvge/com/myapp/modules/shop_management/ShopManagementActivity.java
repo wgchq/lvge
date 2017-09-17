@@ -56,6 +56,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
+import lvge.com.myapp.model.CustomerDetail;
 import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.model.My4sUpdataImageViewModel;
 import lvge.com.myapp.modules.my_4s_management.BaseTest;
@@ -141,6 +142,7 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
     private TextView consume_back_cancel;
 
     private TextView tv_shop_consume_back_text_content;
+    private TextView tv_shop_contact_text_content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,7 +172,6 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
         shop_finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ShopManagementActivity.this,"ok",Toast.LENGTH_SHORT).show();
                 try {
                     startProgerssDialog();
                     TimerTask task = new TimerTask() {
@@ -179,6 +180,9 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
                             /**
                              *要执行的操作
                              */
+                            L.d("areaID:" + areaID + "\nsellerID:" + sellerID + "\nauthentic:" + authentic
+                                    + "\naddress:" + address + "\nname:" + name + "\nopenService:" + openService
+                                    + "\nlng:" + lng + "\ntelephone:" + telephone + "\nlat:" + lat + "\nmobile:" + mobile);
                             OkHttpUtils.post()//get 方法
                                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/seller/saveOrUpdate") //地址
                                     .addParams("name", shop_name.getText().toString())
@@ -198,7 +202,7 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
                                             String string = response.body().string();//获取相应中的内容Json格式
                                             //把json转化成对应对象
                                             //LoginResultModel是和后台返回值类型结构一样的对象
-                                            LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                                            CustomerDetail result = new Gson().fromJson(string, CustomerDetail.class);
                                             return result;
                                         }
 
@@ -210,7 +214,7 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
                                         @Override
                                         public void onResponse(Object o, int i) {
                                             if (null != o) {
-                                                LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
+                                                CustomerDetail result = (CustomerDetail) o;//把通用的Object转化成指定的对象
                                                 if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
                                                     Toast.makeText(ShopManagementActivity.this, "更新成功！", Toast.LENGTH_SHORT).show();
                                                 } else {
@@ -226,7 +230,7 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
                     };
 
                     Timer timer = new Timer();
-                    timer.schedule(task, 2000);//3秒后执行
+                    timer.schedule(task, 4000);//3秒后执行
 
 
 
@@ -259,7 +263,7 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
                                 }
                             }
                         }.start();
-                        Thread.sleep(1000);
+                        //Thread.sleep(1000);
                         ImageNum++;
                         shop_image_main_page_bool = false;
                     }
@@ -284,7 +288,7 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
                                 }
                             }
                         }.start();
-                        Thread.sleep(1000);
+                        //Thread.sleep(1000);
                         shop_image_env_page_bool = false;
                         ImageNum++;
                     }
@@ -309,7 +313,7 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
                                 }
                             }
                         }.start();
-                        Thread.sleep(1000);
+                        //Thread.sleep(1000);
                         shop_image_env_page_1_bool = false;
                         ImageNum++;
                     }
@@ -334,7 +338,7 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
                                 }
                             }
                         }.start();
-                        Thread.sleep(1000);
+                        //Thread.sleep(1000);
                         shop_image_env_page_2_bool = false;
                         ImageNum++;
                     }
@@ -360,7 +364,7 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
                                 }
                             }
                         }.start();
-                        Thread.sleep(1000);
+                        //Thread.sleep(1000);
                         shop_image_other_page_bool = false;
                         ImageNum++;
                     }
@@ -446,7 +450,7 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
         });
 
         tv_shop_consume_back_text_content = (TextView)findViewById(R.id.tv_shop_consume_back_text_content);
-
+        tv_shop_contact_text_content = (TextView)findViewById(R.id.tv_shop_contact_text_content);
         resource_init();
         network_init();
     }
@@ -456,10 +460,13 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode){
             case RESULT_OK:
+
+
+                break;
+            case 1001:
                 Bundle b = data.getExtras();
                 mobile = b.getString("PhonenumberResult");
-
-
+                L.d(mobile);
                 break;
             default:
                 break;
@@ -537,10 +544,10 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
                                     lat = result.getMarketEntity().getLat();
                                     mobile = result.getMarketEntity().getMobile();
                                     noExpense = result.getMarketEntity().getNoExpense();
-
                                     L.d("areaID:" + areaID + "\nsellerID:" + sellerID + "\nauthentic:" + authentic
                                             + "\naddress:" + address + "\nname:" + name + "\nopenService:" + openService
-                                            + "\nlng:" + lng + "\ntelephone:" + telephone + "\nlat:" + lat + "\nmobile" + mobile);
+                                            + "\nlng:" + lng + "\ntelephone:" + telephone + "\nlat:" + lat + "\nmobile" + mobile
+                                            + "\nnoExpense:"+noExpense);
                                     switch (authentic) {
                                         case ShopManagementParameter.AUTHENTIC_NOAPPLY:
                                             tv_shop_authentication_text_content.setHint("未申请企业认证");
@@ -580,6 +587,8 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
                                                 break;
                                         }
                                     }
+
+                                    tv_shop_contact_text_content.setHint(mobile);
 
                                     shop_name.setText(name);
 
