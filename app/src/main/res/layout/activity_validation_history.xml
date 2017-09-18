@@ -36,7 +36,7 @@
                 android:text="@string/validation_history" />
 
             <ImageView
-                android:id="@+id/history_validation_calendar"
+                android:id="@+id/history_validation_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -47,14 +47,14 @@
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
             <ImageView
-                android:id="@+id/search_client"
+                android:id="@+id/history_validation_calendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
                 android:background="?android:selectableItemBackground"
                 android:padding="@dimen/x30"
-                android:src="@mipmap/ic_search"
+                android:src="@mipmap/history_validation_calendar"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
         </android.support.v7.widget.Toolbar>
