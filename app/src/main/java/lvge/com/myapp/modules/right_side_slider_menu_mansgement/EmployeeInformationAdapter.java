@@ -15,6 +15,7 @@ import com.zhy.http.okhttp.callback.BitmapCallback;
 import java.util.List;
 
 import lvge.com.myapp.R;
+import lvge.com.myapp.model.EmployeeInformationList;
 import lvge.com.myapp.model.SalesConsutantListViewData;
 import lvge.com.myapp.model.SellerImgs;
 import lvge.com.myapp.modules.my_4s_management.SalesConsutantListViewAdapter;
@@ -28,9 +29,9 @@ public class EmployeeInformationAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;  //视图容器
-    private List<SellerImgs>  listItems;   //商品信息集合
+    private List<EmployeeInformationList>  listItems;   //商品信息集合
 
-    public EmployeeInformationAdapter(Context context , List<SellerImgs> listItems){
+    public EmployeeInformationAdapter(Context context , List<EmployeeInformationList> listItems){
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
         this.listItems = listItems;
@@ -116,13 +117,13 @@ public class EmployeeInformationAdapter extends BaseAdapter {
             listItemView = (EmployeeInformationAdapter.ListItemView)view.getTag();
         }
 
-        final SellerImgs item =listItems.get(position);
-        if(item.getImgPath() != null && !item.getImgPath().equals("")){
+        final EmployeeInformationList item =listItems.get(position);
+        if(item.getHeadImg() != null && !item.getHeadImg().equals("")){
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     OkHttpUtils.get()
-                            .url(item.getImgPath())
+                            .url(item.getHeadImg())
                             .build()
                             .connTimeOut(20000).readTimeOut(20000).writeTimeOut(20000)
                             .execute(new BitmapCallback() {
@@ -140,10 +141,10 @@ public class EmployeeInformationAdapter extends BaseAdapter {
                 }
             }).start();
         }
-        listItemView.sname.setText(item.getType());
-        listItemView.phone.setText(item.getPictureId());
+        listItemView.sname.setText(item.getNAME());
+        listItemView.phone.setText(item.getPHONE());
         listItemView.phone.setCompoundDrawables(null,null,null,null);
-        listItemView.memo.setText(item.getEntityType());
+        listItemView.memo.setText(item.getJob());
         listItemView.reImageview.setImageBitmap(null);
 
         return view;

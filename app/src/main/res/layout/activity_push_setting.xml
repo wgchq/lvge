@@ -17,7 +17,7 @@
         tools:layout_editor_absoluteY="0dp">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/power_setting_toobar"
+            android:id="@+id/push_setting_toobar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -32,7 +32,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:textSize="@dimen/x30"
-                android:text="权限设置"
+                android:text="推送设置"
                 tools:ignore="HardcodedText" />
 
             <TextView
@@ -45,7 +45,7 @@
                 android:padding="@dimen/x20"
                 android:gravity="center"
                 android:background="?android:selectableItemBackground"
-                android:text="添加"
+                android:text=""
                 android:textSize="@dimen/x30"
                 android:textColor="@color/mainFontColor"
                 tools:ignore="HardcodedText" />
@@ -64,9 +64,80 @@
         android:layout_below="@+id/toolbar_main_page"
         android:background="@color/line_background_gray"
         android:orientation="vertical"
-        android:paddingTop="@dimen/x18"
+        android:paddingTop="@dimen/x36"
         tools:ignore="ObsoleteLayoutParam">
 
+
+        <RelativeLayout
+            android:id="@+id/push_setting_Relayout_changename"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x100"
+            android:background="@color/mainBackgroundColor"
+            android:paddingLeft="@dimen/x28"
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x36"
+                android:text="维权订单"
+                android:textColor="#000"
+                android:textSize="@dimen/x28"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+            <TextView
+                android:id="@+id/push_setting_order_onoff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x36"
+                android:text="已开启"
+                android:textSize="@dimen/x28"
+                tools:ignore="ContentDescription,HardcodedText,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x28"
+            android:background="@color/line_background_gray"
+            tools:ignore="InefficientWeight" />
+
+        <RelativeLayout
+            android:id="@+id/push_setting_Relayout_neworder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x100"
+            android:background="@color/mainBackgroundColor"
+            android:paddingLeft="@dimen/x28"
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x36"
+                android:text="新订单提醒"
+                android:textColor="#000"
+                android:textSize="@dimen/x30"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+            <com.kyleduo.switchbutton.SwitchButton
+                android:id="@+id/employees_manager_switchbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x36"
+                android:checked="true"
+                android:gravity="center"
+                app:kswThumbColor="@color/background_gray"
+                app:kswBackColor="@color/buttonPrimary"
+                tools:ignore="RelativeOverlap" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/persion_profile_iamge"
@@ -80,21 +151,104 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x15"
-                android:text="选择员工"
-                android:textSize="@dimen/x28"
+                android:layout_marginLeft="@dimen/x36"
+                android:text="提醒声音"
+                android:textColor="#000"
+                android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <TextView
-                android:id="@+id/persion_profile_iamgeview"
+                android:id="@+id/push_setting_order_sound"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="未选择"
-                android:textSize="@dimen/x28"
-                android:layout_marginRight="@dimen/x10"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x22"
+                android:layout_toLeftOf="@+id/perison_profile_consultant1"
                 android:paddingRight="@dimen/x20"
+                android:text="系统提醒"
+                android:textSize="@dimen/x28"
+                tools:ignore="ContentDescription,HardcodedText,RtlHardcoded,SmallSp" />
+
+            <TextView
+                android:id="@+id/perison_profile_consultant1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x20"
+                android:background="@mipmap/gray_right"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x28"
+            android:background="@color/line_background_gray"
+            tools:ignore="InefficientWeight" />
+
+        <RelativeLayout
+            android:id="@+id/push_setting_Relayout_lvge"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x100"
+            android:background="@color/mainBackgroundColor"
+            android:paddingLeft="@dimen/x28"
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x36"
+                android:text="旅鸽商城收款提醒"
+                android:textColor="#000"
+                android:textSize="@dimen/x30"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+            <com.kyleduo.switchbutton.SwitchButton
+                android:id="@+id/push_setting_switchbutton_fangge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x36"
+                android:background="@android:color/transparent"
+                android:checked="true"
+                android:gravity="center"
+                app:kswThumbColor="@color/background_gray"
+                app:kswBackColor="@color/buttonPrimary"
+                tools:ignore="RelativeOverlap" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/push_setting_Relayout_sound"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x100"
+            android:background="@color/mainBackgroundColor"
+            android:paddingLeft="@dimen/x28"
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x36"
+                android:text="提醒声音"
+                android:textColor="#000"
+                android:textSize="@dimen/x30"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/push_setting_lvge_sound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x22"
                 android:layout_toLeftOf="@+id/perison_profile_consultant"
+                android:paddingRight="@dimen/x20"
+                android:text="系统提醒"
+                android:textSize="@dimen/x28"
                 tools:ignore="ContentDescription,HardcodedText,RtlHardcoded,SmallSp" />
 
             <TextView
@@ -111,12 +265,12 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x38"
+            android:layout_height="@dimen/x28"
             android:background="@color/line_background_gray"
             tools:ignore="InefficientWeight" />
 
         <RelativeLayout
-            android:id="@+id/employees_manager_Relayout"
+            android:id="@+id/push_setting_Relayout_sound_all"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x100"
             android:background="@color/mainBackgroundColor"
@@ -127,19 +281,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x10"
-                android:text="员工管理"
+                android:layout_marginLeft="@dimen/x36"
+                android:text="声音"
+                android:textColor="#000"
                 android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
 
             <com.kyleduo.switchbutton.SwitchButton
-                android:id="@+id/employees_manager_switchbutton"
+                android:id="@+id/push_setting_switchbutton_sound"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x30"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x36"
                 android:background="@android:color/transparent"
                 android:checked="true"
                 android:gravity="center"
@@ -148,14 +303,8 @@
                 tools:ignore="RelativeOverlap" />
         </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x1"
-            android:background="@color/line_background_gray"
-            tools:ignore="InefficientWeight" />
-
         <RelativeLayout
-            android:id="@+id/shop_manager_Relalayout"
+            android:id="@+id/push_setting_Relayout_jarrying"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x100"
             android:background="@color/mainBackgroundColor"
@@ -166,19 +315,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x10"
-                android:text="店铺管理"
+                android:layout_marginLeft="@dimen/x36"
+                android:text="震动"
+                android:textColor="#000"
                 android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
 
             <com.kyleduo.switchbutton.SwitchButton
-                android:id="@+id/shop_manage_switchbutton"
+                android:id="@+id/push_setting_switchbutton_jarrying"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x30"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x36"
                 android:background="@android:color/transparent"
                 android:checked="true"
                 android:gravity="center"
@@ -187,238 +337,19 @@
                 tools:ignore="RelativeOverlap" />
         </RelativeLayout>
 
-        <View
+        <TextView
+            android:id="@+id/textView8"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x1"
+            android:layout_height="wrap_content"
             android:background="@color/line_background_gray"
-            tools:ignore="InefficientWeight" />
-        <RelativeLayout
-            android:id="@+id/merchandise_manager_Relayout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x100"
-            android:background="@color/mainBackgroundColor"
-            android:paddingLeft="@dimen/x28"
-            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x10"
-                android:text="商品管理"
-                android:textSize="@dimen/x30"
-                tools:ignore="HardcodedText,RtlHardcoded" />
-
-
-            <com.kyleduo.switchbutton.SwitchButton
-                android:id="@+id/merchandise_manager_switchbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x30"
-                android:background="@android:color/transparent"
-                android:checked="true"
-                android:gravity="center"
-                app:kswThumbColor="@color/background_gray"
-                app:kswBackColor="@color/buttonPrimary"
-                tools:ignore="RelativeOverlap" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x1"
-            android:background="@color/line_background_gray"
-            tools:ignore="InefficientWeight" />
-        <RelativeLayout
-            android:id="@+id/order_manager_Relayout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x100"
-            android:background="@color/mainBackgroundColor"
-            android:paddingLeft="@dimen/x28"
-            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x10"
-                android:text="订单管理"
-                android:textSize="@dimen/x30"
-                tools:ignore="HardcodedText,RtlHardcoded" />
-
-
-            <com.kyleduo.switchbutton.SwitchButton
-                android:id="@+id/order_manager_switchbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/x30"
-                android:background="@android:color/transparent"
-                android:checked="true"
-                android:gravity="center"
-                app:kswThumbColor="@color/background_gray"
-                app:kswBackColor="@color/buttonPrimary"
-                tools:ignore="RelativeOverlap"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="15dp" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x1"
-            android:background="@color/line_background_gray"
-            tools:ignore="InefficientWeight" />
-
-        <RelativeLayout
-            android:id="@+id/appraise_manager_Relayout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x100"
-            android:background="@color/mainBackgroundColor"
-            android:paddingLeft="@dimen/x28"
-            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x10"
-                android:text="评价管理"
-                android:textSize="@dimen/x30"
-                tools:ignore="HardcodedText,RtlHardcoded" />
-
-
-            <com.kyleduo.switchbutton.SwitchButton
-                android:id="@+id/appraise_manager_switchbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/x30"
-                android:background="@android:color/transparent"
-                android:checked="true"
-                android:gravity="center"
-                app:kswThumbColor="@color/background_gray"
-                app:kswBackColor="@color/buttonPrimary"
-                tools:ignore="RelativeOverlap"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x1"
-            android:background="@color/line_background_gray"
-            tools:ignore="InefficientWeight" />
-
-        <RelativeLayout
-            android:id="@+id/commission_manager_Relayout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x100"
-            android:background="@color/mainBackgroundColor"
-            android:paddingLeft="@dimen/x28"
-            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x10"
-                android:text="提成管理"
-                android:textSize="@dimen/x30"
-                tools:ignore="HardcodedText,RtlHardcoded" />
-
-
-            <com.kyleduo.switchbutton.SwitchButton
-                android:id="@+id/commission_manager_switchbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/x30"
-                android:background="@android:color/transparent"
-                android:checked="true"
-                android:gravity="center"
-                app:kswThumbColor="@color/background_gray"
-                app:kswBackColor="@color/buttonPrimary"
-                tools:ignore="RelativeOverlap" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x1"
-            android:background="@color/line_background_gray"
-            tools:ignore="InefficientWeight" />
-        <RelativeLayout
-            android:id="@+id/finance_manager_Relayout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x100"
-            android:background="@color/mainBackgroundColor"
-            android:paddingLeft="@dimen/x28"
-            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x10"
-                android:text="财务管理"
-                android:textSize="@dimen/x30"
-                tools:ignore="HardcodedText,RtlHardcoded" />
-
-
-            <com.kyleduo.switchbutton.SwitchButton
-                android:id="@+id/finance_manager_switchbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x30"
-                android:background="@android:color/transparent"
-                android:checked="true"
-                android:gravity="center"
-                app:kswThumbColor="@color/background_gray"
-                app:kswBackColor="@color/buttonPrimary"
-                tools:ignore="RelativeOverlap" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x1"
-            android:background="@color/line_background_gray"
-            tools:ignore="InefficientWeight" />
-
-        <RelativeLayout
-            android:id="@+id/performance_manager_Relayout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x100"
-            android:background="@color/mainBackgroundColor"
-            android:paddingLeft="@dimen/x28"
-            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
-
-            <TextView
-                android:id="@+id/persion_profile_Textview1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x10"
-                android:text="业绩管理"
-                android:textSize="@dimen/x30"
-                tools:ignore="HardcodedText,RtlHardcoded" />
-
-
-            <com.kyleduo.switchbutton.SwitchButton
-                android:id="@+id/performance_manager_switchbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/x30"
-                android:checked="true"
-                android:gravity="center"
-                app:kswThumbColor="@color/background_gray"
-                app:kswBackColor="@color/buttonPrimary"
-                tools:ignore="RelativeOverlap" />
-        </RelativeLayout>
-
+            android:paddingLeft="@dimen/x2"
+            android:paddingRight="@dimen/x2"
+            android:gravity="center"
+            android:paddingTop="@dimen/x34"
+            android:text="旅鸽商城运行时，您可以设置收到客户信息时，是否需要声音和振动"
+            android:textColor="#333"
+            android:textSize="@dimen/x24"
+            tools:ignore="HardcodedText,InefficientWeight" />
     </LinearLayout>
 
 </LinearLayout>

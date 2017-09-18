@@ -11,22 +11,30 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.google.gson.Gson;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import lvge.com.myapp.R;
+import lvge.com.myapp.model.EmployeeInformationList;
+import lvge.com.myapp.model.EmployeeInformationMode;
 import lvge.com.myapp.model.LoadRightSideMode;
+import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.model.SalesConsutantListViewData;
 import lvge.com.myapp.model.SellerImgs;
 import lvge.com.myapp.modules.my_4s_management.SalesConsultant;
 import lvge.com.myapp.modules.my_4s_management.SalesConsutantListViewAdapter;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class EmployeeInformation extends AppCompatActivity {
 
@@ -39,7 +47,7 @@ public class EmployeeInformation extends AppCompatActivity {
     private EmployeeInformationAdapter adapter;
 
     private SwipeMenuListView customListView;
-    private List<SellerImgs> contentList = new ArrayList<SellerImgs>();
+    private List<EmployeeInformationList> contentList = new ArrayList<EmployeeInformationList>();
 
     private Context context;
     @Override
@@ -63,12 +71,12 @@ public class EmployeeInformation extends AppCompatActivity {
         preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         String string = preferences.getString("right_data","");
         LoadRightSideMode result = new Gson().fromJson(string, LoadRightSideMode.class);
-        contentList = result.getMarketEntity().getSeller().getSellerImgs();
+      //  contentList = result.getMarketEntity().getSeller().getSellerImgs();
+
+        initEmployeeInformation();
+
         customListView = (SwipeMenuListView) findViewById(R.id.employee_information_listview);
 
-
-
-        customListView.setAdapter(new EmployeeInformationAdapter(EmployeeInformation.this, contentList));
         /**
         SellerImgs item = null;
         for(int i=0;i<result.getMarketEntity().getSeller().getSellerImgs().size();i++){
@@ -109,17 +117,101 @@ public class EmployeeInformation extends AppCompatActivity {
         employee_information_listview.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public void onMenuItemClick(int i, SwipeMenu swipeMenu, int i1) {
-               // SalesConsutantListViewData item = contentList.get(i);
+                EmployeeInformationList item = contentList.get(i);
                 switch (i1) {
                     case 0:
-                       // removeConsultant(item.getId());
+                        String adv = item.getUSER_ID();
+                        removeEmployeeInformation(adv);
                         // getListItem();
                 }
             }
         });
     }
 
+    private void removeEmployeeInformation(String str){
+            try {
+                OkHttpUtils.get()
+                        .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/deleteStaff.do")
+                        .addParams("userId",str)
+                        .build()
+                        .execute(new Callback() {
+                            @Override
+                            public Object parseNetworkResponse(Response response, int i) throws Exception {
+                                String string = response.body().string();//获取相应中的内容Json格式
+                                //把json转化成对应对象
+                                //LoginResultModel是和后台返回值类型结构一样的对象
+                                LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                                return result;
+                            }
+
+                            @Override
+                            public void onError(Call call, Exception e, int i) {
+
+                            }
+
+                            @Override
+                            public void onResponse(Object o, int i) {
+                                if (null != o) {
+                                    LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
+                                    if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                        Toast.makeText(EmployeeInformation.this,"删除成功！",Toast.LENGTH_LONG).show();
+                                        contentList.remove(result);
+                                        new EmployeeInformationAdapter(EmployeeInformation.this, contentList).notifyDataSetChanged();
+                                    }else {
+                                        Toast.makeText(EmployeeInformation.this,"删除失败！",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            }
+                        });
+
+            } catch (Exception e) {
+                // stopProgressDialog();
+                Toast.makeText(EmployeeInformation.this,"删除失败！",Toast.LENGTH_LONG).show();
+            }
+
+    }
+
     private int dp2px(int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
     }
+
+    private void initEmployeeInformation() {
+        try {
+            OkHttpUtils.get()
+                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/queryStaff.do")
+                    .build()
+                    .execute(new Callback() {
+                        @Override
+                        public Object parseNetworkResponse(Response response, int i) throws Exception {
+                            String string = response.body().string();//获取相应中的内容Json格式
+                            //把json转化成对应对象
+                            //LoginResultModel是和后台返回值类型结构一样的对象
+                            //stopProgressDialog();
+                            EmployeeInformationMode result = new Gson().fromJson(string, EmployeeInformationMode.class);
+                            return result;
+                        }
+
+                        @Override
+                        public void onError(Call call, Exception e, int i) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Object o, int i) {
+                            if (null != o) {
+                                EmployeeInformationMode result = (EmployeeInformationMode) o;//把通用的Object转化成指定的对象
+                                if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                    contentList = result.getMarketEntity();
+                                    customListView.setAdapter(new EmployeeInformationAdapter(EmployeeInformation.this, contentList));
+                                }
+                            }
+                        }
+                    });
+
+        } catch (Exception e) {
+            // stopProgressDialog();
+            // Toast.makeText(EmployeeInformationAdd.this,"上传失败！",Toast.LENGTH_LONG).show();
+        }
+    }
+
 }

@@ -520,6 +520,16 @@ public class ClientFragment extends Fragment {
                                                                 });
                                                     } catch (Exception e) {
                                                         stopProgressDialog();
+                                                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                                        builder.setMessage("网络异常，请重新登陆");
+                                                        builder.setCancelable(false);
+                                                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                                                startActivity(intent);
+                                                            }
+                                                        });
                                                         e.printStackTrace();
                                                     }
 
@@ -545,6 +555,16 @@ public class ClientFragment extends Fragment {
                                 }
                             } else {//当没有返回对象时，表示网络没有联通
                                 stopProgressDialog();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                builder.setMessage("网络异常，请重新登陆");
+                                builder.setCancelable(false);
+                                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                });
                                 Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -552,7 +572,16 @@ public class ClientFragment extends Fragment {
         } catch (Exception e) {
             stopProgressDialog();
             Log.i("客户列表加载异常：", e.getMessage());
-
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("网络异常，请重新登陆");
+            builder.setCancelable(false);
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
+                }
+            });
             Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
         }
     }

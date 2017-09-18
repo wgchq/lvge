@@ -50,6 +50,8 @@ import lvge.com.myapp.model.LoadRightSideMode;
 import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.modules.right_side_slider_menu_mansgement.EmployeeInformation;
 import lvge.com.myapp.modules.right_side_slider_menu_mansgement.PersonalProfile;
+import lvge.com.myapp.modules.right_side_slider_menu_mansgement.PowerSetting;
+import lvge.com.myapp.modules.right_side_slider_menu_mansgement.PushSetting;
 import lvge.com.myapp.ui.MenuAdapter;
 import lvge.com.myapp.ui.SlideMenu;
 import lvge.com.myapp.util.BottomNavigationViewHelper;
@@ -138,6 +140,14 @@ public class MainPageActivity extends Activity {
                         intent.setClass(MainPageActivity.this,EmployeeInformation.class);
                         startActivity(intent);
                         break;
+                   case 2:
+                       intent.setClass(MainPageActivity.this,PowerSetting.class);
+                       startActivity(intent);
+                       break;
+                   case 3:
+                       intent.setClass(MainPageActivity.this,PushSetting.class);
+                       startActivity(intent);
+                       break;
                     case 5:
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainPageActivity.this);
                         builder.setIcon(R.mipmap.warming);
@@ -210,7 +220,6 @@ public class MainPageActivity extends Activity {
                                     homeFragment = new HomeFragment();
                                 }
                                 transaction.replace(R.id.fragment_content, homeFragment);
-
                                 break;
                             case R.id.navigation_client:
                                 if (clientFragment == null) {

@@ -317,6 +317,16 @@ public  class  LoadRightSideMode {
             private String mobile;
         }
 
+        public String getConfigSwitch() {
+            return configSwitch;
+        }
+
+        public void setConfigSwitch(String configSwitch) {
+            this.configSwitch = configSwitch;
+        }
+
+        private String configSwitch;
+
         public String getPHONE() {
             return PHONE;
         }

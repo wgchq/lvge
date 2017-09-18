@@ -46,8 +46,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
-
+            android:id="@+id/message_management_fragment"
+            android:layout_weight="1"
+            android:orientation="vertical">
         </LinearLayout>
 
         <LinearLayout
@@ -58,21 +59,26 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/system_message_textview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:drawableTop="@mipmap/system_message_selected"
                 android:drawablePadding="@dimen/x20"
-                android:text="系统消息" />
+                android:drawableTop="@mipmap/system_message_selected"
+                android:gravity="center"
+                android:text="系统消息"
+                tools:ignore="HardcodedText" />
+
             <TextView
+                android:id="@+id/order_message_textview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawablePadding="@dimen/x20"
                 android:drawableTop="@mipmap/order_message_no_select"
                 android:gravity="center"
-                android:drawablePadding="@dimen/x20"
-                android:text="订单消息" />
+                android:text="订单消息"
+                tools:ignore="HardcodedText" />
         </LinearLayout>
 
     </LinearLayout>
