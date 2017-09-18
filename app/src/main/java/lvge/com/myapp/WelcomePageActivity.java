@@ -50,7 +50,7 @@ public class WelcomePageActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
         }
-         receiver = new BroadcastReceiver() {
+        receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
 
@@ -58,7 +58,7 @@ public class WelcomePageActivity extends AppCompatActivity {
 
                 TextView txt_network_check_message = (TextView) findViewById(R.id.txt_network_check_message);
                 if (status == 3) {
-                    Toast.makeText(WelcomePageActivity.this,"您处于离线状态，请检查网络！",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WelcomePageActivity.this, "您处于离线状态，请检查网络！", Toast.LENGTH_SHORT).show();
 
                 } else {
                     Login();
@@ -75,8 +75,7 @@ public class WelcomePageActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (null!=receiver)
-        {
+        if (null != receiver) {
             unregisterReceiver(receiver);
         }
 
@@ -85,8 +84,7 @@ public class WelcomePageActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (null!=receiver)
-        {
+        if (null != receiver) {
             unregisterReceiver(receiver);
         }
     }
@@ -129,6 +127,7 @@ public class WelcomePageActivity extends AppCompatActivity {
                                 @Override
                                 public void onError(okhttp3.Call call, Exception e, int i) {
                                     Toast.makeText(WelcomePageActivity.this, "服务器异常！", Toast.LENGTH_SHORT).show();
+                                    gotologin();
                                 }
 
                                 @Override
@@ -152,7 +151,7 @@ public class WelcomePageActivity extends AppCompatActivity {
 
                                     } else {//当没有返回对象时，表示网络没有联通
                                         Toast.makeText(WelcomePageActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
-
+                                        gotologin();
                                     }
                                 }
                             });
@@ -163,15 +162,16 @@ public class WelcomePageActivity extends AppCompatActivity {
 
         } catch (Exception e) {
             Toast.makeText(WelcomePageActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+            gotologin();
         }
     }
 
-    /***
-    protected void onRestart(){
-        super.onRestart();
+
+    protected void gotologin() {
+
         Intent intent = new Intent(WelcomePageActivity.this, MainActivity.class);
         startActivity(intent);
     }
-     ***/
+
 }
 
