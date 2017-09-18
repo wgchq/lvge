@@ -29,7 +29,7 @@ import lvge.com.myapp.modules.validationtypescanqr.MipcaActivityCaptureActivity;
 import lvge.com.myapp.R;
 import lvge.com.myapp.modules.PendingSendGoods.PendingSendGoodsActivity;
 import lvge.com.myapp.modules.RefundAfterSale.RefundAfterSaleActivity;
-import lvge.com.myapp.modules.validationhistory.ValidationHistoryActivity;
+import lvge.com.myapp.modules.ValidationHistory.ValidationHistoryActivity;
 import lvge.com.myapp.modules.alert_client_management.AlertClientActivity;
 import lvge.com.myapp.modules.car_data_management.CarDataManagementActivity;
 import lvge.com.myapp.modules.commodity_management.CommodityManageHomepage;
@@ -141,7 +141,6 @@ public class HomeFragment extends Fragment {
         main_page_content_shop_order.setText(getArguments().getString("name"));
         //  main_page_content_shop_order.setText(fragmentTitle.getShop_title());
 
-
         //主页面跳转各个子模块
 
         TextView img_main_page_shop_management = (TextView) view.findViewById(R.id.img_main_page_shop_management);
@@ -154,7 +153,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
+        //车数据
         TextView img_main_page_car_data_management = (TextView) view.findViewById(R.id.img_main_page_car_data_management);
         img_main_page_car_data_management.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,6 +162,8 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        //商品管理
         TextView img_main_page_commodity_management = (TextView) view.findViewById(R.id.img_main_page_commodity_management);
         img_main_page_commodity_management.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,7 +173,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
+        //优惠券
         TextView img_main_page_coupon = (TextView) view.findViewById(R.id.img_main_page_coupon);
         img_main_page_coupon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,6 +182,8 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        //评价管理
         TextView img_main_page_evaluation_management = (TextView) view.findViewById(R.id.img_main_page_evaluation_management);
         img_main_page_evaluation_management.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,7 +203,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
+        //财务管理
         TextView img_main_page_financial_management = (TextView) view.findViewById(R.id.img_main_page_financial_management);
         img_main_page_financial_management.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,6 +213,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //提成管理
         TextView img_main_page_royalty_management = (TextView) view.findViewById(R.id.img_main_page_royalty_management);
         img_main_page_royalty_management.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -228,6 +232,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //验证历史
         TextView tv_validation_history = (TextView) view.findViewById(R.id.tv_validation_history);
         tv_validation_history.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,7 +242,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
+        //退款售后
         TextView tv_refund_after_sale = (TextView) view.findViewById(R.id.tv_refund_after_sale);
         tv_refund_after_sale.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,6 +252,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //代发货
         TextView tv_pending_send_goods = (TextView) view.findViewById(R.id.tv_pending_send_goods);
         tv_pending_send_goods.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -265,6 +271,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //保养客户
         TextView tv_alert = (TextView) view.findViewById(R.id.tv_alert);
         tv_alert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -274,6 +281,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //围栏客户
         TextView tv_crawl = (TextView) view.findViewById(R.id.tv_crawl);
         tv_crawl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -294,6 +302,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //消息
         ImageView ig_main_page_message = (ImageView) view.findViewById(R.id.ig_main_page_message);
         ig_main_page_message.setOnClickListener(new View.OnClickListener() {
             @Override

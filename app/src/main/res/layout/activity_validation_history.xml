@@ -91,12 +91,14 @@
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="本周" />
+            android:text="本周"
+            tools:ignore="HardcodedText" />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="本月" />
+            android:text="本月"
+            tools:ignore="HardcodedText" />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
@@ -125,7 +127,8 @@
             android:gravity="center"
             android:text="总共验证"
             android:textColor="#000"
-            android:textSize="@dimen/x28" />
+            android:textSize="@dimen/x28"
+            tools:ignore="HardcodedText,RtlHardcoded" />
 
         <TextView
             android:id="@+id/record_total_count"
@@ -133,14 +136,16 @@
             android:layout_height="wrap_content"
             android:text="0"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/x28" />
+            android:textSize="@dimen/x28"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="订单"
             android:textColor="#000"
-            android:textSize="@dimen/x28" />
+            android:textSize="@dimen/x28"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <lvge.com.myapp.ui.LoadListView

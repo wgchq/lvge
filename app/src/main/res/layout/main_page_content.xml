@@ -58,7 +58,8 @@
             android:layout_weight="1"
             android:gravity="end"
             android:layout_marginRight="@dimen/x20"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="RtlHardcoded">
 
             <ImageView
                 android:id="@+id/ig_main_page_message"
