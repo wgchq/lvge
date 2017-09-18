@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +23,7 @@ import lvge.com.myapp.R;
 import lvge.com.myapp.WelcomePageActivity;
 import lvge.com.myapp.model.HistoryValidationListEntity;
 import lvge.com.myapp.ui.LoadListView;
+import lvge.com.myapp.modules.validationhistory;
 import okhttp3.Response;
 
 public class SearchValidationHistoryActivity extends AppCompatActivity {
