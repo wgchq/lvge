@@ -52,6 +52,8 @@ import okhttp3.Response;
  */
 public class HomeFragment extends Fragment {
 
+    private  View view;
+    private  CustomKeyboard validation_keyboard;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -62,21 +64,13 @@ public class HomeFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (intentResult != null) {
+
             if (intentResult.getContents() == null) {
                 Toast.makeText(getActivity(), "无法获取内容", Toast.LENGTH_SHORT).show();
             } else {
-                if (resultCode != 2 && resultCode != 0)//退出
-                {
-/*
-                    AttentionModel ScanResult = (AttentionModel) JsonUtil.jsonStrToObject(intentResult.getContents(), AttentionModel.class);
-*/
-                    String str_qr = "";
-                    if (data != null) {
-                        if (data.getDataString() != null)
-                            str_qr = data.getDataString();
-                    }
-                    ValidationQR(str_qr);
-                }
+                String str_qr =  intentResult.getContents();
+                EditText validation_code_input = (EditText)view.findViewById(R.id.validation_code_input);
+                validation_code_input.setText(str_qr);
             }
         }
     }
@@ -114,9 +108,18 @@ public class HomeFragment extends Fragment {
 
                                     Intent intent = new Intent(getActivity(), ValidationTypeScanQRSuccessActivity.class);
                                     startActivity(intent);
+                                    if (validation_keyboard!=null)
+                                    {
+                                        validation_keyboard.close();
+                                    }
                                 } else {
+                                    Toast.makeText(getActivity(),result.getOperationResult().getResultMsg(),Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getActivity(), ValidationTypeScanQRFailActivity.class);
                                     startActivity(intent);
+                                    if (validation_keyboard!=null)
+                                    {
+                                        validation_keyboard.close();
+                                    }
                                 }
                             } else {//当没有返回对象时，表示网络没有联通
                                 Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
@@ -135,7 +138,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        final View view = inflater.inflate(R.layout.fragment_home, container, false);
+        view = inflater.inflate(R.layout.fragment_home, container, false);
 
         TextView main_page_content_shop_order = (TextView) view.findViewById(R.id.main_page_content_shop_order);
         main_page_content_shop_order.setText(getArguments().getString("name"));
@@ -284,7 +287,7 @@ public class HomeFragment extends Fragment {
         });
         final EditText validation_code_input = (EditText) view.findViewById(R.id.validation_code_input);
 
-        CustomKeyboard validation_keyboard = new CustomKeyboard(getActivity());
+        validation_keyboard = new CustomKeyboard(getActivity());
         validation_keyboard.SetEditText(validation_code_input);
         validation_keyboard.setValidationListner(new CustomKeyboard.OnValidationLisnter() {
             @Override
@@ -309,9 +312,7 @@ public class HomeFragment extends Fragment {
 
     public void scanBarcode(View view) {
         IntentIntegrator integrator = new IntentIntegrator(getActivity());
-/*
         integrator.setPrompt("请对准二维码进行扫描"); //底部的提示文字，设为""可以置空
-*/
         integrator.setCameraId(0); //前置或者后置摄像头
         // integrator.setBeepEnabled(false); //扫描成功的「哔哔」声，默认开启
         integrator.setOrientationLocked(false);

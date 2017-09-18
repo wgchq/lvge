@@ -62,6 +62,7 @@ public class CustomKeyboard {
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         dialogWindow.setAttributes(lp);
     }
+
     /**
      * 禁止Edittext弹出软件盘，光标依然正常显示。
      */
@@ -86,13 +87,15 @@ public class CustomKeyboard {
             }
         }
     }
+
     public void SetEditText(final EditText mEditText) {
         this.mEditText = mEditText;
         if (this.mEditText != null) {
             disableShowSoftInput();
             Init(view);
             mEditText.callOnClick();
-          /*  this.mEditText.addTextChangedListener(new TextWatcher() {
+
+            this.mEditText.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -115,7 +118,7 @@ public class CustomKeyboard {
                 public void afterTextChanged(Editable s) {
 
                 }
-            });*/
+            });
 
             mEditText.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -127,7 +130,7 @@ public class CustomKeyboard {
                 }
             });
 
-         /*   mEditText.setOnTouchListener(new View.OnTouchListener() {
+            mEditText.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
 
@@ -145,16 +148,58 @@ public class CustomKeyboard {
                         int start = mEditText.getSelectionStart();
                         int end = mEditText.getSelectionEnd();
 
-
                         String textcontent = mEditText.getText().toString();
-                        textcontent = textcontent.substring(0, start - 1) + textcontent.substring(end + 1, textcontent.length());
+
+                        if (start==end)
+                        {
+                            if (start ==0)
+                            {
+                                return false;
+                            }
+                            else if(end == textcontent.length())
+                            {
+                                textcontent = textcontent.substring(0, end - 1);
+                            }
+                        }
+                        else
+                        {
+                            if(start==0)
+                            {
+                                if (end==textcontent.length())
+                                {
+                                    textcontent="";
+                                }
+                                else
+                                {
+                                    textcontent = textcontent.substring(end,textcontent.length());
+                                }
+                            }
+                            else
+                            {
+                                if (end==textcontent.length())
+                                {
+                                    textcontent = textcontent.substring(0, start - 1);
+                                }else
+                                {
+                                    textcontent=textcontent.substring(0,start-1)+textcontent.substring(end+1,textcontent.length());
+                                }
+                            }
+                        }
+
                         mEditText.setText(textcontent);
-                        mEditText.setSelection(start - 1);
+                        if (start>=1)
+                        {
+                            mEditText.setSelection(start - 1);
+                        }
+                        else
+                        {
+                            mEditText.setSelection(0);
+                        }
                     }
 
                     return false;
                 }
-            });*/
+            });
         }
     }
 
@@ -263,6 +308,12 @@ public class CustomKeyboard {
 
     public void deleteContent() {
 
+    }
+
+    public void close() {
+        if (dialog != null) {
+            dialog.dismiss();
+        }
     }
 
     public interface OnValidationLisnter {
