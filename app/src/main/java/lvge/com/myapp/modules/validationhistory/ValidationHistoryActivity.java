@@ -1,4 +1,4 @@
-package lvge.com.myapp.modules.ValidationHistory;
+package lvge.com.myapp.modules.validationhistory;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

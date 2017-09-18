@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import lvge.com.myapp.R;
-import lvge.com.myapp.mainFragement.HomeFragment;
 
 public class HistoryValidationSearchActivity extends AppCompatActivity {
     private FragmentManager fragmentManager = getFragmentManager();

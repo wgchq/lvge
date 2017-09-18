@@ -1,19 +1,15 @@
-package lvge.com.myapp.modules.ValidationHistory;
+package lvge.com.myapp.modules.validationhistory;
 
 import android.content.Context;
-import android.support.design.widget.TabLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import lvge.com.myapp.R;
-import lvge.com.myapp.model.HistoryValidationListEntity;
 import lvge.com.myapp.model.HistoryValidationModel;
 
 /**
@@ -33,6 +29,7 @@ public class HistoryValidationListAdapter extends BaseAdapter {
     public List<HistoryValidationModel> getHistoryValidationModels() {
         return historyValidationModels;
     }
+
     public void setHistoryValidationModels(List<HistoryValidationModel> historyValidationModels) {
         this.historyValidationModels = historyValidationModels;
     }
@@ -58,21 +55,20 @@ public class HistoryValidationListAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.history_validation_list_item, null);
         }
-        if (historyValidationModels!=null)
-        {
-            TextView history_order_no = (TextView)convertView.findViewById(R.id.history_order_no);
+        if (historyValidationModels != null) {
+            TextView history_order_no = (TextView) convertView.findViewById(R.id.history_order_no);
             String order_no = historyValidationModels.get(position).getOrderNO();
             history_order_no.setText(order_no);
             TextView history_order_date = (TextView) convertView.findViewById(R.id.history_order_no);
             history_order_date.setText(historyValidationModels.get(position).getCREATE_TIME());
-            TextView car_clear_service = (TextView)convertView.findViewById(R.id.car_clear_service);
+            TextView car_clear_service = (TextView) convertView.findViewById(R.id.car_clear_service);
 
             car_clear_service.setText(Integer.toString(historyValidationModels.get(position).getGOODS_NUM()));
-            TextView sum_price = (TextView)convertView.findViewById(R.id.sum_price);
+            TextView sum_price = (TextView) convertView.findViewById(R.id.sum_price);
             sum_price.setText(Double.toString(getItem(position).getORDER_PRICE()));
             TextView operation_person = (TextView) convertView.findViewById(R.id.operation_person);
             operation_person.setText(getItem(position).getOPERATOR_NAME());
-            TextView service_name = (TextView)convertView.findViewById(R.id.service_name);
+            TextView service_name = (TextView) convertView.findViewById(R.id.service_name);
             service_name.setText(getItem(position).getGoodsName());
         }
 

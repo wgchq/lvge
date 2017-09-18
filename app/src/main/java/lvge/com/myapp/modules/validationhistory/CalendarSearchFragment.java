@@ -5,10 +5,8 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +17,6 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
-
-import org.w3c.dom.Text;
 
 import lvge.com.myapp.MainActivity;
 import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
