@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="lvge.com.myapp.modules.validationhistory.SearchValidationHistoryActivity">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        style="@style/my_title_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_validation_history"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/validation_search_edit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_shape"
+                    android:drawableLeft="@mipmap/ic_common_search"
+                    android:drawablePadding="@dimen/x10"
+                    android:hint="请输入订单号"
+                    android:imeOptions="actionSearch"
+                    android:padding="@dimen/x10"
+                    android:singleLine="true"
+                    android:textSize="@dimen/x28" />
+
+                <TextView
+                    android:id="@+id/cancel_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="end"
+                    android:textColor="@color/mainFontColor"
+                    android:background="?android:selectableItemBackground"
+                    android:padding="@dimen/x20"
+                    android:text="取消" />
+            </LinearLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <!--网络监测-->
+    <lvge.com.myapp.ui.NetworkCheckView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <lvge.com.myapp.ui.LoadListView
+        android:id="@+id/history_validation_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/line_background_gray"
+        android:dividerHeight="@dimen/x14">
+
+    </lvge.com.myapp.ui.LoadListView>
+
+</LinearLayout>

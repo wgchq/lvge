@@ -50,9 +50,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:paddingLeft="@dimen/x36"
+        android:layout_height="@dimen/x136"
 
-        android:layout_height="@dimen/x136">
+        android:paddingLeft="@dimen/x36">
 
         <LinearLayout
             android:id="@+id/history_validation_service_left"
@@ -71,15 +71,21 @@
                     android:id="@+id/service_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/x28"
-                    android:text="汽车洗车服务  × " />
+                    android:text="汽车洗车服务 "
+                    android:textSize="@dimen/x28" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="× "
+                    android:textSize="@dimen/x28" />
 
                 <TextView
                     android:id="@+id/car_clear_service"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/x28"
-                    android:text="1" />
+                    android:text="1"
+                    android:textSize="@dimen/x28" />
             </LinearLayout>
 
             <LinearLayout
@@ -92,27 +98,27 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/x28"
-                    android:text="结算价格   " />
+                    android:text="结算价格   "
+                    android:textSize="@dimen/x28" />
 
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/x28"
-                    android:textStyle="bold"
+                    android:text="￥"
                     android:textColor="@color/colorPrimary"
-                    android:text="￥" />
+                    android:textSize="@dimen/x28"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:textStyle="bold"
                     android:id="@+id/sum_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/x28"
-                    android:textColor="@color/colorPrimary"
                     android:ellipsize="marquee"
-                    android:text="2680.00" />
+                    android:text="2680.00"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/x28"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 

@@ -7,9 +7,10 @@ import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageView;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +26,7 @@ import lvge.com.myapp.model.HistoryValidationListEntity;
 import lvge.com.myapp.ui.LoadListView;
 import okhttp3.Response;
 
-public class ValidationHistoryActivity extends AppCompatActivity {
+public class SearchValidationHistoryActivity extends AppCompatActivity {
 
     private HistoryValidationListAdapter adapter = null;
     private TabLayout tabLayout = null;
@@ -34,90 +35,39 @@ public class ValidationHistoryActivity extends AppCompatActivity {
     HistoryValidationListEntity historyValidationListEntity = null;
     LoadListView history_validation_list = null;
     private String type = "0";
-
-    ImageView history_validation_calendar;
-    ImageView history_validation_search;
+    private EditText validation_search_edit;
+    private TextView cancel_search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_validation_history);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_validation_history);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_search_validation_history);
+        validation_search_edit = (EditText) findViewById(R.id.validation_search_edit);
+        validation_search_edit.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                  /*  ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
+                            .hideSoftInputFromWindow(SearchValidationHistoryActivity.this.getCurrentFocus()
+                                    .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);*/
+                    //进行搜索操作的方法，在该方法中可以加入mEditSearchUser的非空判断
+                    getData("3");
+                }
+                return false;
+            }
+        });
+
+        cancel_search = (TextView) findViewById(R.id.cancel_search);
+
+        cancel_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 finish();
             }
         });
 
-        adapter = new HistoryValidationListAdapter(ValidationHistoryActivity.this);
-
-        tabLayout = (TabLayout) findViewById(R.id.title);
-        init();
-        initView();
-
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getPosition()) {
-                    case 0:
-                        type = "0";//今日
-                        break;
-                    case 1:
-                        type = "1";//本周
-                        break;
-                    case 2:
-                        type = "2";//本月
-                        break;
-                    case 3:
-                        type = "3";//全部
-                        break;
-                }
-                try {
-                    getData(type);
-                } catch (Exception e) {
-                    stopProgressDialog();
-                    Toast.makeText(ValidationHistoryActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-    }
-
-    private void initView()
-    {
-        history_validation_calendar =(ImageView)findViewById(R.id.history_validation_calendar);
-        history_validation_calendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ValidationHistoryActivity.this,HistoryValidationSearchActivity.class);
-                intent.putExtra("calendar","true");
-                startActivity(intent);
-            }
-        });
-
-        history_validation_search = (ImageView)findViewById(R.id.history_validation_search);
-        history_validation_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ValidationHistoryActivity.this,SearchValidationHistoryActivity.class);
-
-                startActivity(intent);
-            }
-        });
     }
 
     private void getData(String stype) {
@@ -152,11 +102,10 @@ public class ValidationHistoryActivity extends AppCompatActivity {
                         public void onResponse(Object object, final int i) {
                             //object 是 parseNetworkResponse的返回值
                             if (null != object) {
+                                adapter = new HistoryValidationListAdapter(SearchValidationHistoryActivity.this);
                                 historyValidationListEntity = (HistoryValidationListEntity) object;//把通用的Object转化成指定的对象
                                 if (historyValidationListEntity.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
                                     adapter.setHistoryValidationModels(historyValidationListEntity.getPageResult().getEntityList());
-                                    TextView record_total_count = (TextView) findViewById(R.id.record_total_count);
-                                    record_total_count.setText(Integer.toString(historyValidationListEntity.getPageResult().getTotalCount()));
                                     history_validation_list = (LoadListView) findViewById(R.id.history_validation_list);
 
                                     stopProgressDialog();
@@ -225,14 +174,14 @@ public class ValidationHistoryActivity extends AppCompatActivity {
                                                                             } else {
                                                                                 stopProgressDialog();
 
-                                                                                Toast.makeText(ValidationHistoryActivity.this, "登录状态监测到有异常，请重新登录", Toast.LENGTH_SHORT).show();
+                                                                                Toast.makeText(SearchValidationHistoryActivity.this, "登录状态监测到有异常，请重新登录", Toast.LENGTH_SHORT).show();
 
-                                                                                Intent intent = new Intent(ValidationHistoryActivity.this, WelcomePageActivity.class);
+                                                                                Intent intent = new Intent(SearchValidationHistoryActivity.this, WelcomePageActivity.class);
                                                                                 startActivity(intent);
                                                                             }
                                                                         } else {//当没有返回对象时，表示网络没有联通
                                                                             stopProgressDialog();
-                                                                            Toast.makeText(ValidationHistoryActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+                                                                            Toast.makeText(SearchValidationHistoryActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
                                                                         }
                                                                     }
                                                                 });
@@ -248,26 +197,26 @@ public class ValidationHistoryActivity extends AppCompatActivity {
 
                                 } else {
                                     // Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(ValidationHistoryActivity.this);
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(SearchValidationHistoryActivity.this);
                                     builder.setMessage("网络异常，请重新登陆");
                                     builder.setCancelable(false);
                                     builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Intent intent = new Intent(ValidationHistoryActivity.this, MainActivity.class);
+                                            Intent intent = new Intent(SearchValidationHistoryActivity.this, MainActivity.class);
                                             startActivity(intent);
                                         }
                                     });
                                 }
                             } else {//当没有返回对象时，表示网络没有联通
                                 stopProgressDialog();
-                                Toast.makeText(ValidationHistoryActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SearchValidationHistoryActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
         } catch (Exception e) {
             stopProgressDialog();
-            Toast.makeText(ValidationHistoryActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SearchValidationHistoryActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="lvge.com.myapp.modules.validationhistory.HistoryValidationSearchActivity">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        style="@style/my_title_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_validation_history"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/ic_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
+
+            <TextView
+                style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="@string/validation_history" />
+
+            <ImageView
+                android:id="@+id/history_validation_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="end"
+                android:background="?android:selectableItemBackground"
+                android:padding="@dimen/x30"
+                android:src="@mipmap/ic_search"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <ImageView
+                android:id="@+id/history_validation_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="end"
+                android:background="?android:selectableItemBackground"
+                android:padding="@dimen/x30"
+                android:src="@mipmap/history_validation_calendar"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <!--网络监测-->
+    <lvge.com.myapp.ui.NetworkCheckView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:id="@+id/validation_history_search_layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <lvge.com.myapp.ui.LoadListView
+            android:id="@+id/history_validation_search_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/line_background_gray"
+            android:dividerHeight="@dimen/x14">
+
+        </lvge.com.myapp.ui.LoadListView>
+    </LinearLayout>
+</LinearLayout>
