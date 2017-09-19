@@ -215,4 +215,9 @@ public class EmployeeInformation extends AppCompatActivity {
         }
     }
 
+    protected void onResume(){
+        super.onResume();
+        initEmployeeInformation();
+    }
+
 }

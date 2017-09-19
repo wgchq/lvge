@@ -104,6 +104,7 @@ public class SystemMessageFragment extends Fragment {
 
         system_message_listview = (SwipeMenuListView)view.findViewById(R.id.system_message_listview);
 
+
         SwipeMenuCreator creator = new SwipeMenuCreator() {
             @Override
             public void create(SwipeMenu swipeMenu) {
@@ -117,6 +118,19 @@ public class SystemMessageFragment extends Fragment {
             }
         };
         system_message_listview.setMenuCreator(creator);
+
+        system_message_listview.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public void onMenuItemClick(int i, SwipeMenu swipeMenu, int i1) {
+               // EmployeeInformationList item = contentList.get(i);
+                switch (i1) {
+                    case 0:
+                       // String adv = item.getUSER_ID();
+                      //  removeEmployeeInformation(adv);
+                        // getListItem();
+                }
+            }
+        });
 
         initview();
 
