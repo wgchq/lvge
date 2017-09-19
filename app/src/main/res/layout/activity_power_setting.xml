@@ -56,6 +56,10 @@
     <lvge.com.myapp.ui.NetworkCheckView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 
     <LinearLayout
         android:id="@+id/fragment_content"
@@ -65,11 +69,11 @@
         android:background="@color/line_background_gray"
         android:orientation="vertical"
         android:paddingTop="@dimen/x18"
-        tools:ignore="ObsoleteLayoutParam">
+        tools:ignore="ObsoleteLayoutParam,UnknownIdInLayout,UselessParent">
 
 
         <RelativeLayout
-            android:id="@+id/persion_profile_iamge"
+            android:id="@+id/power_setting_choosename_Relayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x100"
             android:background="@color/mainBackgroundColor"
@@ -420,5 +424,8 @@
         </RelativeLayout>
 
     </LinearLayout>
+    <include layout="@layout/picker_layout"/>
+
+</RelativeLayout>
 
 </LinearLayout>

@@ -51,6 +51,7 @@ import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.modules.right_side_slider_menu_mansgement.EmployeeInformation;
 import lvge.com.myapp.modules.right_side_slider_menu_mansgement.PersonalProfile;
 import lvge.com.myapp.modules.right_side_slider_menu_mansgement.PowerSetting;
+import lvge.com.myapp.modules.right_side_slider_menu_mansgement.PrinterSetting;
 import lvge.com.myapp.modules.right_side_slider_menu_mansgement.PushSetting;
 import lvge.com.myapp.ui.MenuAdapter;
 import lvge.com.myapp.ui.SlideMenu;
@@ -146,6 +147,10 @@ public class MainPageActivity extends Activity {
                        break;
                    case 3:
                        intent.setClass(MainPageActivity.this,PushSetting.class);
+                       startActivity(intent);
+                       break;
+                   case 4:
+                       intent.setClass(MainPageActivity.this,PrinterSetting.class);
                        startActivity(intent);
                        break;
                     case 5:

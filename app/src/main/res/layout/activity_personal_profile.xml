@@ -90,7 +90,7 @@
                 android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <ImageView
+            <lvge.com.myapp.ProgressDialog.RoundImageView
                 android:id="@+id/persion_profile_iamgeview"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

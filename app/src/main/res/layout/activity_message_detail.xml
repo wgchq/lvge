@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="lvge.com.myapp.modules.message_management.MessageManagementActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        style="@style/my_title_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/message_detail_toobar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/ic_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
+
+            <TextView
+                style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="消息详情"
+                tools:ignore="HardcodedText" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="UselessLeaf">
+
+        <TextView
+            android:id="@+id/message_detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="旅鸽商城周年庆活动开始啦"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/x32"
+            android:background="@color/mainBackgroundColor"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/x26"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/message_detail_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2018-08-09  13:00"
+            android:textSize="@dimen/x22"
+            android:background="@color/mainBackgroundColor"
+            android:gravity="center"
+            android:textColor="#999"
+            android:paddingTop="@dimen/x22"
+            tools:ignore="HardcodedText" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x2"
+            android:paddingTop="@dimen/x18"
+            android:paddingLeft="@dimen/x10"
+            android:paddingRight="@dimen/x10"
+            android:background="@color/line_background_gray"
+            tools:ignore="InefficientWeight" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/message_detail_message"
+            android:background="@color/mainBackgroundColor"
+            android:paddingLeft="@dimen/x20"
+            android:paddingRight="@dimen/x20"
+            android:text="\t\t 旅鸽商城啊好的卡建行的卡好看的哈看的卡号的卡号倒萨倒萨大苏打实打实大苏打"
+            android:textSize="@dimen/x28"
+            tools:ignore="HardcodedText" />
+
+        <RelativeLayout
+            android:id="@+id/sale_consultant_Relayout_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x90"
+            android:background="@color/mainBackgroundColor"
+            android:paddingLeft="@dimen/x28"
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+            <TextView
+                android:id="@+id/sale_consultant_Textview1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x200"
+                android:text="消息详情"
+                android:textSize="@dimen/x30"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/name_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:background="@mipmap/gray_right"
+                tools:ignore="ContentDescription,RelativeOverlap,RtlHardcoded" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
+

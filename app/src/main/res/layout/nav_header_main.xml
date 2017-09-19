@@ -18,7 +18,6 @@
         android:layout_width="@dimen/x120"
         android:layout_height="@dimen/x120"
         imagecontrol:border_outside_color="#ffcccc"
-        imagecontrol:border_inside_color="#fff7f2e9"
         imagecontrol:thickness="@dimen/x8"
         android:scaleType="centerCrop"
         imagecontrol:border_thickness="@dimen/x8"

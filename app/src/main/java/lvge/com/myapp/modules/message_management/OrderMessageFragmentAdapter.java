@@ -15,20 +15,18 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 import java.util.List;
 
 import lvge.com.myapp.R;
-import lvge.com.myapp.model.ClientResultModel;
 import lvge.com.myapp.model.EntityList;
 
 /**
- * Created by mac on 2017/9/17.
+ * Created by mac on 2017/9/19.
  */
 
-public class SystemMessageAdapter extends BaseAdapter {
-
+public class OrderMessageFragmentAdapter extends BaseAdapter {
     private Context mContext;
     private SwipeMenuListView swipeMenuListView;
     private LruCache<String, BitmapDrawable> mImageCache;
 
-    public SystemMessageAdapter(Context context) {
+    public OrderMessageFragmentAdapter(Context context) {
         this.mContext = context;
 
         int maxCache = (int) Runtime.getRuntime().maxMemory();
@@ -67,7 +65,7 @@ public class SystemMessageAdapter extends BaseAdapter {
             swipeMenuListView = (SwipeMenuListView)parent;
         }
         if(clients != null){
-            if(clients.get(position).getNOTICE_TYPE() == 0){
+            if(clients.get(position).getNOTICE_TYPE() == 1){
                 TextView customer_phone = (TextView)convertView.findViewById(R.id.customer_phone);
                 if(clients.get(position).getIS_READ() == 0){
                     customer_phone.setTextColor(Color.BLACK);

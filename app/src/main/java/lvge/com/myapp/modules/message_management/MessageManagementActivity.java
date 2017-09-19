@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,6 +25,18 @@ public class MessageManagementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_management);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_validation_history);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent = new Intent(SalesConsultant.this, My4sManagementActivity.class);
+                // startActivity(intent);
+                finish();
+            }
+        });
+
         DefaultFragment();
 
         system_message_textview = (TextView)findViewById(R.id.system_message_textview);
@@ -31,10 +44,13 @@ public class MessageManagementActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+                order_message_textview.setCompoundDrawablesWithIntrinsicBounds(null,getResources().getDrawable(R.mipmap.order_message_no_select),null,null);
+                system_message_textview.setCompoundDrawablesWithIntrinsicBounds(null,getResources().getDrawable(R.mipmap.system_message_selected),null,null);
                 if (systemMessageFragment == null) {
                     systemMessageFragment = new SystemMessageFragment();
                 }
                 transaction.replace(R.id.message_management_fragment, systemMessageFragment);
+                transaction.commit();
             }
         });
 
@@ -43,10 +59,13 @@ public class MessageManagementActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+                system_message_textview.setCompoundDrawablesWithIntrinsicBounds(null,getResources().getDrawable(R.mipmap.system_message_no_select),null,null);
+                order_message_textview.setCompoundDrawablesWithIntrinsicBounds(null,getResources().getDrawable(R.mipmap.order_message_selected),null,null);
                 if (orderMessageFragment == null) {
                     orderMessageFragment = new OrderMessageFragment();
                 }
                 transaction.replace(R.id.message_management_fragment, orderMessageFragment);
+                transaction.commit();
             }
         });
 
@@ -55,7 +74,6 @@ public class MessageManagementActivity extends AppCompatActivity {
     private void DefaultFragment() {
         android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
         if (null == systemMessageFragment) {
-
             systemMessageFragment = new SystemMessageFragment();
         }
 

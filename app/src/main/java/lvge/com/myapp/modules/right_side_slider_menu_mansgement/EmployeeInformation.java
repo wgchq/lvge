@@ -176,6 +176,7 @@ public class EmployeeInformation extends AppCompatActivity {
     }
 
     private void initEmployeeInformation() {
+        contentList.clear();
         try {
             OkHttpUtils.get()
                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/queryStaff.do")

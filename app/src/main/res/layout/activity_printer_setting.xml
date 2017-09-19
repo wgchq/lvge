@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="lvge.com.myapp.modules.right_side_slider_menu_mansgement.PowerSetting">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/pirinter_setting_toobar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/ic_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
+
+            <TextView
+                style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:textSize="@dimen/x30"
+                android:text="打印机设置"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/printer_setting_print"
+                style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="end"
+                android:padding="@dimen/x20"
+                android:gravity="center"
+                android:background="?android:selectableItemBackground"
+                android:text="打印"
+                android:textSize="@dimen/x30"
+                android:textColor="@color/mainFontColor"
+                tools:ignore="HardcodedText" />
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+    <!--网络监测-->
+    <lvge.com.myapp.ui.NetworkCheckView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/fragment_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar_main_page"
+            android:background="@color/line_background_gray"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/x28"
+            tools:ignore="ObsoleteLayoutParam,UnknownIdInLayout,UselessParent">
+
+            <RelativeLayout
+                android:id="@+id/printer_setting_choosename_Relayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x100"
+                android:background="@color/mainBackgroundColor"
+                android:paddingLeft="@dimen/x28"
+                tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x15"
+                    android:text="选择打印机"
+                    android:textSize="@dimen/x28"
+                    tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+                <TextView
+                    android:id="@+id/perison_profile_consultant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/x20"
+                    android:background="@mipmap/gray_right"
+                    tools:ignore="ContentDescription,RelativeOverlap,RtlHardcoded" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x4"
+                android:background="@color/line_background_gray"
+                tools:ignore="InefficientWeight" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x100"
+                android:background="@color/mainBackgroundColor"
+                android:paddingLeft="@dimen/x28"
+                tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x15"
+                    android:text="打印份数"
+                    android:textSize="@dimen/x30"
+                    tools:ignore="HardcodedText,RtlHardcoded" />
+
+                <ImageView
+                    android:id="@+id/printer_setting_reduce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/print_reduce"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x500"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="1"
+                    android:layout_toLeftOf="@+id/printer_setting_add"
+                    android:layout_toRightOf="@+id/printer_setting_reduce"
+                    tools:ignore="HardcodedText" />
+
+                <ImageView
+                    android:id="@+id/printer_setting_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/print_add"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x20"
+                    tools:ignore="ContentDescription" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x4"
+                android:background="@color/line_background_gray"
+                tools:ignore="InefficientWeight" />
+
+            <RelativeLayout
+                android:id="@+id/shop_manager_Relalayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x100"
+                android:background="@color/mainBackgroundColor"
+                android:paddingLeft="@dimen/x28"
+                tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x15"
+                    android:text="打印帮助"
+                    android:textSize="@dimen/x30"
+                    tools:ignore="HardcodedText,RtlHardcoded" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/x20"
+                    android:background="@mipmap/gray_right"
+                    tools:ignore="ContentDescription,RelativeOverlap,RtlHardcoded" />
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+</LinearLayout>

@@ -8,12 +8,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.kyleduo.switchbutton.SwitchButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import lvge.com.myapp.ProgressDialog.PickerScrollView;
+import lvge.com.myapp.ProgressDialog.Pickers;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.LoadRightSideMode;
 
@@ -28,9 +35,25 @@ public class PowerSetting extends AppCompatActivity {
     private SwitchButton finance_manager_switchbutton;
     private SwitchButton performance_manager_switchbutton;
     private TextView sale_consultant_Preservation;
+    private RelativeLayout power_setting_choosename_Relayout;
+    private TextView persion_profile_iamgeview;
 
     private SharedPreferences preferences;
     private final static String FILE_NAME = "login_file";
+
+    private PickerScrollView pickerscrlllview;// 滚动选择器 
+    private RelativeLayout picker_rel;
+    private TextView picker_ok;
+    private TextView picker_off;
+
+    private List<Pickers> list;// 滚动选择器数据  
+    private String[] id;
+    private String[] name;
+
+    private String pick_id = "";
+    private String pick_name = "";
+    private String power = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +70,53 @@ public class PowerSetting extends AppCompatActivity {
                 finish();
             }
         });
+
+        persion_profile_iamgeview = (TextView)findViewById(R.id.persion_profile_iamgeview);
+        picker_rel = (RelativeLayout)findViewById(R.id.picker_rel);
+        pickerscrlllview=(PickerScrollView)findViewById(R.id.pickerscrlllview);
+        picker_ok = (TextView)findViewById(R.id.picker_ok);
+        picker_off = (TextView)findViewById(R.id.picker_off);
+
+        pickerscrlllview.setOnSelectListener(new PickerScrollView.onSelectListener() {
+            @Override
+            public void onSelect(Pickers pickers) {
+                pick_id = pickers.getShowId();
+                pick_name = pickers.getShowConetnt();
+            }
+        });
+
+        picker_off.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                picker_rel.setVisibility(View.GONE);
+            }
+        });
+
+        picker_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                picker_rel.setVisibility(View.GONE);
+                persion_profile_iamgeview.setText(pick_name);
+            }
+        });
+        power_setting_choosename_Relayout = (RelativeLayout)findViewById(R.id.power_setting_choosename_Relayout);
+        power_setting_choosename_Relayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                picker_rel.setVisibility(View.VISIBLE);
+            }
+        });
+
+        list = new ArrayList<Pickers>();
+        id=new String[] { "1", "2", "3", "4", "5", "6"};
+        name = new String[] { "张三","李四","王五","车前","收到","阿斯顿"};
+        for(int i=0;i<name.length;i++){
+            list.add(new Pickers(name[i],id[i]));
+        }
+        // 设置数据，默认选择第一条  
+        pickerscrlllview.setData(list);
+        pickerscrlllview.setSelected(0);
+
         sale_consultant_Preservation = (TextView)findViewById(R.id.sale_consultant_Preservation);
         sale_consultant_Preservation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,7 +224,7 @@ public class PowerSetting extends AppCompatActivity {
         String string = preferences.getString("right_data","");
         LoadRightSideMode result = new Gson().fromJson(string, LoadRightSideMode.class);
 
-        String power = result.getMarketEntity().getAppRights();
+        power = result.getMarketEntity().getAppRights();
         if(power.equals("")){
             employees_manager_switchbutton.setChecked(true);
             employees_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
@@ -244,5 +314,11 @@ public class PowerSetting extends AppCompatActivity {
 
         }
        // performance_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+    }
+
+    private void updata(){
+        if(employees_manager_switchbutton.isChecked()){
+
+        }
     }
 }

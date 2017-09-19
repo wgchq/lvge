@@ -6,6 +6,8 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.CompoundButton;
 
 import com.google.gson.Gson;
@@ -27,6 +29,18 @@ public class PushSetting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_push_setting);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.push_setting_toobar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent = new Intent(SalesConsultant.this, My4sManagementActivity.class);
+                // startActivity(intent);
+                finish();
+            }
+        });
 
         employees_manager_switchbutton = (SwitchButton)findViewById(R.id.employees_manager_switchbutton);
         employees_manager_switchbutton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

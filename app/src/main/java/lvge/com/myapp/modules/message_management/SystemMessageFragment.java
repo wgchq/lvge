@@ -31,10 +31,16 @@ import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lvge.com.myapp.MainActivity;
 import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.ClientResultModel;
+import lvge.com.myapp.model.EmployeeInformationList;
+import lvge.com.myapp.model.EntityList;
+import lvge.com.myapp.model.MessageResultMode;
 import lvge.com.myapp.modules.PendingSendGoods.PendingSendGoodsActivity;
 import lvge.com.myapp.modules.RefundAfterSale.RefundAfterSaleActivity;
 import lvge.com.myapp.modules.alert_client_management.AlertClientActivity;
@@ -47,6 +53,8 @@ import lvge.com.myapp.modules.evaluation_management.EvaluationManagementActivity
 import lvge.com.myapp.modules.financial_management.FinancialManagementActivity;
 import lvge.com.myapp.modules.maintain_client_management.MaintainClientActivity;
 import lvge.com.myapp.modules.my_4s_management.My4sManagementActivity;
+import lvge.com.myapp.modules.right_side_slider_menu_mansgement.EmployeeInformation;
+import lvge.com.myapp.modules.right_side_slider_menu_mansgement.EmployeeInformationAdapter;
 import lvge.com.myapp.modules.royalty_management.RoyaltyManagementActivity;
 import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
 import lvge.com.myapp.ui.CustomKeyboard;
@@ -61,11 +69,14 @@ import okhttp3.Response;
 public class SystemMessageFragment extends Fragment {
 
     private View view;
-    private SystemMessageAdapter adapter;
+    SystemMessageAdapter adapter;
     private BroadcastReceiver receiver;
     private int Netstatus = 0;
-    private SwipeMenuListView system_message_listview;
 
+    private SwipeMenuListView system_message_listview;
+    private List<EntityList> contentList = new ArrayList<EntityList>();
+
+    private MessageResultMode messageResultMode;
     private CustomProgressDialog progressDialog = null;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -121,9 +132,11 @@ public class SystemMessageFragment extends Fragment {
             startProgerssDialog();
             try {
                 OkHttpUtils.get()//get 方法
-                        .url("http://www.lvgew.com/obdcarmarket/sellerapp/customer/list") //地址
+                        .url("http://www.lvgew.com/obdcarmarket/sellerapp/notice/list.do") //地址
+                        .addParams("RECEIVER_TYPE","1")
+                        .addParams("RECEIVER_ID","3")
                         .addParams("pageIndex", "1") //需要传递的参数
-                        .addParams("status", "0")
+                        .addParams("pageSize", "10")
                         .build()
                         .execute(new Callback() {//通用的callBack
 
@@ -134,7 +147,7 @@ public class SystemMessageFragment extends Fragment {
                                 String string = response.body().string();//获取相应中的内容Json格式
                                 //把json转化成对应对象
                                 //LoginResultModel是和后台返回值类型结构一样的对象
-                                ClientResultModel result = new Gson().fromJson(string, ClientResultModel.class);
+                                MessageResultMode result = new Gson().fromJson(string, MessageResultMode.class);
                                 return result;
                             }
 
@@ -147,23 +160,16 @@ public class SystemMessageFragment extends Fragment {
                             public void onResponse(Object object, final int i) {
                                 //object 是 parseNetworkResponse的返回值
                                 if (null != object) {
-                                   /* clientResultModel = (ClientResultModel) object;//把通用的Object转化成指定的对象
-                                    if (clientResultModel.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
-                                        adapter.setClients(clientResultModel);
-                                        LoadListView client_lst = (LoadListView) view.findViewById(R.id.clients_list);
-                                        ImageView no_client_img = (ImageView) view.findViewById(R.id.no_client_img);
-
-                                        if (clientResultModel.getPageResult().getEntityList().size() == 0) {
-                                            client_lst.setVisibility(View.GONE);
-                                            no_client_img.setBackgroundResource(R.mipmap.client_manage_no_client);
-                                        } else {
-                                            client_lst.setVisibility(View.VISIBLE);
-                                            no_client_img.setBackground(null);
-                                        }*/
+                                    messageResultMode = (MessageResultMode) object;//把通用的Object转化成指定的对象
+                                    if (messageResultMode.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
                                         stopProgressDialog();
 
-                                       // client_lst.setAdapter(adapter);
-                                        stopProgressDialog();
+                                        contentList = messageResultMode.getPageResult().getEntityList();
+                                        adapter.setClients(contentList);
+
+                                        system_message_listview.setAdapter(adapter);
+                                        system_message_listview.setSelection(system_message_listview.getBottom());
+
                                     } else {
                                         stopProgressDialog();
                                         //Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
@@ -178,6 +184,7 @@ public class SystemMessageFragment extends Fragment {
                                             }
                                         });
                                     }
+                                }
                             }
                         });
             } catch (Exception e) {

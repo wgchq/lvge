@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -34,6 +35,7 @@ import com.jph.takephoto.permission.InvokeListener;
 import com.jph.takephoto.permission.PermissionManager;
 import com.jph.takephoto.permission.TakePhotoInvocationHandler;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.BitmapCallback;
 import com.zhy.http.okhttp.callback.Callback;
 
 import java.io.ByteArrayInputStream;
@@ -49,6 +51,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
+import lvge.com.myapp.ProgressDialog.RoundImageView;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.LoadRightSideMode;
 import lvge.com.myapp.model.LoginResultModel;
@@ -117,6 +120,24 @@ public class PersonalProfile extends AppCompatActivity implements View.OnClickLi
         persion_profile_inputname = (TextView)findViewById(R.id.persion_profile_inputname);
         persion_profile_inputname.setText(result.getMarketEntity().getSeller().getName());
         persion_profile_inputsex = (TextView)findViewById(R.id.persion_profile_inputsex);
+
+        if(result.getMarketEntity().getHeadImg() != null && result.getMarketEntity().getHeadImg() != ""){
+            OkHttpUtils.get()
+                    .url(result.getMarketEntity().getHeadImg())
+                    .build()
+                    .execute(new BitmapCallback() {
+                        @Override
+                        public void onError(Call call, Exception e, int i) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Bitmap bitm, int i) {
+                            persion_profile_iamgeview.setImageBitmap(bitm);
+                        }
+                    });
+        }
+
         if(result.getMarketEntity().getSex() == 0){
             persion_profile_inputsex.setText("男");
         }else {

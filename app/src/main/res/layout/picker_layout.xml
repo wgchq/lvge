@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/picker_rel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="-620dp"
+    android:background="#99232323"
+    android:visibility="gone" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff" >
+
+            <RelativeLayout
+                android:id="@+id/picker_Relayout_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x100"
+                android:background="@color/mainBackgroundColor"
+                android:paddingLeft="@dimen/x28"
+                tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+                <TextView
+                    android:id="@+id/picker_off"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x30"
+                    android:text="取消"
+                    android:textSize="@dimen/x30"
+                    android:textColor="@color/colorPrimary"
+                    tools:ignore="HardcodedText,RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/picker_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x30"
+                    android:text="确定"
+                    android:textSize="@dimen/x30"
+                    android:textColor="@color/colorPrimary"
+                    android:gravity="center"
+                    tools:ignore="RelativeOverlap" />
+            </RelativeLayout>
+
+        <lvge.com.myapp.ProgressDialog.PickerScrollView
+            android:id="@+id/pickerscrlllview"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/picker_Relayout_button"
+            android:layout_height="160dp"
+            android:background="#ffffff" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/pickerscrlllview"
+            android:layout_marginTop="-95dp"
+            android:background="@drawable/picker_tv_bg" />
+    </RelativeLayout>
+
+</RelativeLayout>
