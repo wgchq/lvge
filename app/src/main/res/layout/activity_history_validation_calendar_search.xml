@@ -73,13 +73,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <lvge.com.myapp.ui.LoadListView
-            android:id="@+id/history_validation_search_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@color/line_background_gray"
-            android:dividerHeight="@dimen/x14">
 
-        </lvge.com.myapp.ui.LoadListView>
     </LinearLayout>
 </LinearLayout>

@@ -19,7 +19,7 @@ public class InputTask {
     private My4sAddressSearchAdapter mAdapter;
     private PoiSearch mSearch;
     private Context mContext;
-    InputTask(Context context, My4sAddressSearchAdapter adapter){
+    public InputTask(Context context, My4sAddressSearchAdapter adapter){
         this.mContext = context;
         this.mAdapter = adapter;
 

@@ -449,6 +449,31 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
             }
         });
 
+
+        RelativeLayout lly_shop_address =(RelativeLayout)findViewById(R.id.lly_shop_address);
+        lly_shop_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(ShopManagementActivity.this,ShopAddressActivity.class);
+
+                Bundle bundle = new Bundle();
+                //传递name参数为tinyphp
+                bundle.putString("id", sellerID);
+                bundle.putString("lng", lng);
+                bundle.putString("lat", lat);
+                bundle.putString("address", address);
+                bundle.putString("areaID",areaID);
+                bundle.putString("mobile",mobile);
+                bundle.putString("telephone",telephone);
+                bundle.putString("noExpense",noExpense);
+                intent.putExtras(bundle);
+
+
+
+                startActivity(intent);
+            }
+        });
+
         tv_shop_consume_back_text_content = (TextView)findViewById(R.id.tv_shop_consume_back_text_content);
         tv_shop_contact_text_content = (TextView)findViewById(R.id.tv_shop_contact_text_content);
         resource_init();

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="lvge.com.myapp.modules.shop_management.ShopAddressActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        style="@style/my_title_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_4s_address_management"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/ic_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
+
+            <TextView
+                style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="@string/shop_address" />
+
+            <TextView
+                android:id="@+id/my_4s_address_confirm"
+                style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="end"
+                android:background="?android:selectableItemBackground"
+                android:gravity="center"
+                android:padding="@dimen/x20"
+                android:text="@string/my_4s_address_confirm"
+                android:textColor="@color/mainFontColor" />
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+    <!--网络监测-->
+    <lvge.com.myapp.ui.NetworkCheckView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/appBarLayout"
+            tools:ignore="ObsoleteLayoutParam,UselessParent">
+
+            <com.amap.api.maps.MapView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.amap.api.maps.MapView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="@dimen/x708"
+                    android:layout_height="@dimen/x86"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/layout_border_shap"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:paddingEnd="@dimen/text_left_padding"
+                    android:paddingLeft="@dimen/text_left_padding"
+                    android:paddingRight="@dimen/text_left_padding"
+                    android:paddingStart="@dimen/text_left_padding"
+                    tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
+
+                    <!--    <ImageView
+                            android:id="@+id/my4s_address_search_ImageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignTop="@+id/my4s_address_textview"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/searcg"
+                            tools:ignore="ContentDescription,RtlSymmetry" />
+
+                        <TextView
+                            android:id="@+id/my4s_address_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/x10"
+                            android:layout_toRightOf="@+id/my4s_address_search_ImageView"
+                            android:text="@string/txt_current_position"
+                            android:textColor="#000"
+                            android:textSize="@dimen/x30" />-->
+
+                    <EditText
+                        android:id="@+id/current_position"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x26"
+                        android:background="@drawable/edit_text_shape"
+                        android:drawableLeft="@mipmap/searcg"
+                        android:drawablePadding="@dimen/x20"
+                        android:ellipsize="end"
+                        android:hint="@string/txt_current_position"
+                        android:imeOptions="actionSearch"
+                        android:singleLine="true"
+                        android:textColor="#333"
+                        android:textSize="@dimen/x28"
+                        tools:ignore="TextFields" />
+                </RelativeLayout>
+
+                <ListView
+                    android:id="@+id/search_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/mainBackgroundColor">
+
+                </ListView>
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x121"
+        android:background="@color/mainBackgroundColor"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x28"
+            android:text="[位置]"
+            android:textColor="#000"
+            android:textSize="@dimen/x26" />
+
+        <TextView
+            android:id="@+id/my_4s_address_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x28"
+            android:layout_marginTop="@dimen/x30"
+            android:text="郑州"
+            android:textColor="#333"
+            android:textSize="@dimen/x22" />
+
+
+    </LinearLayout>
+</LinearLayout>
