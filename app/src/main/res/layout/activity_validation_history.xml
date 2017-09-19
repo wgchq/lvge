@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/main_background_gray"
     android:orientation="vertical"
-    tools:context="lvge.com.myapp.modules.validationhistory.ValidationHistoryActivity">
+    tools:context="lvge.com.myapp.modules.ValidationHistory.ValidationHistoryActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"

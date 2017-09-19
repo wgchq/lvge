@@ -1,4 +1,4 @@
-package lvge.com.myapp.modules.validationhistory;
+package lvge.com.myapp.modules.ValidationHistory;
 
 import android.content.Context;
 import android.view.LayoutInflater;
