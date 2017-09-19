@@ -462,6 +462,7 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
                 bundle.putString("id", sellerID);
                 bundle.putString("lng", lng);
                 bundle.putString("lat", lat);
+                bundle.putString("name",shop_name.getText().toString());
                 bundle.putString("address", address);
                 bundle.putString("areaID",areaID);
                 bundle.putString("mobile",mobile);

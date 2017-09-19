@@ -123,14 +123,15 @@ public class ShopAddressActivity extends AppCompatActivity implements LocationSo
 
         /*获取页面传值*/
         Intent intent = getIntent();
+        name = intent.getStringExtra("name")!=null?intent.getStringExtra("name"):"";
         lng = Double.parseDouble(intent.getStringExtra("lng"));
         lat = Double.parseDouble(intent.getStringExtra("lat"));
         address = intent.getStringExtra("address");
-        id = intent.getStringExtra("id");
-        areaID =intent.getStringExtra("areaID");
-        mobile = intent.getStringExtra("mobile");
-        telephone = intent.getStringExtra("telephone");
-        noExpense = intent.getStringExtra("noExpense");
+        sellerID = intent.getStringExtra("id");
+        areaID =intent.getStringExtra("areaID")!=null?intent.getStringExtra("areaID"):"";
+        mobile = intent.getStringExtra("mobile")!=null? intent.getStringExtra("mobile"):"";
+        telephone = intent.getStringExtra("telephone")!=null? intent.getStringExtra("telephone"):"";
+        noExpense = intent.getStringExtra("noExpense")!=null?intent.getStringExtra("noExpense"):"";
 
 
 
