@@ -24,7 +24,7 @@ import lvge.com.myapp.modules.validationtypescanqr.MipcaActivityCaptureActivity;
 import lvge.com.myapp.R;
 import lvge.com.myapp.modules.PendingSendGoods.PendingSendGoodsActivity;
 import lvge.com.myapp.modules.RefundAfterSale.RefundAfterSaleActivity;
-import lvge.com.myapp.modules.validationhistory.ValidationHistoryActivity;
+import lvge.com.myapp.modules.ValidationHistory.*;
 import lvge.com.myapp.modules.alert_client_management.AlertClientActivity;
 import lvge.com.myapp.modules.car_data_management.CarDataManagementActivity;
 import lvge.com.myapp.modules.commodity_management.CommodityManageHomepage;
