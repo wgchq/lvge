@@ -37,6 +37,7 @@ public class SearchValidationHistoryActivity extends AppCompatActivity {
     private String type = "0";
     private EditText validation_search_edit;
     private TextView cancel_search;
+    private String orderNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,9 @@ public class SearchValidationHistoryActivity extends AppCompatActivity {
                             .hideSoftInputFromWindow(SearchValidationHistoryActivity.this.getCurrentFocus()
                                     .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);*/
                     //进行搜索操作的方法，在该方法中可以加入mEditSearchUser的非空判断
-                    getData("3");
+                    EditText validation_search_edit = (EditText) findViewById(R.id.validation_search_edit);
+                    orderNo = validation_search_edit.getText().toString();
+                    getData();
                 }
                 return false;
             }
@@ -70,15 +73,15 @@ public class SearchValidationHistoryActivity extends AppCompatActivity {
 
     }
 
-    private void getData(String stype) {
+    private void getData() {
         try {
             startProgerssDialog();
-            final String type = stype;
             OkHttpUtils.get()//get 方法
                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/code/useList") //地址
                     .addParams("pageIndex", "1") //需要传递的参数
                     .addParams("pageSize", PageSize)
-                    .addParams("type", type)
+                    .addParams("type", "3")
+                    .addParams("orderNo", orderNo)
                     .build()
                     .execute(new Callback() {//通用的callBack
 
@@ -126,7 +129,8 @@ public class SearchValidationHistoryActivity extends AppCompatActivity {
                                                                 .url("http://www.lvgew.com/obdcarmarket/sellerapp/code/useList") //地址
                                                                 .addParams("pageIndex", Integer.toString(historyValidationListEntity.getPageResult().getPageIndex() + 1)) //需要传递的参数
                                                                 .addParams("pageSize", PageSize)
-                                                                .addParams("type", type)
+                                                                .addParams("type", "3")
+                                                                .addParams("orderNo", orderNo)
                                                                 .build()
                                                                 .execute(new Callback() {//通用的callBack
 
@@ -218,13 +222,6 @@ public class SearchValidationHistoryActivity extends AppCompatActivity {
             stopProgressDialog();
             Toast.makeText(SearchValidationHistoryActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void init() {
-/*
-        tabLayout.getChildAt(0).setSelected(true);
-*/
-        getData("0");
     }
 
     private void startProgerssDialog() {
