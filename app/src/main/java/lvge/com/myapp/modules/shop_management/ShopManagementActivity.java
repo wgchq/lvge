@@ -134,6 +134,7 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
     private TextView shop_name;
     private TextView tv_shop_authentication_text_content;
     private TextView tv_shop_deposit_text_content;
+    private TextView tv_shop_address_content;
 
     private int Image_num = 0;
 
@@ -161,7 +162,7 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
                 finish();
             }
         });
-
+        tv_shop_address_content = (TextView) findViewById(R.id.tv_shop_address_content);
         shop_image_main_page = (ImageView)findViewById(R.id.shop_image_main_page);
         shop_image_env_page = (ImageView)findViewById(R.id.shop_image_env_page);
         shop_image_env_page_1 = (ImageView)findViewById(R.id.shop_image_env_page_1);
@@ -611,6 +612,11 @@ public class ShopManagementActivity extends TakePhotoActivity implements View.On
                                                 tv_shop_consume_back_text_content.setHint("支持");
                                                 break;
                                         }
+                                    }
+
+                                    if(address!=null)
+                                    {
+                                        tv_shop_address_content.setText(address);
                                     }
 
                                     tv_shop_contact_text_content.setHint(mobile);
