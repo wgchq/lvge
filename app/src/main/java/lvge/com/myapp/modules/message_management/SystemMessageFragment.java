@@ -18,6 +18,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import lvge.com.myapp.MainActivity;
@@ -71,6 +73,7 @@ public class SystemMessageFragment extends Fragment {
     private View view;
     SystemMessageAdapter adapter;
     private BroadcastReceiver receiver;
+    private List<EntityList>  systemMessageList = new LinkedList<EntityList>();
     private int Netstatus = 0;
 
     private SwipeMenuListView system_message_listview;
@@ -102,8 +105,7 @@ public class SystemMessageFragment extends Fragment {
         intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         getActivity().registerReceiver(receiver, intentFilter);
 
-        system_message_listview = (SwipeMenuListView)view.findViewById(R.id.system_message_listview);
-
+        system_message_listview = (SwipeMenuListView) view.findViewById(R.id.system_message_listview);
 
         SwipeMenuCreator creator = new SwipeMenuCreator() {
             @Override
@@ -118,15 +120,21 @@ public class SystemMessageFragment extends Fragment {
             }
         };
         system_message_listview.setMenuCreator(creator);
+        system_message_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
+            }
+        });
         system_message_listview.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public void onMenuItemClick(int i, SwipeMenu swipeMenu, int i1) {
-               // EmployeeInformationList item = contentList.get(i);
+                // EmployeeInformationList item = contentList.get(i);
                 switch (i1) {
                     case 0:
-                       // String adv = item.getUSER_ID();
-                      //  removeEmployeeInformation(adv);
+                        // String adv = item.getUSER_ID();
+                        //  removeEmployeeInformation(adv);
                         // getListItem();
                 }
             }
@@ -141,73 +149,84 @@ public class SystemMessageFragment extends Fragment {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
     }
 
-    private void initview(){
+    private void initview() {
 
-            startProgerssDialog();
-            try {
-                OkHttpUtils.get()//get 方法
-                        .url("http://www.lvgew.com/obdcarmarket/sellerapp/notice/list.do") //地址
-                        .addParams("RECEIVER_TYPE","1")
-                        .addParams("RECEIVER_ID","3")
-                        .addParams("pageIndex", "1") //需要传递的参数
-                        .addParams("pageSize", "10")
-                        .build()
-                        .execute(new Callback() {//通用的callBack
+        startProgerssDialog();
+        try {
+            OkHttpUtils.get()//get 方法
+                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/notice/list.do") //地址
+                    .addParams("RECEIVER_TYPE", "1")
+                    .addParams("RECEIVER_ID", "3")
+                    .addParams("pageIndex", "1") //需要传递的参数
+                    .addParams("pageSize", "10")
+                    .build()
+                    .execute(new Callback() {//通用的callBack
 
-                            //从后台获取成功后，对相应进行类型转化
-                            @Override
-                            public Object parseNetworkResponse(Response response, int i) throws Exception {
+                        //从后台获取成功后，对相应进行类型转化
+                        @Override
+                        public Object parseNetworkResponse(Response response, int i) throws Exception {
 
-                                String string = response.body().string();//获取相应中的内容Json格式
-                                //把json转化成对应对象
-                                //LoginResultModel是和后台返回值类型结构一样的对象
-                                MessageResultMode result = new Gson().fromJson(string, MessageResultMode.class);
-                                return result;
-                            }
+                            String string = response.body().string();//获取相应中的内容Json格式
+                            //把json转化成对应对象
+                            //LoginResultModel是和后台返回值类型结构一样的对象
+                            MessageResultMode result = new Gson().fromJson(string, MessageResultMode.class);
+                            return result;
+                        }
 
-                            @Override
-                            public void onError(okhttp3.Call call, Exception e, int i) {
+                        @Override
+                        public void onError(okhttp3.Call call, Exception e, int i) {
 
-                            }
+                        }
 
-                            @Override
-                            public void onResponse(Object object, final int i) {
-                                //object 是 parseNetworkResponse的返回值
-                                if (null != object) {
-                                    messageResultMode = (MessageResultMode) object;//把通用的Object转化成指定的对象
-                                    if (messageResultMode.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
-                                        stopProgressDialog();
+                        @Override
+                        public void onResponse(Object object, final int i) {
+                            //object 是 parseNetworkResponse的返回值
+                            if (null != object) {
+                                messageResultMode = (MessageResultMode) object;//把通用的Object转化成指定的对象
+                                if (messageResultMode.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登录
+                                    stopProgressDialog();
 
-                                        contentList = messageResultMode.getPageResult().getEntityList();
-                                        adapter.setClients(contentList);
+                                    contentList = messageResultMode.getPageResult().getEntityList();
 
-                                        system_message_listview.setAdapter(adapter);
-                                        system_message_listview.setSelection(system_message_listview.getBottom());
 
-                                    } else {
-                                        stopProgressDialog();
-                                        //Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                        builder.setMessage("网络异常，请重新登陆");
-                                        builder.setCancelable(false);
-                                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                Intent intent = new Intent(getActivity(), MainActivity.class);
-                                                startActivity(intent);
-                                            }
-                                        });
+                                    for (int j = 0; j < contentList.size(); ++j) {
+                                        if (contentList.get(j).getNOTICE_TYPE() == 0) {
+
+                                          EntityList  systemMessage = contentList.get(j);
+                                            systemMessageList.add(systemMessage);
+                                        }
                                     }
+
+                                    adapter.setClients(systemMessageList);
+
+                                    system_message_listview.setAdapter(adapter);
+                                    system_message_listview.setSelection(system_message_listview.getBottom());
+
+                                } else {
+                                    stopProgressDialog();
+                                    //Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                    builder.setMessage("网络异常，请重新登陆");
+                                    builder.setCancelable(false);
+                                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
                                 }
                             }
-                        });
-            } catch (Exception e) {
-                stopProgressDialog();
-                Log.i("系统信息加载异常：", e.getMessage());
+                        }
+                    });
+        } catch (Exception e) {
+            stopProgressDialog();
+            Log.i("系统信息加载异常：", e.getMessage());
 
-                Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
+        }
     }
+
     private void startProgerssDialog() {
         if (progressDialog == null) {
             progressDialog = CustomProgressDialog.createDialog(getActivity());

@@ -28,6 +28,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import lvge.com.myapp.MainActivity;
@@ -142,7 +143,16 @@ public class OrderMessageFragment extends Fragment {
                                     stopProgressDialog();
 
                                     contentList = messageResultMode.getPageResult().getEntityList();
-                                    adapter.setClients(contentList);
+                                    List<EntityList> orderMessageList = new LinkedList<EntityList>();
+                                    for (int j = 0; j < contentList.size(); ++j) {
+                                        if (contentList.get(j).getNOTICE_TYPE() == 1) {
+
+                                            EntityList  orderMessage = contentList.get(j);
+                                            orderMessageList.add(orderMessage);
+                                        }
+                                    }
+
+                                    adapter.setClients(orderMessageList);
 
                                     system_message_listview.setAdapter(adapter);
                                     system_message_listview.setSelection(system_message_listview.getBottom());
