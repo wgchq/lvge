@@ -74,7 +74,7 @@ public class OrderMessageFragmentAdapter extends BaseAdapter {
                 }
                 customer_phone.setText(clients.get(position).getNOTICE_TITLE());
                 TextView client_kilometer = (TextView)convertView.findViewById(R.id.client_kilometer);
-                client_kilometer.setText(clients.get(position).getNOTICE_TITLE());
+                client_kilometer.setText(clients.get(position).getCREATE_TIME());
                 TextView customer_car_no = (TextView)convertView.findViewById(R.id.customer_car_no);
                 customer_car_no.setText(clients.get(position).getNOTICE_MESSAGE());
             }

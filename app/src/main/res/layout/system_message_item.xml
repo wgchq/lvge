@@ -40,11 +40,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
+                    android:paddingRight="@dimen/x15"
                     android:layout_alignParentTop="true"
                     android:text="2015-10-9  19:29"
                     android:textColor="#999"
                     android:textSize="@dimen/x24"
-                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded" />
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded,RtlSymmetry" />
 
             </RelativeLayout>
 

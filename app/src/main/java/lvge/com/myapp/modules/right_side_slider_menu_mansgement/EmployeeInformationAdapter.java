@@ -2,6 +2,7 @@ package lvge.com.myapp.modules.right_side_slider_menu_mansgement;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -147,6 +148,7 @@ public class EmployeeInformationAdapter extends BaseAdapter {
         listItemView.memo.setText(item.getJob());
         listItemView.reImageview.setImageBitmap(null);
 
+        Log.d("4",item.getUSER_ID() + "获取成功");
         return view;
     }
 }

@@ -42,6 +42,7 @@ import lvge.com.myapp.R;
 import lvge.com.myapp.model.ClientResultModel;
 import lvge.com.myapp.model.EmployeeInformationList;
 import lvge.com.myapp.model.EntityList;
+import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.model.MessageResultMode;
 import lvge.com.myapp.modules.PendingSendGoods.PendingSendGoodsActivity;
 import lvge.com.myapp.modules.RefundAfterSale.RefundAfterSaleActivity;
@@ -123,19 +124,83 @@ public class SystemMessageFragment extends Fragment {
         system_message_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                system_message_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(getActivity(), MessageDetail.class);
+                        String title = contentList.get(position).getNOTICE_TITLE();
+                        String time  = contentList.get(position).getCREATE_TIME();
+                        String message = contentList.get(position).getNOTICE_MESSAGE();
+                        intent.putExtra("title", title);
+                        intent.putExtra("time",time);
+                        intent.putExtra("message",message);
+                        startActivity(intent);
+                    }
+                });
 
             }
         });
         system_message_listview.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public void onMenuItemClick(int i, SwipeMenu swipeMenu, int i1) {
-                // EmployeeInformationList item = contentList.get(i);
+                EntityList item = systemMessageList.get(i);
                 switch (i1) {
                     case 0:
-                        // String adv = item.getUSER_ID();
-                        //  removeEmployeeInformation(adv);
-                        // getListItem();
+                         int adv = item.getCUSTOMER_NOTICE_ID();
+                        try {
+                            OkHttpUtils.get()//get 方法
+                                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/notice/noticeDelete.do") //地址
+                                    .addParams("CUSTOMER_NOTICE_ID", String.valueOf(adv))
+                                    .build()
+                                    .execute(new Callback() {//通用的callBack
+
+                                        //从后台获取成功后，对相应进行类型转化
+                                        @Override
+                                        public Object parseNetworkResponse(Response response, int i) throws Exception {
+
+                                            String string = response.body().string();//获取相应中的内容Json格式
+                                            //把json转化成对应对象
+                                            //LoginResultModel是和后台返回值类型结构一样的对象
+                                            LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
+                                            return result;
+                                        }
+
+                                        @Override
+                                        public void onError(okhttp3.Call call, Exception e, int i) {
+
+                                        }
+
+                                        @Override
+                                        public void onResponse(Object object, final int i) {
+                                            //object 是 parseNetworkResponse的返回值
+                                            if (null != object) {
+                                                LoginResultModel result = (LoginResultModel) object;//把通用的Object转化成指定的对象
+                                                if (result.getOperationResult().getResultCode() == 0) {//当返回值为2时不可登
+                                                    Toast.makeText(getActivity(), "删除成功！", Toast.LENGTH_SHORT).show();
+                                                    initview();
+                                                } else {
+                                                    stopProgressDialog();
+                                                    //Toast.makeText(getActivity(), "数据结束！", Toast.LENGTH_SHORT).show();
+                                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                                    builder.setMessage("网络异常，请重新登陆");
+                                                    builder.setCancelable(false);
+                                                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {
+                                                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                                                            startActivity(intent);
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        }
+                                    });
+                        } catch (Exception e) {
+                            stopProgressDialog();
+                            Log.i("系统信息加载异常：", e.getMessage());
+
+                            Toast.makeText(getActivity(), "网络异常！", Toast.LENGTH_SHORT).show();
+                        }
                 }
             }
         });
@@ -150,7 +215,8 @@ public class SystemMessageFragment extends Fragment {
     }
 
     private void initview() {
-
+        contentList.clear();
+        systemMessageList.clear();
         startProgerssDialog();
         try {
             OkHttpUtils.get()//get 方法

@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
@@ -129,6 +130,7 @@ public class EmployeeInformation extends AppCompatActivity {
     }
 
     private void removeEmployeeInformation(String str){
+        Log.d("1",str + "开始删除");
             try {
                 OkHttpUtils.get()
                         .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/deleteStaff.do")
@@ -155,8 +157,14 @@ public class EmployeeInformation extends AppCompatActivity {
                                     LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
                                     if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
                                         Toast.makeText(EmployeeInformation.this,"删除成功！",Toast.LENGTH_LONG).show();
-                                        contentList.remove(result);
-                                        new EmployeeInformationAdapter(EmployeeInformation.this, contentList).notifyDataSetChanged();
+                                        Log.d("2","删除成功");
+                                        try{
+                                            Thread.sleep(2000);
+                                        }catch (Exception e){
+                                            e.printStackTrace();
+                                        }
+                                        contentList.clear();
+                                        initEmployeeInformation();
                                     }else {
                                         Toast.makeText(EmployeeInformation.this,"删除失败！",Toast.LENGTH_LONG).show();
                                     }
@@ -176,6 +184,7 @@ public class EmployeeInformation extends AppCompatActivity {
     }
 
     private void initEmployeeInformation() {
+        Log.d("3","获取员工信息");
         contentList.clear();
         try {
             OkHttpUtils.get()
@@ -217,6 +226,12 @@ public class EmployeeInformation extends AppCompatActivity {
 
     protected void onResume(){
         super.onResume();
+        try{
+            Thread.sleep(2000);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         initEmployeeInformation();
     }
 

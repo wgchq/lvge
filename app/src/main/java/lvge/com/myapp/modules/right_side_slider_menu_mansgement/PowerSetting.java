@@ -1,6 +1,7 @@
 package lvge.com.myapp.modules.right_side_slider_menu_mansgement;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -12,9 +13,12 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.kyleduo.switchbutton.SwitchButton;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +26,10 @@ import java.util.List;
 import lvge.com.myapp.ProgressDialog.PickerScrollView;
 import lvge.com.myapp.ProgressDialog.Pickers;
 import lvge.com.myapp.R;
+import lvge.com.myapp.model.EmployeeInformationMode;
 import lvge.com.myapp.model.LoadRightSideMode;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class PowerSetting extends AppCompatActivity {
 
@@ -49,6 +56,13 @@ public class PowerSetting extends AppCompatActivity {
     private List<Pickers> list;// 滚动选择器数据  
     private String[] id;
     private String[] name;
+    private String[] appRight;
+
+    private String[] powerManal = new String[12]; //获取员工权限列表
+    private String UserID = "";
+    private String  appRigh = "";
+
+    private int selectID;
 
     private String pick_id = "";
     private String pick_name = "";
@@ -97,6 +111,14 @@ public class PowerSetting extends AppCompatActivity {
             public void onClick(View v) {
                 picker_rel.setVisibility(View.GONE);
                 persion_profile_iamgeview.setText(pick_name);
+                for(int i = 0;i<name.length;i++){
+                    if(pick_name.equals(name[i])){
+                        selectID = i;
+                        break;
+                    }
+                }
+                UserID = id[selectID];
+                initswitch(appRight[selectID]);
             }
         });
         power_setting_choosename_Relayout = (RelativeLayout)findViewById(R.id.power_setting_choosename_Relayout);
@@ -106,22 +128,16 @@ public class PowerSetting extends AppCompatActivity {
                 picker_rel.setVisibility(View.VISIBLE);
             }
         });
+        initEmployeeInformation();
 
         list = new ArrayList<Pickers>();
-        id=new String[] { "1", "2", "3", "4", "5", "6"};
-        name = new String[] { "张三","李四","王五","车前","收到","阿斯顿"};
-        for(int i=0;i<name.length;i++){
-            list.add(new Pickers(name[i],id[i]));
-        }
-        // 设置数据，默认选择第一条  
-        pickerscrlllview.setData(list);
-        pickerscrlllview.setSelected(0);
 
         sale_consultant_Preservation = (TextView)findViewById(R.id.sale_consultant_Preservation);
         sale_consultant_Preservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             //boolean a =    employees_manager_switchbutton.isChecked();  获取状态
+                //boolean a =    employees_manager_switchbutton.isChecked();  获取状态
+                updata();
             }
         });
 
@@ -220,12 +236,156 @@ public class PowerSetting extends AppCompatActivity {
             }
         });
 
+        employees_manager_switchbutton.setChecked(false);
+        employees_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        shop_manage_switchbutton.setChecked(false);
+        shop_manage_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        merchandise_manager_switchbutton.setChecked(false);
+        merchandise_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        order_manager_switchbutton.setChecked(false);
+        order_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        appraise_manager_switchbutton.setChecked(false);
+        appraise_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        commission_manager_switchbutton.setChecked(false);
+        commission_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        finance_manager_switchbutton.setChecked(false);
+        finance_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        performance_manager_switchbutton.setChecked(false);
+        performance_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+
+
         preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         String string = preferences.getString("right_data","");
         LoadRightSideMode result = new Gson().fromJson(string, LoadRightSideMode.class);
 
         power = result.getMarketEntity().getAppRights();
-        if(power.equals("")){
+        initswitch(power);
+        // performance_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+    }
+
+    private void updata(){
+        if(UserID.equals("")){
+            return;
+        }
+        if(employees_manager_switchbutton.isChecked()){
+            powerManal[0] = "1";
+        }else {
+            powerManal[0] = "0";
+        }
+        if(order_manager_switchbutton.isChecked()){
+            powerManal[1] = "2";
+        }else {
+            powerManal[1] = "0";
+        }
+        if(shop_manage_switchbutton.isChecked()){
+            powerManal[2] = "3";
+        }else {
+            powerManal[2] = "0";
+        }
+        if(merchandise_manager_switchbutton.isChecked()){
+            powerManal[3] = "4";
+        }else {
+            powerManal[3] = "0";
+        }
+        if(finance_manager_switchbutton.isChecked()){
+            powerManal[4] = "5";
+        }else {
+            powerManal[4] = "0";
+        }
+        if(commission_manager_switchbutton.isChecked()){
+            powerManal[6] = "7";
+        }else {
+            powerManal[6] = "0";
+        }
+        if(appraise_manager_switchbutton.isChecked()){
+            powerManal[7] = "8";
+        }else {
+            powerManal[7] = "0";
+        }
+        if(performance_manager_switchbutton.isChecked()){
+            powerManal[10] = "11";
+        }else {
+            powerManal[10] = "0";
+        }
+
+
+        for(int i=0;i<powerManal.length;i++){
+            if(powerManal[i] != "0" && powerManal[i] != null){
+                appRigh = appRigh + "-" + powerManal[i];
+            }
+        }
+
+        if(appRigh != null){
+            if(appRigh.substring(0,1).equals("-")){
+                appRigh = appRigh.substring(1,appRigh.length());
+            }
+        }
+
+        try{
+            OkHttpUtils.get()
+                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/userAppRightsUpdate.do")
+                    .addParams("AppRights",appRigh)
+                    .addParams("userId",UserID)
+                    .build()
+                    .execute(new Callback() {
+                        @Override
+                        public Object parseNetworkResponse(Response response, int i) throws Exception {
+                            String string = response.body().string();//获取相应中的内容Json格式
+                            //把json转化成对应对象
+                            //LoginResultModel是和后台返回值类型结构一样的对象
+                            //stopProgressDialog();
+                            EmployeeInformationMode result = new Gson().fromJson(string, EmployeeInformationMode.class);
+                            return result;
+                        }
+
+                        @Override
+                        public void onError(Call call, Exception e, int i) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Object o, int i) {
+                            if (null != o) {
+                                EmployeeInformationMode result = (EmployeeInformationMode) o;//把通用的Object转化成指定的对象
+                                if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                    Toast.makeText(PowerSetting.this,"更新成功！",Toast.LENGTH_LONG).show();
+                                    for(int j = 0;j<id.length;j++){
+                                        if(UserID.equals(id[j])){
+                                            appRight[j] = appRigh;
+                                            break;
+                                        }
+                                    }
+                                }else {
+                                    Toast.makeText(PowerSetting.this,"更新失败！",Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }
+                    });
+
+        }catch (Exception e){
+            Toast.makeText(PowerSetting.this,"网络异常！",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void initswitch(String appRight){
+
+        employees_manager_switchbutton.setChecked(false);
+        employees_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        shop_manage_switchbutton.setChecked(false);
+        shop_manage_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        merchandise_manager_switchbutton.setChecked(false);
+        merchandise_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        order_manager_switchbutton.setChecked(false);
+        order_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        appraise_manager_switchbutton.setChecked(false);
+        appraise_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        commission_manager_switchbutton.setChecked(false);
+        commission_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        finance_manager_switchbutton.setChecked(false);
+        finance_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        performance_manager_switchbutton.setChecked(false);
+        performance_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
+        if(appRight.equals("")){
             employees_manager_switchbutton.setChecked(true);
             employees_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
 
@@ -250,75 +410,101 @@ public class PowerSetting extends AppCompatActivity {
             performance_manager_switchbutton.setChecked(true);
             performance_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
         }else {
-            String[] str = power.split("-");
-            try{
-                if(str.length >= 1 && str[0].equals("0")){
-                    employees_manager_switchbutton.setChecked(false);
-                    employees_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
-                }else {
-                    employees_manager_switchbutton.setChecked(true);
-                    employees_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
+            String[] str = appRight.split("-");
+
+            for(int i=0;i<str.length;i++){
+                if(Integer.valueOf(str[i]) <= 12  && 1 <= Integer.valueOf(str[i])){
+                    powerManal[Integer.valueOf(str[i]) - 1] = str[i];
                 }
-                if(str.length >= 2 && str[1].equals("0")){
-                    shop_manage_switchbutton.setChecked(false);
-                    shop_manage_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
-                }else {
-                    shop_manage_switchbutton.setChecked(true);
-                    shop_manage_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
+                switch (str[i]){
+                    case "1":
+                        employees_manager_switchbutton.setChecked(true);
+                        employees_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
+                        break;
+                    case "2":
+                        order_manager_switchbutton.setChecked(true);
+                        order_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
+                        break;
+                    case "3":
+                        shop_manage_switchbutton.setChecked(true);
+                        shop_manage_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
+                        break;
+                    case "4":
+                        merchandise_manager_switchbutton.setChecked(true);
+                        merchandise_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
+                        break;
+                    case "5":
+                        finance_manager_switchbutton.setChecked(true);
+                        finance_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
+                        break;
+                    case "7":
+                        commission_manager_switchbutton.setChecked(true);
+                        commission_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
+                        break;
+                    case "8":
+                        appraise_manager_switchbutton.setChecked(true);
+                        appraise_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
+                        break;
+                    case "11":
+                        performance_manager_switchbutton.setChecked(true);
+                        performance_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
+                        break;
+                    default:
+                        break;
                 }
-                if(str.length >= 3 && str[2].equals("0")){
-                    merchandise_manager_switchbutton.setChecked(false);
-                    merchandise_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
-                }else {
-                    merchandise_manager_switchbutton.setChecked(true);
-                    merchandise_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
-                }
-                if(str.length >= 4 && str[3].equals("0")){
-                    order_manager_switchbutton.setChecked(false);
-                    order_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
-                }else {
-                    order_manager_switchbutton.setChecked(true);
-                    order_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
-                }
-                if(str.length >= 5 && str[4].equals("0")){
-                    appraise_manager_switchbutton.setChecked(false);
-                    appraise_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
-                }else {
-                    appraise_manager_switchbutton.setChecked(true);
-                    appraise_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
-                }
-                if(str.length >= 6 && str[5].equals("0")){
-                    commission_manager_switchbutton.setChecked(false);
-                    commission_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
-                }else {
-                    commission_manager_switchbutton.setChecked(true);
-                    commission_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
-                }
-                if(str.length >= 7 && str[6].equals("0")){
-                    finance_manager_switchbutton.setChecked(false);
-                    finance_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
-                }else {
-                    finance_manager_switchbutton.setChecked(true);
-                    finance_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
-                }
-                if(str.length >= 8 && str[7].equals("0")){
-                    performance_manager_switchbutton.setChecked(false);
-                    performance_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
-                }else {
-                    performance_manager_switchbutton.setChecked(true);
-                    performance_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.RED));
-                }
-            }catch (Exception e){
-                e.printStackTrace();
             }
 
         }
-       // performance_manager_switchbutton.setBackColor(ColorStateList.valueOf(Color.LTGRAY));
     }
 
-    private void updata(){
-        if(employees_manager_switchbutton.isChecked()){
+    private void initEmployeeInformation() {
+        try {
+            OkHttpUtils.get()
+                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/queryStaff.do")
+                    .build()
+                    .execute(new Callback() {
+                        @Override
+                        public Object parseNetworkResponse(Response response, int i) throws Exception {
+                            String string = response.body().string();//获取相应中的内容Json格式
+                            //把json转化成对应对象
+                            //LoginResultModel是和后台返回值类型结构一样的对象
+                            //stopProgressDialog();
+                            EmployeeInformationMode result = new Gson().fromJson(string, EmployeeInformationMode.class);
+                            return result;
+                        }
 
+                        @Override
+                        public void onError(Call call, Exception e, int i) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Object o, int i) {
+                            if (null != o) {
+                                EmployeeInformationMode result = (EmployeeInformationMode) o;//把通用的Object转化成指定的对象
+                                if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                    int length = result.getMarketEntity().size();
+                                    id=new String[length];
+                                    name = new String[length];
+                                    appRight = new String[length];
+
+                                    for(int j=0;j<length;j++){
+                                        id[j] = result.getMarketEntity().get(j).getUSER_ID();
+                                        name[j] = result.getMarketEntity().get(j).getNAME();
+                                        appRight[j] = result.getMarketEntity().get(j).getAppRights();
+                                        list.add(new Pickers(name[j],id[j]));
+                                    }
+                                    // 设置数据，默认选择第一条  
+                                    pickerscrlllview.setData(list);
+                                    pickerscrlllview.setSelected(0);
+                                }
+                            }
+                        }
+                    });
+
+        } catch (Exception e) {
+            // stopProgressDialog();
+            Toast.makeText(PowerSetting.this,"获取失败！",Toast.LENGTH_LONG).show();
         }
     }
 }
