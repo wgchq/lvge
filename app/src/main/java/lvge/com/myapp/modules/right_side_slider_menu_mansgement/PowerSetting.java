@@ -324,7 +324,7 @@ public class PowerSetting extends AppCompatActivity {
         try{
             OkHttpUtils.get()
                     .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/userAppRightsUpdate.do")
-                    .addParams("AppRights",appRigh)
+                    .addParams("appRights",appRigh)
                     .addParams("userId",UserID)
                     .build()
                     .execute(new Callback() {
