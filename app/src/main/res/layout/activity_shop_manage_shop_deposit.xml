@@ -74,14 +74,23 @@
                 android:layout_marginRight="@dimen/x44"
                 android:layout_marginBottom="@dimen/x2"
                 android:text="@string/shop_deposit_get" />
-
-            <CheckBox
-                android:id="@+id/btn_shop_deposit_read"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x92"
-                android:paddingLeft="@dimen/x20"
-                android:text="@string/shop_deposit_read" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <CheckBox
+                    android:id="@+id/btn_shop_deposit_read"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x92"
+                    android:paddingLeft="@dimen/x20"
+                    android:text="@string/shop_deposit_read" />
+                <TextView
+                    android:id="@+id/shop_deposit_argue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#00f"
+                    android:text="@string/shop_deposit_argue"/>
+            </LinearLayout>
         </LinearLayout>
 
         <ScrollView
@@ -111,7 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x366"
                     android:background="@color/mainBackgroundColor"
-                    android:padding="@dimen/activity_horizontal_margin"
+                    android:padding="@dimen/x44"
                     android:text="@string/what_is_deposit_description" />
 
                 <TextView
@@ -213,7 +222,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#fff"
-                    android:layout_marginBottom="@dimen/x40"
                     >
                     <TextView
                         android:paddingLeft="@dimen/x44"
@@ -253,7 +261,6 @@
                         android:background="@color/mainBackgroundColor"
                         android:text="@string/Order_settlement_process_four" />
                 </LinearLayout>
-
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

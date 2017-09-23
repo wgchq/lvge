@@ -39,6 +39,7 @@ public class CustomKeyboard {
     private View view;
     private View.OnClickListener onClickListener;
     private OnValidationLisnter onValidationLisnter;
+    private int startCurse;
 
     public CustomKeyboard(Context context) {
         mContext = context;
@@ -93,7 +94,6 @@ public class CustomKeyboard {
         if (this.mEditText != null) {
             disableShowSoftInput();
             Init(view);
-            mEditText.callOnClick();
 
             this.mEditText.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -104,97 +104,72 @@ public class CustomKeyboard {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                    if (!s.equals("") && mEditText.getCompoundDrawables().length != 0) {
+                    if (s.length()==0)
+                    {
+                        mEditText.setCompoundDrawables(null, null, null, null);
+                    }
+                    else if (mEditText.getCompoundDrawables()[2]==null)
+                    {
                         Drawable mIconDelete = mContext.getResources().getDrawable(R.mipmap.validation_code_delete);
                         mIconDelete.setBounds(5, 5, 60, 50);
                         mEditText.setCompoundDrawables(null, null, mIconDelete, null);
-                    } else {
-                        mEditText.setCompoundDrawables(null, null, null, null);
+                        mEditText.setCompoundDrawablePadding(20);
                     }
-
+                    startCurse = start;
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
 
+                    if (startCurse>1) {
+                        mEditText.setSelection(startCurse - 1);
+                    }
                 }
             });
 
-            mEditText.setOnClickListener(new View.OnClickListener() {
+         /*   mEditText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int type = mEditText.getInputType();
                     mEditText.setInputType(InputType.TYPE_NULL);
-                    show(v);
+                    show();
                     mEditText.setInputType(type);
                 }
-            });
+            });*/
 
             mEditText.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
 
+                    int start = mEditText.getSelectionStart();
+                    int end = mEditText.getSelectionEnd();
+
+
                     Drawable drawable = mEditText.getCompoundDrawables()[2];
                     //如果右边没有图片，不再处理
-                    if (drawable == null)
+                    if (drawable == null) {
+                        showBoard();
                         return false;
-                    //如果不是按下事件，不再处理
-                    if (event.getAction() != MotionEvent.ACTION_UP)
-                        return false;
+                    }
+
                     if (event.getX() > mEditText.getWidth()
                             - mEditText.getPaddingRight()
                             - drawable.getIntrinsicWidth()) {
 
-                        int start = mEditText.getSelectionStart();
-                        int end = mEditText.getSelectionEnd();
-
+                        //如果不是按下事件，不再处理
+                        if (event.getAction() != MotionEvent.ACTION_UP)
+                            return false;
                         String textcontent = mEditText.getText().toString();
+                        if (start > 0) {
+                            mEditText.getText().delete(start - 1, end);
+                        }
+                    } else {
+                        showBoard();
+                    }
 
-                        if (start==end)
-                        {
-                            if (start ==0)
-                            {
-                                return false;
-                            }
-                            else if(end == textcontent.length())
-                            {
-                                textcontent = textcontent.substring(0, end - 1);
-                            }
-                        }
-                        else
-                        {
-                            if(start==0)
-                            {
-                                if (end==textcontent.length())
-                                {
-                                    textcontent="";
-                                }
-                                else
-                                {
-                                    textcontent = textcontent.substring(end,textcontent.length());
-                                }
-                            }
-                            else
-                            {
-                                if (end==textcontent.length())
-                                {
-                                    textcontent = textcontent.substring(0, start - 1);
-                                }else
-                                {
-                                    textcontent=textcontent.substring(0,start-1)+textcontent.substring(end+1,textcontent.length());
-                                }
-                            }
-                        }
-
-                        mEditText.setText(textcontent);
-                        if (start>=1)
-                        {
-                            mEditText.setSelection(start - 1);
-                        }
-                        else
-                        {
-                            mEditText.setSelection(0);
-                        }
+                    if (start>1)
+                    {
+                        mEditText.setSelection(start-1);
                     }
 
                     return false;
@@ -297,8 +272,18 @@ public class CustomKeyboard {
         view.findViewById(R.id.key_board_validation).setOnClickListener(this.onClickListener);
     }
 
-    public void show(View view) {
-        dialog.show();//显示对话框
+    public void showBoard() {
+        int type = mEditText.getInputType();
+        mEditText.setInputType(InputType.TYPE_NULL);
+        show();
+        mEditText.setInputType(type);
+    }
+
+
+    public void show() {
+        if (!dialog.isShowing()) {
+            dialog.show();//显示对话框
+        }
     }
 
     public void setValidationListner(OnValidationLisnter listner) {

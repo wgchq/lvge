@@ -1,5 +1,6 @@
 package lvge.com.myapp.modules.shop_management;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -61,6 +62,8 @@ import okhttp3.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
+
+@SuppressLint({"NewApi", "ValidFragment"})
 public class NotAuthenticationFragment extends TakePhotoFragment implements View.OnClickListener {
 
     private View view;

@@ -1,6 +1,7 @@
 package lvge.com.myapp.modules.shop_management;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import lvge.com.myapp.R;
  * A simple {@link Fragment} subclass.
  */
 
+@SuppressLint({"NewApi", "ValidFragment"})
 public class NotPassAuthenticationFragment extends Fragment {
 
     private Handler mHandler;
