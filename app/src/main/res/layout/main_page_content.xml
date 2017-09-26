@@ -102,6 +102,7 @@
                     android:layout_height="@dimen/x90"
                     android:background="@drawable/edit_text_shape"
                     android:hint="@string/please_enter_validation"
+                    android:drawablePadding="@dimen/x20"
                     android:inputType="numberSigned"
                     android:textColor="#999"
                     android:textSize="@dimen/x30" />

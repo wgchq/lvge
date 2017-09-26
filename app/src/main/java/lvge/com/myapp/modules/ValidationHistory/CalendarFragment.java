@@ -13,6 +13,8 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import java.util.Date;
+
 import lvge.com.myapp.R;
 
 /**
@@ -38,6 +40,11 @@ public class CalendarFragment extends Fragment {
 
     private void init(View view) {
         MaterialCalendarView calendarView = (MaterialCalendarView) view.findViewById(R.id.calendarView);
+
+        Date now = new Date();
+
+        calendarView.setSelectedDate(now);
+
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {

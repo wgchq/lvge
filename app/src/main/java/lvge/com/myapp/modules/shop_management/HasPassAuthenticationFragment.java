@@ -1,5 +1,6 @@
 package lvge.com.myapp.modules.shop_management;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import lvge.com.myapp.R;
  * Created by cnhao on 2017/8/29.
  */
 
+@SuppressLint({"NewApi", "ValidFragment"})
 public class HasPassAuthenticationFragment extends Fragment{
     public HasPassAuthenticationFragment() {
         // Required empty public constructor

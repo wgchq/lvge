@@ -10,8 +10,8 @@ android {
         applicationId "lvge.com.myapp"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 8
-        versionName "0.59"
+        versionCode 9
+        versionName "0.60"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -58,4 +58,6 @@ dependencies {
     compile 'com.kyleduo.switchbutton:library:1.4.6'
     compile 'com.prolificinteractive:material-calendarview:1.4.3'
     testCompile 'junit:junit:4.12'
+    compile files('libs/wftsdk5.0.jar')
+    compile files('libs/libammsdk.jar')
 }
