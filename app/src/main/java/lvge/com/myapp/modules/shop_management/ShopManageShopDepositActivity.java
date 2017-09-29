@@ -40,6 +40,7 @@ public class ShopManageShopDepositActivity extends AppCompatActivity {
         });
 
         btn_shop_deposit_get = (Button)findViewById(R.id.btn_shop_deposit_get);
+        //暂时屏蔽支付功能
         btn_shop_deposit_get.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
