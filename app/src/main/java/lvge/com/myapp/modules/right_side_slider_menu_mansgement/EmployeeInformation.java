@@ -43,12 +43,9 @@ public class EmployeeInformation extends AppCompatActivity {
     private TextView employee_information_toadd;
     private SwipeMenuListView employee_information_listview;
 
-    private SharedPreferences preferences;
-    private final static String FILE_NAME = "login_file";
 
     private EmployeeInformationAdapter adapter;
 
-    private SwipeMenuListView customListView;
     private List<EmployeeInformationList> contentList = new ArrayList<EmployeeInformationList>();
 
     private Context context;
@@ -83,16 +80,7 @@ public class EmployeeInformation extends AppCompatActivity {
         }.start();
 
 
-        customListView = (SwipeMenuListView) findViewById(R.id.employee_information_listview);
-
-        /**
-        SellerImgs item = null;
-        for(int i=0;i<result.getMarketEntity().getSeller().getSellerImgs().size();i++){
-            item = new SellerImgs();
-            item.setImgPath(result.getMarketEntity().getSeller().getSellerImgs().get(i).getImgPath());
-        }
-         **/
-
+      //  customListView = (SwipeMenuListView) findViewById(R.id.employee_information_listview);
 
         employee_information_toadd = (TextView)findViewById(R.id.employee_information_toadd);
         employee_information_listview = (SwipeMenuListView)findViewById(R.id.employee_information_listview);
@@ -109,7 +97,7 @@ public class EmployeeInformation extends AppCompatActivity {
                 swipeMenu.addMenuItem(openItem);
             }
         };
-        customListView.setMenuCreator(creator);
+      //  customListView.setMenuCreator(creator);
 
         employee_information_toadd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,7 +208,7 @@ public class EmployeeInformation extends AppCompatActivity {
                                 EmployeeInformationMode result = (EmployeeInformationMode) o;//把通用的Object转化成指定的对象
                                 if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
                                     contentList = result.getMarketEntity();
-                                    customListView.setAdapter(new EmployeeInformationAdapter(EmployeeInformation.this, contentList));
+                                    employee_information_listview.setAdapter(new EmployeeInformationAdapter(EmployeeInformation.this, contentList));
                                     stopProgressDialog();
                                 }
                             }
