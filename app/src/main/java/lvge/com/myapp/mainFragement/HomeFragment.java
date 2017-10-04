@@ -61,7 +61,10 @@ public class HomeFragment extends Fragment {
         if (intentResult != null) {
 
             if (intentResult.getContents() == null) {
-                Toast.makeText(getActivity(), "无法获取内容", Toast.LENGTH_SHORT).show();
+                if(resultCode ==-1){
+                    Toast.makeText(getActivity(), "无法获取内容", Toast.LENGTH_SHORT).show();
+                }
+
             } else {
                 String str_qr =  intentResult.getContents();
                 EditText validation_code_input = (EditText)view.findViewById(R.id.validation_code_input);
