@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
-                android:padding="@dimen/x30"
+                android:padding="@dimen/x20"
                 android:text="完成"
                 android:textColor="@color/mainFontColor"
                 tools:ignore="HardcodedText" />
