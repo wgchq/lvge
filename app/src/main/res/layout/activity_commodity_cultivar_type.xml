@@ -6,452 +6,458 @@
     android:background="@color/line_background_gray"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/toolbar_main_page"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        style="@style/my_title_style"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
 
-        android:background="@color/colorPrimary"
-        android:gravity="center_vertical"
-        android:baselineAligned="false">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:onClick="toggleMenu"
-                android:src="@mipmap/menu_return"
-                tools:ignore="ContentDescription,NestedWeights"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="horizontal">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_commodity_install_list"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/ic_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="品种类型"
                 style="@style/system_title_style"
-                tools:ignore="HardcodedText,SpUsage" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="提成说明"
-                android:textColor="@color/mainBackgroundColor"
-                android:textSize="@dimen/text_margin"
-                tools:ignore="HardcodedText,SpUsage" />
-        </LinearLayout>
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="安装提成"
+                tools:ignore="HardcodedText" />
 
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/commodity_cultivar_Explain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:padding="@dimen/x20"
+                android:text="完成"
+                android:textColor="@color/buttonTextColor"
+                tools:ignore="ContentDescription,HardcodedText,NestedWeights" />
+        </android.support.v7.widget.Toolbar>
 
-    <RelativeLayout
+    </android.support.design.widget.AppBarLayout>
+
+    <!-- <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/x80"
+         android:background="@drawable/edit_text_shape"
+         tools:ignore="UselessParent">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="@dimen/x15"
+             android:text="导航安装提成"
+             android:textColor="@color/text_color"
+             android:id="@+id/commodity_install_textview1"
+             android:textSize="@dimen/x30"
+             tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+         <TextView
+             android:id="@+id/commodity_install_commodityname"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_toRightOf="@+id/commodity_install_textview1"
+             android:paddingRight="@dimen/x100"
+             android:background="@drawable/edit_text_shape"
+             android:layout_centerVertical="true"
+             android:hint="工时提成100元"
+             android:textSize="@dimen/x24"
+             android:gravity="right"
+             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+         <CheckBox
+             android:id="@+id/commodity_install_imagebutton"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:checked="true"
+             android:button="@drawable/check_box_drawable"
+             android:layout_marginRight="@dimen/x15"
+             tools:ignore="ContentDescription,RtlHardcoded" />
+
+     </RelativeLayout>
+
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:background="@color/line_background_gray" />
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/x80"
+         android:background="@drawable/edit_text_shape"
+         tools:ignore="UselessParent">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="@dimen/x15"
+             android:text="一键启动/手机启动安装提成"
+             android:id="@+id/commodity_install_textview2"
+             android:textSize="@dimen/x30"
+             android:textColor="@color/text_color"
+             tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+         <TextView
+             android:id="@+id/commodity_cultivartype_edittext2"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="right"
+             android:layout_toRightOf="@+id/commodity_install_textview2"
+             android:background="@drawable/edit_text_shape"
+             android:layout_centerVertical="true"
+             android:hint="工时提成300元"
+             android:textSize="@dimen/x24"
+             android:paddingRight="@dimen/x100"
+             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+         <CheckBox
+             android:id="@+id/commodity_install_imagebutton2"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="@dimen/x15"
+             android:button="@drawable/check_box_drawable"
+             tools:ignore="ContentDescription,RtlHardcoded" />
+
+     </RelativeLayout>
+
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:background="@color/line_background_gray" />
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/x80"
+         android:background="@drawable/edit_text_shape"
+         tools:ignore="UselessParent">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="@dimen/x15"
+             android:text="全景360可视系统安装提成"
+             android:id="@+id/commodity_install_textview3"
+             android:textSize="@dimen/x30"
+             android:textColor="@color/text_color"
+             tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+         <TextView
+             android:id="@+id/commodity_cultivartype_edittext3"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:layout_toRightOf="@+id/commodity_install_textview3"
+             android:background="@drawable/edit_text_shape"
+             android:layout_centerVertical="true"
+             android:hint="工时提成50元"
+             android:textSize="@dimen/x24"
+             android:paddingRight="@dimen/x100"
+             android:gravity="right"
+             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+         <CheckBox
+             android:id="@+id/commodity_install_imagebutton3"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="@dimen/x15"
+             android:checked="true"
+             android:button="@drawable/check_box_drawable"
+             tools:ignore="ContentDescription,RtlHardcoded" />
+
+     </RelativeLayout>
+
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:background="@color/line_background_gray" />
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/x80"
+         android:background="@drawable/edit_text_shape"
+         tools:ignore="UselessParent">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="@dimen/x15"
+             android:text="智能升窗器安装提成"
+             android:id="@+id/commodity_install_textview4"
+             android:textSize="@dimen/x30"
+             android:textColor="@color/text_color"
+             tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+         <TextView
+             android:id="@+id/commodity_cultivartype_edittext4"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:layout_toRightOf="@+id/commodity_install_textview4"
+             android:background="@drawable/edit_text_shape"
+             android:layout_centerVertical="true"
+             android:hint="工时提成200元"
+             android:textSize="@dimen/x24"
+             android:paddingRight="@dimen/x100"
+             android:gravity="right"
+             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+         <CheckBox
+             android:id="@+id/commodity_install_imagebutton4"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="@dimen/x15"
+             android:button="@drawable/check_box_drawable"
+             tools:ignore="ContentDescription,RtlHardcoded" />
+
+     </RelativeLayout>
+
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:background="@color/line_background_gray" />
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="35dp"
+         android:background="@drawable/edit_text_shape"
+         tools:ignore="UselessParent">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="@dimen/x15"
+             android:text="倒车雷达系统安装提成"
+             android:id="@+id/commodity_install_textview5"
+             android:textSize="@dimen/x30"
+             android:textColor="@color/text_color"
+             tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+         <TextView
+             android:id="@+id/commodity_cultivartype_edittext5"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:layout_toRightOf="@+id/commodity_install_textview5"
+             android:background="@drawable/edit_text_shape"
+             android:layout_centerVertical="true"
+             android:hint="工时提成30元"
+             android:textSize="@dimen/x24"
+             android:paddingRight="@dimen/x100"
+             android:gravity="right"
+             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+         <CheckBox
+             android:id="@+id/commodity_install_imagebutton5"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:button="@drawable/check_box_drawable"
+             android:layout_marginRight="@dimen/x15"
+             tools:ignore="ContentDescription,RtlHardcoded" />
+
+     </RelativeLayout>
+
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:background="@color/line_background_gray" />
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/x80"
+         android:background="@drawable/edit_text_shape"
+         tools:ignore="UselessParent">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="@dimen/x15"
+             android:text="隐藏式行车记录仪安装提成"
+             android:id="@+id/commodity_install_textview6"
+             android:textSize="@dimen/x30"
+             android:textColor="@color/text_color"
+             tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+         <TextView
+             android:id="@+id/commodity_cultivartype_edittext6"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:layout_toRightOf="@+id/commodity_install_textview6"
+             android:background="@drawable/edit_text_shape"
+             android:layout_centerVertical="true"
+             android:hint="工时提成100元"
+             android:textSize="@dimen/x24"
+             android:paddingRight="@dimen/x100"
+             android:gravity="right"
+             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+         <CheckBox
+             android:id="@+id/commodity_install_imagebutton6"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="@dimen/x15"
+             android:button="@drawable/check_box_drawable"
+             tools:ignore="ContentDescription,RtlHardcoded" />
+
+     </RelativeLayout>
+
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:background="@color/line_background_gray" />
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/x80"
+         android:background="@drawable/edit_text_shape"
+         tools:ignore="UselessParent">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="@dimen/x15"
+             android:text="大灯总成安装提成"
+             android:id="@+id/commodity_install_textview7"
+             android:textSize="@dimen/x30"
+             android:textColor="@color/text_color"
+             tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+         <TextView
+             android:id="@+id/commodity_cultivartype_edittext7"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:layout_toRightOf="@+id/commodity_install_textview7"
+             android:background="@drawable/edit_text_shape"
+             android:layout_centerVertical="true"
+             android:hint="工时提成100元"
+             android:textSize="@dimen/x24"
+             android:paddingRight="@dimen/x100"
+             android:gravity="right"
+             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+         <CheckBox
+             android:id="@+id/commodity_install_imagebutton7"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="@dimen/x15"
+             android:button="@drawable/check_box_drawable"
+             tools:ignore="ContentDescription,RtlHardcoded" />
+
+     </RelativeLayout>
+
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:background="@color/line_background_gray" />
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/x80"
+         android:background="@drawable/edit_text_shape"
+         tools:ignore="UselessParent">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="@dimen/x15"
+             android:text="隐藏式行车记录仪安装提成"
+             android:id="@+id/commodity_install_textview8"
+             android:textSize="@dimen/x30"
+             android:textColor="@color/text_color"
+             tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+         <TextView
+             android:id="@+id/commodity_cultivartype_edittext8"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:layout_toRightOf="@+id/commodity_install_textview8"
+             android:background="@drawable/edit_text_shape"
+             android:layout_centerVertical="true"
+             android:hint="工时提成100元"
+             android:textSize="@dimen/x24"
+             android:paddingRight="@dimen/x100"
+             android:gravity="right"
+             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+         <CheckBox
+             android:id="@+id/commodity_install_imagebutton8"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:button="@drawable/check_box_drawable"
+             android:layout_marginRight="@dimen/x15"
+             tools:ignore="ContentDescription,RtlHardcoded" />
+
+     </RelativeLayout>-->
+
+    <LinearLayout
+        android:id="@+id/fragment_content"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/edit_text_shape"
-        tools:ignore="UselessParent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_main_page"
+        android:background="@color/line_background_gray"
+        android:orientation="vertical"
+        tools:ignore="ObsoleteLayoutParam">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="导航安装提成"
-            android:id="@+id/commodity_install_textview1"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-
-        <EditText
-            android:id="@+id/commodity_install_commodityname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/commodity_install_textview1"
-            android:layout_toLeftOf="@+id/commodity_install_imagebutton"
-            android:background="@drawable/edit_text_shape"
-            android:layout_centerVertical="true"
-            android:hint="工时提成100元"
-            android:inputType="text"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-        <ImageButton
-            android:id="@+id/commodity_install_imagebutton"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@mipmap/right"
-            tools:ignore="ContentDescription,RtlHardcoded" />
-
-    </RelativeLayout>
-
-    <View
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line_background_gray" />
+        android:layout_height="wrap_content"
+        android:id="@+id/commodity_newgoods_cultivartype_listview">
+    </ListView>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/edit_text_shape"
-        tools:ignore="UselessParent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="一键启动/手机启动安装提成"
-            android:id="@+id/commodity_install_textview2"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-
-        <EditText
-            android:id="@+id/commodity_cultivartype_edittext2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/commodity_install_textview2"
-            android:layout_toLeftOf="@+id/commodity_install_imagebutton2"
-            android:background="@drawable/edit_text_shape"
-            android:layout_centerVertical="true"
-            android:hint="工时提成300元"
-            android:inputType="text"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-        <ImageButton
-            android:id="@+id/commodity_install_imagebutton2"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            tools:ignore="ContentDescription,RtlHardcoded" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line_background_gray" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/edit_text_shape"
-        tools:ignore="UselessParent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="全景360可视系统安装提成"
-            android:id="@+id/commodity_install_textview3"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-
-        <EditText
-            android:id="@+id/commodity_cultivartype_edittext3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/commodity_install_textview3"
-            android:layout_toLeftOf="@+id/commodity_install_imagebutton3"
-            android:background="@drawable/edit_text_shape"
-            android:layout_centerVertical="true"
-            android:hint="工时提成50元"
-            android:inputType="text"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-        <ImageButton
-            android:id="@+id/commodity_install_imagebutton3"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            tools:ignore="ContentDescription,RtlHardcoded" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line_background_gray" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/edit_text_shape"
-        tools:ignore="UselessParent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="智能升窗器安装提成"
-            android:id="@+id/commodity_install_textview4"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-
-        <EditText
-            android:id="@+id/commodity_cultivartype_edittext4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/commodity_install_textview4"
-            android:layout_toLeftOf="@+id/commodity_install_imagebutton4"
-            android:background="@drawable/edit_text_shape"
-            android:layout_centerVertical="true"
-            android:hint="工时提成200元"
-            android:inputType="text"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-        <ImageButton
-            android:id="@+id/commodity_install_imagebutton4"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            tools:ignore="ContentDescription,RtlHardcoded" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line_background_gray" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/edit_text_shape"
-        tools:ignore="UselessParent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="倒车雷达系统安装提成"
-            android:id="@+id/commodity_install_textview5"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-
-        <EditText
-            android:id="@+id/commodity_cultivartype_edittext5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/commodity_install_textview5"
-            android:layout_toLeftOf="@+id/commodity_install_imagebutton5"
-            android:background="@drawable/edit_text_shape"
-            android:layout_centerVertical="true"
-            android:hint="工时提成30元"
-            android:inputType="text"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-        <ImageButton
-            android:id="@+id/commodity_install_imagebutton5"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            tools:ignore="ContentDescription,RtlHardcoded" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line_background_gray" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/edit_text_shape"
-        tools:ignore="UselessParent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="隐藏式行车记录仪安装提成"
-            android:id="@+id/commodity_install_textview6"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-
-        <EditText
-            android:id="@+id/commodity_cultivartype_edittext6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/commodity_install_textview6"
-            android:layout_toLeftOf="@+id/commodity_install_imagebutton6"
-            android:background="@drawable/edit_text_shape"
-            android:layout_centerVertical="true"
-            android:hint="工时提成100元"
-            android:inputType="text"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-        <ImageButton
-            android:id="@+id/commodity_install_imagebutton6"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            tools:ignore="ContentDescription,RtlHardcoded" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line_background_gray" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/edit_text_shape"
-        tools:ignore="UselessParent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="大灯总成安装提成"
-            android:id="@+id/commodity_install_textview7"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-
-        <EditText
-            android:id="@+id/commodity_cultivartype_edittext7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/commodity_install_textview7"
-            android:layout_toLeftOf="@+id/commodity_install_imagebutton7"
-            android:background="@drawable/edit_text_shape"
-            android:layout_centerVertical="true"
-            android:hint="工时提成100元"
-            android:inputType="text"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-        <ImageButton
-            android:id="@+id/commodity_install_imagebutton7"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            tools:ignore="ContentDescription,RtlHardcoded" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line_background_gray" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/edit_text_shape"
-        tools:ignore="UselessParent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="隐藏式行车记录仪安装提成"
-            android:id="@+id/commodity_install_textview8"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-
-        <EditText
-            android:id="@+id/commodity_cultivartype_edittext8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/commodity_install_textview8"
-            android:layout_toLeftOf="@+id/commodity_install_imagebutton8"
-            android:background="@drawable/edit_text_shape"
-            android:layout_centerVertical="true"
-            android:hint="工时提成100元"
-            android:inputType="text"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-        <ImageButton
-            android:id="@+id/commodity_install_imagebutton8"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            tools:ignore="ContentDescription,RtlHardcoded" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line_background_gray" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/line_background_gray" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimary"
+        android:paddingTop="@dimen/x26"
         android:layout_marginStart="@dimen/text_left_padding"
+        android:textSize="@dimen/x24"
         android:text="    安装提成：商家选择了安装提成后，安装费用会直接从商品的销售价格中扣除（销售价格是包含安装费用）例如，商品销售价格￥1000元，选择了导航安装费用100元，商家商品收到货款为900元整。如果客户没有选择安装门店安装，则安装费用直接优惠给客户冲抵商品价格！"
         tools:ignore="HardcodedText" />
 
@@ -459,4 +465,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/line_background_gray" />
+
+        </LinearLayout>
 </LinearLayout>

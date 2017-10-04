@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="lvge.com.myapp.modules.commodity_management.CommodityNewgoods_CarType_Choose"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        style="@style/my_title_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_commodity_cartype"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/ic_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
+
+            <TextView
+                style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="选择车型"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/commodity_newgoods_cartype_finish"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:padding="@dimen/x20"
+                android:text="完成"
+                android:layout_width="wrap_content"
+                android:textColor="@color/buttonTextColor"
+                android:layout_height="wrap_content"
+                tools:ignore="ContentDescription,HardcodedText,NestedWeights" />
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!--网络监测-->
+    <lvge.com.myapp.ui.NetworkCheckView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:id="@+id/car_choose_type_listview">
+    </ListView>
+
+    <TextView
+        android:layout_width="@dimen/x80"
+        android:layout_height="@dimen/x80"
+        android:id="@+id/dialog"
+        android:visibility="invisible"
+        android:textSize="@dimen/x30"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"/>
+
+    <lvge.com.myapp.modules.commodity_management.SideBar
+        android:layout_width="@dimen/x30"
+        android:paddingRight="@dimen/x10"
+        android:layout_height="wrap_content"
+        android:id="@+id/sidebar"
+        android:layout_alignParentRight="true"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

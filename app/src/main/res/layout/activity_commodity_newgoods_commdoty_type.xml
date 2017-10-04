@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="lvge.com.myapp.modules.commodity_management.CommodityCultivarTypeChoice"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        style="@style/my_title_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_commodity_newgoods_commodity_typechoose"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/ic_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
+
+            <TextView
+                style="@style/system_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="商品类型"
+                tools:ignore="HardcodedText" />
+
+
+            <TextView
+                android:id="@+id/commodity_newgoods_Commoditytype_finish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:padding="@dimen/x20"
+                android:text="完成"
+                android:textColor="@color/buttonTextColor"
+                tools:ignore="ContentDescription,HardcodedText,NestedWeights" />
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_main_page"
+        android:background="@color/line_background_gray"
+        android:orientation="vertical"
+        tools:ignore="ObsoleteLayoutParam">
+
+      <!--  <RelativeLayout
+            android:id="@+id/commodity_newgoods_type_relayout_real"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x80"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x30"
+                android:text="实物商品"
+                android:textSize="@dimen/x30"
+                android:textColor="@color/text_color"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <CheckBox
+                android:id="@+id/commodity_newgoods_commodity_type_realcheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x30"
+                android:layout_centerVertical="true"
+                android:button="@drawable/check_box_drawable"
+                android:checked="true"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_background_gray" />
+
+        <RelativeLayout
+            android:id="@+id/commodity_newgoods_type_relayout_fictitious"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x80"
+            android:background="@drawable/edit_text_shape"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x30"
+                android:text="虚拟商品"
+                android:textSize="@dimen/x30"
+                android:textColor="@color/text_color"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <CheckBox
+                android:id="@+id/commodity_newgoods_commodity_type_fictitiouscheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x30"
+                android:button="@drawable/check_box_drawable"
+                android:checked="true"
+                android:layout_centerVertical="true"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_background_gray" />-->
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/commodity_newgoods_choosecommodity_listview">
+
+        </ListView>
+
+    </LinearLayout>
+
+</LinearLayout>

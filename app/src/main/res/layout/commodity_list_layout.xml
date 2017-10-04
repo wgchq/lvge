@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/line_background_gray"
+        android:layout_height="@dimen/x12"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x200"
+        android:background="@color/mainBackgroundColor"
+        android:orientation="horizontal"
+        tools:ignore="UselessLeaf">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/x15"
+            tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
+
+            <ImageView
+                android:id="@+id/commodity_list_ImageView"
+                android:layout_width="@dimen/x140"
+                android:layout_height="@dimen/x140"
+                android:layout_gravity="center"
+                android:paddingLeft="@dimen/x15"
+                android:src="@mipmap/a29"
+                tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/x25"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/commodity_list_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/x30"
+                    android:text="汽车洗车服务"
+                    android:textSize="@dimen/x28"
+                    tools:ignore="HardcodedText" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/x28">
+
+                <TextView
+                    android:id="@+id/commodity_list_Price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥15.00"
+                    android:textColor="@color/buttonPrimary"
+                    android:textSize="@dimen/x28"
+                    tools:ignore="HardcodedText" />
+
+                <ImageView
+                    android:id="@+id/commodity_list_hide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:focusable="false"
+                    android:paddingRight="@dimen/x40"
+                    android:src="@mipmap/commodity_list_gre_xiala"
+                    tools:ignore="ContentDescription" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/x28">
+
+                <TextView
+                    android:id="@+id/commodity_list_Stock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="库存：999999999"
+                    android:textSize="@dimen/x24"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/commodity_list_Monthly_sales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/commodity_list_Stock"
+                    android:paddingLeft="@dimen/x40"
+                    android:text="总销量：20"
+                    android:textSize="@dimen/x24"
+                    tools:ignore="HardcodedText" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/commodity_list_Relayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x120"
+        android:visibility="gone"
+        android:background="@color/mainBackgroundColor"
+        tools:ignore="DisableBaselineAlignment,UselessLeaf">
+            <TextView
+                android:id="@+id/commodity_list_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingLeft="@dimen/x80"
+                android:gravity="center|center_horizontal"
+                android:text="编辑"
+                android:drawablePadding="@dimen/x16"
+                android:drawableTop="@mipmap/commodity_list_edit"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/commodity_list_offsale"
+                android:layout_toRightOf="@+id/commodity_list_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:drawablePadding="@dimen/x16"
+                android:drawableTop="@mipmap/commodity_list_offsale"
+                android:paddingLeft="@dimen/x126"
+                android:text="下架"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/commodity_list_delete"
+                android:layout_toRightOf="@+id/commodity_list_offsale"
+                android:paddingLeft="@dimen/x126"
+                android:layout_centerVertical="true"
+                android:drawablePadding="@dimen/x16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="删除"
+                android:drawableTop="@mipmap/delete"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/commodity_list_Extension"
+                android:layout_toRightOf="@+id/commodity_list_delete"
+                android:paddingLeft="@dimen/x126"
+                android:layout_width="wrap_content"
+                android:drawablePadding="@dimen/x16"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:text="推广"
+                android:drawableTop="@mipmap/commodity_list_extension"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+    </RelativeLayout>
+
+</LinearLayout>

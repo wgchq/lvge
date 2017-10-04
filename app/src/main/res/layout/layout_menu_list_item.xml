@@ -5,17 +5,23 @@
     android:layout_height="match_parent"
     android:background="@drawable/list_menu_selector"
     android:gravity="center_vertical"
-    android:paddingEnd="@dimen/activity_horizontal_margin"
-    android:paddingStart="@dimen/activity_horizontal_margin">
+    android:paddingEnd="@dimen/x12"
+    android:paddingStart="@dimen/x12">
 
-    <ImageView
-        android:id="@+id/menu_icon"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/menu_print_setting"
-        tools:ignore="RtlHardcoded,RtlSymmetry" />
+        tools:ignore="UselessParent">
 
-    <TextView
+        <ImageView
+            android:id="@+id/menu_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/menu_print_setting"
+            tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+        <TextView
         android:id="@+id/menu_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,19 +30,16 @@
         android:textSize="@dimen/x32"
         android:text="@string/menu_authority"
         android:textColor="@color/mainFontColor"
-        tools:ignore="RtlHardcoded,RtlSymmetry" />
-
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+        tools:ignore="RelativeOverlap,RtlHardcoded,RtlSymmetry" />
 
         <ImageView
             android:id="@+id/menu_go"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:contentDescription="@string/menu_print_setting" />
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/menu_print_setting"
+            android:layout_centerVertical="true"
+            tools:ignore="ObsoleteLayoutParam,RtlHardcoded" />
     </RelativeLayout>
 
 </LinearLayout>

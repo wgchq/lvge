@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_background_gray" />
+
+    <RelativeLayout
+        android:id="@+id/commodity_newgoods_type_relayout_fictitious"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x80"
+        android:background="@drawable/edit_text_shape"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/commodity_newgoods_commodity_type_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x30"
+            android:text="虚拟商品"
+            android:textSize="@dimen/x30"
+            android:textColor="@color/text_color"
+            tools:ignore="HardcodedText,RtlHardcoded" />
+
+        <ImageView
+            android:id="@+id/commodity_newgoods_commodity_type_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x30"
+            android:checked="true"
+            android:layout_centerVertical="true"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+    </RelativeLayout>
+</LinearLayout>

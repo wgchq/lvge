@@ -25,6 +25,7 @@ import com.zhy.http.okhttp.callback.Callback;
 import java.util.ArrayList;
 import java.util.List;
 
+import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.EmployeeInformationList;
 import lvge.com.myapp.model.EmployeeInformationMode;
@@ -51,6 +52,7 @@ public class EmployeeInformation extends AppCompatActivity {
     private List<EmployeeInformationList> contentList = new ArrayList<EmployeeInformationList>();
 
     private Context context;
+    private CustomProgressDialog progressDialog = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,12 +71,17 @@ public class EmployeeInformation extends AppCompatActivity {
             }
         });
 
-        preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        String string = preferences.getString("right_data","");
-        LoadRightSideMode result = new Gson().fromJson(string, LoadRightSideMode.class);
-      //  contentList = result.getMarketEntity().getSeller().getSellerImgs();
+        new Thread() {
+            public void run() {
+                try {
+                    initEmployeeInformation();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    stopProgressDialog();
+                }
+            }
+        }.start();
 
-        initEmployeeInformation();
 
         customListView = (SwipeMenuListView) findViewById(R.id.employee_information_listview);
 
@@ -185,6 +192,7 @@ public class EmployeeInformation extends AppCompatActivity {
 
     private void initEmployeeInformation() {
         Log.d("3","获取员工信息");
+        startProgerssDialog();
         contentList.clear();
         try {
             OkHttpUtils.get()
@@ -213,6 +221,7 @@ public class EmployeeInformation extends AppCompatActivity {
                                 if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
                                     contentList = result.getMarketEntity();
                                     customListView.setAdapter(new EmployeeInformationAdapter(EmployeeInformation.this, contentList));
+                                    stopProgressDialog();
                                 }
                             }
                         }
@@ -233,6 +242,21 @@ public class EmployeeInformation extends AppCompatActivity {
         }
 
         initEmployeeInformation();
+    }
+
+    private void startProgerssDialog(){
+        if(progressDialog == null){
+            progressDialog = CustomProgressDialog.createDialog(this);
+            // progressDialog.setMessage("正在加载中。。");
+        }
+        progressDialog.show();
+    }
+
+    private void stopProgressDialog(){
+        if(progressDialog != null){
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
     }
 
 }

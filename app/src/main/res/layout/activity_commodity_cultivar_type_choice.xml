@@ -7,63 +7,48 @@
     tools:context="lvge.com.myapp.modules.commodity_management.CommodityCultivarTypeChoice"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/toolbar_main_page"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        style="@style/my_title_style"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
 
-        android:background="@color/colorPrimary"
-        android:gravity="center_vertical"
-        android:baselineAligned="false"
-        tools:ignore="UselessParent">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:src="@mipmap/menu_return"
-                tools:ignore="ContentDescription,NestedWeights"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="horizontal">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_commodity_cultivar_typechoose"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/ic_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/mainFontColor">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="品种类型"
                 style="@style/system_title_style"
-                tools:ignore="HardcodedText,SpUsage" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/mainBackgroundColor"
-                android:textSize="@dimen/text_margin"
-                tools:ignore="HardcodedText,SpUsage" />
-        </LinearLayout>
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="品种类型"
+                tools:ignore="HardcodedText" />
 
-    </LinearLayout>
+
+            <TextView
+                android:id="@+id/commodity_cultivar_typechoose_finish"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:padding="@dimen/x20"
+                android:text="完成"
+                android:layout_width="wrap_content"
+                android:textColor="@color/buttonTextColor"
+                android:layout_height="wrap_content"
+                tools:ignore="ContentDescription,HardcodedText,NestedWeights" />
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:id="@+id/fragment_content"
@@ -74,9 +59,9 @@
         android:orientation="vertical"
         tools:ignore="ObsoleteLayoutParam">
 
-        <RelativeLayout
+        <!--<RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x80"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -84,21 +69,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="@dimen/x30"
                 android:text="去洗车"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textSize="@dimen/x30"
+                android:textColor="@color/text_color"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <ImageButton
+            <CheckBox
                 android:id="@+id/commodity_cultivar_type_choice_washcar"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="@dimen/x30"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:background="@mipmap/right"
+                android:button="@drawable/check_box_drawable"
+                android:checked="true"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
         </RelativeLayout>
@@ -110,7 +95,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x80"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -118,20 +103,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="@dimen/x30"
                 android:text="去保养"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textSize="@dimen/x30"
+                android:textColor="@color/text_color"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <ImageButton
+            <CheckBox
                 android:id="@+id/commodity_cultivar_type_choice_maintain"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="@dimen/x30"
+                android:button="@drawable/check_box_drawable"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
         </RelativeLayout>
@@ -142,7 +127,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x80"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -150,20 +135,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="@dimen/x30"
                 android:text="汽车内饰"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textSize="@dimen/x30"
+                android:textColor="@color/text_color"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <ImageButton
+            <CheckBox
                 android:id="@+id/commodity_cultivar_type_choice_automotive_interior"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="@dimen/x30"
+                android:button="@drawable/check_box_drawable"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
         </RelativeLayout>
@@ -174,7 +159,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x80"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -182,20 +167,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="@dimen/x30"
                 android:text="汽车电子"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textSize="@dimen/x30"
+                android:textColor="@color/text_color"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <ImageButton
+            <CheckBox
                 android:id="@+id/commodity_cultivar_type_choice_automotive_electronics"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="@dimen/x30"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:button="@drawable/check_box_drawable"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
         </RelativeLayout>
@@ -206,7 +191,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x80"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -214,21 +199,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="@dimen/x30"
                 android:text="轮胎"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textSize="@dimen/x30"
+                android:textColor="@color/text_color"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <ImageButton
+            <CheckBox
                 android:id="@+id/commodity_cultivar_type_choice_tyre"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="@dimen/x30"
+                android:button="@drawable/check_box_drawable"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:background="@mipmap/right"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
         </RelativeLayout>
@@ -239,7 +223,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x80"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -247,20 +231,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="@dimen/x30"
                 android:text="雨刮片"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textSize="@dimen/x30"
+                android:textColor="@color/text_color"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <ImageButton
+            <CheckBox
                 android:id="@+id/commodity_cultivar_type_choice_wiper_blade"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="@dimen/x30"
+                android:button="@drawable/check_box_drawable"
+                android:checked="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
         </RelativeLayout>
@@ -268,8 +253,13 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/line_background_gray" />
+-->
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/commodity_newgoods_chosoetype_listview">
 
-
+        </ListView>
 
 
     </LinearLayout>

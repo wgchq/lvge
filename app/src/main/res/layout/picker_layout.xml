@@ -44,7 +44,7 @@
                     android:textSize="@dimen/x30"
                     android:textColor="@color/colorPrimary"
                     android:gravity="center"
-                    tools:ignore="RelativeOverlap" />
+                    tools:ignore="HardcodedText,RelativeOverlap" />
             </RelativeLayout>
 
         <lvge.com.myapp.ProgressDialog.PickerScrollView

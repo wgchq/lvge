@@ -75,7 +75,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x80"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -83,21 +83,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="@dimen/x30"
                 android:text="默认运费0.00元"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textSize="@dimen/x30"
+                android:textColor="@color/text_color"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <ImageButton
+            <CheckBox
                 android:id="@+id/commodity_freight_setting_default_freight"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="@dimen/x30"
+                android:checked="true"
+                android:button="@drawable/check_box_drawable"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:background="@mipmap/right"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
         </RelativeLayout>
@@ -109,7 +109,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/x80"
             android:background="@drawable/edit_text_shape"
             tools:ignore="UselessParent">
 
@@ -117,20 +117,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="@dimen/x30"
                 android:id="@+id/commodity_freight_setting_textview1"
                 android:text="自定义运费"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textSize="@dimen/x30"
+                android:textColor="@color/text_color"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <EditText
                 android:id="@+id/commodity_freight_setting_inputfreight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_width="@dimen/x256"
+                android:layout_height="@dimen/x56"
+                android:layout_marginLeft="@dimen/x15"
                 android:layout_toRightOf="@+id/commodity_freight_setting_textview1"
-                android:layout_toLeftOf="@+id/commodity_freight_setting_textview2"
                 android:background="@drawable/edit_text_shape"
                 android:layout_centerVertical="true"
                 android:hint="请输入运费"
@@ -142,13 +141,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="30dp"
-                android:layout_alignParentRight="true"
-                android:id="@+id/commodity_freight_setting_textview2"
+                android:paddingLeft="@dimen/x15"
+                android:layout_toRightOf="@+id/commodity_freight_setting_inputfreight"
                 android:text="元"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText,RtlHardcoded" />
+                android:textSize="@dimen/x30"
+                android:textColor="@color/text_color"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
         </RelativeLayout>
 
         <View
@@ -159,8 +157,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_marginLeft="@dimen/x30"
+            android:textSize="@dimen/x30"
+            android:textColor="@color/text_color"
             android:text="       默认运费为0.00元，即全国包邮。如果需要修改请选自定义运费，设置运费。"
             tools:ignore="HardcodedText" />
 
