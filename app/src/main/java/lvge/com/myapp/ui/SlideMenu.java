@@ -6,6 +6,7 @@ package lvge.com.myapp.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import com.nineoldandroids.view.ViewHelper;
 
 import lvge.com.myapp.R;
+import lvge.com.myapp.modules.commodity_management.CommodityHomepageOnsaleAdapter;
 import lvge.com.myapp.util.ScreenUtils;
 
 

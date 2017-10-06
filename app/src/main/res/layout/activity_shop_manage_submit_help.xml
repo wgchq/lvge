@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -19,13 +20,14 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:text="认证帮助" />
+            android:text="认证帮助"
+            tools:ignore="HardcodedText" />
 
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x176"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/mainBackgroundColor"
         >
@@ -37,7 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="企业认证（人工审核）帮助"
-            android:id="@+id/textView6" />
+            android:id="@+id/textView6"
+            tools:ignore="HardcodedText" />
         <TextView
             android:textColor="#333"
             android:textSize="@dimen/x22"
@@ -47,7 +50,7 @@
             android:text="你需要上传有效营业执照副本的照片，以及营业执照上所对应的法人身份证正反照片，等待我们的客服人工审核。"
 
             android:layout_below="@+id/textView6"
-             />
+            tools:ignore="HardcodedText,ObsoleteLayoutParam" />
 
     </LinearLayout>
 </LinearLayout>

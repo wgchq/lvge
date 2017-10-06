@@ -63,33 +63,39 @@
                 android:textColor="#000"
                 android:textSize="@dimen/x36"
                 android:textStyle="bold" />
+
             <Button
                 android:id="@+id/btn_shop_deposit_get"
                 style="@style/my_buttonActiveStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/x36"
-                android:layout_marginTop="@dimen/x62"
+                android:layout_marginBottom="@dimen/x2"
                 android:layout_marginLeft="@dimen/x44"
                 android:layout_marginRight="@dimen/x44"
-                android:layout_marginBottom="@dimen/x2"
-                android:text="@string/shop_deposit_get" />
+                android:layout_marginTop="@dimen/x62"
+                android:text="@string/shop_deposit_get"
+                android:textSize="@dimen/x36" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/x22">
+
                 <CheckBox
                     android:id="@+id/btn_shop_deposit_read"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x92"
                     android:paddingLeft="@dimen/x20"
-                    android:text="@string/shop_deposit_read" />
+                    android:text="@string/shop_deposit_read"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
+
                 <TextView
                     android:id="@+id/shop_deposit_argue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#00f"
-                    android:text="@string/shop_deposit_argue"/>
+                    android:text="@string/shop_deposit_argue"
+                    android:textColor="#00f" />
             </LinearLayout>
         </LinearLayout>
 
@@ -98,168 +104,188 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <TextView
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/x34"
-                    android:textColor="#000"
-                    android:paddingTop="@dimen/x34"
-                    android:paddingLeft="@dimen/x44"
                     android:id="@+id/textView7"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x80"
-                    android:text="@string/what_is_deposit" />
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/x44"
+                    android:paddingTop="@dimen/x34"
+                    android:text="@string/what_is_deposit"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x34"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
 
                 <TextView
-                    android:textSize="@dimen/x30"
-                    android:textColor="#bdbdbd"
-                    android:layout_marginTop="@dimen/x20"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x366"
+                    android:layout_marginTop="@dimen/x20"
                     android:background="@color/mainBackgroundColor"
                     android:padding="@dimen/x44"
-                    android:text="@string/what_is_deposit_description" />
+                    android:text="@string/what_is_deposit_description"
+                    android:textColor="#bdbdbd"
+                    android:textSize="@dimen/x30" />
 
                 <TextView
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/x34"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x72"
+                    android:gravity="center_vertical"
                     android:paddingStart="@dimen/x44"
+                    android:text="@string/how_get_deposit"
                     android:textColor="#000"
-                    android:text="@string/how_get_deposit" />
+                    android:textSize="@dimen/x34"
+                    tools:ignore="RtlSymmetry" />
+
                 <TextView
-                    android:textSize="@dimen/x30"
-                    android:textColor="#bdbdbd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/mainBackgroundColor"
                     android:paddingStart="@dimen/x44"
                     android:paddingTop="@dimen/x20"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/x72"
-                    android:background="@color/mainBackgroundColor"
+                    android:text="@string/how_get_deposit_description"
+                    android:textColor="#bdbdbd"
 
-                    android:text="@string/how_get_deposit_description" />
+                    android:textSize="@dimen/x30"
+                    tools:ignore="RtlSymmetry" />
 
                 <TextView
-                    android:gravity="center_vertical"
                     android:id="@+id/textView"
-                    android:textSize="@dimen/x34"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x72"
+                    android:gravity="center_vertical"
                     android:paddingStart="@dimen/x44"
+                    android:text="@string/deposit_advantage"
                     android:textColor="#000"
-                    android:text="@string/deposit_advantage" />
+                    android:textSize="@dimen/x34"
+                    tools:ignore="RtlSymmetry" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:orientation="vertical">
+
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:textSize="@dimen/x30"
-                            android:textColor="#bdbdbd"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:background="@color/mainBackgroundColor"
                             android:padding="@dimen/activity_horizontal_margin"
-                            android:text="@string/deposit_advantage_description_first" />
+                            android:text="@string/deposit_advantage_description_first"
+                            android:textColor="#bdbdbd"
+                            android:textSize="@dimen/x30" />
 
                         <TextView
-                            android:layout_weight="1"
-                            android:textSize="@dimen/x30"
-                            android:textColor="#bdbdbd"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:background="@color/mainBackgroundColor"
                             android:padding="@dimen/activity_horizontal_margin"
-                            android:text="@string/deposit_advantage_description_second" />
+                            android:text="@string/deposit_advantage_description_second"
+                            android:textColor="#bdbdbd"
+                            android:textSize="@dimen/x30"
+                            tools:ignore="InefficientWeight" />
 
                     </LinearLayout>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <TextView
-                        android:textSize="@dimen/x30"
-                        android:textColor="#bdbdbd"
-
-                        android:layout_width="150dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/mainBackgroundColor"
-                        android:padding="@dimen/activity_horizontal_margin"
-                        android:text="@string/deposit_advantage_description_three" />
-                    <TextView
-                        android:textSize="@dimen/x30"
-                        android:textColor="#bdbdbd"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:background="@color/mainBackgroundColor"
-                        android:padding="@dimen/activity_horizontal_margin"
-                        android:text="@string/deposit_advantage_description_four" />
+                        android:orientation="horizontal">
 
+                        <TextView
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+
+                            android:background="@color/mainBackgroundColor"
+                            android:padding="@dimen/activity_horizontal_margin"
+                            android:text="@string/deposit_advantage_description_three"
+                            android:textColor="#bdbdbd"
+                            android:textSize="@dimen/x30" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/mainBackgroundColor"
+                            android:padding="@dimen/activity_horizontal_margin"
+                            android:text="@string/deposit_advantage_description_four"
+                            android:textColor="#bdbdbd"
+                            android:textSize="@dimen/x30"
+                            tools:ignore="InefficientWeight" />
+
+                    </LinearLayout>
                 </LinearLayout>
-                </LinearLayout>
+
                 <TextView
 
-                    android:textSize="@dimen/x34"
-                    android:paddingStart="@dimen/x44"
-                    android:textColor="#000"
-                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/Order_settlement_process"/>
+                    android:layout_height="@dimen/x72"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/x44"
+                    android:text="@string/Order_settlement_process"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x34"
+                    tools:ignore="RtlSymmetry" />
+
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#fff"
-                    >
-                    <TextView
-                        android:paddingLeft="@dimen/x44"
-                        android:textSize="@dimen/x30"
-                        android:textColor="#bdbdbd"
-                        android:layout_marginTop="@dimen/x20"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/mainBackgroundColor"
-                        android:text="@string/Order_settlement_process_first" />
-                    <TextView
-                        android:paddingLeft="@dimen/x44"
-                        android:textSize="@dimen/x30"
-                        android:textColor="#bdbdbd"
-                        android:layout_marginTop="@dimen/x20"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/mainBackgroundColor"
+                    android:orientation="vertical">
 
-                        android:text="@string/Order_settlement_process_second" />
                     <TextView
-                        android:paddingLeft="@dimen/x44"
-                        android:textSize="@dimen/x30"
-                        android:textColor="#bdbdbd"
-                        android:layout_marginTop="@dimen/x32"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/mainBackgroundColor"
-                        android:text="@string/Order_settlement_process_three" />
-                    <TextView
-                        android:paddingLeft="@dimen/x44"
-                        android:textSize="@dimen/x30"
-                        android:textColor="#bdbdbd"
                         android:layout_marginTop="@dimen/x20"
+                        android:background="@color/mainBackgroundColor"
+                        android:paddingLeft="@dimen/x44"
+                        android:text="@string/Order_settlement_process_first"
+                        android:textColor="#bdbdbd"
+                        android:textSize="@dimen/x30"
+                        tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x20"
                         android:background="@color/mainBackgroundColor"
-                        android:text="@string/Order_settlement_process_four" />
+                        android:paddingLeft="@dimen/x44"
+                        android:text="@string/Order_settlement_process_second"
+                        android:textColor="#bdbdbd"
+
+                        android:textSize="@dimen/x30"
+                        tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x32"
+                        android:background="@color/mainBackgroundColor"
+                        android:paddingLeft="@dimen/x44"
+                        android:text="@string/Order_settlement_process_three"
+                        android:textColor="#bdbdbd"
+                        android:textSize="@dimen/x30"
+                        tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x20"
+                        android:background="@color/mainBackgroundColor"
+                        android:paddingLeft="@dimen/x44"
+                        android:text="@string/Order_settlement_process_four"
+                        android:textColor="#bdbdbd"
+                        android:textSize="@dimen/x30"
+                        tools:ignore="RtlHardcoded,RtlSymmetry" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

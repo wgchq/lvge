@@ -104,6 +104,8 @@
                     android:hint="@string/please_enter_validation"
                     android:drawablePadding="@dimen/x20"
                     android:inputType="numberSigned"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:textColor="#999"
                     android:textSize="@dimen/x30" />
             </LinearLayout>

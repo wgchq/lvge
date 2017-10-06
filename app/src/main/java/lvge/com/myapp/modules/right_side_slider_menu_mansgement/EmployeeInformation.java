@@ -66,20 +66,6 @@ public class EmployeeInformation extends AppCompatActivity {
             }
         });
 
-        new Thread() {
-            public void run() {
-                try {
-                    initEmployeeInformation();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    stopProgressDialog();
-                }
-            }
-        }.start();
-
-
-      //  customListView = (SwipeMenuListView) findViewById(R.id.employee_information_listview);
-
         employee_information_toadd = (TextView)findViewById(R.id.employee_information_toadd);
         employee_information_listview = (SwipeMenuListView)findViewById(R.id.employee_information_listview);
 
@@ -116,10 +102,21 @@ public class EmployeeInformation extends AppCompatActivity {
                     case 0:
                         String adv = item.getUSER_ID();
                         removeEmployeeInformation(adv);
-                        // getListItem();
+
                 }
             }
         });
+
+/*        new Thread() {
+            public void run() {
+                try {
+                    initEmployeeInformation();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    stopProgressDialog();
+                }
+            }
+        }.start();*/
     }
 
     private void removeEmployeeInformation(String str){
@@ -214,18 +211,18 @@ public class EmployeeInformation extends AppCompatActivity {
                     });
 
         } catch (Exception e) {
-            // stopProgressDialog();
-            // Toast.makeText(EmployeeInformationAdd.this,"上传失败！",Toast.LENGTH_LONG).show();
+            stopProgressDialog();
+             Toast.makeText(EmployeeInformation.this,"获取失败！",Toast.LENGTH_LONG).show();
         }
     }
 
-    protected void onResume(){
+   protected void onResume(){
         super.onResume();
-        try{
+       /* try{
             Thread.sleep(2000);
         }catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
 
         initEmployeeInformation();
     }

@@ -7,12 +7,13 @@
     tools:context="lvge.com.myapp.modules.shop_management.HasCommitAuthenticationFragment">
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="@dimen/x18">
+    android:layout_height="@dimen/x18"
+    tools:ignore="UselessLeaf">
 
 </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x400"
+        android:layout_height="wrap_content"
         android:background="@color/mainBackgroundColor"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
@@ -21,7 +22,8 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/shop_manager_authentication"/>
+            android:src="@mipmap/shop_manager_authentication"
+            tools:ignore="ContentDescription" />
         <TextView
             android:layout_marginTop="@dimen/x22"
             android:textColor="#000"
@@ -51,10 +53,10 @@
     </LinearLayout>
 
     <!--<Button-->
-        <!--android:id="@+id/btn_authentication_complete"-->
-        <!--android:layout_margin="@dimen/activity_horizontal_margin"-->
-        <!--style="@style/my_buttonActiveStyle"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/authentication_complete"/>-->
+    <!--android:id="@+id/btn_authentication_complete"-->
+    <!--android:layout_margin="@dimen/activity_horizontal_margin"-->
+    <!--style="@style/my_buttonActiveStyle"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/authentication_complete"/>-->
 </LinearLayout>
