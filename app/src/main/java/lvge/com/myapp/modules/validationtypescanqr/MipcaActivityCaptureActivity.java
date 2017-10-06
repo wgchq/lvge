@@ -1,6 +1,7 @@
 package lvge.com.myapp.modules.validationtypescanqr;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.PersistableBundle;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.journeyapps.barcodescanner.CaptureManager;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
+import lvge.com.myapp.MainPageActivity;
 import lvge.com.myapp.R;
 
 public class MipcaActivityCaptureActivity extends Activity implements DecoratedBarcodeView.TorchListener {
@@ -35,9 +37,12 @@ public class MipcaActivityCaptureActivity extends Activity implements DecoratedB
             lly_manual_input_qr_code.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MipcaActivityCaptureActivity.this.finish();
-                    /*Intent intent = new Intent(MipcaActivityCaptureActivity.this, MainPageActivity.class);
-                    startActivity(intent);*/
+                  //  MipcaActivityCaptureActivity.this.finish();
+                    Intent intent = new Intent(MipcaActivityCaptureActivity.this, MainPageActivity.class);
+                    setResult(2,intent);
+
+                    finish();
+                    // startActivity(intent);
                 }
             });
         }
