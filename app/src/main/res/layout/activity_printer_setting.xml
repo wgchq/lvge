@@ -31,8 +31,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:textSize="@dimen/x30"
                 android:text="打印机设置"
+                android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText" />
 
             <TextView
@@ -42,12 +42,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
-                android:padding="@dimen/x20"
-                android:gravity="center"
                 android:background="?android:selectableItemBackground"
+                android:gravity="center"
+                android:padding="@dimen/x20"
                 android:text="打印"
-                android:textSize="@dimen/x30"
                 android:textColor="@color/mainFontColor"
+                android:textSize="@dimen/x30"
                 tools:ignore="HardcodedText" />
         </android.support.v7.widget.Toolbar>
 
