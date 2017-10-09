@@ -64,6 +64,10 @@ public class HomeFragment extends Fragment {
                 if(resultCode ==-1){
                     Toast.makeText(getActivity(), "无法获取内容", Toast.LENGTH_SHORT).show();
                 }
+                else if (resultCode==2) {
+                    validation_keyboard.show();
+
+                }
 
             } else {
                 String str_qr =  intentResult.getContents();

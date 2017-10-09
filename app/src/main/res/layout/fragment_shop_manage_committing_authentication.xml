@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:background="@color/mainBackgroundColor"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:padding="@dimen/x32">
         <ImageView
             android:layout_marginTop="@dimen/x70"
             android:layout_gravity="center"
