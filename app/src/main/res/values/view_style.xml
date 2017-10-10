@@ -12,4 +12,9 @@
         <item name="textSize">@dimen/x28</item>
 
     </style>
+    <declare-styleable name="BarCodeView">
+        <attr name="textSize" format="float"/>
+        <attr name="text" format="string"/>
+        <attr name="imgHeight" format="float"/>
+    </declare-styleable>
 </resources>
