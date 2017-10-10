@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <!--<item name="tabMaxWidth">@dimen/tab_max_width</item>-->
+        <!--<item name="tabIndicatorColor">?attr/colorAccent</item>-->
+        <item name="tabSelectedTextColor">@color/colorPrimary</item>
+        <item name="tabTextAppearance">@style/tabIteamText</item>
+    </style>
+    <style name="tabIteamText" parent="TextAppearance.Design.Tab">
+        <item name="textColor">@color/text_common_gray</item>
+        <item name="android:lineSpacingExtra">@dimen/x16</item>
+        <item name="textSize">@dimen/x28</item>
+
+    </style>
+</resources>

@@ -1,12 +1,10 @@
-package lvge.com.myapp.ui;
+package lvge.com.myapp.view;
 
 /**
  * Created by JGG on 2017-09-09.
  */
 
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
-import android.widget.EditText;
 
 import android.content.Context;
 import android.content.res.TypedArray;

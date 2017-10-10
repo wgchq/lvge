@@ -1,28 +1,21 @@
-package lvge.com.myapp.ui;
+package lvge.com.myapp.view;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.lang.reflect.Method;
 
-import butterknife.OnTextChanged;
 import lvge.com.myapp.R;
 
 /**

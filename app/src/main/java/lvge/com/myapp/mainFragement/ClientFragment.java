@@ -2,32 +2,23 @@ package lvge.com.myapp.mainFragement;
 
 
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -39,20 +30,13 @@ import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
 import lvge.com.myapp.R;
 import lvge.com.myapp.WelcomePageActivity;
 import lvge.com.myapp.model.ClientResultModel;
-
 import lvge.com.myapp.modules.customer_management.ClientsAdapter;
-
 import lvge.com.myapp.modules.customer_management.CustomerData;
-import lvge.com.myapp.modules.customer_management.CustomerSearch;
 import lvge.com.myapp.modules.search_tools_page.SearchToolsPage;
-import lvge.com.myapp.ui.LoadListView;
 import lvge.com.myapp.util.NetworkUtil;
+import lvge.com.myapp.view.LoadListView;
 import okhttp3.Call;
 import okhttp3.Response;
-
-import static lvge.com.myapp.R.id.appBarLayout;
-import static lvge.com.myapp.R.id.default_activity_button;
-import static lvge.com.myapp.R.id.financial_management_callback;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context="lvge.com.myapp.modules.shop_management.HasCommitAuthenticationFragment">
     <!--网络监测-->
-    <lvge.com.myapp.ui.NetworkCheckView
+    <lvge.com.myapp.view.NetworkCheckView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <LinearLayout

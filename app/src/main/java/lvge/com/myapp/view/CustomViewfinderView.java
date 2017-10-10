@@ -1,4 +1,4 @@
-package lvge.com.myapp.ui;
+package lvge.com.myapp.view;
 
 /**
  * Created by JGG on 2017/4/18.

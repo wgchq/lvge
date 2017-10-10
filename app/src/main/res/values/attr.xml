@@ -24,5 +24,8 @@
         <attr name="border_outside_color" format="color"></attr>
     </declare-styleable>
 
+    <declare-styleable name="view_LoadingLayout">
+        <attr format="boolean" name="view_isFirstVisible"/>
+    </declare-styleable>
 
 </resources>

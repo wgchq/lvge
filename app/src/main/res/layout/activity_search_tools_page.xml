@@ -39,7 +39,7 @@
                     android:textColor="#333"
                     android:textSize="@dimen/x28"
                     tools:ignore="TextFields" />-->
-            <lvge.com.myapp.ui.SearchView
+            <lvge.com.myapp.view.SearchView
                 android:id="@+id/et_common_search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

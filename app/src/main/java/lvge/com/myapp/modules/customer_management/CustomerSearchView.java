@@ -1,27 +1,17 @@
 package lvge.com.myapp.modules.customer_management;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.SearchView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +21,7 @@ import com.zhy.http.okhttp.callback.Callback;
 
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.ClientResultModel;
-import lvge.com.myapp.ui.LoadListView;
+import lvge.com.myapp.view.LoadListView;
 import okhttp3.Call;
 import okhttp3.Response;
 

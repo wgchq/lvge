@@ -1,4 +1,4 @@
-package lvge.com.myapp.ui;
+package lvge.com.myapp.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
