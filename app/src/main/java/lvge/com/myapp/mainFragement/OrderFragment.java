@@ -67,8 +67,9 @@ public class OrderFragment extends BaseFragment {
     public void configViews() {
         mAdapter = new SimpleFragmentAdapter(mActivity, mTabItemList, getFragmentManager());
         mViewPager.setAdapter(mAdapter);
-        mViewPager.requestDisallowInterceptTouchEvent(true);
-        mTabLayout.requestDisallowInterceptTouchEvent(true);
+        mViewPager.setOffscreenPageLimit(1);
+//        mViewPager.requestDisallowInterceptTouchEvent(true);
+//        mTabLayout.requestDisallowInterceptTouchEvent(true);
         mTabLayout.setupWithViewPager(mViewPager);
         /*mTabLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override

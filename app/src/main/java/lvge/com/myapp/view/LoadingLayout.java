@@ -89,6 +89,9 @@ public class LoadingLayout extends FrameLayout {
     public LoadingLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.view_LoadingLayout);
+        isFirstVisible = a.getBoolean(R.styleable.view_LoadingLayout_view_isFirstVisible, false);
+        a.recycle();
     }
 
     /**

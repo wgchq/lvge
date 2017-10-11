@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +25,10 @@ public class SimpleFragmentAdapter extends FragmentPagerAdapter {
     private Context mContext;
     private List<OrderTabItem> mItemList;
     private List<OrderItemFragment> mFragmentList = new ArrayList<>(10);
+    private FragmentManager mFragmentManager;
     public SimpleFragmentAdapter(Context context, FragmentManager fm) {
         super(fm);
+        this.mFragmentManager = fm;
         this.mContext = context;
     }
     public SimpleFragmentAdapter(Context context, List<OrderTabItem> orderTabItemList, FragmentManager fm) {
@@ -67,7 +70,19 @@ public class SimpleFragmentAdapter extends FragmentPagerAdapter {
         String name = item.name+"\n"+item.count;
         SpannableString sps = new SpannableString(name);
         int i = name.indexOf("\n");
-        sps.setSpan(new AbsoluteSizeSpan((int) AppUtil.getResource().getDimension(R.dimen.x24),true),i+2,name.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sps.setSpan(new AbsoluteSizeSpan((int) AppUtil.getResource().getDimension(R.dimen.x24)),i+1,name.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return sps;
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        Fragment fragment = (Fragment) super.instantiateItem(container, position);
+        this.mFragmentManager.beginTransaction().show(fragment).commit();
+        return fragment;
+    }
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        Fragment fragment = mFragmentList.get(position);
+        mFragmentManager.beginTransaction().hide(fragment).commit();
     }
 }

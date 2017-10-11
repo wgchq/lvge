@@ -37,7 +37,6 @@ public abstract class BaseFragment extends com.trello.rxlifecycle2.components.su
     protected View parentView;
 
     protected abstract @LayoutRes int getLayoutResId();
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         parentView = inflater.inflate(getLayoutResId(),container ,false);
@@ -90,6 +89,7 @@ public abstract class BaseFragment extends com.trello.rxlifecycle2.components.su
     @Override
     public void onDetach() {
         super.onDetach();
+        LogUtil.d(TAG,"onDetach");
         this.mActivity = null;
     }
 
@@ -117,6 +117,8 @@ public abstract class BaseFragment extends com.trello.rxlifecycle2.components.su
     @Override
     public void onPause() {
         super.onPause();
+        LogUtil.d(TAG,"onPause");
+
     }
 
     private Toast mCurrentToast;

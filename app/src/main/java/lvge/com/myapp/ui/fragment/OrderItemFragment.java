@@ -7,6 +7,7 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import butterknife.BindView;
 import lvge.com.myapp.R;
 import lvge.com.myapp.base.BaseFragment;
+import lvge.com.myapp.util.LogUtil;
 import lvge.com.myapp.view.LoadingLayout;
 
 public class OrderItemFragment extends BaseFragment implements XRecyclerView.LoadingListener{
@@ -47,6 +48,12 @@ public class OrderItemFragment extends BaseFragment implements XRecyclerView.Loa
 
     public void getData() {
 
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        LogUtil.i(TAG,"isVisibleToUser: "+isVisibleToUser);
     }
 
     @Override
