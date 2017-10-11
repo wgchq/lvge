@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/orderDetailLinear">
+
+        <TextView
+            style="@style/orderDetailLeftText"
+            android:text="订单号"/>
+
+        <TextView
+            android:id="@+id/tv_order_number"
+            style="@style/orderDetailRightText"
+            tools:text="1878454545433454"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/orderDetailLinear">
+
+        <TextView
+            style="@style/orderDetailLeftText"
+            android:text="下单时间"/>
+
+        <TextView
+            android:id="@+id/tv_order_time"
+            style="@style/orderDetailRightText"
+            tools:text="2017-6-12 13：12：12"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/orderDetailLinear">
+
+        <TextView
+            style="@style/orderDetailLeftText"
+            android:text="安装车型"/>
+
+        <TextView
+            android:id="@+id/tv_install_type"
+            style="@style/orderDetailRightText"
+            tools:text="奥迪"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/orderDetailLinear">
+
+        <TextView
+            style="@style/orderDetailLeftText"
+            android:text="备注"/>
+
+        <TextView
+            android:id="@+id/tv_remark"
+            style="@style/orderDetailRightText"
+            tools:text="无"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/orderDetailLinear">
+
+        <TextView
+            style="@style/orderDetailLeftText"
+            android:text="开票信息"/>
+
+        <TextView
+            android:id="@+id/tv_bill_info"
+            style="@style/orderDetailRightText"
+            tools:text="xxx公司"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/orderDetailLinear">
+
+        <TextView
+            style="@style/orderDetailLeftText"
+            android:text="当前状态"/>
+
+        <TextView
+            android:id="@+id/tv_status"
+            style="@style/orderDetailRightText"
+            tools:text="待发货"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/orderDetailLinear">
+
+        <TextView
+            style="@style/orderDetailLeftText"
+            android:text="支付方式"/>
+
+        <TextView
+            android:id="@+id/tv_pay_way"
+            style="@style/orderDetailRightText"
+            tools:text="微信"/>
+    </LinearLayout>
+
+
+</LinearLayout>
