@@ -38,7 +38,7 @@ public class OrderFragment extends BaseFragment {
     ViewPager mViewPager;
 
     private List<OrderTabItem> mTabItemList = new ArrayList<>(10);
-    private String[] test = {"全部","待验证","待发货","待安装","收银台","退款/售后","派送中","已完成"};
+    private String[] test = {"全 部","待验证","待发货","待安装","收银台","退款/售后","派送中","已完成"};
     private SimpleFragmentAdapter mAdapter;
 
     public OrderFragment() {

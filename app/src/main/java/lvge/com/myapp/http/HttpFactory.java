@@ -101,7 +101,7 @@ public class HttpFactory {
         }
 
     };
-    public static <T> Flowable<T> flatResponse(final BaseResponse<T> response) {
+    private static <T> Flowable<T> flatResponse(final BaseResponse<T> response) {
         return Flowable.create(new FlowableOnSubscribe<T>() {
             @Override
             public void subscribe(FlowableEmitter<T> e) throws Exception {
