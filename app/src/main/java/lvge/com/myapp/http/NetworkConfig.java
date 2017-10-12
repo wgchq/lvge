@@ -5,5 +5,5 @@ package lvge.com.myapp.http;
  */
 
 public class NetworkConfig {
-    public static final String BASE_URL = "http://121.42.146.253:8080/obdcarmarket";
+    public static final String BASE_URL = "http://121.42.146.253:8080/obdcarmarket/";
 }

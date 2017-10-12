@@ -14,6 +14,6 @@ import retrofit2.http.POST;
  */
 
 public interface IOrder {
-    @POST("/sellerapp/order/queryPage")
+    @POST("sellerapp/order/queryPage")
     Flowable<BaseResponse<PageResultModel<OrderItemModel>>> getOderList(@Body Map<String, Object> map);
 }

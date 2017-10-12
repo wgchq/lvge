@@ -35,7 +35,7 @@ public class SimpleFragmentAdapter extends FragmentPagerAdapter {
         this(context,fm);
         this.mItemList = orderTabItemList;
         for (OrderTabItem item: mItemList){
-            mFragmentList.add(OrderItemFragment.newInstance());
+            mFragmentList.add(OrderItemFragment.newInstance(OrderItemFragment.OrderType.ALL));
         }
     }
 
