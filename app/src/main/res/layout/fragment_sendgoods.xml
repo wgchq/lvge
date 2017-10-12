@@ -77,6 +77,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x100"
                     android:layout_marginTop="@dimen/x30"
+                    android:layout_marginLeft="@dimen/x25"
+                    android:layout_marginRight="@dimen/x25"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/x40"
                     android:text="发货"/>
 
             </LinearLayout>
