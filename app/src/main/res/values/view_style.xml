@@ -53,4 +53,20 @@
 
     </style>
 
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:text="配送方式"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textColor="@color/text_color_deep"-->
+    <style name="orderShipLeftText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_color_deep</item>
+    </style>
+
 </resources>
