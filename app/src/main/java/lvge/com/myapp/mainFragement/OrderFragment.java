@@ -15,7 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import lvge.com.myapp.R;
 import lvge.com.myapp.base.BaseFragment;
-import lvge.com.myapp.model.OrderTabItem;
+import lvge.com.myapp.model.order.OrderTabItem;
 import lvge.com.myapp.ui.adapter.SimpleFragmentAdapter;
 
 /**

@@ -8,8 +8,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,10 +23,9 @@ import com.zhy.http.okhttp.callback.Callback;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import lvge.com.myapp.model.CarImagViewLoadMode;
+import lvge.com.myapp.http.NetworkConfig;
 import lvge.com.myapp.model.LoginResultModel;
 import lvge.com.myapp.util.NetworkUtil;
-import okhttp3.Call;
 import okhttp3.Response;
 
 public class WelcomePageActivity extends AppCompatActivity {
@@ -107,7 +106,7 @@ public class WelcomePageActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     OkHttpUtils.get()//get 方法
-                            .url("http://www.lvgew.com/obdcarmarket/sellerapp/login.do") //地址
+                            .url(NetworkConfig.BASE_URL+"sellerapp/login.do") //地址
                             .addParams("userName", username) //需要传递的参数
                             .addParams("pwd", password)
                             .build()

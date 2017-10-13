@@ -3,7 +3,7 @@ package lvge.com.myapp.http.api;
 import java.util.Map;
 
 import io.reactivex.Flowable;
-import lvge.com.myapp.model.OrderItemModel;
+import lvge.com.myapp.model.order.OrderItemModel;
 import lvge.com.myapp.model.base.BaseResponse;
 import lvge.com.myapp.model.base.PageResultModel;
 import retrofit2.http.Body;

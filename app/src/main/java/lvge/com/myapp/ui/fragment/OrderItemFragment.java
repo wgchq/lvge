@@ -13,7 +13,7 @@ import lvge.com.myapp.R;
 import lvge.com.myapp.base.BaseFragment;
 import lvge.com.myapp.http.DefaultSubscriber;
 import lvge.com.myapp.http.api.OrderService;
-import lvge.com.myapp.model.OrderItemModel;
+import lvge.com.myapp.model.order.OrderItemModel;
 import lvge.com.myapp.model.base.PageResultModel;
 import lvge.com.myapp.util.LogUtil;
 import lvge.com.myapp.view.LoadingLayout;

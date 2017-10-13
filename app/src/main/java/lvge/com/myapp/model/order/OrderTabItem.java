@@ -1,4 +1,4 @@
-package lvge.com.myapp.model;
+package lvge.com.myapp.model.order;
 
 public class OrderTabItem {
     public String name;

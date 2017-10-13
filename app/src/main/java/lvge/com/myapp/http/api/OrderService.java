@@ -5,7 +5,7 @@ import java.util.Map;
 import io.reactivex.Flowable;
 import lvge.com.myapp.http.NetworkConfig;
 import lvge.com.myapp.http.HttpFactory;
-import lvge.com.myapp.model.OrderItemModel;
+import lvge.com.myapp.model.order.OrderItemModel;
 import lvge.com.myapp.model.base.PageResultModel;
 
 /**
