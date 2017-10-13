@@ -1,6 +1,7 @@
 package lvge.com.myapp.http;
 
 import android.app.Dialog;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -9,6 +10,7 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 import lvge.com.myapp.util.AppUtil;
+import lvge.com.myapp.view.LoadingLayout;
 
 /**
  * Created by android on 17/8/16.
@@ -20,12 +22,16 @@ public abstract class DefaultSubscriber<T> implements Subscriber<T> {
     @ErrorChecker.CheckType
     int type;
     private Dialog mDialog;
+    private LoadingLayout mloading;
     @Override
     public void onSubscribe(Subscription s) {
         Log.i(TAG, "onSubscribe: ");
         s.request(Long.MAX_VALUE);
         if (mDialog != null && !mDialog.isShowing()){
             mDialog.show();
+        }
+        if (mloading != null){
+            mloading.setStatus(LoadingLayout.Loading);
         }
     }
     public DefaultSubscriber(){
@@ -34,6 +40,10 @@ public abstract class DefaultSubscriber<T> implements Subscriber<T> {
     public DefaultSubscriber(Dialog dialog){
         this.mDialog = dialog;
         type = ErrorChecker.TOAST;
+    }
+    public DefaultSubscriber(@NonNull LoadingLayout loadingLayout){
+        this.mloading = loadingLayout;
+        type = ErrorChecker.LOADING_LAYOUT;
     }
     @Override
     public void onNext(T response) {
@@ -74,6 +84,10 @@ public abstract class DefaultSubscriber<T> implements Subscriber<T> {
         switch (type){
             case ErrorChecker.TOAST:
                 showError(error.message);
+                break;
+            case ErrorChecker.LOADING_LAYOUT:
+                mloading.setStatus(LoadingLayout.Error);
+                mloading.setErrorText(t.getMessage());
                 break;
         }
 

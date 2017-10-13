@@ -1,11 +1,14 @@
 package lvge.com.myapp.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -13,10 +16,15 @@ import lvge.com.myapp.R;
 import lvge.com.myapp.base.BaseFragment;
 import lvge.com.myapp.http.DefaultSubscriber;
 import lvge.com.myapp.http.api.OrderService;
-import lvge.com.myapp.model.order.OrderItemModel;
 import lvge.com.myapp.model.base.PageResultModel;
+import lvge.com.myapp.model.order.OrderItemModel;
+import lvge.com.myapp.ui.binder.OrderItemCashBinder;
+import lvge.com.myapp.ui.binder.OrderItemCommonBinder;
 import lvge.com.myapp.util.LogUtil;
 import lvge.com.myapp.view.LoadingLayout;
+import me.drakeet.multitype.ClassLinker;
+import me.drakeet.multitype.ItemViewBinder;
+import me.drakeet.multitype.MultiTypeAdapter;
 
 public class OrderItemFragment extends BaseFragment implements XRecyclerView.LoadingListener {
     @BindView(R.id.recyclerView)
@@ -24,6 +32,9 @@ public class OrderItemFragment extends BaseFragment implements XRecyclerView.Loa
     @BindView(R.id.fl_loading)
     LoadingLayout mFlLoading;
     private OrderType orderType;
+    private PageResultModel<OrderItemModel> mPageResultModel = new PageResultModel<>();
+    private List<OrderItemModel> mList;
+    private MultiTypeAdapter mAdapter;
 
     //    "全 部","待验证","待发货","待安装","收银台,"退款/售后","派送中","已完成"
     public enum OrderType implements Serializable {
@@ -74,8 +85,29 @@ public class OrderItemFragment extends BaseFragment implements XRecyclerView.Loa
 
     @Override
     public void configViews() {
-        mFlLoading.setStatus(LoadingLayout.Loading);
-        mRecyclerView.setLoadingListener(this);
+
+        if (mList == null)
+            return;
+        if(mList.size() == 0){
+            mFlLoading.setStatus(LoadingLayout.Empty);
+        }else {
+            mRecyclerView.setLoadingListener(this);
+            mAdapter = new MultiTypeAdapter();
+            mAdapter.register(OrderItemModel.class)
+                    .to(new OrderItemCommonBinder(),new OrderItemCashBinder())
+                    .withClassLinker(new ClassLinker<OrderItemModel>() {
+                        @NonNull
+                        @Override
+                        public Class<? extends ItemViewBinder<OrderItemModel, ?>> index(@NonNull OrderItemModel orderItemModel) {
+                            if (orderItemModel.orderStatus == OrderItemModel.CASH_REGISTER){
+                                return OrderItemCashBinder.class;
+                            }
+                            return OrderItemCommonBinder.class;
+                        }
+                    });
+            mRecyclerView.setAdapter(mAdapter);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        }
     }
 
     public void getData() {
@@ -85,10 +117,12 @@ public class OrderItemFragment extends BaseFragment implements XRecyclerView.Loa
         map.put("pageSize",10);
 
         OrderService.getOrderList(map)
-                .subscribe(new DefaultSubscriber<PageResultModel<OrderItemModel>>() {
+                .subscribe(new DefaultSubscriber<PageResultModel<OrderItemModel>>(mFlLoading) {
                     @Override
                     public void onSucced(PageResultModel<OrderItemModel> result) {
-
+                        mPageResultModel.loadRecords(result);
+                        OrderItemFragment.this.mList = mPageResultModel.getEntityList();
+                        configViews();
                     }
                 });
 

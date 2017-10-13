@@ -18,7 +18,7 @@ public class OrderGoodsModel implements Serializable{
     private int goodsID;
     private String goodsName;
     private int goodsNum;
-    private String goodsPrice;
+    private double goodsPrice;
     private String imgPath;
 
     public int getGoodsID() {
@@ -45,11 +45,11 @@ public class OrderGoodsModel implements Serializable{
         this.goodsNum = goodsNum;
     }
 
-    public String getGoodsPrice() {
+    public double getGoodsPrice() {
         return goodsPrice;
     }
 
-    public void setGoodsPrice(String goodsPrice) {
+    public void setGoodsPrice(double goodsPrice) {
         this.goodsPrice = goodsPrice;
     }
 
