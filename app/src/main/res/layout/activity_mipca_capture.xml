@@ -24,56 +24,7 @@
             app:zxing_use_texture_view="true">
 
         </com.journeyapps.barcodescanner.DecoratedBarcodeView>
-
-        <RelativeLayout
-            android:id="@+id/action_bar_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:background="#202020">
-
-            <LinearLayout
-                android:id="@+id/back_btn_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-               <!-- <ImageView
-                    android:id="@+id/main_person_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:paddingBottom="14dp"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="4dp"
-                    android:paddingTop="14dp"
-                    android:src="@mipmap/ic_back" />-->
-
-                <TextView
-                    android:id="@+id/main_person_id"
-                    android:layout_alignParentLeft="true"
-                    android:drawableLeft="@mipmap/ic_back"
-                    android:padding="@dimen/x20"
-                    android:drawablePadding="@dimen/x20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="返回"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/main_title_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="扫描验证"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
+        <include layout="@layout/include_common_title"/>
     </RelativeLayout>
 
 </FrameLayout>

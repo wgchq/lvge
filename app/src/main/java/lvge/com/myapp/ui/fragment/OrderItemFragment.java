@@ -99,7 +99,7 @@ public class OrderItemFragment extends BaseFragment implements XRecyclerView.Loa
                         @NonNull
                         @Override
                         public Class<? extends ItemViewBinder<OrderItemModel, ?>> index(@NonNull OrderItemModel orderItemModel) {
-                            if (orderItemModel.orderStatus == OrderItemModel.CASH_REGISTER){
+                            if (orderItemModel.status == OrderItemModel.CASH_REGISTER){
                                 return OrderItemCashBinder.class;
                             }
                             return OrderItemCommonBinder.class;
@@ -112,7 +112,7 @@ public class OrderItemFragment extends BaseFragment implements XRecyclerView.Loa
 
     public void getData() {
         Map<String,Object> map = new HashMap<>(4);
-        map.put("orderStatus","0");
+        map.put("status","0");
         map.put("pageIndex",1);
         map.put("pageSize",10);
 

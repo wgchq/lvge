@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.PersistableBundle;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -47,8 +48,10 @@ public class MipcaActivityCaptureActivity extends Activity implements DecoratedB
             });
         }
 
-        TextView backBut = (TextView) findViewById(R.id.main_person_id);
-        backBut.setOnClickListener(new View.OnClickListener() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        TextView tvTitle = (TextView) findViewById(R.id.tv_title);
+        tvTitle.setText("验证码");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MipcaActivityCaptureActivity.this.finish();
@@ -62,6 +65,7 @@ public class MipcaActivityCaptureActivity extends Activity implements DecoratedB
         super.onPause();
         captureManager.onPause();
     }
+//    protected void
 
     @Override
     protected void onResume() {

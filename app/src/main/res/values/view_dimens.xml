@@ -1,3 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="common_keyboard_margin_tb">@dimen/x25</dimen>
 </resources>

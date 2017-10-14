@@ -15,22 +15,28 @@ public class OrderItemModel implements Serializable {
      * statusMemo : Xht5Dp7Cgz
      * totalPrice : 77213
      */
-//    ALL(0, "全 部"),
-//    WAIT_VERIFY(1, "待验证"),
-//    WAIT_SEND(3, "待发货"),
-//    WAIT_INSTALL(-1, "待安装"),
-//    CASH_REGISTER(-2, "收银台"),
-//    AFTER_SALE(-3, "退款/售后"),
-//    SENDING(4, "派送中"),
-//    FINISHED(-4, "已完成");
+//    订单状态
+//0、待付款
+//1、待验证
+//2、交易关闭
+//3、待发货
+//4、待收货
+//5、退款中
+//6、退款拒绝
+//7、已退款
+//8、取消订单
+//9、待安装
+
 
     public static final int WAIT_VERIFY = 1;
     public static final int WAIT_SEND = 3;
-    public static final int WAIT_INSTALL = -2;
-    public static final int CASH_REGISTER = -3;
-    public static final int SENDING = 4;
-    public static final int FINISHED = -4;
-    public int orderStatus;
+    public static final int WAIT_INSTALL = 4;
+    public static final int CASH_REGISTER = 5;
+    public static final int SENDING = 6;
+    public static final int FINISHED = 7;
+//    public static final int FINISHED = 8;
+//    public static final int FINISHED = 9;
+    public int status;
     private int freight;
     private OrderGoodsModel orderListGoods;
     private String orderNO;

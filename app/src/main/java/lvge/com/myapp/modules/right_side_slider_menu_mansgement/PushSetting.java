@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,10 +22,7 @@ import com.kyleduo.switchbutton.SwitchButton;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
-import lvge.com.myapp.MainActivity;
 import lvge.com.myapp.R;
-import lvge.com.myapp.model.EmployeeInformationMode;
-import lvge.com.myapp.model.EntityList;
 import lvge.com.myapp.model.LoadRightSideMode;
 import lvge.com.myapp.model.LoginResultModel;
 import okhttp3.Call;
@@ -120,7 +116,8 @@ public class PushSetting extends AppCompatActivity implements View.OnClickListen
         preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         String string = preferences.getString("right_data","");
         LoadRightSideMode result = new Gson().fromJson(string, LoadRightSideMode.class);
-
+        if (result.getMarketEntity() == null)
+            return;
         String power = result.getMarketEntity().getConfigSwitch();
         if(power.equals("")){
             employees_manager_switchbutton.setChecked(true);
