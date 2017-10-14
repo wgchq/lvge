@@ -1,9 +1,6 @@
 package lvge.com.myapp;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,26 +9,24 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.jph.takephoto.permission.InvokeListener;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.BitmapCallback;
 import com.zhy.http.okhttp.callback.Callback;
@@ -43,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 
 import lvge.com.myapp.ProgressDialog.RoundImageView;
+import lvge.com.myapp.base.BaseActivity;
 import lvge.com.myapp.mainFragement.ClientFragment;
 import lvge.com.myapp.mainFragement.HomeFragment;
 import lvge.com.myapp.mainFragement.MyFragment;
@@ -54,22 +50,21 @@ import lvge.com.myapp.modules.right_side_slider_menu_mansgement.PersonalProfile;
 import lvge.com.myapp.modules.right_side_slider_menu_mansgement.PowerSetting;
 import lvge.com.myapp.modules.right_side_slider_menu_mansgement.PrinterSetting;
 import lvge.com.myapp.modules.right_side_slider_menu_mansgement.PushSetting;
-import lvge.com.myapp.ui.MenuAdapter;
-import lvge.com.myapp.ui.SlideMenu;
 import lvge.com.myapp.util.BottomNavigationViewHelper;
+import lvge.com.myapp.view.MenuAdapter;
+import lvge.com.myapp.view.SlideMenu;
 import okhttp3.Call;
 import okhttp3.Response;
 
 
-
-public class MainPageActivity extends Activity {
+public class MainPageActivity extends BaseActivity {
     private SharedPreferences preferences;
     private final static String FILE_NAME = "login_file";
     private HomeFragment homeFragment = null;
     private ClientFragment clientFragment = null;
     private OrderFragment orderFragment = null;
     private MyFragment myFragment = null;
-    private FragmentManager fragmentManager = getFragmentManager();
+    private FragmentManager fragmentManager = getSupportFragmentManager();
 
     private SlideMenu mMenu;
 
@@ -219,44 +214,62 @@ public class MainPageActivity extends Activity {
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+//                        FragmentTransaction transaction = fragmentManager.beginTransaction();
                         switch (item.getItemId()) {
                             case R.id.navigation_home:
                                 if (homeFragment == null) {
                                     homeFragment = new HomeFragment();
                                 }
-                                transaction.replace(R.id.fragment_content, homeFragment);
+                                showFragment(homeFragment);
+
                                 break;
                             case R.id.navigation_client:
                                 if (clientFragment == null) {
                                     clientFragment = new ClientFragment();
                                 }
-                                transaction.replace(R.id.fragment_content, clientFragment);
+                                showFragment(clientFragment);
 
-                                transaction.show(clientFragment);
                                 break;
                             case R.id.navigation_order:
                                 if (orderFragment == null) {
                                     orderFragment = new OrderFragment();
                                 }
-                                transaction.replace(R.id.fragment_content, orderFragment);
+                                showFragment(orderFragment);
 
-                                transaction.show(orderFragment);
                                 break;
 
                             case R.id.navigation_my:
                                 if (myFragment == null) {
                                     myFragment = new MyFragment();
                                 }
-                                transaction.replace(R.id.fragment_content, myFragment);
-
-                                transaction.show(myFragment);
+                                showFragment(myFragment);
                                 break;
                         }
-                        transaction.commit();
+//                        transaction.commit();
                         return true;
                     }
                 });
+    }
+
+    private void showFragment(Fragment fragment) {
+        if (fragment.isVisible()) {
+            return;
+        }
+        List<Fragment> fragments = fragmentManager.getFragments();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        if (fragments==null){
+            transaction.add(R.id.fragment_content, fragment);
+        }else {
+            for (Fragment f:fragments){
+                transaction.hide(f);
+            }
+            if (!fragments.contains(fragment)){
+                transaction.add(R.id.fragment_content, fragment);
+            }
+        }
+        transaction.show(fragment);
+        transaction.commit();
+
     }
 
     @Override

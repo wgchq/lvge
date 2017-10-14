@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <!--<item name="tabMaxWidth">@dimen/tab_max_width</item>-->
+        <!--<item name="tabIndicatorColor">?attr/colorAccent</item>-->
+        <item name="tabSelectedTextColor">@color/colorPrimary</item>
+        <item name="tabTextAppearance">@style/tabIteamText</item>
+    </style>
+    <style name="tabIteamText" parent="TextAppearance.Design.Tab">
+        <item name="textColor">@color/text_common_gray</item>
+        <item name="android:lineSpacingExtra">@dimen/x16</item>
+        <item name="textSize">@dimen/x28</item>
+
+    </style>
+    <!--android:paddingBottom="@dimen/x20"-->
+    <!--android:paddingTop="@dimen/x20"-->
+    <!--android:paddingLeft="@dimen/x40"-->
+    <!--android:paddingRight="@dimen/x40"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center"-->
+    <!--android:background="@drawable/bg_btn_normal"-->
+    <!--android:textSize="@dimen/x30"-->
+    <style name="orderText">
+        <item name="android:paddingBottom">@dimen/x20</item>
+        <item name="android:paddingTop">@dimen/x20</item>
+        <item name="android:paddingLeft">@dimen/x40</item>
+        <item name="android:paddingRight">@dimen/x40</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_btn_normal</item>
+        <item name="android:textSize">@dimen/x30</item>
+
+    </style>
+    <style name="orderDetailLinear">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+
+    </style>
+    <style name="orderDetailLeftText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/x24</item>
+
+    </style>
+    <style name="orderDetailRightText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">end</item>
+        <item name="android:textSize">@dimen/x24</item>
+
+    </style>
+
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:text="配送方式"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textColor="@color/text_color_deep"-->
+    <style name="orderShipLeftText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_color_deep</item>
+    </style>
+
+</resources>

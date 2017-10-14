@@ -4,24 +4,21 @@ import android.app.AlertDialog;
 import android.app.Application;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Looper;
-import android.os.Process;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.facebook.stetho.Stetho;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
 import com.zhy.http.okhttp.cookie.store.MemoryCookieStore;
 import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
-import com.zhy.http.okhttp.log.LoggerInterceptor;
 
-import java.net.CookiePolicy;
-
-import lvge.com.myapp.model.LoadRightSideMode;
-import lvge.com.myapp.util.CrashHandler;
+import lvge.com.myapp.util.AppUtil;
 import lvge.com.myapp.util.EmailSender;
+import lvge.com.myapp.util.LogUtil;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * Created by JGG on 2017/7/11.
@@ -30,19 +27,42 @@ import okhttp3.OkHttpClient;
 public class MyApplication extends Application {
 
     protected static MyApplication instance;
+    public CookieJarImpl cookieJar1;
+    public CookieJarImpl cookieJar2;
+    public static MyApplication getInstance(){
+        return instance;
+    }
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .cookieJar(new CookieJarImpl(new PersistentCookieStore(getApplicationContext())))
-                .cookieJar(new CookieJarImpl(new MemoryCookieStore()))
-                .build();
-        OkHttpUtils.initClient(okHttpClient);
-        CrashHandler crashHandler = CrashHandler.getInstance();
-        crashHandler.init(getApplicationContext());
+        init();
+        cookieJar1 = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
+        cookieJar2 = new CookieJarImpl(new MemoryCookieStore());
+        OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                .cookieJar(cookieJar1)
+                .cookieJar(cookieJar2);
+
+        if (BuildConfig.DEBUG){
+            builder.addNetworkInterceptor(new StethoInterceptor());
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            builder.addNetworkInterceptor(interceptor);
+        }
+        OkHttpUtils.initClient(builder.build());
+//        CrashHandler crashHandler = CrashHandler.getInstance();
+//        crashHandler.init(getApplicationContext());
       //  Thread.setDefaultUncaughtExceptionHandler(restartHandler);// 程序崩溃时触发线程  以下用来捕获程序崩溃异常      
     }
+
+    private void init() {
+        AppUtil.init(this);
+        LogUtil.init(this);
+        if (BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this);
+        }
+    }
+
 
     // 创建服务用于捕获崩溃异常  
     private Thread.UncaughtExceptionHandler restartHandler = new Thread.UncaughtExceptionHandler() {

@@ -101,14 +101,14 @@
                 android:textSize="@dimen/x28" />
         </LinearLayout>
         <!-- TODO: Update blank fragment layout -->
-        <lvge.com.myapp.ui.LoadListView
+        <lvge.com.myapp.view.LoadListView
             android:id="@+id/history_validation_calendar_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@color/line_background_gray"
             android:dividerHeight="@dimen/x14">
 
-        </lvge.com.myapp.ui.LoadListView>
+        </lvge.com.myapp.view.LoadListView>
     </LinearLayout>
 
 

@@ -1,4 +1,4 @@
-package lvge.com.myapp.ui;
+package lvge.com.myapp.view;
 
 /**
  * Created by JGG on 2017/5/26.
@@ -6,11 +6,9 @@ package lvge.com.myapp.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -18,11 +16,11 @@ import android.widget.LinearLayout;
 import com.nineoldandroids.view.ViewHelper;
 
 import lvge.com.myapp.R;
-import lvge.com.myapp.modules.commodity_management.CommodityHomepageOnsaleAdapter;
 import lvge.com.myapp.util.ScreenUtils;
 
 
 public class SlideMenu extends HorizontalScrollView {
+    private  final String TAG = getClass().getName();
     /**
      * 灞忓箷瀹藉害
      */
@@ -105,7 +103,13 @@ public class SlideMenu extends HorizontalScrollView {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         int action = ev.getAction();
+//        LogUtil.i(TAG,"ev.getX(): "+ev.getX());
         switch (action) {
+
+            case MotionEvent.ACTION_DOWN:
+
+                if (ev.getX()>100)
+                    return false;
             case MotionEvent.ACTION_UP:
                 int scrollX = getScrollX();
                 if (scrollX > mHalfMenuWidth) {

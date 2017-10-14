@@ -54,7 +54,7 @@
 
     </android.support.design.widget.AppBarLayout>
     <!--网络监测-->
-    <lvge.com.myapp.ui.NetworkCheckView
+    <lvge.com.myapp.view.NetworkCheckView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -181,12 +181,12 @@
             android:contentDescription=""
             tools:ignore="ContentDescription" />
 
-        <lvge.com.myapp.ui.LoadListView
+        <lvge.com.myapp.view.LoadListView
             android:id="@+id/clients_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </lvge.com.myapp.ui.LoadListView>
+        </lvge.com.myapp.view.LoadListView>
 
     </LinearLayout>
 

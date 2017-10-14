@@ -1,10 +1,10 @@
 package lvge.com.myapp.mainFragement;
 
 
-import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +39,7 @@ import lvge.com.myapp.modules.royalty_management.RoyaltyManagementActivity;
 import lvge.com.myapp.modules.shop_management.ShopManagementActivity;
 import lvge.com.myapp.modules.validationtypescanqr.ValidationTypeScanQRFailActivity;
 import lvge.com.myapp.modules.validationtypescanqr.ValidationTypeScanQRSuccessActivity;
-import lvge.com.myapp.ui.CustomKeyboard;
+import lvge.com.myapp.view.CustomKeyboard;
 import okhttp3.Response;
 
 /**

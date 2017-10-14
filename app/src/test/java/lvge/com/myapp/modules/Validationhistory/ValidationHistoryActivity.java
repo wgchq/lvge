@@ -22,7 +22,7 @@ import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
 import lvge.com.myapp.R;
 import lvge.com.myapp.WelcomePageActivity;
 import lvge.com.myapp.model.HistoryValidationListEntity;
-import lvge.com.myapp.ui.LoadListView;
+import lvge.com.myapp.view.LoadListView;
 import okhttp3.Response;
 
 public class ValidationHistoryActivity extends AppCompatActivity {

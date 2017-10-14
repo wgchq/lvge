@@ -64,17 +64,17 @@
 
 
     <!--网络监测-->
-    <lvge.com.myapp.ui.NetworkCheckView
+    <lvge.com.myapp.view.NetworkCheckView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <lvge.com.myapp.ui.LoadListView
+    <lvge.com.myapp.view.LoadListView
         android:id="@+id/history_validation_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@color/line_background_gray"
         android:dividerHeight="@dimen/x14">
 
-    </lvge.com.myapp.ui.LoadListView>
+    </lvge.com.myapp.view.LoadListView>
 
 </LinearLayout>

@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -21,11 +20,10 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
-
 import com.zhy.http.okhttp.callback.Callback;
 
+import lvge.com.myapp.http.NetworkConfig;
 import lvge.com.myapp.model.LoginResultModel;
-
 import okhttp3.Response;
 
 public class MainActivity extends android.support.v7.app.AppCompatActivity {
@@ -126,7 +124,7 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity {
             login_submit.setTextColor(getResources().getColor(R.color.buttonTextColor));
 
             OkHttpUtils.get()//get 方法
-                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/login.do") //地址
+                    .url(NetworkConfig.BASE_URL+"sellerapp/login.do") //地址
                     .addParams("userName", et_username.getText().toString()) //需要传递的参数
                     .addParams("pwd", et_password.getText().toString())
                     .build()
