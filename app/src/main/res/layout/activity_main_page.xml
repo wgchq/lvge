@@ -14,12 +14,12 @@
         android:orientation="horizontal">
         <include layout="@layout/layout_menu" />
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/mainBackgroundColor">
             <include layout="@layout/layout_main_page_content_fragement" />
-        </LinearLayout>
+        </FrameLayout>
 
     </LinearLayout>
 </lvge.com.myapp.view.SlideMenu>
