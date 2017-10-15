@@ -14,6 +14,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,9 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
     private ArrayList<Boolean> checkList = new ArrayList<Boolean>();  //判断单选位置
     private String str = "";
     private CustomProgressDialog progressDialog = null;
+
+    public int groupPositionChecked = -1;
+    public int childPositionChecked = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +100,15 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
             }
         });
 
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                groupPositionChecked = groupPosition;
+                childPositionChecked = childPosition;
+                return true;
+            }
+        });
+
         sideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
             @Override
             public void onTouchingLetterChanged(String s) {
@@ -131,14 +144,6 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
                                 stopProgressDialog();
                                 CommodityNewgoodsCarTypeChooseMode result = (CommodityNewgoodsCarTypeChooseMode) o;//把通用的Object转化成指定的对象
                                 if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
-                                   /* contentList = result.getMarketEntity().getEntityList();
-                                    for (int j=0;j<contentList.size();j++){
-                                        checkList.add(false);
-                                    }
-                                    //commodity_newgoods_gift_listview.setAdapter(new CommodityNewgoodsGiftAdapter(CommodityNewgoodsGift.this, contentList,checkList));
-                                    commodityNewgoodsGiftAdapter = new CommodityNewgoodsGift.CommodityNewgoodsGiftAdapter(CommodityNewgoodsGift.this, contentList,checkList);
-                                    commodity_newgoods_gift_listview.setAdapter(commodityNewgoodsGiftAdapter);
-                                    stopProgressDialog();*/
                                    data = result.getMarketEntity();
                                     for (int j=0;j<data.size();j++){
                                         checkList.add(false);
@@ -180,7 +185,7 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
         private LayoutInflater inflater;
         private List<Boolean> list;
 
-        private String string = "";  //第一个字母
+        public String string = "";  //第一个字母
 
         public SortAdapter(Context context, List<CommodityNewgoodsCarTypeChooseMode.MarketEntity> car, List<Boolean> list) {
             this.context = context;
@@ -243,13 +248,22 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
                 holder = (ViewHolder)view.getTag();
             }
 
-            if (cars.get(groupPosition).getFirstLetter().equals(string) ) {
+            if(groupPosition == 0){
+                holder.tv_tag.setVisibility(View.VISIBLE);
+                holder.tv_tag.setText(cars.get(groupPosition).getFirstLetter());
+            }else if(cars.get(groupPosition).getFirstLetter().equals(cars.get(groupPosition-1).getFirstLetter())){
                 holder.tv_tag.setVisibility(View.GONE);
-            } else {
-                string = cars.get(groupPosition).getFirstLetter();
+            }else {
                 holder.tv_tag.setVisibility(View.VISIBLE);
                 holder.tv_tag.setText(cars.get(groupPosition).getFirstLetter());
             }
+
+           /* if (cars.get(groupPosition).getFirstLetter().equals(string) ) {
+
+            } else {
+                string = cars.get(groupPosition).getFirstLetter();
+
+            }*/
             if(isExpanded){
                 holder.commodity_newgoods_commodity_type_checkbox.setImageResource(R.mipmap.commodity_list_xiala_right);
             }else {
@@ -262,9 +276,8 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
         }
 
         @Override
-        public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
-            string = cars.get(groupPosition).getFirstLetter();
             View view = convertView;
             ChildHolder holder = null;
             if(view == null){
@@ -273,16 +286,23 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
                 view = inflater.inflate(R.layout.commodity_choosecommodity_list,null);
                 holder.textView = (TextView)view.findViewById(R.id.commodity_newgoods_commodity_type_textview);
                 holder.checkBox = (ImageView)view.findViewById(R.id.commodity_newgoods_commodity_type_checkbox);
+                holder.commodity_newgoods_type_relayout_fictitious = (RelativeLayout)view.findViewById(R.id.commodity_newgoods_type_relayout_fictitious);
                 view.setTag(holder);
             }else {
                 holder = (ChildHolder)view.getTag();
             }
-            /*if(childPosition == 0){
+            if(childPosition == childPositionChecked && groupPosition == groupPositionChecked){
                 holder.checkBox.setImageResource(R.mipmap.checkbox_checked);
             }else {
                 holder.checkBox.setImageResource(R.color.background_gray);
-            }*/
-
+            }
+            holder.commodity_newgoods_type_relayout_fictitious.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    childPositionChecked = childPosition;
+                    groupPositionChecked = groupPosition;
+                }
+            });
 
            holder.textView.setText(cars.get(groupPosition).getSeries().get(childPosition).getName());
             return view;
@@ -290,12 +310,13 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
 
         @Override
         public boolean isChildSelectable(int groupPosition, int childPosition) {
-            return false;
+            return true;
         }
 
         public  class ChildHolder{
             public TextView textView;
             public ImageView checkBox;
+            public RelativeLayout commodity_newgoods_type_relayout_fictitious;
         }
 
         class ViewHolder {
@@ -305,53 +326,6 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
             TextView tv_name;
         }
 
-/*        @Override
-        public View getView(final int position, View convertView, ViewGroup parent) {
-            ViewHolder viewHolder = null;
-            CommodityNewgoodsCarTypeChooseMode.MarketEntity car = cars.get(position);
-
-            if (convertView == null) {
-                viewHolder = new ViewHolder();
-                convertView = inflater.inflate(R.layout.list_item, null);
-                viewHolder.tv_tag = (TextView) convertView.findViewById(R.id.tv_lv_item_tag);
-                viewHolder.tv_name = (TextView) convertView.findViewById(R.id.tv_lv_item_name);
-                viewHolder.iv_lv_item_head = (ImageView) convertView.findViewById(R.id.iv_lv_item_head);
-                viewHolder.commodity_newgoods_commodity_type_checkbox = (ImageView) convertView.findViewById(R.id.commodity_newgoods_commodity_type_checkbox);
-                viewHolder.list_car = (ListView)convertView.findViewById(R.id.list_car);
-                convertView.setTag(viewHolder);
-            } else {
-                viewHolder = (ViewHolder) convertView.getTag();
-            }
-
-            if (car.getFirstLetter().equals(string) ) {
-                viewHolder.tv_tag.setVisibility(View.GONE);
-            } else {
-                string = car.getFirstLetter();
-                viewHolder.tv_tag.setVisibility(View.VISIBLE);
-                viewHolder.tv_tag.setText(car.getFirstLetter());
-            }
-            viewHolder.tv_name.setText(car.getName());
-
-            if(car.getSeries().size() != 0){
-
-            }
-
-           *//* if (list.get(position)) {
-                viewHolder.commodity_newgoods_commodity_type_checkbox.setImageResource(R.mipmap.checkbox_checked);
-            } else {
-                // holder.checkBox.setChecked(false);
-                viewHolder.commodity_newgoods_commodity_type_checkbox.setImageResource(R.color.background_gray);
-            }*//*
-
-            convertView.setOnClickListener(new View.OnClickListener() {  //item进行单选设置
-                @Override
-                public void onClick(View v) {
-                    checkPosition(position);
-                }
-            });
-
-            return convertView;
-        }*/
 
         public int getPositionForSelection(int selection) {
             for (int i = 0; i < cars.size(); i++) {
