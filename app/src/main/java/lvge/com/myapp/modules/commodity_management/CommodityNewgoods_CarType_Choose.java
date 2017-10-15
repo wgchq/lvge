@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -44,9 +45,15 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
     private SideBar sideBar;
     private TextView diaglog;
 
+    private View view;
+    private SortAdapter.ChildHolder holder ;
+
     private ArrayList<Boolean> checkList = new ArrayList<Boolean>();  //判断单选位置
     private String str = "";
     private CustomProgressDialog progressDialog = null;
+
+    private  int[][] checkBoxSelect;
+
 
     public int groupPositionChecked = -1;
     public int childPositionChecked = -1;
@@ -148,6 +155,13 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
                                     for (int j=0;j<data.size();j++){
                                         checkList.add(false);
                                     }
+
+                                    checkBoxSelect = new int[data.size()][];
+                                    for(int m =0;m<data.size();m++)
+                                    {
+                                        checkBoxSelect[m] = new int[data.get(m).getSeries().size()];
+                                    }
+
                                     // 数据在放在adapter之前需要排序
                                     Collections.sort(data, new Comparator<CommodityNewgoodsCarTypeChooseMode.MarketEntity>() {
                                         @Override
@@ -278,8 +292,8 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
         @Override
         public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
-            View view = convertView;
-            ChildHolder holder = null;
+            view = convertView;
+            holder = null;
             if(view == null){
                 holder = new ChildHolder();
 
@@ -299,8 +313,17 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
             holder.commodity_newgoods_type_relayout_fictitious.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    childPositionChecked = childPosition;
-                    groupPositionChecked = groupPosition;
+                    if (checkBoxSelect[groupPosition][childPosition] == 0)
+                    {
+                        holder.checkBox.setImageResource(R.mipmap.checkbox_checked);
+                        checkBoxSelect[groupPosition][childPosition] = 1;
+                    }
+                    else
+                    {
+                        holder.checkBox.setImageResource(R.color.background_gray);
+                        checkBoxSelect[groupPosition][childPosition] = 0;
+                    }
+
                 }
             });
 
