@@ -8,8 +8,11 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
@@ -41,6 +44,7 @@ public class SlideMenu extends HorizontalScrollView {
 
     private ViewGroup mMenu;
     private ViewGroup mContent;
+    private  View mengBanContainer;
 
     public SlideMenu(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -66,6 +70,7 @@ public class SlideMenu extends HorizontalScrollView {
             }
         }
         a.recycle();
+
     }
 
     public SlideMenu(Context context) {
@@ -86,9 +91,45 @@ public class SlideMenu extends HorizontalScrollView {
             mMenu.getLayoutParams().width = mMenuWidth;
             mContent.getLayoutParams().width = mScreenWidth;
 
+
         }
+
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
+    }
+
+    private void iniView()
+    {
+        if(null==mengBanContainer)
+        {
+            mengBanContainer = LayoutInflater.from(mContent.getContext()).inflate(R.layout.layout_mengban, null);
+            mContent.addView(mengBanContainer);
+            mengBanContainer.setVisibility(GONE);
+            FrameLayout.LayoutParams params =
+                    new android.widget.FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+            params.width = mContent.getWidth();
+            params.height = mContent.getHeight();
+            mengBanContainer.setLayoutParams(params);
+
+            mengBanContainer.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    closeMenu();
+                }
+            });
+        }
+
+
+    }
+    private void mengBanShow()
+    {
+        iniView();
+        mengBanContainer.setVisibility(VISIBLE);
+    }
+    private void mengBanHide()
+    {
+        iniView();
+        mengBanContainer.setVisibility(GONE);
     }
 
     @Override
@@ -115,9 +156,12 @@ public class SlideMenu extends HorizontalScrollView {
                 if (scrollX > mHalfMenuWidth) {
                     this.smoothScrollTo(mMenuWidth, 0);
                     isOpen = false;
+                    mengBanHide();
+
                 } else {
                     this.smoothScrollTo(0, 0);
                     isOpen = true;
+                    mengBanShow();
                 }
                 return true;
         }
@@ -132,6 +176,7 @@ public class SlideMenu extends HorizontalScrollView {
             return;
         this.smoothScrollTo(0, 0);
         isOpen = true;
+        mengBanShow();
     }
 
     /**
@@ -142,6 +187,7 @@ public class SlideMenu extends HorizontalScrollView {
             this.smoothScrollTo(mMenuWidth, 0);
             isOpen = false;
         }
+        mengBanHide();
     }
 
     /**

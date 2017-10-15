@@ -14,6 +14,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -38,7 +39,6 @@ import java.util.List;
 import java.util.Map;
 
 import lvge.com.myapp.ProgressDialog.RoundImageView;
-import lvge.com.myapp.base.BaseActivity;
 import lvge.com.myapp.mainFragement.ClientFragment;
 import lvge.com.myapp.mainFragement.HomeFragment;
 import lvge.com.myapp.mainFragement.MyFragment;
@@ -57,7 +57,7 @@ import okhttp3.Call;
 import okhttp3.Response;
 
 
-public class MainPageActivity extends BaseActivity {
+public class MainPageActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private final static String FILE_NAME = "login_file";
     private HomeFragment homeFragment = null;

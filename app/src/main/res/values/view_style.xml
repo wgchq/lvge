@@ -42,14 +42,14 @@
     <style name="orderDetailLeftText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/x24</item>
+        <item name="android:textSize">@dimen/x26</item>
 
     </style>
     <style name="orderDetailRightText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">end</item>
-        <item name="android:textSize">@dimen/x24</item>
+        <item name="android:textSize">@dimen/x26</item>
 
     </style>
 
@@ -67,6 +67,31 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/text_color_deep</item>
+    </style>
+
+    <!--android:layout_width="@dimen/x142"-->
+    <!--android:layout_height="@dimen/x142"-->
+    <!--android:layout_marginBottom="@dimen/x32"-->
+    <!--android:layout_marginLeft="@dimen/x26"-->
+    <!--android:layout_marginRight="@dimen/x26"-->
+    <!--android:layout_marginTop="@dimen/x32"-->
+    <!--android:background="@drawable/key_board_bg_selector"-->
+    <!--android:clickable="true"-->
+    <!--android:focusable="true"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="vertical"-->
+    <style name="keyBoardLinearLayout">
+        <item name="android:layout_width">@dimen/x142</item>
+        <item name="android:layout_height">@dimen/x142</item>
+        <item name="android:layout_marginBottom">@dimen/x20</item>
+        <item name="android:layout_marginTop">@dimen/x20</item>
+        <item name="android:layout_marginLeft">@dimen/x26</item>
+        <item name="android:layout_marginRight">@dimen/x26</item>
+        <item name="android:background">@drawable/key_board_bg_selector</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
     </style>
 
 </resources>

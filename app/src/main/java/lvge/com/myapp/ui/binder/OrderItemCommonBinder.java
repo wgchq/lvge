@@ -50,7 +50,7 @@ public class OrderItemCommonBinder extends ItemViewBinder<OrderItemModel, OrderI
         String statusName = "";
         mTvAction.setTag(item);
         View.OnClickListener listener = null;
-        switch (item.orderStatus){
+        switch (item.status){
             case  OrderItemModel.WAIT_VERIFY:
                 actionName = "扫描验证";
                 statusName = "待验证";

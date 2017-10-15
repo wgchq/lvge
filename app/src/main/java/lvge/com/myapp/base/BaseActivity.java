@@ -29,6 +29,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import butterknife.ButterKnife;
 import lvge.com.myapp.MyApplication;
 import lvge.com.myapp.R;
 import lvge.com.myapp.event.AppBus;
@@ -62,6 +63,8 @@ public abstract class BaseActivity extends RxAppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayoutId());
+        mContext = this;
         app = (MyApplication) getApplicationContext();
         mContext = this;
 //        sweetAlertDialogView = new SweetAlertDialogView(this);
@@ -76,7 +79,16 @@ public abstract class BaseActivity extends RxAppCompatActivity {
 
         initStatusBar();
         LogUtil.i(TAG, "onCreate");
+        ButterKnife.bind(this);
+        initDatas();
+        configViews();
     }
+    public abstract void initDatas();
+
+    /**
+     * 对各种控件进行设置、适配、填充数据
+     */
+    public abstract void configViews();
 
     //处理沉浸式的状态栏和导航栏
     private void initStatusBar() {
@@ -478,4 +490,6 @@ public abstract class BaseActivity extends RxAppCompatActivity {
                 break;
         }
     }
+
+    public abstract int getLayoutId();
 }

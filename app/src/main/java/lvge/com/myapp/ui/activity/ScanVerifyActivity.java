@@ -1,11 +1,9 @@
 package lvge.com.myapp.ui.activity;
 
-import lvge.com.myapp.R;
 import lvge.com.myapp.base.BaseActivity;
 
-public class OrderShippingActivity extends BaseActivity {
 
-
+public class ScanVerifyActivity extends BaseActivity {
     @Override
     public void initDatas() {
 
@@ -18,6 +16,6 @@ public class OrderShippingActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_order_shipping;
+        return 0;
     }
 }
