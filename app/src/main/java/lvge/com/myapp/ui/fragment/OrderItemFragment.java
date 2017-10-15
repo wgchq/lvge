@@ -94,7 +94,7 @@ public class OrderItemFragment extends BaseFragment implements XRecyclerView.Loa
             mRecyclerView.setLoadingListener(this);
             mAdapter = new MultiTypeAdapter();
             mAdapter.register(OrderItemModel.class)
-                    .to(new OrderItemCommonBinder(),new OrderItemCashBinder())
+                    .to(new OrderItemCommonBinder(mActivity),new OrderItemCashBinder())
                     .withClassLinker(new ClassLinker<OrderItemModel>() {
                         @NonNull
                         @Override

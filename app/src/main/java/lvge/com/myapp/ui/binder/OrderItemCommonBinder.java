@@ -1,5 +1,7 @@
 package lvge.com.myapp.ui.binder;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import lvge.com.myapp.R;
 import lvge.com.myapp.model.order.OrderItemModel;
+import lvge.com.myapp.ui.activity.OrderDetailActivity;
 import lvge.com.myapp.view.GoodsDesView;
 import me.drakeet.multitype.ItemViewBinder;
 
@@ -31,6 +34,10 @@ public class OrderItemCommonBinder extends ItemViewBinder<OrderItemModel, OrderI
     @BindView(R.id.tv_detail)
     TextView mTvDetail;
 
+    private Context mContext;
+    public OrderItemCommonBinder(Context context){
+        mContext = context;
+    }
     @NonNull
     @Override
     protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
@@ -67,10 +74,12 @@ public class OrderItemCommonBinder extends ItemViewBinder<OrderItemModel, OrderI
             case  OrderItemModel.WAIT_SEND:
                 actionName = "发货";
                 statusName = "待发货";
+                listener= onCommonListener;
                 break;
             case  OrderItemModel.FINISHED:
                 actionName = "";
                 statusName = "已完成";
+                listener= onCommonListener;
                 break;
         }
         mTvAction.setText(actionName);
@@ -83,6 +92,18 @@ public class OrderItemCommonBinder extends ItemViewBinder<OrderItemModel, OrderI
         public void onClick(View v) {
             OrderItemModel model = (OrderItemModel) v.getTag();
             // TODO: 2017/10/13 启动验证页面
+        }
+    };
+    private View.OnClickListener onCommonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            OrderItemModel model = (OrderItemModel) v.getTag();
+            if (model == null)
+                return;
+            Intent intent = new Intent();
+            intent.putExtra("OrderItemModel",model);
+            intent.setClass(mContext,OrderDetailActivity.class);
+            mContext.startActivity(intent);
         }
     };
 

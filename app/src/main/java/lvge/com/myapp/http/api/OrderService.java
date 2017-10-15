@@ -1,10 +1,13 @@
 package lvge.com.myapp.http.api;
 
+import android.support.annotation.NonNull;
+
 import java.util.Map;
 
 import io.reactivex.Flowable;
 import lvge.com.myapp.http.NetworkConfig;
 import lvge.com.myapp.http.HttpFactory;
+import lvge.com.myapp.model.order.OrderDetailModel;
 import lvge.com.myapp.model.order.OrderItemModel;
 import lvge.com.myapp.model.base.PageResultModel;
 
@@ -16,6 +19,11 @@ public class OrderService {
     public static Flowable<PageResultModel<OrderItemModel>> getOrderList(Map<String,Object> map){
         return getOrderService().getOderList(map)
                 .compose(HttpFactory.<PageResultModel<OrderItemModel>>applaySchedulers());
+
+    }
+    public static Flowable<OrderDetailModel> getOrderDetail(@NonNull String orderNo){
+        return getOrderService().getOrderDetail(orderNo)
+                .compose(HttpFactory.<OrderDetailModel>applaySchedulers());
 
     }
 
