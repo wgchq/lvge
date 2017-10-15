@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="lvge.com.myapp.modules.commodity_management.CommodityCommonProblem">
+    tools:context="lvge.com.myapp.modules.commodity_management.CommodityNewgoodsDeatailDescription">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -18,7 +17,7 @@
         tools:layout_editor_absoluteY="0dp">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/commodity_common_problem_toobar"
+            android:id="@+id/toolbar_commodity_newgoods_detail_description"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -32,35 +31,32 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="常见问题"
+                android:text="详细描述"
                 tools:ignore="HardcodedText" />
 
+
             <TextView
-                android:id="@+id/commodity_common_add"
-                style="@style/system_title_style"
+                android:id="@+id/commodity_newgoods_detail_description_finish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:layout_gravity="end"
-                android:background="?android:selectableItemBackground"
                 android:gravity="center"
                 android:padding="@dimen/x20"
-                android:text="添加"
-                android:textColor="@color/mainFontColor"
-                tools:ignore="HardcodedText" />
+                android:text="完成"
+                android:textColor="@color/buttonTextColor"
+                tools:ignore="ContentDescription,HardcodedText,NestedWeights" />
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
-    <!--网络监测-->
-    <lvge.com.myapp.view.NetworkCheckView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <ListView
-        android:id="@+id/commodity_common_problem"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="NestedScrolling">
-    </ListView>
+    <include layout="@layout/content_commodity_newgoods_deatail_description" />
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+
+</android.support.design.widget.CoordinatorLayout>

@@ -107,16 +107,6 @@ public class EmployeeInformation extends AppCompatActivity {
             }
         });
 
-/*        new Thread() {
-            public void run() {
-                try {
-                    initEmployeeInformation();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    stopProgressDialog();
-                }
-            }
-        }.start();*/
     }
 
     private void removeEmployeeInformation(String str){
@@ -218,12 +208,6 @@ public class EmployeeInformation extends AppCompatActivity {
 
    protected void onResume(){
         super.onResume();
-       /* try{
-            Thread.sleep(2000);
-        }catch (Exception e){
-            e.printStackTrace();
-        }*/
-
         initEmployeeInformation();
     }
 

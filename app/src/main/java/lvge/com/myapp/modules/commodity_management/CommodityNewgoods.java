@@ -9,6 +9,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -22,7 +25,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.jph.takephoto.app.TakePhoto;
 import com.jph.takephoto.app.TakePhotoImpl;
 import com.jph.takephoto.model.CropOptions;
@@ -33,11 +38,36 @@ import com.jph.takephoto.permission.InvokeListener;
 import com.jph.takephoto.permission.PermissionManager;
 import com.jph.takephoto.permission.TakePhotoInvocationHandler;
 import com.kyleduo.switchbutton.SwitchButton;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.cookie.CookieJarImpl;
+import com.zhy.http.okhttp.cookie.store.CookieStore;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpCookie;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
 import lvge.com.myapp.R;
+import lvge.com.myapp.http.NetworkConfig;
+import lvge.com.myapp.model.CommodityNewgoodsGiftAddMode;
+import lvge.com.myapp.modules.my_4s_management.ListUtil;
+import okhttp3.Cookie;
 
 public class CommodityNewgoods extends AppCompatActivity implements View.OnClickListener,TakePhoto.TakeResultListener,InvokeListener {
 
@@ -66,6 +96,19 @@ public class CommodityNewgoods extends AppCompatActivity implements View.OnClick
     private RelativeLayout commodity_newgoods_Realyout_question;  //常见问题
     private ImageView commodity_newgoods_CommodityParameter;
     private TextView commodity_newgoods_cartype_text;
+    private RelativeLayout commodity_goodnews_Relayout_description;   //图文描述
+    private TextView commodity_goodnews_description;
+    private RelativeLayout commodity_newgoods_Relayout_gift;   //赠品
+    private TextView commodity_newgoods_gift;
+    private TextView commodity_newgoods_freight;
+    private TextView commodity_newgoods_shangjia;
+    private EditText commodity_newgoods_commodityOriginalprice;
+    private EditText commodity_newgoods_commoditySellingprice;
+    private EditText commodity_newgoods_commodityDiscount;
+    private EditText commodity_newgoods_commodityStock;
+    private EditText commodity_newgoods_commodityBrand;
+    private EditText commodity_newgoods_commodity_specification;
+    private EditText commodity_newgoods_commodityAddress;
 
     private TextView choosePhoto;
     private TextView takePhoto;
@@ -81,6 +124,22 @@ public class CommodityNewgoods extends AppCompatActivity implements View.OnClick
     private CustomProgressDialog progressDialog = null;
 
     private boolean isshowOarameter = true;
+
+    private String name = "";  //商品名字
+    private Bitmap graphicDescription = null;
+    private String giftid = "";
+    private ArrayList<String> question = new ArrayList<String>();
+    private ArrayList<String> answer = new ArrayList<String>();
+    private Bitmap bitmap;
+    List<String> filePaths = new ArrayList<>();  //图片存储
+    private String type = "";   //商品类型
+    private String inputcultivarchoose="";  //品种类型
+    private String originalPrice;   //商品原始价格
+    private String discountPrice;    //折扣价
+    private String discountInfo;   //折扣信息描述
+    private String stock;   //商品库存
+    private String properties;  //商品品牌
+    private String brand_series; //品牌ID+车系ID
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +173,19 @@ public class CommodityNewgoods extends AppCompatActivity implements View.OnClick
         commodity_newgoods_CommodityParameter = (ImageView)findViewById(R.id.commodity_newgoods_CommodityParameter);
         commodity_newgoods_cartype_text = (TextView)findViewById(R.id.commodity_newgoods_cartype_text);
         commodity_newgoods_Realyout_question = (RelativeLayout)findViewById(R.id.commodity_newgoods_Realyout_question);
+        commodity_goodnews_Relayout_description = (RelativeLayout)findViewById(R.id.commodity_goodnews_Relayout_description);
+        commodity_newgoods_Relayout_gift = (RelativeLayout)findViewById(R.id.commodity_newgoods_Relayout_gift);
+        commodity_goodnews_description = (TextView)findViewById(R.id.commodity_goodnews_description);
+        commodity_newgoods_gift = (TextView)findViewById(R.id.commodity_newgoods_gift);
+        commodity_newgoods_freight = (TextView)findViewById(R.id.commodity_newgoods_freight);
+        commodity_newgoods_shangjia = (TextView)findViewById(R.id.commodity_newgoods_shangjia);
+        commodity_newgoods_commodityOriginalprice = (EditText)findViewById(R.id.commodity_newgoods_commodityOriginalprice);
+        commodity_newgoods_commoditySellingprice = (EditText)findViewById(R.id.commodity_newgoods_commoditySellingprice);
+        commodity_newgoods_commodityDiscount = (EditText)findViewById(R.id.commodity_newgoods_commodityDiscount);
+        commodity_newgoods_commodityStock = (EditText)findViewById(R.id.commodity_newgoods_commodityStock);
+        commodity_newgoods_commodityBrand = (EditText)findViewById(R.id.commodity_newgoods_commodityBrand);
+        commodity_newgoods_commodity_specification = (EditText)findViewById(R.id.commodity_newgoods_commodity_specification);
+        commodity_newgoods_commodityAddress = (EditText)findViewById(R.id.commodity_newgoods_commodityAddress);
 
         commodity_newgoods_relayout_type.setOnClickListener(this);
         commodity_newgoods_Relayout_typechoose.setOnClickListener(this);
@@ -122,6 +194,10 @@ public class CommodityNewgoods extends AppCompatActivity implements View.OnClick
         commodity_nowgoods_Relayout_parameter.setOnClickListener(this);
         commodity_newgoods_Relayout_cartype.setOnClickListener(this);
         commodity_newgoods_Realyout_question.setOnClickListener(this);
+        commodity_goodnews_Relayout_description.setOnClickListener(this);
+        commodity_newgoods_Relayout_gift.setOnClickListener(this);
+        commodity_newgoods_Relayout_freight.setOnClickListener(this);
+        commodity_newgoods_shangjia.setOnClickListener(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_commodity_management_list);
         toolbar.setTitle("");
@@ -129,8 +205,6 @@ public class CommodityNewgoods extends AppCompatActivity implements View.OnClick
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(SalesConsultant.this, My4sManagementActivity.class);
-                // startActivity(intent);
                 finish();
             }
         });
@@ -237,24 +311,193 @@ public class CommodityNewgoods extends AppCompatActivity implements View.OnClick
                 Intent intent5 = new Intent(CommodityNewgoods.this,CommodityCommonProblem.class);
                 startActivityForResult(intent5,15);
                 break;
+            case R.id.commodity_goodnews_Relayout_description:
+                Intent intent6 = new Intent(CommodityNewgoods.this,CommodityNewgoodsGraphicDescription.class);
+                startActivityForResult(intent6,16);
+                break;
+            case R.id.commodity_newgoods_Relayout_gift:
+                Intent intent7 = new Intent(CommodityNewgoods.this,CommodityNewgoodsGift.class);
+                startActivityForResult(intent7,17);
+                break;
+            case R.id.commodity_newgoods_Relayout_freight:
+                Intent intent8 = new Intent(CommodityNewgoods.this,CommodityNewgoodsFreight.class);
+                startActivityForResult(intent8,18);
+                break;
+            case R.id.commodity_newgoods_shangjia:
+                try {
+                    name = commodity_newgoods_commodityname.getText().toString();
+                    commodity_newgoods_mainFigure.setDrawingCacheEnabled(true);
+                    filePaths.add(saveBitmap("main"));
+                    commodity_newgoods_mainFigure.setDrawingCacheEnabled(false);
+                    commodity_newgoods_Figure1.setDrawingCacheEnabled(true);
+                    filePaths.add(saveBitmap("p1"));
+                    commodity_newgoods_Figure1.setDrawingCacheEnabled(false);
+                    commodity_newgoods_Figure2.setDrawingCacheEnabled(true);
+                    filePaths.add(saveBitmap("p2"));
+                    commodity_newgoods_Figure2.setDrawingCacheEnabled(false);
+                    commodity_newgoods_Figure3.setDrawingCacheEnabled(true);
+                    filePaths.add(saveBitmap("p3"));
+                    commodity_newgoods_Figure3.setDrawingCacheEnabled(false);
+                    originalPrice = commodity_newgoods_commodityOriginalprice.getText().toString();
+                    discountPrice = commodity_newgoods_commoditySellingprice.getText().toString();
+                    discountInfo = commodity_newgoods_commodityDiscount.getText().toString();
+                    stock = commodity_newgoods_commodityStock.getText().toString();
+                    properties = commodity_newgoods_commodityBrand.getText().toString() + "@@" + commodity_newgoods_commodity_specification.getText().toString() + "@@" + commodity_newgoods_commodityAddress.getText().toString();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                addNewgoods();
+                break;
             default:
                 break;
         }
     }
+
+    private void addNewgoods(){
+
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    startProgerssDialog();
+                    post_str(name);
+                } catch ( Exception e) {
+                    e.printStackTrace();
+                    stopProgressDialog();
+                }
+            }
+        };
+
+        new Thread() {
+            public void run() {
+                Looper.prepare();
+                new Handler().post(runnable);
+                Looper.loop();
+            }
+        }.start();
+    }
+
+    private void post_str(String name) {
+
+        try {
+            String path = NetworkConfig.BASE_URL+"sellerapp/goods/giftAddOrUpdate";
+          /*  List<String> filePaths = new ArrayList<>();
+            filePaths.add(saveBitmap());*/
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("name", name);
+            map.put("type",type);
+
+            String str = imgPut(path, filePaths, map);
+            returnMessage(str);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            returnMessage("error");
+        }
+    }
+
+    private String saveBitmap(String name) throws IOException {
+        File sd = Environment.getExternalStorageDirectory();
+        boolean can_write = sd.canWrite();
+
+        String strPath = Environment.getExternalStorageDirectory().toString() + "/save";
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,baos);
+
+        if(baos.toByteArray().length/1024 >500 ){
+            int option = 90;
+            while (baos.toByteArray().length/1024 >500){
+                baos.reset();
+                bitmap.compress(Bitmap.CompressFormat.PNG,option,baos);
+                option -= 10;
+            }
+            ByteArrayInputStream isbm = new ByteArrayInputStream(baos.toByteArray());
+            bitmap = BitmapFactory.decodeStream(isbm,null,null);
+
+            isbm.close();
+        }
+        baos.close();
+
+        try {
+            File desDir = new File(strPath);
+            if (!desDir.exists()) {
+                desDir.mkdir();
+            }
+
+            File imageFile = new File(strPath + "/"+ name + ".PNG");
+            if(imageFile.exists()){
+                imageFile.delete();
+            }
+            imageFile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return strPath + "/"+ name + ".PNG";
+    }
+
+
+    private void returnMessage(String string) {
+        Message msg = new Message();
+        if(string.equals("error")){
+            msg.what = 1;
+            mHander.sendMessage(msg);
+            return;
+        }
+
+        CommodityNewgoodsGiftAddMode result = new Gson().fromJson(string, CommodityNewgoodsGiftAddMode.class);
+
+        if(result.getOperationResult().getResultCode() == 0){
+
+            msg.what = 0;
+            mHander.sendMessage(msg);
+        }else {
+            msg.what = 1;
+            mHander.sendMessage(msg);
+        }
+    }
+
+    Handler mHander = new Handler() {
+        public void handleMessage(Message msg){
+            stopProgressDialog();
+           // commodity_newgoods_giftFigure.setDrawingCacheEnabled(false);
+            switch (msg.what){
+                case 0:
+                   // Toast.makeText(CommodityNewgoodsGiftAdd.this,"上传成功！",Toast.LENGTH_LONG).show();
+                    finish();
+                    break;
+                case 1:
+                   // Toast.makeText(CommodityNewgoodsGiftAdd.this,"上传失败！",Toast.LENGTH_LONG).show();
+                    break;
+            }
+        }
+
+    };
+
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (10 == requestCode && data != null) {
             String inputcommoditychoose = data.getStringExtra("inputcommoditychoose");
             commodity_newgoods_type.setText(inputcommoditychoose);
             if (inputcommoditychoose.equals("虚拟商品")){
+                type = "0";
                 commodity_newgoods_Relayout_inventory.setVisibility(View.GONE);
                 commodity_newgoods_Relayout_installation.setVisibility(View.GONE);
                 commodity_newgoods_Relayout_royalty.setVisibility(View.GONE);
                 commodity_newgoods_Relayout_cartype.setVisibility(View.GONE);
                 commodity_newgoods_Relayout_freight.setVisibility(View.GONE);
+            }else {
+                type = "1";
             }
         }else  if (11 == requestCode && data != null) {
-            String inputcultivarchoose = data.getStringExtra("inputcultivarchoose");
+            inputcultivarchoose = data.getStringExtra("inputcultivarchoose");
             commodity_newgoods_cultivartypechoose.setText(inputcultivarchoose);
         }else if(12 == requestCode && data != null){
             String inputinstallchoose = data.getStringExtra("inputinstallchoose");
@@ -265,8 +508,26 @@ public class CommodityNewgoods extends AppCompatActivity implements View.OnClick
             commodity_cultivar_type.setText(inputcommoditychoose);
             commodity_newgoods_textviewInstall.setText(inputhowmonet);
         }else if(14 == requestCode && data != null){
-            String inputcarchoose = data.getStringExtra("inputcarchoose");
-            commodity_newgoods_cartype_text.setText(inputcarchoose);
+            brand_series = data.getStringExtra("inputcarchoose");
+            commodity_newgoods_cartype_text.setText(brand_series);
+        }else if(15 == requestCode && data != null){
+            answer = data.getStringArrayListExtra("answer");
+            question = data.getStringArrayListExtra("question");
+        } else if(16 == requestCode && data != null){
+            Uri uri = Uri.parse(data.getStringExtra("graphicDescription"));
+            try {
+                graphicDescription = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+                if(graphicDescription != null){
+                    commodity_goodnews_description.setText("已设置");
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if (17 == requestCode && data != null){
+            giftid = data.getStringExtra("inputid");
+            commodity_newgoods_gift.setText(data.getStringExtra("inputgift"));
+        }else if(18 == requestCode && data != null){
+            commodity_newgoods_freight.setText("运费" + data.getStringExtra("inputfreight") + "元");
         }
         if (null == dialog) {
         } else {
@@ -358,5 +619,124 @@ public class CommodityNewgoods extends AppCompatActivity implements View.OnClick
             progressDialog.dismiss();
             progressDialog = null;
         }
+    }
+
+    public String imgPut(String path, List<String> filePaths, Map<String, Object> map) throws Exception {
+        String BOUNDARY = "---------------------------123821742118716"; // boundary就是request头和上传文件内容的分隔符
+
+        // 发送POST请求
+        URL url = new URL(path);
+        //String sa = String.valueOf(new CookieJarImpl(new MemoryCookieStore()));
+        //  CookieStore store = OkHttpUtils.getInstance().getOkHttpClient().
+        ///  List<Cookie> URIS = cookieJar.;
+        CookieJarImpl cookieJarImpl = (CookieJarImpl) OkHttpUtils.getInstance().getOkHttpClient().cookieJar();
+        CookieStore store =cookieJarImpl.getCookieStore();        // 得到所有的 URI
+        List<Cookie> uris = store.getCookies();
+        String responsea = uris.toString();
+
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Connection", "Keep-Alive");
+        conn.setRequestProperty("Cookie", responsea);
+        conn.setUseCaches(false);
+        conn.setDoOutput(true);
+        conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + BOUNDARY);
+
+        OutputStream out = new DataOutputStream(conn.getOutputStream());
+
+        // *****************************其他参数的设置*********************************
+        if (map != null) {
+            Iterator iter = map.entrySet().iterator();
+            StringBuffer sb = new StringBuffer();
+            while (iter.hasNext()) {
+                Map.Entry entry = (Map.Entry) iter.next();
+                String inputName = (String) entry.getKey();
+                String inputValue = (String) entry.getValue();
+                if (inputValue == null) {
+                    continue;
+                }
+                sb.append("\r\n").append("--").append(BOUNDARY).append("\r\n");
+                sb.append("Content-Disposition: form-data; name=\"" + inputName + "\"\r\n\r\n");
+                sb.append(inputValue);
+            }
+
+            out.write(sb.toString().getBytes());
+        }
+        // *****************************其他参数的设置
+        // end*********************************
+
+        // ************************文件和图片的设置*****************************
+        if (ListUtil.hasValue(filePaths)) {
+            for (String filePath : filePaths) {
+                String filename = filePath.substring(filePath.lastIndexOf("/") + 1);
+
+                StringBuffer strBuf = new StringBuffer();
+                strBuf.append("\r\n").append("--").append(BOUNDARY).append("\r\n");
+                // strBuf.append("Content-Disposition: form-data; name='file" +
+                // index + "'; filename=" + filename + "\r\n");
+                strBuf.append("Content-Disposition: form-data; name=\"" + filename  + "\"; filename=\"" + filename + "\"\r\n");
+                strBuf.append("Content-Type:multipart/form-data" + "\r\n\r\n");
+
+                out.write(strBuf.toString().getBytes());
+
+                InputStream is = new FileInputStream(filePath);
+                DataInputStream i = new DataInputStream(is);
+
+                int bytes = 0;
+                byte[] bufferOut = new byte[1024 * 500 * 3];
+                while ((bytes = i.read(bufferOut)) != -1) {
+                    out.write(bufferOut, 0, bytes);
+                }
+                is.close();
+            }
+        }
+        // ************************文件和图片的设置 end*****************************
+
+        byte[] endData = ("\r\n--" + BOUNDARY + "--\r\n").getBytes();
+        out.write(endData);
+
+        out.flush();
+        out.close();
+
+        InputStream ins = null;
+        try {
+            ins = conn.getInputStream();
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            int in;
+            while ((in = ins.read()) != -1) {
+                baos.write(in);
+            }
+            String str = baos.toString();
+            return str;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ins != null) {
+                ins.close();
+            }
+        }
+        return null;
+    }
+
+    public static HttpCookie getcookies(){
+
+        HttpCookie res = null;
+        // 使用 Cookie 的时候：
+        // 取出 CookieStore
+        CookieJarImpl cookieJarImpl = (CookieJarImpl)OkHttpUtils.getInstance().getOkHttpClient().cookieJar();
+        CookieStore store =cookieJarImpl.getCookieStore();        // 得到所有的 URI
+        List<Cookie> uris = store.getCookies();
+        /**
+         for (URI ur : uris) {
+         // 筛选需要的 URI
+         // 得到属于这个 URI 的所有 Cookie
+         List<HttpCookie> cookies = store.get(ur);
+         for (HttpCookie coo : cookies) {
+         res = coo;
+         }
+         }
+         **/
+        return res;
     }
 }

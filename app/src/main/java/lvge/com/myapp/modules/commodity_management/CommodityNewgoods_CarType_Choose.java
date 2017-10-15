@@ -4,32 +4,48 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
+import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
 import lvge.com.myapp.R;
+import lvge.com.myapp.http.NetworkConfig;
+import lvge.com.myapp.model.CommodityNewgoodsCarTypeChooseMode;
+import lvge.com.myapp.model.CommodityNewgoodsGiftMode;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
 
-    private ListView listView;
+    private ExpandableListView listView;
     private SortAdapter sortAdapter;
-    private List<CarBean> data;
+    private List<CommodityNewgoodsCarTypeChooseMode.MarketEntity> data;
     private SideBar sideBar;
     private TextView diaglog;
 
     private ArrayList<Boolean> checkList = new ArrayList<Boolean>();  //判断单选位置
     private String str = "";
+    private CustomProgressDialog progressDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +80,21 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
 
     private void  init(){
         sideBar = (SideBar)findViewById(R.id.sidebar);
-        listView = (ListView)findViewById(R.id.car_choose_type_listview);
+        listView = (ExpandableListView) findViewById(R.id.car_choose_type_listview);
         diaglog = (TextView)findViewById(R.id.dialog);
         sideBar.setTextView(diaglog);
+
+        listView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                for(int i=0;i<listView.getExpandableListAdapter().getGroupCount();i++){
+                    if(groupPosition != i){
+                        listView.collapseGroup(i);
+                    }
+                }
+               // listView.expandGroup(groupPosition);
+            }
+        });
 
         sideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
             @Override
@@ -78,59 +106,83 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
             }
         });
 
-        data = getData(getResources().getStringArray(R.array.listcar));
+        startProgerssDialog();
+        try {
+            OkHttpUtils.get()
+                    .url(NetworkConfig.BASE_URL+"sellerapp/goods/carBrandList")
+                    .build()
+                    .execute(new Callback() {
+                        @Override
+                        public Object parseNetworkResponse(Response response, int i) throws Exception {
+                            String string = response.body().string();//获取相应中的内容Json格式
+                            //把json转化成对应对象
+                            CommodityNewgoodsCarTypeChooseMode result = new Gson().fromJson(string, CommodityNewgoodsCarTypeChooseMode.class);
+                            return result;
+                        }
 
-        for (int i=0;i<data.size();i++){
-            checkList.add(false);
+                        @Override
+                        public void onError(Call call, Exception e, int i) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Object o, int i) {
+                            if (null != o) {
+                                stopProgressDialog();
+                                CommodityNewgoodsCarTypeChooseMode result = (CommodityNewgoodsCarTypeChooseMode) o;//把通用的Object转化成指定的对象
+                                if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
+                                   /* contentList = result.getMarketEntity().getEntityList();
+                                    for (int j=0;j<contentList.size();j++){
+                                        checkList.add(false);
+                                    }
+                                    //commodity_newgoods_gift_listview.setAdapter(new CommodityNewgoodsGiftAdapter(CommodityNewgoodsGift.this, contentList,checkList));
+                                    commodityNewgoodsGiftAdapter = new CommodityNewgoodsGift.CommodityNewgoodsGiftAdapter(CommodityNewgoodsGift.this, contentList,checkList);
+                                    commodity_newgoods_gift_listview.setAdapter(commodityNewgoodsGiftAdapter);
+                                    stopProgressDialog();*/
+                                   data = result.getMarketEntity();
+                                    for (int j=0;j<data.size();j++){
+                                        checkList.add(false);
+                                    }
+                                    // 数据在放在adapter之前需要排序
+                                    Collections.sort(data, new Comparator<CommodityNewgoodsCarTypeChooseMode.MarketEntity>() {
+                                        @Override
+                                        public int compare(CommodityNewgoodsCarTypeChooseMode.MarketEntity o1, CommodityNewgoodsCarTypeChooseMode.MarketEntity o2) {
+
+                                            if(o1.getFirstLetter().hashCode() > o2.getFirstLetter().hashCode()){
+                                                return 1;
+                                            }
+                                            if(o1.getFirstLetter().hashCode() == o2.getFirstLetter().hashCode()){
+                                                return 0;
+                                            }
+                                            return -1;
+                                        }
+                                    });
+                                    sortAdapter = new SortAdapter(CommodityNewgoods_CarType_Choose.this, data,checkList);
+                                    listView.setAdapter(sortAdapter);
+                                }
+                            }
+                        }
+                    });
+
+        } catch (Exception e) {
+            stopProgressDialog();
+            Toast.makeText(CommodityNewgoods_CarType_Choose.this,"获取失败！",Toast.LENGTH_LONG).show();
         }
-        // 数据在放在adapter之前需要排序
-        Collections.sort(data, new PinyinComparator());
-        sortAdapter = new SortAdapter(this, data,checkList);
-        listView.setAdapter(sortAdapter);
+
     }
 
-    private List<CarBean> getData(String[] data) {
-        List<CarBean> listarray = new ArrayList<CarBean>();
-        for (int i = 0; i < data.length; i++) {
-            String pinyin = PinyinUtils.getPingYin(data[i]);
-            String Fpinyin = pinyin.substring(0, 1).toUpperCase();
 
-            CarBean person = new CarBean();
-            person.setName(data[i]);
-            person.setPinYin(pinyin);
-            // 正则表达式，判断首字母是否是英文字母
-            if (Fpinyin.matches("[A-Z]")) {
-                person.setFirstPinYin(Fpinyin);
-            } else {
-                person.setFirstPinYin("#");
-            }
 
-            listarray.add(person);
-        }
-        return listarray;
-    }
-
-    //设置选中位置，将其他位置设置未选
-    public void checkPosition(int position) {
-        str = data.get(position).getName();
-
-        for (int i = 0; i < checkList.size(); i++) {
-            if (position == i) {
-                checkList.set(i, true);
-            } else {
-                checkList.set(i, false);
-            }
-        }
-        sortAdapter.notifyDataSetChanged();
-    }
-
-    public class SortAdapter extends BaseAdapter {
+    public class SortAdapter extends BaseExpandableListAdapter {
         private Context context;
-        private List<CarBean> cars;
+        private List<CommodityNewgoodsCarTypeChooseMode.MarketEntity> cars;
+        private List<CommodityNewgoodsCarTypeChooseMode.MarketEntity.Series> series;
         private LayoutInflater inflater;
         private List<Boolean> list;
 
-        public SortAdapter(Context context, List<CarBean> car, List<Boolean> list) {
+        private String string = "";  //第一个字母
+
+        public SortAdapter(Context context, List<CommodityNewgoodsCarTypeChooseMode.MarketEntity> car, List<Boolean> list) {
             this.context = context;
             this.cars = car;
             this.list = list;
@@ -139,18 +191,111 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
 
 
         @Override
-        public int getCount() {
+        public int getGroupCount() {
             return cars.size();
         }
 
         @Override
-        public Object getItem(int position) {
-            return null;
+        public int getChildrenCount(int groupPosition) {
+            return cars.get(groupPosition).getSeries().size();
         }
 
         @Override
-        public long getItemId(int position) {
-            return position;
+        public Object getGroup(int groupPosition) {
+            return cars.get(groupPosition);
+        }
+
+        @Override
+        public Object getChild(int groupPosition, int childPosition) {
+            return cars.get(groupPosition).getSeries().get(childPosition);
+        }
+
+        @Override
+        public long getGroupId(int groupPosition) {
+            return groupPosition;
+        }
+
+        @Override
+        public long getChildId(int groupPosition, int childPosition) {
+            return childPosition;
+        }
+
+        @Override
+        public boolean hasStableIds() {
+            return true;
+        }
+
+        @Override
+        public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+
+            View view = convertView;
+            ViewHolder holder = null;
+            if(view == null){
+                holder = new ViewHolder();
+                view = inflater.inflate(R.layout.list_item, null);
+                holder.tv_tag = (TextView) view.findViewById(R.id.tv_lv_item_tag);
+                holder.tv_name = (TextView) view.findViewById(R.id.tv_lv_item_name);
+                holder.iv_lv_item_head = (ImageView) view.findViewById(R.id.iv_lv_item_head);
+                holder.commodity_newgoods_commodity_type_checkbox = (ImageView) view.findViewById(R.id.commodity_newgoods_commodity_type_checkbox);
+
+                view.setTag(holder);
+            }else {
+                holder = (ViewHolder)view.getTag();
+            }
+
+            if (cars.get(groupPosition).getFirstLetter().equals(string) ) {
+                holder.tv_tag.setVisibility(View.GONE);
+            } else {
+                string = cars.get(groupPosition).getFirstLetter();
+                holder.tv_tag.setVisibility(View.VISIBLE);
+                holder.tv_tag.setText(cars.get(groupPosition).getFirstLetter());
+            }
+            if(isExpanded){
+                holder.commodity_newgoods_commodity_type_checkbox.setImageResource(R.mipmap.commodity_list_xiala_right);
+            }else {
+                holder.commodity_newgoods_commodity_type_checkbox.setImageResource(R.mipmap.commodity_list_gre_xiala);
+            }
+
+            holder.tv_name.setText(cars.get(groupPosition).getName());
+
+            return view;
+        }
+
+        @Override
+        public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+
+            string = cars.get(groupPosition).getFirstLetter();
+            View view = convertView;
+            ChildHolder holder = null;
+            if(view == null){
+                holder = new ChildHolder();
+
+                view = inflater.inflate(R.layout.commodity_choosecommodity_list,null);
+                holder.textView = (TextView)view.findViewById(R.id.commodity_newgoods_commodity_type_textview);
+                holder.checkBox = (ImageView)view.findViewById(R.id.commodity_newgoods_commodity_type_checkbox);
+                view.setTag(holder);
+            }else {
+                holder = (ChildHolder)view.getTag();
+            }
+            /*if(childPosition == 0){
+                holder.checkBox.setImageResource(R.mipmap.checkbox_checked);
+            }else {
+                holder.checkBox.setImageResource(R.color.background_gray);
+            }*/
+
+
+           holder.textView.setText(cars.get(groupPosition).getSeries().get(childPosition).getName());
+            return view;
+        }
+
+        @Override
+        public boolean isChildSelectable(int groupPosition, int childPosition) {
+            return false;
+        }
+
+        public  class ChildHolder{
+            public TextView textView;
+            public ImageView checkBox;
         }
 
         class ViewHolder {
@@ -160,10 +305,10 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
             TextView tv_name;
         }
 
-        @Override
+/*        @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             ViewHolder viewHolder = null;
-            CarBean car = cars.get(position);
+            CommodityNewgoodsCarTypeChooseMode.MarketEntity car = cars.get(position);
 
             if (convertView == null) {
                 viewHolder = new ViewHolder();
@@ -172,27 +317,31 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
                 viewHolder.tv_name = (TextView) convertView.findViewById(R.id.tv_lv_item_name);
                 viewHolder.iv_lv_item_head = (ImageView) convertView.findViewById(R.id.iv_lv_item_head);
                 viewHolder.commodity_newgoods_commodity_type_checkbox = (ImageView) convertView.findViewById(R.id.commodity_newgoods_commodity_type_checkbox);
+                viewHolder.list_car = (ListView)convertView.findViewById(R.id.list_car);
                 convertView.setTag(viewHolder);
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
-            int selection = car.getFirstPinYin().charAt(0);
-            int positionForSelection = getPositionForSelection(selection);
 
-            if (position == positionForSelection) {
-                viewHolder.tv_tag.setVisibility(View.VISIBLE);
-                viewHolder.tv_tag.setText(car.getFirstPinYin());
-            } else {
+            if (car.getFirstLetter().equals(string) ) {
                 viewHolder.tv_tag.setVisibility(View.GONE);
+            } else {
+                string = car.getFirstLetter();
+                viewHolder.tv_tag.setVisibility(View.VISIBLE);
+                viewHolder.tv_tag.setText(car.getFirstLetter());
             }
             viewHolder.tv_name.setText(car.getName());
 
-            if (list.get(position)) {
+            if(car.getSeries().size() != 0){
+
+            }
+
+           *//* if (list.get(position)) {
                 viewHolder.commodity_newgoods_commodity_type_checkbox.setImageResource(R.mipmap.checkbox_checked);
             } else {
                 // holder.checkBox.setChecked(false);
                 viewHolder.commodity_newgoods_commodity_type_checkbox.setImageResource(R.color.background_gray);
-            }
+            }*//*
 
             convertView.setOnClickListener(new View.OnClickListener() {  //item进行单选设置
                 @Override
@@ -201,182 +350,12 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
                 }
             });
 
-            switch (car.getName()) {
-                case "吉普":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a50);
-                    break;
-                case "MG":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a79);
-                    break;
-                case "mini":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a80);
-                    break;
-                case "奥迪":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a2);
-                    break;
-                case "宝骏":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a4);
-                    break;
-                case "宝马":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a5);
-                    break;
-                case "保时捷":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a6);
-                    break;
-                case "北汽":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a9);
-                    break;
-                case "奔驰":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a10);
-                    break;
-                case "奔腾":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a11);
-                    break;
-                case "本田":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a12);
-                    break;
-                case "比亚迪":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a13);
-                    break;
-                case "标致":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a14);
-                    break;
-                case "别克":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a15);
-                    break;
-                case "大迪":
-                    break;
-                case "大众":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a23);
-                    break;
-                case "帝豪":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a51);
-                    break;
-                case "东风风行":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a26);
-                    break;
-                case "东风日产":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a92);
-                    break;
-                case "菲亚特":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a32);
-                    break;
-                case "丰田":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a33);
-                    break;
-                case "福迪":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a34);
-                    break;
-                case "福特":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a35);
-                    break;
-                case "广汽":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a39);
-                    break;
-                case "海马":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a44);
-                    break;
-                case "瑞麒":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a95);
-                    break;
-                case "威旺":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a8);
-                    break;
-                case "五菱":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a110);
-                    break;
-                case "现代":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a113);
-                    break;
-                case "雪弗兰":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a115);
-                    break;
-                case "雪铁龙":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a116);
-                    break;
-                case "英菲尼迪":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a120);
-                    break;
-                case "英伦汽车":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a53);
-                    break;
-                case "永源":
-                    break;
-                case "长安":
-                    viewHolder.iv_lv_item_head.setImageResource(R.mipmap.a19);
-                    break;
-                case "长安铃木":
-                    break;
-                case "长安商用":
-                    break;
-                case "长城汽车":
-                    break;
-                case "中华":
-                    break;
-                case "中兴":
-                    break;
-                case "众泰":
-                    break;
-                case "华普":
-                    break;
-                case "黄海":
-                    break;
-                case "汇总":
-                    break;
-                case "吉奥":
-                    break;
-                case "江淮":
-                    break;
-                case "江铃":
-                    break;
-                case "江南":
-                    break;
-                case "九龙":
-                    break;
-                case "解放":
-                    break;
-                case "卡迪拉克":
-                    break;
-                case "开瑞":
-                    break;
-                case "兰博基尼":
-                    break;
-                case "雷克萨斯":
-                    break;
-                case "雷诺":
-                    break;
-                case "理念":
-                    break;
-                case "莲花":
-                    break;
-                case "陆风":
-                    break;
-                case "路虎":
-                    break;
-                case "马自达":
-                    break;
-                case "纳智捷":
-                    break;
-                case "奇瑞":
-                    break;
-                case "启辰":
-                    break;
-                case "起亚":
-                    break;
-                case "全球鹰":
-                    break;
-                case "荣威":
-                    break;
-                case "三菱":
-                    break;
-            }
-
             return convertView;
-        }
+        }*/
 
         public int getPositionForSelection(int selection) {
             for (int i = 0; i < cars.size(); i++) {
-                String Fpinyin = cars.get(i).getFirstPinYin();
+                String Fpinyin = cars.get(i).getFirstLetter();
                 char first = Fpinyin.toUpperCase().charAt(0);
                 if (first == selection) {
                     return i;
@@ -386,6 +365,22 @@ public class CommodityNewgoods_CarType_Choose extends AppCompatActivity {
 
         }
 
+    }
+
+
+    private void startProgerssDialog(){
+        if(progressDialog == null){
+            progressDialog = CustomProgressDialog.createDialog(this);
+            // progressDialog.setMessage("正在加载中。。");
+        }
+        progressDialog.show();
+    }
+
+    private void stopProgressDialog(){
+        if(progressDialog != null){
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
     }
 
 }

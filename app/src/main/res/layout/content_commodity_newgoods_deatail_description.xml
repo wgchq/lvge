@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="lvge.com.myapp.modules.commodity_management.CommodityNewgoodsDeatailDescription"
+    tools:showIn="@layout/activity_commodity_newgoods_deatail_description">
+
+    <EditText
+        android:id="@+id/commodity_newgoods_detail_description"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x186"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@drawable/edit_text_has_corner_shape"
+        android:hint="请输入详细描述"
+        android:paddingLeft="@dimen/x32"
+        android:textColorHint="#666"
+        android:textSize="@dimen/x32"
+        android:lines="5"
+        android:gravity="top"
+        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,TextFields" />
+
+</LinearLayout>

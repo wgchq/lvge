@@ -28,6 +28,7 @@ import java.util.List;
 import lvge.com.myapp.MainActivity;
 import lvge.com.myapp.ProgressDialog.CustomProgressDialog;
 import lvge.com.myapp.R;
+import lvge.com.myapp.http.NetworkConfig;
 import lvge.com.myapp.model.CommodityListEntitylist;
 import lvge.com.myapp.model.CommodityListMode;
 import lvge.com.myapp.model.EntityList;
@@ -84,7 +85,7 @@ public class CommodityHomepageOnsale extends Fragment {
         startProgerssDialog();
         try {
             OkHttpUtils.get()//get 方法
-                    .url("http://www.lvgew.com/obdcarmarket/sellerapp/goods/goodsList") //地址
+                    .url(NetworkConfig.BASE_URL+"sellerapp/goods/goodsList") //地址
                     .addParams("status", "2")
                     .addParams("pageIndex", "1") //需要传递的参数
                     .addParams("pageSize", "10")

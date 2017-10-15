@@ -260,5 +260,14 @@
     <string name="sale_consultant_two_name">姓名</string>
     <string name="sale_consultant_two_memo">个性签名</string>
     <string name="map_not_ready">地图未准备好</string>
+    <string name="title_activity_commodity_newgoods_graphic_description">
+        CommodityNewgoodsGraphicDescription
+    </string>
+    <string name="title_activity_commodity_newgoods_deatail_description">
+        CommodityNewgoodsDeatailDescription
+    </string>
+    <string name="title_activity_commodity_newgoods_gift">CommodityNewgoodsGift</string>
+    <string name="title_activity_commodity_newgoods_freight">CommodityNewgoodsFreight</string>
+    <string name="title_activity_commodity_newgoods_gift_add">CommodityNewgoodsGiftAdd</string>
 
 </resources>

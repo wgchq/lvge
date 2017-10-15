@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="lvge.com.myapp.modules.commodity_management.CommodityNewgoodsGraphicDescription"
+    tools:showIn="@layout/activity_commodity_newgoods_graphic_description"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/x80"
+    android:background="@color/background_gray"
+    android:paddingLeft="@dimen/x15"
+    android:paddingTop="@dimen/x15"
+    tools:ignore="InefficientWeight,RtlHardcoded,RtlSymmetry,UselessParent"
+    android:layout_weight="0.69">
+
+    <ImageView
+        android:id="@+id/commodity_newgoods_graphic_decription_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/x10"
+        android:contentDescription=""
+        android:onClick="show"
+        android:src="@mipmap/commodity_newgoods_mainimage"
+        tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry">
+    </ImageView>
+</LinearLayout>
+
+</LinearLayout>

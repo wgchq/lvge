@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="lvge.com.myapp.modules.commodity_management.CommodityNewgoodsFreight"
+    tools:showIn="@layout/activity_commodity_newgoods_freight"
+    android:background="#EFEFF4"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/commodity_newgoods_Realyout_Freight"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x80"
+        android:background="@drawable/edit_text_shape"
+        tools:ignore="DuplicateIds,UselessParent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x15"
+            android:text="默认运费0.00元"
+            android:textSize="@dimen/x30"
+            tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawablePadding="@dimen/x15"
+            android:src="@mipmap/right"
+            android:paddingRight="@dimen/x15"
+            android:textSize="@dimen/x28"
+            tools:ignore="ContentDescription,HardcodedText,RelativeOverlap,RtlHardcoded,RtlSymmetry,SmallSp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x44"
+        android:background="#EFEFF4"
+        tools:ignore="InefficientWeight" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x80"
+        android:background="@drawable/edit_text_shape"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/commodity_newgoods_freight_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x15"
+            android:text="自定义运费"
+            android:paddingRight="@dimen/x20"
+            android:textSize="@dimen/x30"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+        <EditText
+            android:id="@+id/commodity_newgoods_freight_edittext"
+            android:paddingLeft="@dimen/x20"
+            android:paddingRight="@dimen/x20"
+            android:background="@android:drawable/edit_text"
+            android:hint="请输入运费"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/x250"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/commodity_newgoods_freight_textview"
+            tools:ignore="HardcodedText,LabelFor,RelativeOverlap,RtlHardcoded,TextFields" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/x20"
+            android:layout_centerVertical="true"
+            android:drawablePadding="@dimen/x15"
+            android:layout_toRightOf="@+id/commodity_newgoods_freight_edittext"
+            android:text="元"
+            android:paddingRight="@dimen/x15"
+            android:textSize="@dimen/x28"
+            tools:ignore="ContentDescription,HardcodedText,RelativeOverlap,RtlHardcoded,RtlSymmetry,SmallSp" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\t\t默认运费为0.00元，即全国包邮。如果需要修改请选择自定义运费，设置运费。"
+        android:paddingRight="@dimen/x20"
+        android:paddingTop="@dimen/x50"
+        android:paddingLeft="@dimen/x20"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

@@ -61,14 +61,7 @@ public class EmployeeInformationAddPost extends AppCompatActivity {
         SwipeMenuCreator creator = new SwipeMenuCreator() {
             @Override
             public void create(SwipeMenu swipeMenu) {
-                /*SwipeMenuItem deleteItem = new SwipeMenuItem(getApplicationContext());
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9, 0x3F, 0x25)));
-                deleteItem.setWidth(dp2px(90));
-                deleteItem.setTitle("删除");
-                deleteItem.setIcon(R.mipmap.delete);
-                deleteItem.setTitleSize(R.dimen.x28);
-                deleteItem.setTitleColor(R.color.mainBackgroundColor);
-                swipeMenu.addMenuItem(deleteItem);*/
+
                 SwipeMenuItem openItem = new SwipeMenuItem(context);
                 openItem.setBackground(new ColorDrawable(Color.RED));
                 openItem.setWidth(dp2px(90));

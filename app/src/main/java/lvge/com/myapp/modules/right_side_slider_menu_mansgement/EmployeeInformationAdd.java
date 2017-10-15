@@ -115,7 +115,7 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
                 new Thread() {
                     public void run() {
                         try {
-                            // showProgressDialog();
+                            startProgerssDialog();
                             post_str(employee_information_add_addname.getText().toString(), employee_information_add_password.getText().toString(), employee_information_add_addpasswordagain.getText().toString(),employee_information_add_name.getText().toString(),employee_information_add_inputsex.getText().toString(),employee_information_add_inputemploy.getText().toString());
                         } catch ( Exception e) {
                             e.printStackTrace();
@@ -123,81 +123,7 @@ public class EmployeeInformationAdd extends AppCompatActivity implements View.On
                         }
                     }
                 }.start();
-               /* try{
-                    OkHttpUtils.get()
-                            .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/saveStaff.do")
-                            .addParams("username",employee_information_add_addname.getText().toString())
-                            .addParams("password",employee_information_add_password.getText().toString())
-                            .addParams("confirmPassword",employee_information_add_addpasswordagain.getText().toString())
-                            .addParams("name",employee_information_add_name.getText().toString())
-                            .addParams("sex",sex)
-                            .addParams("job",employee_information_add_inputemploy.getText().toString())
-                            .build()
-                            .execute(new Callback() {
-                                @Override
-                                public Object parseNetworkResponse(Response response, int i) throws Exception {
-                                    String string = response.body().string();//获取相应中的内容Json格式
-                                    //把json转化成对应对象
-                                    //LoginResultModel是和后台返回值类型结构一样的对象
-                                    LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
-                                    return result;
-                                }
 
-                                @Override
-                                public void onError(Call call, Exception e, int i) {
-
-                                }
-
-                                @Override
-                                public void onResponse(Object o, int i) {
-                                    if (null != o) {
-                                        LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
-                                        if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
-                                            try{
-                                                //List<String> filePaths = new ArrayList<>();
-                                                //filePaths.add(saveBitmap());
-                                                OkHttpUtils.post()
-                                                        .url("http://www.lvgew.com/obdcarmarket/sellerapp/user/updateImage")
-                                                        .addFile("photo","1.png",new File(saveBitmap()))
-                                                        .build()
-                                                        .execute(new Callback() {
-                                                            @Override
-                                                            public Object parseNetworkResponse(Response response, int i) throws Exception {
-                                                                String string = response.body().string();//获取相应中的内容Json格式
-                                                                //把json转化成对应对象
-                                                                //LoginResultModel是和后台返回值类型结构一样的对象
-                                                                stopProgressDialog();
-                                                                LoginResultModel result = new Gson().fromJson(string, LoginResultModel.class);
-                                                                return result;
-                                                            }
-
-                                                            @Override
-                                                            public void onError(Call call, Exception e, int i) {
-
-                                                            }
-
-                                                            @Override
-                                                            public void onResponse(Object o, int i) {
-                                                                if (null != o) {
-                                                                    LoginResultModel result = (LoginResultModel) o;//把通用的Object转化成指定的对象
-                                                                    if (result.getOperationResult().getResultCode() == 0) {//当返回值为0时可登录
-                                                                        isSave = true;
-                                                                        Toast.makeText(EmployeeInformationAdd.this,"上传成功！",Toast.LENGTH_LONG).show();
-                                                                    }
-                                                                }
-                                                            }
-                                                        });
-                                            }catch (Exception e){
-                                                Toast.makeText(EmployeeInformationAdd.this,"上传失败！",Toast.LENGTH_LONG).show();
-                                            }
-                                        }
-                                    }
-                                }
-                            });
-                }catch (Exception e){
-                    stopProgressDialog();
-                    Toast.makeText(EmployeeInformationAdd.this,"上传失败！",Toast.LENGTH_LONG).show();
-                }*/
             }
         });
 

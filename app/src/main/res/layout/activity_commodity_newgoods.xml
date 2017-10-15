@@ -41,11 +41,6 @@
     </android.support.design.widget.AppBarLayout>
 
     <!--网络监测-->
-    <lvge.com.myapp.view.NetworkCheckView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -464,8 +459,8 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:drawablePadding="@dimen/x15"
-                            android:src="@mipmap/menu_dropdown"
                             android:paddingRight="@dimen/x15"
+                            android:src="@mipmap/menu_dropdown"
                             tools:ignore="ContentDescription,HardcodedText,RelativeOverlap,RtlHardcoded,RtlSymmetry,SmallSp" />
 
                     </RelativeLayout>
@@ -631,6 +626,7 @@
 
 
                     <RelativeLayout
+                        android:id="@+id/commodity_goodnews_Relayout_description"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/x80"
                         android:background="@drawable/edit_text_shape"
@@ -646,6 +642,7 @@
                             tools:ignore="HardcodedText,RtlHardcoded" />
 
                         <TextView
+                            android:id="@+id/commodity_goodnews_description"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -659,6 +656,7 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/commodity_newgoods_Relayout_gift"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/x80"
                         android:background="@drawable/edit_text_shape"
@@ -674,6 +672,7 @@
                             tools:ignore="HardcodedText,RtlHardcoded" />
 
                         <TextView
+                            android:id="@+id/commodity_newgoods_gift"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -703,6 +702,7 @@
                             tools:ignore="HardcodedText,RtlHardcoded" />
 
                         <TextView
+                            android:id="@+id/commodity_newgoods_freight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -806,6 +806,7 @@
                 android:gravity="center">
 
                 <TextView
+                    android:id="@+id/commodity_newgoods_shangjia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/text_left_to_img_padding"
@@ -819,5 +820,10 @@
 
         </LinearLayout>
     </RelativeLayout>
+
+    <lvge.com.myapp.view.NetworkCheckView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout >

@@ -379,7 +379,23 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".modules.commodity_management.CommodityNewgoodsCommdotyType" />
         <activity android:name=".modules.commodity_management.CommodityNewgoods_CarType_Choose" />
-        <activity android:name=".ui.activity.OrderShippingActivity"></activity>
+        <activity android:name=".ui.activity.OrderShippingActivity" />
+        <activity
+            android:name=".modules.commodity_management.CommodityNewgoodsGraphicDescription"
+            android:label="@string/title_activity_commodity_newgoods_graphic_description"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".modules.commodity_management.CommodityNewgoodsGift"
+            android:label="@string/title_activity_commodity_newgoods_gift"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".modules.commodity_management.CommodityNewgoodsFreight"
+            android:label="@string/title_activity_commodity_newgoods_freight"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".modules.commodity_management.CommodityNewgoodsGiftAdd"
+            android:label="@string/title_activity_commodity_newgoods_gift_add"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

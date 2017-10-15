@@ -8,7 +8,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-     <!--   <item name="android:windowNoTitle">true</item>
+        <!--   <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>-->
     </style>
 
@@ -89,7 +89,7 @@
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
     </style>
-    
+
     <style name="CustomProgressDialog" parent="@style/CustomDialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
@@ -102,8 +102,7 @@
     </style>
 
     <!--choosedialog-->
-    <style name="ChooseDialog"
-        parent="android:Theme.Dialog">
+    <style name="ChooseDialog" parent="android:Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -118,13 +117,15 @@
         <item name="colorControlNormal">@color/lg_button_text_color</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
+
     <style name="my_title_style">
         <item name="android:paddingTop">@dimen/x1</item>
     </style>
+
     <style name="SwitchButtonStyle">
-         <item name="android:paddingLeft">5dp</item>
-         <item name="android:paddingRight">5dp</item>
-         <item name="android:paddingTop">1dp</item>
-         <item name="android:paddingBottom">1dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingTop">1dp</item>
+        <item name="android:paddingBottom">1dp</item>
     </style>
 </resources>

@@ -65,12 +65,13 @@
         android:layout_height="match_parent"
         tools:ignore="UselessParent">
 
-    <ListView
+    <ExpandableListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"
+        android:groupIndicator="@null"
         android:id="@+id/car_choose_type_listview">
-    </ListView>
+    </ExpandableListView>
 
     <TextView
         android:layout_width="@dimen/x80"

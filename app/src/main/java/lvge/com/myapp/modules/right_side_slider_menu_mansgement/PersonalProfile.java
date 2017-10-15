@@ -118,7 +118,9 @@ public class PersonalProfile extends AppCompatActivity implements View.OnClickLi
 
         persion_profile_iamgeview = (ImageView)findViewById(R.id.persion_profile_iamgeview);
         persion_profile_inputname = (TextView)findViewById(R.id.persion_profile_inputname);
-        persion_profile_inputname.setText(result.getMarketEntity().getSeller().getName());
+        if(!result.getMarketEntity().getSeller().getName().equals("")){
+            persion_profile_inputname.setText(result.getMarketEntity().getSeller().getName());
+        }
         persion_profile_inputsex = (TextView)findViewById(R.id.persion_profile_inputsex);
 
         if(result.getMarketEntity().getHeadImg() != null && result.getMarketEntity().getHeadImg() != ""){
