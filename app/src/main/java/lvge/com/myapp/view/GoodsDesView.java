@@ -57,8 +57,8 @@ public class GoodsDesView extends LinearLayout {
     public void setHeader(String url){
         Glide.with(getContext()).load(url).diskCacheStrategy(DiskCacheStrategy.RESULT)
                 .fitCenter()
-                .placeholder(R.mipmap.a4)
-                .error(R.mipmap.a4)
+                .placeholder(R.drawable.default_header)
+                .error(R.drawable.default_header)
                 .into(mIvHeader);
     }
     public void setMoney(double number){

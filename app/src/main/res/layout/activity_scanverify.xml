@@ -146,7 +146,7 @@
                     android:layout_width="@dimen/x122"
                     android:layout_height="@dimen/x122"
                     android:layout_marginLeft="@dimen/x20"
-                    tools:src="@mipmap/phone"/>
+                    android:src="@drawable/default_header"/>
             </FrameLayout>
         </ScrollView>
 
