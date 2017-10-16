@@ -2,16 +2,12 @@ package lvge.com.myapp.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import butterknife.BindView;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import lvge.com.myapp.R;
 import lvge.com.myapp.base.BaseFragment;
 import lvge.com.myapp.http.DefaultSubscriber;
@@ -20,32 +16,12 @@ import lvge.com.myapp.model.order.OrderDetailModel;
 import lvge.com.myapp.model.order.OrderItemModel;
 import lvge.com.myapp.modules.validationtypescanqr.MipcaActivityCaptureActivity;
 import lvge.com.myapp.ui.activity.KeyBoardActivity;
-import lvge.com.myapp.view.GoodsDesView;
-import lvge.com.myapp.view.LoadingLayout;
 
 
-public class ScanVerifyFragment extends BaseFragment {
-    @BindView(R.id.tv_name)
-    TextView mTvName;
-    @BindView(R.id.tv_phone)
-    TextView mTvPhone;
-    @BindView(R.id.tv_address)
-    TextView mTvAddress;
-    @BindView(R.id.goodsDesView)
-    GoodsDesView mGoodsDesView;
-    @BindView(R.id.tv_memo)
-    TextView mTvMemo;
-    @BindView(R.id.tv_order_no)
-    TextView mTvOrderNo;
-    @BindView(R.id.tv_date)
-    TextView mTvDate;
-    @BindView(R.id.ll_loading)
-    LoadingLayout mLlLoading;
-    @BindView(R.id.ll_scan)
-    LinearLayout mLlScan;
-    Unbinder unbinder;
-    private OrderItemModel m;
-    private OrderDetailModel model;
+public class BaseOrderDetailFragment extends BaseFragment {
+
+    protected OrderItemModel m;
+    protected OrderDetailModel model;
 
     @Override
     protected int getLayoutResId() {
@@ -66,21 +42,12 @@ public class ScanVerifyFragment extends BaseFragment {
 
     @Override
     public void configViews() {
-        mTvName.setText(model.getCUSTOMER_NAME());
-        mTvPhone.setText(model.getPHONE());
-        mGoodsDesView.setHeader(model.getGoodsName());
-        mGoodsDesView.setCount(model.getGOODS_NUM());
-        mGoodsDesView.setMoney(model.getGOODS_PRICE());
-        mGoodsDesView.setPriceDes(model.getORIGINAL_PRICE(), model.getGOODS_NUM(), model.getFreight());
-        //        mTvMemo.setText();
-        mTvOrderNo.setText(model.getOrderNO());
-        //        mTvDate.setText();
 
     }
 
     public void getData() {
         OrderService.getOrderDetail(m.getOrderNO())
-                .subscribe(new DefaultSubscriber<OrderDetailModel>(mLlLoading) {
+                .subscribe(new DefaultSubscriber<OrderDetailModel>() {
                     @Override
                     public void onSucced(OrderDetailModel result) {
                         model = result;

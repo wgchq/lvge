@@ -39,10 +39,7 @@ public class MipcaActivityCaptureActivity extends Activity implements DecoratedB
                 @Override
                 public void onClick(View v) {
                   //  MipcaActivityCaptureActivity.this.finish();
-                    Intent intent = new Intent(MipcaActivityCaptureActivity.this, MainPageActivity.class);
-                    setResult(2,intent);
-
-                    finish();
+                    startInput();
                     // startActivity(intent);
                 }
             });
@@ -58,6 +55,12 @@ public class MipcaActivityCaptureActivity extends Activity implements DecoratedB
             }
         });
 
+    }
+    protected void startInput(){
+        Intent intent = new Intent(MipcaActivityCaptureActivity.this, MainPageActivity.class);
+        setResult(2,intent);
+
+        finish();
     }
 
     @Override
