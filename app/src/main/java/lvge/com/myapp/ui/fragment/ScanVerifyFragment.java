@@ -55,12 +55,12 @@ public class ScanVerifyFragment extends BaseOrderDetailFragment {
 
     @Override
     public void configViews() {
-        mTvName.setText(model.getCUSTOMER_NAME());
-        mTvPhone.setText(model.getPHONE());
+        mTvName.setText(model.getCustomerName());
+        mTvPhone.setText(model.getCustomerPhone());
         mGoodsDesView.setHeader(model.getGoodsName());
         mGoodsDesView.setCount(model.getGOODS_NUM());
-        mGoodsDesView.setMoney(model.getGOODS_PRICE());
-        mGoodsDesView.setPriceDes(model.getORIGINAL_PRICE(), model.getGOODS_NUM(), model.getFreight());
+//        mGoodsDesView.setMoney(model.g);
+//        mGoodsDesView.setPriceDes(model.getORIGINAL_PRICE(), model.getGOODS_NUM(), model.getFreight());
         //        mTvMemo.setText();
         mTvOrderNo.setText(model.getOrderNO());
         //        mTvDate.setText();

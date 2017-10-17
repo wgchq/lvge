@@ -1,5 +1,29 @@
 [
     {
+        "outputFile": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-xlarge-land-v4/values-xlarge-land-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 63,
+                    "endOffset": 114
+                },
+                "from": {
+                    "file": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/values-xlarge-land/values.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 56,
+                        "endColumn": 63,
+                        "endOffset": 115
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-xlarge-land-v4/values-xlarge-land-v4.xml",
         "map": [
             {

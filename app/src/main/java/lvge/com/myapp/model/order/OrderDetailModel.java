@@ -7,7 +7,7 @@ public class OrderDetailModel implements Serializable{
 
     /**
      * SENDER : null
-     * ORDER_STATUS : 99563
+     * ORDER_STATUS : 69752
      * CREATE_TIME : 2016-10-20 21:47:38
      * COMPANY_NAME : null
      * SEND_TIME : null
@@ -26,7 +26,7 @@ public class OrderDetailModel implements Serializable{
      * Freight : 1
      * ORDER_PAY_PRICE : 0.01
      * DetailAddress : null
-     * carSupport : UANaqjrlrr
+     * carSupport : 1RuA6UQPEB
      * REFUND_NO : 2201610207900602408
      * REFUND_PRICE : 0.01
      * GOODS_NUM : 1
@@ -37,7 +37,7 @@ public class OrderDetailModel implements Serializable{
      * OrderNO : 1201610207845804962
      * LOGISTIC_NO : null
      * PICTURE_PATH : http://localhost:8080/images/20171012\1507822726762.JPG
-     * CODE_STATUS : 12301
+     * CODE_STATUS : 93502
      */
 
     private String SENDER;

@@ -1,27 +1,11 @@
 [
     {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_textfield_search_material.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_textfield_search_material.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_tab_indicator_material.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_tab_indicator_material.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_list_selector_background_transition_holo_light.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_list_selector_background_transition_holo_light.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_item_background_holo_dark.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_item_background_holo_dark.xml"
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/warning_circle.xml",
+        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/drawable/warning_circle.xml"
     },
     {
         "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/warning_circle.xml",
         "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/drawable/warning_circle.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_btn_check_material.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_btn_check_material.xml"
     },
     {
         "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_edit_text_material.xml",
@@ -40,8 +24,12 @@
         "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_list_selector_holo_light.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/red_button_background.xml",
-        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/drawable/red_button_background.xml"
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/warning_sigh.xml",
+        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/drawable/warning_sigh.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/blue_button_background.xml",
+        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/drawable/blue_button_background.xml"
     },
     {
         "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/success_circle.xml",
@@ -52,32 +40,28 @@
         "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/drawable/success_bow.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/blue_button_background.xml",
-        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/drawable/blue_button_background.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/error_center_x.xml",
-        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/drawable/error_center_x.xml"
-    },
-    {
         "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_btn_radio_material.xml",
         "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_btn_radio_material.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_cab_background_top_material.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_cab_background_top_material.xml"
     },
     {
         "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_switch_thumb_material.xml",
         "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_switch_thumb_material.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_item_background_holo_light.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_item_background_holo_light.xml"
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/abc_btn_check_material.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_btn_check_material.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/shape_bg_recentagle.xml",
-        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/drawable/shape_bg_recentagle.xml"
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/abc_edit_text_material.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/abc_list_selector_holo_dark.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_item_background_holo_light.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_item_background_holo_light.xml"
     },
     {
         "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/gray_button_background.xml",
@@ -88,15 +72,131 @@
         "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_list_selector_holo_dark.xml"
     },
     {
+        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/dialog_background.xml",
+        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/drawable/dialog_background.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/abc_tab_indicator_material.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/abc_item_background_holo_dark.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_textfield_search_material.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/abc_textfield_search_material.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_tab_indicator_material.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_list_selector_background_transition_holo_light.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_item_background_holo_dark.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/abc_item_background_holo_light.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/abc_cab_background_top_material.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_btn_check_material.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_btn_check_material.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/abc_btn_radio_material.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/success_bow.xml",
+        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/drawable/success_bow.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/error_center_x.xml",
+        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/drawable/error_center_x.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/red_button_background.xml",
+        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/drawable/red_button_background.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/shape_bg_recentagle.xml",
+        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/drawable/shape_bg_recentagle.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/success_circle.xml",
+        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/drawable/success_circle.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/gray_button_background.xml",
+        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/drawable/gray_button_background.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/error_circle.xml",
+        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/drawable/error_circle.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/dialog_background.xml",
+        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/drawable/dialog_background.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/abc_list_selector_holo_light.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/red_button_background.xml",
+        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/drawable/red_button_background.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/abc_list_selector_background_transition_holo_light.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/blue_button_background.xml",
+        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/drawable/blue_button_background.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/error_center_x.xml",
+        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/drawable/error_center_x.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/abc_cab_background_internal_bg.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/abc_list_selector_background_transition_holo_dark.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_cab_background_top_material.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/release/drawable/abc_switch_thumb_material.xml",
+        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/shape_bg_recentagle.xml",
+        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/drawable/shape_bg_recentagle.xml"
+    },
+    {
         "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/abc_cab_background_internal_bg.xml",
         "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/drawable/abc_cab_background_internal_bg.xml"
     },
     {
         "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/warning_sigh.xml",
         "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/drawable/warning_sigh.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/release/drawable/dialog_background.xml",
-        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/drawable/dialog_background.xml"
     }
 ]
