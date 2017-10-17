@@ -388,8 +388,11 @@
             android:name=".ui.activity.KeyBoardActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".wxapi.WXPayEntryActivity"
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
             android:exported="true" />
+        <activity android:name=".modules.financial_management.WithDrawalRecordActivity" />
+        <activity android:name=".modules.financial_management.WithDrawalRecordCalendarActivity"></activity>
     </application>
 
 </manifest>
