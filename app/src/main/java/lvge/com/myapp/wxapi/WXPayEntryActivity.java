@@ -54,7 +54,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
             {
                 Toast.makeText(this, "支付成功", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, getString(R.string.cancel) + resp.errCode + "test", Toast.LENGTH_SHORT)
+                Toast.makeText(this, getString(R.string.cancel)+"错误代码：" + resp.errCode + " - 支付失败", Toast.LENGTH_SHORT)
                         .show();
 
                 finish();
