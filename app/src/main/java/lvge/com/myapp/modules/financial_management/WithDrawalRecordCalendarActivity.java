@@ -1,6 +1,5 @@
 package lvge.com.myapp.modules.financial_management;
 
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -16,7 +15,6 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import java.util.Date;
 
 import lvge.com.myapp.R;
-import lvge.com.myapp.modules.ValidationHistory.CalendarSearchFragment;
 
 public class WithDrawalRecordCalendarActivity extends AppCompatActivity {
 

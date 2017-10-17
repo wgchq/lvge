@@ -15,6 +15,7 @@ public class FinancialManagementActivity extends AppCompatActivity {
 
 
     private TextView fi_chat_detail;
+    private TextView with_drawal_questions;
     private Context mContext;
 
     @Override
@@ -40,5 +41,13 @@ public class FinancialManagementActivity extends AppCompatActivity {
             }
         });
 
+        with_drawal_questions = (TextView) findViewById(R.id.with_drawal_questions);
+        with_drawal_questions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, WithDrawRecordDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
