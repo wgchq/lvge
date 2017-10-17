@@ -8,157 +8,148 @@
     android:background="@color/background_gray"
     tools:context="lvge.com.myapp.ui.activity.OrderShippingActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBarLayout"
-        style="@style/my_title_style"
+    <include layout="@layout/include_common_title"/>
+    <lvge.com.myapp.view.LoadingLayout
+        android:id="@+id/ll_loading"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme"
-        app:elevation="0dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="0dp">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_commodity_newgoods_installl"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:navigationIcon="@mipmap/ic_back"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:titleTextColor="@color/mainFontColor">
-
-            <TextView
-                style="@style/system_title_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:text="发货"
-                tools:ignore="HardcodedText" />
-
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:background="@color/view_white"
-            android:orientation="horizontal">
-            <TextView
-                style="@style/orderShipLeftText"
-                android:text="配送方式" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
             <LinearLayout
-                android:id="@+id/ll_delvier_way"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="20dp">
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x98"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@color/view_white"
+                android:orientation="horizontal">
                 <TextView
+                    style="@style/orderShipLeftText"
+                    android:text="配送方式" />
+                <LinearLayout
+                    android:id="@+id/ll_delvier_way"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent" />
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_common_search"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="20dp">
+                    <TextView
+                        android:id="@+id/tv_delvier"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/text_common_gray"
+                        android:textColor="@color/text_common_gray"
+                        android:layout_height="match_parent" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_arrow_right"/>
+                </LinearLayout>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x98"
+                android:layout_marginTop="1dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@color/view_white"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/orderShipLeftText"
+                    android:text="配送单号" />
+                <EditText
+                    android:id="@+id/tv_deliver_order_number"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center_vertical"
+                    android:background="@null"
+                    android:hint="请输入配送单号"
+                    android:textSize="15sp"
+                    android:textColorHint="@color/text_common_gray"
+                    android:textColor="@color/text_common_gray"
+                    android:layout_marginLeft="20dp"
+                    android:singleLine="true"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x98"
+                android:layout_marginTop="1dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@color/view_white"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/orderShipLeftText"
+                    android:text="联系人" />
+                <TextView
+                    android:id="@+id/tv_contact"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:hint="请输入联系人"
+                    android:textColorHint="@color/text_common_gray"
+                    android:textColor="@color/text_common_gray"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x98"
+                android:layout_marginTop="1dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@color/view_white"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/orderShipLeftText"
+                    android:text="配送地址" />
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:hint="请输入配送地址"
+                    android:textColorHint="@color/text_common_gray"
+                    android:textColor="@color/text_common_gray"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x98"
+                android:layout_marginTop="1dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@color/view_white"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/orderShipLeftText"
+                    android:text="电话" />
+                <TextView
+                    android:id="@+id/tv_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center_vertical"
+                    android:hint="请输入电话"
+                    android:textColorHint="@color/text_common_gray"
+                    android:textColor="@color/text_common_gray"
+                    android:layout_marginLeft="20dp"/>
+            </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:text="确认"
+                android:layout_marginLeft="@dimen/common_order_layout_padding"
+                android:layout_marginRight="@dimen/common_order_layout_padding"
+                android:textColor="@color/view_white"
+                android:background="@drawable/buttonshape"/>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:layout_marginTop="1dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:background="@color/view_white"
-            android:orientation="horizontal">
-            <TextView
-                style="@style/orderShipLeftText"
-                android:text="配送单号" />
-            <EditText
-                android:id="@+id/tv_deliver_order_number"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:gravity="center_vertical"
-                android:background="@null"
-                android:hint="请输入配送单号"
-                android:textSize="15sp"
-                android:textColor="@color/my4s_hint_color"
-                android:layout_marginLeft="20dp"
-                android:singleLine="true"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:layout_marginTop="1dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:background="@color/view_white"
-            android:orientation="horizontal">
-            <TextView
-                style="@style/orderShipLeftText"
-                android:text="联系人" />
-            <TextView
-                android:id="@+id/tv_contact"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="20dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:layout_marginTop="1dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:background="@color/view_white"
-            android:orientation="horizontal">
-            <TextView
-                style="@style/orderShipLeftText"
-                android:text="配送地址" />
-            <TextView
-                android:id="@+id/tv_address"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="20dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:layout_marginTop="1dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:background="@color/view_white"
-            android:orientation="horizontal">
-            <TextView
-                style="@style/orderShipLeftText"
-                android:text="电话" />
-            <TextView
-                android:id="@+id/tv_phone"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="20dp"/>
-        </LinearLayout>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="20dp"
-            android:text="确认"
-            android:textColor="@color/view_white"
-            android:background="@drawable/buttonshape"/>
-    </LinearLayout>
+
+    </lvge.com.myapp.view.LoadingLayout>
+
 </LinearLayout>

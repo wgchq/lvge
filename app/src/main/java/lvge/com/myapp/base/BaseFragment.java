@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 import lvge.com.myapp.MyApplication;
 import lvge.com.myapp.event.AppBus;
 import lvge.com.myapp.util.LogUtil;
+import lvge.com.myapp.view.SweetAlertDialogView;
 
 
 public abstract class BaseFragment extends com.trello.rxlifecycle2.components.support.RxFragment {
@@ -31,7 +32,7 @@ public abstract class BaseFragment extends com.trello.rxlifecycle2.components.su
     protected Activity mActivity;
 //    protected OnLoadSuccessCallback callback;
     protected int mId;
-//    public SweetAlertDialogView sweetAlertDialogView;
+    public SweetAlertDialogView sweetAlertDialogView;
 //    public LoyoProgressHUD hud;
     public String TAG = getClass().getName();
     protected View parentView;
@@ -68,7 +69,7 @@ public abstract class BaseFragment extends com.trello.rxlifecycle2.components.su
         super.onCreate(savedInstanceState);
         app = MyApplication.getInstance();
         AppBus.getInstance().register(this);
-//        sweetAlertDialogView = new SweetAlertDialogView(getActivity());
+        sweetAlertDialogView = new SweetAlertDialogView(getActivity());
         LogUtil.d(TAG,"onCreate");
     }
 

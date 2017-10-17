@@ -4,108 +4,89 @@ import java.io.Serializable;
 
 public class OrderDetailModel implements Serializable{
 
+
     /**
-     * HasEvaluated : 6872
-     * ORDER_STATUS : 8XloI0fnuR
-     * CUSTOMER_NAME : uhCMC2oh03
-     * Need_Receipt : E7qENbmXdF
-     * CREATE_TIME : 1508077933163
-     * ReceiptAddressID : 85189
-     * SELLER_NAME : GUCumyfjSX
-     * DisCountTotalPrice : 76533
-     * CUSTOMER_ID : 85413
-     * CUSTOMER_COUPON_ID : 85750
-     * GoodsName : dSkRA5QMr7
-     * PHONE : LR2wSF9di2
-     * IS_INSTALL : Afhl4Kl9CY
-     * DISCOUNT_PRICE : 31683
-     * IS_ADD_SCOE : HQa8XN7APg
-     * PAY_END_TIME : 1508078062097
-     * GOODS_ID : 85922
-     * ORIGINAL_PRICE : 63295
-     * GOODS_PRICE : 19950
-     * GOODS_TYPE : 2hbOypVmgT
-     * Freight : 89113
-     * ORDER_PRICE : 90420
-     * GoodsTotalPrice : 55978
-     * LOGISTIC_COMPANY_ID : 86228
-     * GOODS_PRI_PRICE : 3485
-     * ServiceTotalCharge : 400
-     * GOODS_NUM : 47893
-     * ORDER_ID : 86316
-     * SELLER_ID : 87251
-     * LOGISTIC_NO : TTvlc92D2F
-     * OrderNO : ko0CV5wfOp
-     * GOODS_DISCOUNT_PRICE : AzM0JiGOL8
-     * ServiceCharge : 42563
-     * ORDER_GOODS_ID : 88102
+     * SENDER : null
+     * ORDER_STATUS : 99563
+     * CREATE_TIME : 2016-10-20 21:47:38
+     * COMPANY_NAME : null
+     * SEND_TIME : null
+     * CUSTOMER_ID : 1011
+     * customerPhone : 13693788080
+     * SELLER_REPLAY : null
+     * GoodsName : 商品
+     * BrandID : null
+     * REFUND_STATUS : 1
+     * DISCOUNT_PRICE : 0.01
+     * REFUND_APPLY_DATE : 2016-10-20 21:56:46
+     * Receipt_Title : sdsdsd
+     * customerName : 和平
+     * GOODS_TYPE : 8
+     * customerHeadIconPath : http://121.42.166.222:82/IMG/CUSTOMERPHOTO/1011/1457009705186.jpg
+     * Freight : 1
+     * ORDER_PAY_PRICE : 0.01
+     * DetailAddress : null
+     * carSupport : UANaqjrlrr
+     * REFUND_NO : 2201610207900602408
+     * REFUND_PRICE : 0.01
+     * GOODS_NUM : 1
+     * REFUND_REASON : 9223372036854775807
+     * PAY_TYPE : 1
+     * Memo : null
+     * CODE_STR : 1201611684817063001
+     * OrderNO : 1201610207845804962
+     * LOGISTIC_NO : null
+     * PICTURE_PATH : http://localhost:8080/images/20171012\1507822726762.JPG
+     * CODE_STATUS : 12301
      */
 
-    private int HasEvaluated;
-    private String ORDER_STATUS;
-    private String CUSTOMER_NAME;
-    private String Need_Receipt;
+    private String SENDER;
+    private int ORDER_STATUS;
     private String CREATE_TIME;
-    private int ReceiptAddressID;
-    private String SELLER_NAME;
-    private int DisCountTotalPrice;
+    private String COMPANY_NAME;
+    private String SEND_TIME;
     private int CUSTOMER_ID;
-    private int CUSTOMER_COUPON_ID;
+    private String customerPhone;
+    private String SELLER_REPLAY;
     private String GoodsName;
-    private String PHONE;
-    private String IS_INSTALL;
-    private int DISCOUNT_PRICE;
-    private String IS_ADD_SCOE;
-    private String PAY_END_TIME;
-    private int GOODS_ID;
-    private int ORIGINAL_PRICE;
-    private int GOODS_PRICE;
+    private String BrandID;
+    private String REFUND_STATUS;
+    private double DISCOUNT_PRICE;
+    private String REFUND_APPLY_DATE;
+    private String Receipt_Title;
+    private String customerName;
     private String GOODS_TYPE;
+    private String customerHeadIconPath;
     private int Freight;
-    private int ORDER_PRICE;
-    private int GoodsTotalPrice;
-    private String LOGISTIC_COMPANY_ID;
-    private int GOODS_PRI_PRICE;
-    private int ServiceTotalCharge;
+    private double ORDER_PAY_PRICE;
+    private String DetailAddress;
+    private String carSupport;
+    private String REFUND_NO;
+    private double REFUND_PRICE;
     private int GOODS_NUM;
-    private int ORDER_ID;
-    private int SELLER_ID;
-    private String LOGISTIC_NO;
+    private String REFUND_REASON;
+    private String PAY_TYPE;
+    private String Memo;
+    private String CODE_STR;
     private String OrderNO;
-    private String GOODS_DISCOUNT_PRICE;
-    private int ServiceCharge;
-    private int ORDER_GOODS_ID;
+    private String LOGISTIC_NO;
+    private String PICTURE_PATH;
+    private int CODE_STATUS;
 
-    public int getHasEvaluated() {
-        return HasEvaluated;
+    public String getSENDER() {
+        return SENDER;
     }
 
-    public void setHasEvaluated(int HasEvaluated) {
-        this.HasEvaluated = HasEvaluated;
+    public void setSENDER(String SENDER) {
+        this.SENDER = SENDER;
     }
 
-    public String getORDER_STATUS() {
+    public int getORDER_STATUS() {
         return ORDER_STATUS;
     }
 
-    public void setORDER_STATUS(String ORDER_STATUS) {
+    public void setORDER_STATUS(int ORDER_STATUS) {
         this.ORDER_STATUS = ORDER_STATUS;
-    }
-
-    public String getCUSTOMER_NAME() {
-        return CUSTOMER_NAME;
-    }
-
-    public void setCUSTOMER_NAME(String CUSTOMER_NAME) {
-        this.CUSTOMER_NAME = CUSTOMER_NAME;
-    }
-
-    public String getNeed_Receipt() {
-        return Need_Receipt;
-    }
-
-    public void setNeed_Receipt(String Need_Receipt) {
-        this.Need_Receipt = Need_Receipt;
     }
 
     public String getCREATE_TIME() {
@@ -116,28 +97,20 @@ public class OrderDetailModel implements Serializable{
         this.CREATE_TIME = CREATE_TIME;
     }
 
-    public int getReceiptAddressID() {
-        return ReceiptAddressID;
+    public String getCOMPANY_NAME() {
+        return COMPANY_NAME;
     }
 
-    public void setReceiptAddressID(int ReceiptAddressID) {
-        this.ReceiptAddressID = ReceiptAddressID;
+    public void setCOMPANY_NAME(String COMPANY_NAME) {
+        this.COMPANY_NAME = COMPANY_NAME;
     }
 
-    public String getSELLER_NAME() {
-        return SELLER_NAME;
+    public String getSEND_TIME() {
+        return SEND_TIME;
     }
 
-    public void setSELLER_NAME(String SELLER_NAME) {
-        this.SELLER_NAME = SELLER_NAME;
-    }
-
-    public int getDisCountTotalPrice() {
-        return DisCountTotalPrice;
-    }
-
-    public void setDisCountTotalPrice(int DisCountTotalPrice) {
-        this.DisCountTotalPrice = DisCountTotalPrice;
+    public void setSEND_TIME(String SEND_TIME) {
+        this.SEND_TIME = SEND_TIME;
     }
 
     public int getCUSTOMER_ID() {
@@ -148,12 +121,20 @@ public class OrderDetailModel implements Serializable{
         this.CUSTOMER_ID = CUSTOMER_ID;
     }
 
-    public int getCUSTOMER_COUPON_ID() {
-        return CUSTOMER_COUPON_ID;
+    public String getCustomerPhone() {
+        return customerPhone;
     }
 
-    public void setCUSTOMER_COUPON_ID(int CUSTOMER_COUPON_ID) {
-        this.CUSTOMER_COUPON_ID = CUSTOMER_COUPON_ID;
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
+
+    public String getSELLER_REPLAY() {
+        return SELLER_REPLAY;
+    }
+
+    public void setSELLER_REPLAY(String SELLER_REPLAY) {
+        this.SELLER_REPLAY = SELLER_REPLAY;
     }
 
     public String getGoodsName() {
@@ -164,68 +145,52 @@ public class OrderDetailModel implements Serializable{
         this.GoodsName = GoodsName;
     }
 
-    public String getPHONE() {
-        return PHONE;
+    public String getBrandID() {
+        return BrandID;
     }
 
-    public void setPHONE(String PHONE) {
-        this.PHONE = PHONE;
+    public void setBrandID(String BrandID) {
+        this.BrandID = BrandID;
     }
 
-    public String getIS_INSTALL() {
-        return IS_INSTALL;
+    public String getREFUND_STATUS() {
+        return REFUND_STATUS;
     }
 
-    public void setIS_INSTALL(String IS_INSTALL) {
-        this.IS_INSTALL = IS_INSTALL;
+    public void setREFUND_STATUS(String REFUND_STATUS) {
+        this.REFUND_STATUS = REFUND_STATUS;
     }
 
-    public int getDISCOUNT_PRICE() {
+    public double getDISCOUNT_PRICE() {
         return DISCOUNT_PRICE;
     }
 
-    public void setDISCOUNT_PRICE(int DISCOUNT_PRICE) {
+    public void setDISCOUNT_PRICE(double DISCOUNT_PRICE) {
         this.DISCOUNT_PRICE = DISCOUNT_PRICE;
     }
 
-    public String getIS_ADD_SCOE() {
-        return IS_ADD_SCOE;
+    public String getREFUND_APPLY_DATE() {
+        return REFUND_APPLY_DATE;
     }
 
-    public void setIS_ADD_SCOE(String IS_ADD_SCOE) {
-        this.IS_ADD_SCOE = IS_ADD_SCOE;
+    public void setREFUND_APPLY_DATE(String REFUND_APPLY_DATE) {
+        this.REFUND_APPLY_DATE = REFUND_APPLY_DATE;
     }
 
-    public String getPAY_END_TIME() {
-        return PAY_END_TIME;
+    public String getReceipt_Title() {
+        return Receipt_Title;
     }
 
-    public void setPAY_END_TIME(String PAY_END_TIME) {
-        this.PAY_END_TIME = PAY_END_TIME;
+    public void setReceipt_Title(String Receipt_Title) {
+        this.Receipt_Title = Receipt_Title;
     }
 
-    public int getGOODS_ID() {
-        return GOODS_ID;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setGOODS_ID(int GOODS_ID) {
-        this.GOODS_ID = GOODS_ID;
-    }
-
-    public int getORIGINAL_PRICE() {
-        return ORIGINAL_PRICE;
-    }
-
-    public void setORIGINAL_PRICE(int ORIGINAL_PRICE) {
-        this.ORIGINAL_PRICE = ORIGINAL_PRICE;
-    }
-
-    public int getGOODS_PRICE() {
-        return GOODS_PRICE;
-    }
-
-    public void setGOODS_PRICE(int GOODS_PRICE) {
-        this.GOODS_PRICE = GOODS_PRICE;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getGOODS_TYPE() {
@@ -236,6 +201,14 @@ public class OrderDetailModel implements Serializable{
         this.GOODS_TYPE = GOODS_TYPE;
     }
 
+    public String getCustomerHeadIconPath() {
+        return customerHeadIconPath;
+    }
+
+    public void setCustomerHeadIconPath(String customerHeadIconPath) {
+        this.customerHeadIconPath = customerHeadIconPath;
+    }
+
     public int getFreight() {
         return Freight;
     }
@@ -244,44 +217,44 @@ public class OrderDetailModel implements Serializable{
         this.Freight = Freight;
     }
 
-    public int getORDER_PRICE() {
-        return ORDER_PRICE;
+    public double getORDER_PAY_PRICE() {
+        return ORDER_PAY_PRICE;
     }
 
-    public void setORDER_PRICE(int ORDER_PRICE) {
-        this.ORDER_PRICE = ORDER_PRICE;
+    public void setORDER_PAY_PRICE(double ORDER_PAY_PRICE) {
+        this.ORDER_PAY_PRICE = ORDER_PAY_PRICE;
     }
 
-    public int getGoodsTotalPrice() {
-        return GoodsTotalPrice;
+    public String getDetailAddress() {
+        return DetailAddress;
     }
 
-    public void setGoodsTotalPrice(int GoodsTotalPrice) {
-        this.GoodsTotalPrice = GoodsTotalPrice;
+    public void setDetailAddress(String DetailAddress) {
+        this.DetailAddress = DetailAddress;
     }
 
-    public String getLOGISTIC_COMPANY_ID() {
-        return LOGISTIC_COMPANY_ID;
+    public String getCarSupport() {
+        return carSupport;
     }
 
-    public void setLOGISTIC_COMPANY_ID(String LOGISTIC_COMPANY_ID) {
-        this.LOGISTIC_COMPANY_ID = LOGISTIC_COMPANY_ID;
+    public void setCarSupport(String carSupport) {
+        this.carSupport = carSupport;
     }
 
-    public int getGOODS_PRI_PRICE() {
-        return GOODS_PRI_PRICE;
+    public String getREFUND_NO() {
+        return REFUND_NO;
     }
 
-    public void setGOODS_PRI_PRICE(int GOODS_PRI_PRICE) {
-        this.GOODS_PRI_PRICE = GOODS_PRI_PRICE;
+    public void setREFUND_NO(String REFUND_NO) {
+        this.REFUND_NO = REFUND_NO;
     }
 
-    public int getServiceTotalCharge() {
-        return ServiceTotalCharge;
+    public double getREFUND_PRICE() {
+        return REFUND_PRICE;
     }
 
-    public void setServiceTotalCharge(int ServiceTotalCharge) {
-        this.ServiceTotalCharge = ServiceTotalCharge;
+    public void setREFUND_PRICE(double REFUND_PRICE) {
+        this.REFUND_PRICE = REFUND_PRICE;
     }
 
     public int getGOODS_NUM() {
@@ -292,28 +265,36 @@ public class OrderDetailModel implements Serializable{
         this.GOODS_NUM = GOODS_NUM;
     }
 
-    public int getORDER_ID() {
-        return ORDER_ID;
+    public String getREFUND_REASON() {
+        return REFUND_REASON;
     }
 
-    public void setORDER_ID(int ORDER_ID) {
-        this.ORDER_ID = ORDER_ID;
+    public void setREFUND_REASON(String REFUND_REASON) {
+        this.REFUND_REASON = REFUND_REASON;
     }
 
-    public int getSELLER_ID() {
-        return SELLER_ID;
+    public String getPAY_TYPE() {
+        return PAY_TYPE;
     }
 
-    public void setSELLER_ID(int SELLER_ID) {
-        this.SELLER_ID = SELLER_ID;
+    public void setPAY_TYPE(String PAY_TYPE) {
+        this.PAY_TYPE = PAY_TYPE;
     }
 
-    public String getLOGISTIC_NO() {
-        return LOGISTIC_NO;
+    public String getMemo() {
+        return Memo;
     }
 
-    public void setLOGISTIC_NO(String LOGISTIC_NO) {
-        this.LOGISTIC_NO = LOGISTIC_NO;
+    public void setMemo(String Memo) {
+        this.Memo = Memo;
+    }
+
+    public String getCODE_STR() {
+        return CODE_STR;
+    }
+
+    public void setCODE_STR(String CODE_STR) {
+        this.CODE_STR = CODE_STR;
     }
 
     public String getOrderNO() {
@@ -324,27 +305,27 @@ public class OrderDetailModel implements Serializable{
         this.OrderNO = OrderNO;
     }
 
-    public String getGOODS_DISCOUNT_PRICE() {
-        return GOODS_DISCOUNT_PRICE;
+    public String getLOGISTIC_NO() {
+        return LOGISTIC_NO;
     }
 
-    public void setGOODS_DISCOUNT_PRICE(String GOODS_DISCOUNT_PRICE) {
-        this.GOODS_DISCOUNT_PRICE = GOODS_DISCOUNT_PRICE;
+    public void setLOGISTIC_NO(String LOGISTIC_NO) {
+        this.LOGISTIC_NO = LOGISTIC_NO;
     }
 
-    public int getServiceCharge() {
-        return ServiceCharge;
+    public String getPICTURE_PATH() {
+        return PICTURE_PATH;
     }
 
-    public void setServiceCharge(int ServiceCharge) {
-        this.ServiceCharge = ServiceCharge;
+    public void setPICTURE_PATH(String PICTURE_PATH) {
+        this.PICTURE_PATH = PICTURE_PATH;
     }
 
-    public int getORDER_GOODS_ID() {
-        return ORDER_GOODS_ID;
+    public int getCODE_STATUS() {
+        return CODE_STATUS;
     }
 
-    public void setORDER_GOODS_ID(int ORDER_GOODS_ID) {
-        this.ORDER_GOODS_ID = ORDER_GOODS_ID;
+    public void setCODE_STATUS(int CODE_STATUS) {
+        this.CODE_STATUS = CODE_STATUS;
     }
 }

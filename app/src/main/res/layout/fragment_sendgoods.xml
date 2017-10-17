@@ -1,96 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
-              android:fitsSystemWindows="true"
-              android:orientation="vertical"
-
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <ScrollView
+              android:layout_height="match_parent"
+
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <lvge.com.myapp.view.LoadingLayout
+        android:id="@+id/ll_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none">
-        <FrameLayout
+        app:view_isFirstVisible="true">
+
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/background_gray"
-                android:orientation="vertical">
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:background="@color/colorPrimary"/>
+                android:layout_height="match_parent">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/white"
-                    android:paddingLeft="@dimen/x20"
-                    android:paddingRight="@dimen/x20"
+                    android:background="@color/background_gray"
                     android:orientation="vertical">
-                    <RelativeLayout
+
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="45dp">
-                        <TextView
-                            android:id="@+id/tv_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            tools:text="和平"/>
-                        <TextView
-                            android:id="@+id/tv_phone"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            tools:text="1234544777"/>
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/tv_address"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="收货地址：重庆市人民路"/>
-                    <lvge.com.myapp.view.GoodsDesView
-                        android:layout_marginTop="@dimen/x10"
-                        android:id="@+id/goodsDesView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="@dimen/x60"
+                        android:background="@color/colorPrimary"/>
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_height="@dimen/x163"
+                        android:background="@android:color/white"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/x20"
+                        android:paddingRight="@dimen/x20">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="@dimen/x135"
+                            android:layout_marginTop="@dimen/x30">
+
+                            <TextView
+                                android:id="@+id/tv_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="和平"/>
+
+                            <TextView
+                                android:id="@+id/tv_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                tools:text="1234544777"/>
+                        </RelativeLayout>
+
                         <TextView
+                            android:id="@+id/tv_address"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="付款金额"/>
-                        <TextView
+                            android:layout_marginTop="@dimen/x45"
+                            tools:text="收货地址：重庆市人民路"/>
+                    </LinearLayout>
+
+                    <include layout="@layout/include_middle_line"/>
+
+                    <lvge.com.myapp.view.GoodsDesView
+                        android:id="@+id/goodsDesView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x10"/>
+
+                    <include layout="@layout/include_max_line"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/white"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/x20"
+                        android:paddingRight="@dimen/x20">
+
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="end"
-                            android:textColor="@color/colorPrimary"
-                            tools:text="￥2680"/>
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="付款金额"/>
+
+                            <TextView
+                                android:id="@+id/tv_pay_money"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:textColor="@color/colorPrimary"
+                                tools:text="￥2680"/>
+                        </LinearLayout>
+
+                        <include layout="@layout/include_order_list"/>
                     </LinearLayout>
-                    <include layout="@layout/include_order_list"/>
+
+                    <Button
+                        android:id="@+id/btn_send"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/x100"
+                        android:layout_marginLeft="@dimen/x25"
+                        android:layout_marginRight="@dimen/x25"
+                        android:layout_marginTop="@dimen/x40"
+                        android:background="@color/colorPrimary"
+                        android:text="发货"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/x40"/>
+
                 </LinearLayout>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/x100"
-                    android:layout_marginTop="@dimen/x30"
-                    android:layout_marginLeft="@dimen/x25"
-                    android:layout_marginRight="@dimen/x25"
-                    android:background="@color/colorPrimary"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/x40"
-                    android:text="发货"/>
 
-            </LinearLayout>
-
-            <lvge.com.myapp.view.CircleImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="@dimen/x20"
-                tools:src="@mipmap/phone"/>
-        </FrameLayout>
-    </ScrollView>
+                <lvge.com.myapp.view.CircleImageView
+                    android:id="@+id/iv_header"
+                    android:layout_width="@dimen/x120"
+                    android:layout_height="@dimen/x120"
+                    android:layout_marginLeft="@dimen/x20"
+                    tools:src="@drawable/default_header"/>
+            </FrameLayout>
+        </ScrollView>
+    </lvge.com.myapp.view.LoadingLayout>
 </LinearLayout>

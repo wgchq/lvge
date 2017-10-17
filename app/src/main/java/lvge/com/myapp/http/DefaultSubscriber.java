@@ -37,6 +37,10 @@ public abstract class DefaultSubscriber<T> implements Subscriber<T> {
     public DefaultSubscriber(){
         type = ErrorChecker.TOAST;
     }
+    public DefaultSubscriber(@ErrorChecker.CheckType int type){
+
+        this.type = type;
+    }
     public DefaultSubscriber(Dialog dialog){
         this.mDialog = dialog;
         type = ErrorChecker.TOAST;

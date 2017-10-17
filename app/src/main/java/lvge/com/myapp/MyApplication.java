@@ -2,6 +2,7 @@ package lvge.com.myapp;
 
 import android.app.AlertDialog;
 import android.app.Application;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.WindowManager;
@@ -17,6 +18,7 @@ import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
 import lvge.com.myapp.util.AppUtil;
 import lvge.com.myapp.util.EmailSender;
 import lvge.com.myapp.util.LogUtil;
+import lvge.com.myapp.util.SharedPreferencesUtil;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -58,6 +60,7 @@ public class MyApplication extends Application {
     private void init() {
         AppUtil.init(this);
         LogUtil.init(this);
+        SharedPreferencesUtil.init(getApplicationContext(), getPackageName() + "_preference", Context.MODE_PRIVATE);
         if (BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this);
         }

@@ -1,7 +1,7 @@
 package lvge.com.myapp.ui.fragment;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,20 +11,14 @@ import com.google.zxing.integration.android.IntentResult;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import lvge.com.myapp.R;
-import lvge.com.myapp.base.BaseFragment;
-import lvge.com.myapp.http.DefaultSubscriber;
-import lvge.com.myapp.http.api.OrderService;
-import lvge.com.myapp.model.order.OrderDetailModel;
-import lvge.com.myapp.model.order.OrderItemModel;
 import lvge.com.myapp.modules.validationtypescanqr.MipcaActivityCaptureActivity;
 import lvge.com.myapp.ui.activity.KeyBoardActivity;
 import lvge.com.myapp.view.GoodsDesView;
 import lvge.com.myapp.view.LoadingLayout;
 
 
-public class ScanVerifyFragment extends BaseFragment {
+public class ScanVerifyFragment extends BaseOrderDetailFragment {
     @BindView(R.id.tv_name)
     TextView mTvName;
     @BindView(R.id.tv_phone)
@@ -43,9 +37,6 @@ public class ScanVerifyFragment extends BaseFragment {
     LoadingLayout mLlLoading;
     @BindView(R.id.ll_scan)
     LinearLayout mLlScan;
-    Unbinder unbinder;
-    private OrderItemModel m;
-    private OrderDetailModel model;
 
     @Override
     protected int getLayoutResId() {
@@ -59,9 +50,7 @@ public class ScanVerifyFragment extends BaseFragment {
 
     @Override
     public void initDatas() {
-        Bundle bundle = getArguments();
-        m = (OrderItemModel) bundle.getSerializable("OrderItemModel");
-        getData();
+        super.initDatas();
     }
 
     @Override
@@ -78,15 +67,11 @@ public class ScanVerifyFragment extends BaseFragment {
 
     }
 
-    public void getData() {
-        OrderService.getOrderDetail(m.getOrderNO())
-                .subscribe(new DefaultSubscriber<OrderDetailModel>(mLlLoading) {
-                    @Override
-                    public void onSucced(OrderDetailModel result) {
-                        model = result;
-                        configViews();
-                    }
-                });
+
+    @NonNull
+    @Override
+    public LoadingLayout getLoadingLayout() {
+        return mLlLoading;
     }
 
     @OnClick(R.id.ll_scan)

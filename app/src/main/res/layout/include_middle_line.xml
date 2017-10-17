@@ -2,6 +2,6 @@
 <View xmlns:android="http://schemas.android.com/apk/res/android"
               android:background="@color/myshop_background"
               android:layout_width="match_parent"
-              android:layout_height="@dimen/x6">
+              android:layout_height="@dimen/x5">
 
 </View>
