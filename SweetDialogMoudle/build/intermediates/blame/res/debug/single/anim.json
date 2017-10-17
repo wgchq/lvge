@@ -1,98 +1,50 @@
 [
     {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/debug/anim/error_x_in.xml",
-        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/anim/error_x_in.xml"
+        "merged": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\skyvt\\.android\\build-cache\\c90256b3532ab69b802d4e4e2ad075cf13d44e25\\output\\res\\anim\\abc_fade_out.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/debug/anim/modal_in.xml",
-        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/anim/modal_in.xml"
+        "merged": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\build\\intermediates\\res\\merged\\debug\\anim\\error_frame_in.xml",
+        "source": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\src\\main\\res\\anim\\error_frame_in.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/debug/anim/success_mask_layout.xml",
-        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/anim/success_mask_layout.xml"
+        "merged": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\skyvt\\.android\\build-cache\\c90256b3532ab69b802d4e4e2ad075cf13d44e25\\output\\res\\anim\\abc_slide_in_top.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/anim/abc_fade_in.xml"
+        "merged": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\skyvt\\.android\\build-cache\\c90256b3532ab69b802d4e4e2ad075cf13d44e25\\output\\res\\anim\\abc_fade_in.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/anim/abc_slide_out_bottom.xml"
+        "merged": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\skyvt\\.android\\build-cache\\c90256b3532ab69b802d4e4e2ad075cf13d44e25\\output\\res\\anim\\abc_slide_in_bottom.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/debug/anim/success_bow_roate.xml",
-        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/anim/success_bow_roate.xml"
+        "merged": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\build\\intermediates\\res\\merged\\debug\\anim\\success_bow_roate.xml",
+        "source": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\src\\main\\res\\anim\\success_bow_roate.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/anim/abc_fade_out.xml"
+        "merged": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\skyvt\\.android\\build-cache\\c90256b3532ab69b802d4e4e2ad075cf13d44e25\\output\\res\\anim\\abc_slide_out_top.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/debug/anim/modal_out.xml",
-        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/anim/modal_out.xml"
+        "merged": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\build\\intermediates\\res\\merged\\debug\\anim\\modal_in.xml",
+        "source": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\src\\main\\res\\anim\\modal_in.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/debug/anim/modal_out.xml",
-        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/anim/modal_out.xml"
+        "merged": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\build\\intermediates\\res\\merged\\debug\\anim\\modal_out.xml",
+        "source": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\src\\main\\res\\anim\\modal_out.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/anim/abc_slide_in_top.xml"
+        "merged": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\build\\intermediates\\res\\merged\\debug\\anim\\success_mask_layout.xml",
+        "source": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\src\\main\\res\\anim\\success_mask_layout.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/debug/anim/modal_in.xml",
-        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/anim/modal_in.xml"
+        "merged": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",
+        "source": "C:\\Users\\skyvt\\.android\\build-cache\\c90256b3532ab69b802d4e4e2ad075cf13d44e25\\output\\res\\anim\\abc_slide_out_bottom.xml"
     },
     {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/anim/abc_slide_in_bottom.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/anim/abc_slide_out_top.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/anim/abc_slide_out_top.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/anim/abc_slide_in_top.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/anim/abc_fade_in.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/anim/abc_slide_in_bottom.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/debug/anim/success_bow_roate.xml",
-        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/anim/success_bow_roate.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/debug/anim/error_frame_in.xml",
-        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/anim/error_frame_in.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/debug/anim/success_mask_layout.xml",
-        "source": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/src/main/res/anim/success_mask_layout.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/anim/abc_fade_out.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/debug/anim/error_x_in.xml",
-        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/anim/error_x_in.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
-        "source": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/anim/abc_slide_out_bottom.xml"
-    },
-    {
-        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/debug/anim/error_frame_in.xml",
-        "source": "/Users/android/android/workspace/lvge/SweetDialogMoudle/src/main/res/anim/error_frame_in.xml"
+        "merged": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\build\\intermediates\\res\\merged\\debug\\anim\\error_x_in.xml",
+        "source": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\src\\main\\res\\anim\\error_x_in.xml"
     }
 ]

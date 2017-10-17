@@ -28,19 +28,19 @@ public class OrderItemModel implements Serializable {
 //9、待安装
 
 
-    public static final int WAIT_PAY = 0;
-    public static final int WAIT_VERIFY = 1;
+    public static final int WAIT_PAY = -1;
+    public static final int WAIT_VERIFY = 0;
     public static final int FACKED_OF = 2;
-    public static final int WAIT_SEND = 3;
+    public static final int WAIT_SEND = 1;
     public static final int WAIT_RECEIVE = 4;
-    public static final int WAIT_INSTALL = 4;
-    public static final int REFUNDING = 5; //退款中
-    public static final int REFUSED = 6; //拒绝退款
-    public static final int REFUNDED = 7; //已退款
-    public static final int CANCELED = 8; //取消订单
-    public static final int SENDING = 6;
-    public static final int FINISHED = 9;
-    public static final int CASH_REGISTER = 10;
+    public static final int WAIT_INSTALL = 2;
+    public static final int REFUNDING = 7; //退款中
+    public static final int REFUSED = 8; //拒绝退款
+    public static final int REFUNDED = 9; //已退款
+//    public static final int CANCELED = 8; //取消订单
+    public static final int SENDING = 5;
+    public static final int FINISHED = 6;
+    public static final int CASH_REGISTER = 3;
 
     public int status;
     private int freight;

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -73,6 +74,7 @@ public class GoodsDesView extends LinearLayout {
         String f = String.format("（含运费￥%s）",NumberUtil.getFormatNumber(freight));
         SpannableString sps = new SpannableString(n+m+f);
         sps.setSpan(new ForegroundColorSpan(AppUtil.getColor(R.color.colorPrimary)), n.length(), n.length()+m.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sps.setSpan(new AbsoluteSizeSpan((int)getResources().getDimension(R.dimen.x28)),n.length(), n.length()+m.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         mTvPriceDes.setText(sps);
     }
 
