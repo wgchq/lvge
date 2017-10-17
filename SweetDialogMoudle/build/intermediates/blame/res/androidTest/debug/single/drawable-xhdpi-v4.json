@@ -1,10 +1,6 @@
 [
     {
-        "merged": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/ic_launcher.png",
-        "source": "/Users/android/.android/build-cache/d4194b2c8d5a2a603e6cc551cf3654cae41e10a3/output/res/drawable-xhdpi-v4/ic_launcher.png"
-    },
-    {
-        "merged": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/ic_launcher.png",
-        "source": "/Users/android/.android/build-cache/d4194b2c8d5a2a603e6cc551cf3654cae41e10a3/output/res/drawable-xhdpi-v4/ic_launcher.png"
+        "merged": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\skyvt\\.android\\build-cache\\cfd03f5c92134562747dd246c0dcc869ac5109c2\\output\\res\\drawable-xhdpi-v4\\ic_launcher.png"
     }
 ]

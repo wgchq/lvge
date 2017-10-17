@@ -20,6 +20,7 @@ public class PageResultModel<T> {
     private int totalPage;
     private int pageIndex;
     private int totalCount;
+    public List<Integer> object;
     private List<T> entityList;
 
     public int getPageSize() {

@@ -120,6 +120,9 @@ public abstract class BaseActivity extends RxAppCompatActivity {
 
         }
     }
+    public void showProssDailog(){
+
+    }
 
     /**
      * 设置全屏，包括状态栏和导航栏，主要用于引导页面

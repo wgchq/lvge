@@ -60,7 +60,7 @@ public class ScanVerifyFragment extends BaseOrderDetailFragment {
         mGoodsDesView.setHeader(model.getGoodsName());
         mGoodsDesView.setCount(model.getGOODS_NUM());
 //        mGoodsDesView.setMoney(model.g);
-//        mGoodsDesView.setPriceDes(model.getORIGINAL_PRICE(), model.getGOODS_NUM(), model.getFreight());
+        //        mGoodsDesView.setPriceDes(model.getORIGINAL_PRICE(), model.getGOODS_NUM(), model.getFreight());
         //        mTvMemo.setText();
         mTvOrderNo.setText(model.getOrderNO());
         //        mTvDate.setText();

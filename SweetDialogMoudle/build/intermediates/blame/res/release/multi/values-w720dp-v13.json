@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/android/android/workspace/lvge/SweetDialogMoudle/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-w720dp-v13/values-w720dp-v13.xml",
+        "outputFile": "J:\\workspace_company\\CarMall\\lvge\\SweetDialogMoudle\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-w720dp-v13\\values-w720dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,31 +11,7 @@
                     "endOffset": 127
                 },
                 "from": {
-                    "file": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/values-w720dp/values.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 56,
-                        "endColumn": 76,
-                        "endOffset": 128
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "/Users/android/android/workspace/kuaidian/ThirdPartyLibrary/SweetDialogModel/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-w720dp-v13/values-w720dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 76,
-                    "endOffset": 127
-                },
-                "from": {
-                    "file": "/Users/android/.android/build-cache/61fc38b31a1fd6ab4bb617878a1ec39eb52de011/output/res/values-w720dp/values.xml",
+                    "file": "C:\\Users\\skyvt\\.android\\build-cache\\c90256b3532ab69b802d4e4e2ad075cf13d44e25\\output\\res\\values-w720dp\\values.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
