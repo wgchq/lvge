@@ -1,1 +1,1 @@
-include ':app',":SweetDialogMoudle"
+include ':app'
