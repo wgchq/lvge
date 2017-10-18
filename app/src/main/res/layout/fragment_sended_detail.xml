@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <lvge.com.myapp.view.LoadingLayout
+    android:id="@+id/ll_loading"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:view_isFirstVisible="true">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/include_reciever_info"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_gray"
+                android:orientation="vertical">
+
+
+                <include layout="@layout/include_middle_line"/>
+
+                <lvge.com.myapp.view.GoodsDesView
+                    android:id="@+id/goodsDesView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x10"/>
+
+                <include layout="@layout/include_max_line"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/x20"
+                    android:paddingRight="@dimen/x20">
+
+
+                    <include layout="@layout/include_order_list"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x60"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/x20"
+                    android:text="发货信息"
+                    android:textColor="@color/text_common_gray"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/x24"
+                    android:paddingLeft="@dimen/x20"
+                    android:paddingRight="@dimen/x20">
+
+
+                    <LinearLayout
+                        style="@style/orderDetailLinear">
+
+                        <TextView
+                            style="@style/orderDetailLeftText"
+                            android:text="发货人"/>
+
+                        <TextView
+                            android:id="@+id/tv_sender"
+                            style="@style/orderDetailRightText"
+                            tools:text="1878454545433454"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/orderDetailLinear">
+
+                        <TextView
+                            style="@style/orderDetailLeftText"
+                            android:text="配送方式"/>
+
+                        <TextView
+                            android:id="@+id/tv_send_type"
+                            style="@style/orderDetailRightText"
+                            tools:text="1878454545433454"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/orderDetailLinear">
+
+                        <TextView
+                            style="@style/orderDetailLeftText"
+                            android:text="配送单号"/>
+
+                        <TextView
+                            android:id="@+id/tv_send_no"
+                            style="@style/orderDetailRightText"
+                            tools:text="1878454545433454"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/orderDetailLinear">
+
+                        <TextView
+                            style="@style/orderDetailLeftText"
+                            android:text="配送时间"/>
+
+                        <TextView
+                            android:id="@+id/tv_send_time"
+                            style="@style/orderDetailRightText"
+                            tools:text="1878454545433454"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <include layout="@layout/include_max_line"/>
+                <LinearLayout
+                    android:id="@+id/ll_send_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x88"
+                    android:paddingLeft="@dimen/x20"
+                    android:background="@android:color/white"
+                    android:paddingRight="@dimen/x20"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="物流详情"
+                        android:textSize="@dimen/x28"
+                        android:gravity="center_vertical"
+                        android:textColor="@android:color/black"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:text="配送中"
+                        android:textSize="@dimen/x28"
+                        android:textColor="@color/text_common_gray"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x15"
+                        android:src="@drawable/icon_arrow_right"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    </lvge.com.myapp.view.LoadingLayout>
+</LinearLayout>
